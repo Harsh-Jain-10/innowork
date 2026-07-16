@@ -212,7 +212,7 @@ const SOLUTIONS_DATA = [
     id: 'dc-operations',
     name: 'Datacenter Operations & Facility Management',
     code: 'SOL-12',
-    img: 'https://images.unsplash.com/photo-1601524909162-be87252be298?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80',
     intro: 'Facility management including precision cooling, HVAC, UPS, and backup grids.',
     description: 'We support physical datacenter environments, managing hot/cold Containments, backup diesel generators, fire suppression, and battery UPS systems.',
     scope: [
