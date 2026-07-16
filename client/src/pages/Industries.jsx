@@ -452,7 +452,7 @@ function IndustryPanel({ industry, isExpanded, onToggle, index }) {
             display: 'flex', alignItems: 'center', gap: '1rem',
           }}>
             <Link
-              to="/contact"
+              to={`/support-desk?sector=${industry.id}`}
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
                 padding: '0.5rem 1.1rem',
@@ -702,7 +702,7 @@ export default function Industries() {
             </p>
             <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
-                to="/contact"
+                to="/support-desk"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
                   padding: '0.75rem 1.75rem',

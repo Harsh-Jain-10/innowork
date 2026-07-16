@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ScrollReveal from '../components/ScrollReveal';
 
 export default function SupportDesk() {
+  const [searchParams] = useSearchParams();
+  const querySolution = searchParams.get('solution');
+  const queryService = searchParams.get('service');
+  const querySector = searchParams.get('sector');
+
   const [formData, setFormData] = useState({
     contactName: '',
     contactEmail: '',
@@ -17,6 +23,20 @@ export default function SupportDesk() {
     siteAddress: '',
     locationCity: ''
   });
+
+  useEffect(() => {
+    let initialDesc = '';
+    if (querySolution) {
+      initialDesc = `Inquiry regarding Solution: ${querySolution.toUpperCase().replace(/-/g, ' ')}`;
+    } else if (queryService) {
+      initialDesc = `Inquiry regarding Service: ${queryService.toUpperCase().replace(/-/g, ' ')}`;
+    } else if (querySector) {
+      initialDesc = `Inquiry regarding Industry Sector: ${querySector.toUpperCase().replace(/-/g, ' ')}`;
+    }
+    if (initialDesc) {
+      setFormData(prev => ({ ...prev, problemDesc: initialDesc }));
+    }
+  }, [querySolution, queryService, querySector]);
 
   const [status, setStatus] = useState({
     loading: false,
