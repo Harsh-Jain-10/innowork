@@ -2,6 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import ScrollReveal from '../components/ScrollReveal';
+import {
+  CloudHybridIllustration,
+  ITInfrastructureIllustration,
+  CybersecurityIllustration,
+  AutomationModernizationIllustration,
+  ERPMangementIllustration,
+  DeploymentRolloutIllustration,
+  SupportDeskIllustration,
+  SmartCityICCCIllustration,
+  SAPBasisIllustration,
+  StaffAugmentationIllustration,
+  NOCServicesIllustration,
+  DCOperationsIllustration,
+  DataBackupIllustration
+} from '../components/SolutionIllustrations';
 
 /* ─────────────────────────────────────────────────────────────
    Animated Count-Up Component for Hero Stats
@@ -40,286 +55,286 @@ function CountUp({ end, duration = 2, suffix = '' }) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   13 Enterprise Solutions Data Configurations
+   Verified solutions data configurations
 ────────────────────────────────────────────────────────────── */
 const SOLUTIONS_DATA = [
   {
-    id: 'smart-city',
-    name: 'Smart City Solution',
+    id: 'cloud-hybrid',
+    name: 'Cloud & Hybrid IT Solutions',
     code: 'SOL-01',
-    img: 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?auto=format&fit=crop&w=1200&q=80',
-    intro: 'INNOWORQ designs and integrates scalable Smart City architectures that unify municipal services, civic administration, and real-time public safety. We specialize in building Tier-III Integrated Command & Control Centers (ICCC) that serve as the centralized intelligence hub for metropolitan environments.',
-    techOverview: 'The technical blueprint of our Smart City solution relies on high-throughput optical fiber backbones and distributed edge computing gateway appliances. By deploying ruggedized IoT gateways at critical municipal intersections, civic facilities, and utility stations, we facilitate the ingestion of multi-source telemetry—including smart lighting levels, traffic congestion matrices, and environmental sensor streams—with sub-millisecond transmission latency.',
-    architecture: 'Our architecture enforces strict separation between edge sensor zones, optical core transport networks, and centralized visualization planes. Edge gateways are hardened using custom access-control policies and Next-Generation Firewalls (NGFW) to prevent lateral security breaches. Municipal datacenters utilize high-availability compute clusters, redundant SAN storage arrays, and active-active server configurations to ensure zero single-points-of-failure.',
-    scope: 'Unified design and operation of metropolitan IoT networks, public surveillance recording clusters, fiber optic ring routes, smart street utility sensors, and central command center display console matrices.',
-    businessValue: 'Municipalities deploying our Integrated Command & Control Centers report up to a 40% improvement in emergency response dispatch coordination. Consolidating municipal telemetry reduces administrative overhead, lowers public utility power consumption, and ensures compliance with government data protection standards.',
-    deployment: 'Phase-1: Site survey, network planning, and optical path layout. Phase-2: Central ICCC command facility design, server rack setup, and backup generator integration. Phase-3: Edge gateway configuration, firewall policy deployment, and sensor calibration.',
-    industries: 'Municipal Government, Public Safety, Public Transit, Water & Power Utilities.',
-    oems: ['Cisco (IoT Gateway Fabrics)', 'Dell Technologies (PowerScale Storage)', 'Fortinet (Secure NGFW)', 'IBM (Telemetry Management)'],
-    benefits: ['40% Reduction in Civic Response Times', '99.99% Operational Availability for Core ICCC', 'Hardened Zero-Trust Edge Security Perimeter'],
-    usecases: ['Municipal ICCC Systems', 'Intelligent Traffic Optimization', 'Smart Utility Grid Ingestion'],
-    timeline: '12 - 16 Weeks Deployment Cycle',
-    deliverables: ['ICCC Facility Blueprint Plan', 'Edge Secure Gateway Configuration maps', 'Centralized Municipal Observability Dashboard'],
-    services: ['ICCC Facility Integration', 'IoT Gateway Configuration', 'Redundant Storage Deployment'],
-    models: ['Municipal Private Cloud / Colocation Hybrid'],
-    coverage: '24/7/365 Dedicated L3 On-Site Dispatch Support'
+    Illustration: CloudHybridIllustration,
+    intro: 'INNOWORQ designs and implements scalable hybrid IT architectures that bridge on-premises resources with secure multi-cloud environments. We help enterprises optimize workload placements and manage infrastructure scaling.',
+    techOverview: 'Our hybrid architectures leverage secure VPN links, VPC segmentations, dynamic route tables, and API gateway configurations to connect private datacenter compute pools with public hosting regions.',
+    architecture: 'We construct secure networks using encrypted local loops and redundant routers. Traffic is distributed across virtual machine pools and isolated subnets to ensure high availability and prevent load saturation.',
+    scope: 'Multi-cloud workload migration planning, virtual network design, resource scale monitoring, and secure gateway management.',
+    businessValue: 'Deploying our hybrid IT solutions reduces resource provisioning delays, optimizes cloud utilization, and supports workload portability across server configurations.',
+    deployment: 'Workload profiling and migration mapping, secure VPC/VPN path setup, virtual server staging, and active routing checkouts.',
+    industries: 'Logistics, Retail, Healthcare, Tech Corporates.',
+    platforms: ['AWS services', 'Azure environments', 'Hypervisor platforms'],
+    benefits: ['Optimized hybrid workload placement', 'Eliminated single-point-of-failure routing', 'Flexible infrastructure capacity scaling'],
+    usecases: ['Legacy workload migration to cloud', 'Hybrid virtual machine load routing', 'On-demand scaling configurations'],
+    timeline: 'Standard project-phased deployment plan',
+    deliverables: ['Network Topology Map', 'Workload Migration Schedule', 'Secure Gateway Configuration documentation'],
+    services: ['Cloud Migration planning', 'VPC & VPN setups', 'Resource usage monitoring'],
+    models: ['Hybrid / Private Cloud deployments'],
+    coverage: 'Continuous L3 engineer support coverage'
   },
   {
-    id: 'noc',
-    name: 'NOC Solution',
+    id: 'infra-mgmt',
+    name: 'IT Infrastructure Management & Operations',
     code: 'SOL-02',
-    img: 'https://images.unsplash.com/photo-1548345680-f5475ea5df84?auto=format&fit=crop&w=1200&q=80',
-    intro: 'We design and configure high-performance Network Operations Center (NOC) environments that provide continuous network monitoring, alarm handling, incident triage, and proactive capacity planning for global enterprise infrastructure.',
-    techOverview: 'Our NOC setups integrate advanced SNMP/Syslog collectors, dynamic alert thresholding engines, and unified infrastructure dashboards. The system continuously polls WAN interface saturation, latency parameters, packet drop ratios, and routing table updates across core network nodes.',
-    architecture: 'Operating on a highly resilient distributed agent model, monitoring probes report health metrics to centralized databases. Redundant physical NOC environments operate in multiple geographic regions, ensuring continuous monitoring availability even during localized power grid drops.',
-    scope: '24/7/365 active monitoring of core routing matrices, SD-WAN infrastructure, virtual machine hypervisors, and security perimeters.',
-    businessValue: 'Transitioning to active NOC oversight minimizes unplanned network downtime by up to 90%. Proactive incident detection reduces the Mean Time to Resolution (MTTR) from hours to minutes, preserving service availability for enterprise application workloads.',
-    deployment: 'Phase-1: Integration of telemetry probes into active routers and switches. Phase-2: Custom threshold configuration, alert classification, and ticketing system integration. Phase-3: Mock incident drills and dashboard verification.',
-    industries: 'Telecommunications, Financial Services, Logistics, Retail, Healthcare.',
-    oems: ['Cisco (Catalyst Center)', 'Juniper Networks (Junos Space)', 'F5 (BIG-IP telemetry)', 'Microsoft (System Center SCOM)'],
-    benefits: ['90% Average Reduction in Network Downtime', '15-Minute Critical Incident Escalation SLA', 'Unified Multi-Vendor Telemetry Dashboard'],
-    usecases: ['Global WAN Observability Networks', 'Retail Branch WAN Monitoring', 'Automated Incident Ticket Routing Systems'],
-    timeline: '4 - 6 Weeks Configuration Cycle',
-    deliverables: ['NOC Observability Dashboard Layout', 'Escalation Protocol Roadmap', 'Active Probing Configuration Scripts'],
-    services: ['NOC System Integration', 'Threshold Tuning', 'Alarm Routing Engineering'],
-    models: ['Dedicated Managed NOC / Co-Managed Integration'],
-    coverage: 'Guaranteed 15-Minute Critical Incident Response SLA'
+    Illustration: ITInfrastructureIllustration,
+    intro: 'We provide comprehensive IT infrastructure management and operations support, maintaining host servers, enterprise storage systems, blade chassis networks, and virtualization layers.',
+    techOverview: 'Our teams manage host hypervisors, server configurations, SAN storage allocation pools, fibre channel fabrics, blade server bays, and core system logs.',
+    architecture: 'We implement centralized administration workflows. Physical hardware blades are grouped into virtual clusters to allow automated resource sharing and prevent server overloads.',
+    scope: 'Host server patch management, storage volume provisioning, hypervisor configurations, and system health status tracking.',
+    businessValue: 'Ensures high availability of central databases, improves resource utilization across compute assets, and limits the risk of server downtime.',
+    deployment: 'Infrastructure health audit, host patch updates, storage path validation, and centralized administration setup.',
+    industries: 'BFSI, Telecom, Manufacturing, Education.',
+    platforms: ['Virtualization Hypervisors', 'Fibre Channel SAN arrays', 'Blade server enclosures'],
+    benefits: ['Maximized server compute density', 'Consolidated physical server footprint', 'Stable database storage pathways'],
+    usecases: ['Hypervisor cluster deployments', 'SAN storage allocation setup', 'Blade chassis configurations'],
+    timeline: 'Standard project-phased deployment plan',
+    deliverables: ['Hardware Status Reports', 'Storage Path Mapping diagrams', 'Hypervisor Configuration documents'],
+    services: ['Hypervisor tuning', 'Storage volume allocations', 'Patch administration support'],
+    models: ['On-Premises / Colocation management'],
+    coverage: '24/7 engineering incident support'
   },
   {
-    id: 'training',
-    name: 'Training and Learning',
+    id: 'cybersecurity',
+    name: 'Cybersecurity & Secure Perimeter Hardening',
     code: 'SOL-03',
-    img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80',
-    intro: 'INNOWORQ designs and delivers comprehensive IT training curriculum programs led by certified engineers. We build custom sandbox labs that allow client operations teams to simulate production topologies in a controlled, risk-free environment.',
-    techOverview: 'Our training platform utilizes remote hypervisor pools to host custom lab topologies. Students access sandboxes configured with enterprise routing rules, virtualization clusters, database configurations, and automation engines.',
-    architecture: 'We construct virtual lab nodes separated from production segments. Our platform dynamically provisions server instances per student, allowing hands-on execution of virtualization console actions, network setups, and configuration scripting.',
-    scope: 'Custom IT training workshops, vendor-certified curriculum design, secure laboratory hosting, and student capability certification pipelines.',
-    businessValue: 'By building specialized engineering capabilities internally, enterprises reduce their dependence on external contractors, lower incident recurrence through better triage, and accelerate the adoption of DevOps technologies.',
-    deployment: 'Phase-1: Capabilities assessment and custom syllabus design. Phase-2: Virtual sandbox lab setup mirroring production topography. Phase-3: Guided instructor execution and final verification testing.',
-    industries: 'Enterprise IT Departments, Government Entities, Telecom Networks, SI Corporates.',
-    oems: ['VMware (Virtualization Labs)', 'Red Hat (OpenShift Sandbox)', 'Nutanix (HCI Clusters)'],
-    benefits: ['Accelerated Automation Adoption', 'Lower Incident Recurrence Rates', 'Risk-Free Infrastructure Sandbox Labs'],
-    usecases: ['Internal IT Skills Workshops', 'HCI Operations Onboarding', 'DevOps & GitOps Transformation Camps'],
-    timeline: '2 - 4 Weeks Custom Scaffolding',
-    deliverables: ['Custom Interactive Syllabus', 'Dedicated Remote Lab Sandboxes', 'Student Performance Analytics Reports'],
-    services: ['Curriculum Engineering', 'Lab Scaffolding', 'Technical Workshop Delivery'],
-    models: ['Instructor-Led Virtual / On-Site Physical Labs'],
-    coverage: 'Post-Training Laboratory Support SLA'
+    Illustration: CybersecurityIllustration,
+    intro: 'INNOWORQ designs and deploys perimeter defense networks, configures next-generation firewalls, and implements secure VLAN segments to protect corporate network assets.',
+    techOverview: 'We configure firewall access rules, web application filters (WAF), secure routing switches, access-control lists, and encrypted VPN gateways.',
+    architecture: 'Our security layouts segment networks into isolated security zones (DMZ). We configure access lists at network interfaces to block unauthorized traffic and protect internal databases.',
+    scope: 'Firewall policy configurations, VLAN segment setups, security scans, VPN client management, and access control audit logs.',
+    businessValue: 'Reduces vulnerability exposure, protects sensitive business databases against external attacks, and supports compliance with industry security guidelines.',
+    deployment: 'Security threat audit, firewall rules engineering, network VLAN zoning, and penetration simulation checks.',
+    industries: 'BFSI, Healthcare, Telecom, Government Sectors.',
+    platforms: ['Next-Gen Firewalls', 'Secure Routing Switches', 'Web Application Firewalls (WAF)'],
+    benefits: ['Hardened perimeter network defense', 'Segmented secure internal database paths', 'Encrypted branch office communication links'],
+    usecases: ['Firewall access rules configuration', 'Network VLAN segmentations', 'Secure remote user access setups'],
+    timeline: 'Standard project-phased deployment plan',
+    deliverables: ['Network Security Map', 'Firewall Rules Documentation', 'Access Control logs'],
+    services: ['Firewall Configuration', 'VLAN Zoning setups', 'WAF Filter Tuning'],
+    models: ['Secure Enterprise Perimeter / Zero-Trust design'],
+    coverage: '24/7/365 security incident response support'
   },
   {
-    id: 'automation-ai',
-    name: 'Automation & AI',
+    id: 'automation-devops',
+    name: 'Automation, DevOps & Modernization',
     code: 'SOL-04',
-    img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80',
-    intro: 'We eliminate manual IT operations by developing automation pipelines, self-healing system configurations, and automated resource orchestration triggers. We transition infrastructure fleets to declarative GitOps models.',
-    techOverview: 'Our automation setups leverage Infrastructure as Code (IaC) templates, central configuration playbooks, and automated monitoring triggers. We implement centralized pipelines that audit config drift and apply corrective configurations.',
-    architecture: 'Our architecture integrates configuration control engines with local system managers. Playbook triggers are managed through secure version control systems, ensuring all infrastructure modifications are logged, approved, and auditable.',
-    scope: 'Automated bare-metal provision setups, network switch configurations, OS patch deployments, and automated failover actions.',
-    businessValue: 'Automating operational tasks reduces manual configuration mistakes by 99% and lowers overall support overhead by up to 60%. Infrastructure scaling changes are completed in seconds rather than days.',
-    deployment: 'Phase-1: Assessment of manual workflow pipelines and drift patterns. Phase-2: Infrastructure as Code script design and sandbox dry-runs. Phase-3: Production pipeline integration and auto-healing setup.',
-    industries: 'Logistics, BFSI, Manufacturing, Technology Sectors.',
-    oems: ['Red Hat (Ansible Automation)', 'HashiCorp (Terraform Engine)', 'Microsoft (System Center Automation)'],
-    benefits: ['60% Reduction in Manual Task Overhead', 'Zero Configuration Drift across Server Fleets', 'Deployment Workflows Accelerated by 95%'],
-    usecases: ['Automated Server Provisioning Pipelines', 'Automated Patch Deployment Systems', 'Predictive Self-Healing Storage Workloads'],
-    timeline: '6 - 10 Weeks Implementation Cycle',
-    deliverables: ['Approved Terraform/Ansible Code Library', 'Configuration Drift Observability Dashboard', 'Automated Triage Incident Maps'],
-    services: ['IaC Architecture Design', 'Workflow Automation Engineering', 'GitOps Engine Integration'],
-    models: ['Private GitOps Pipelines / Multi-Cloud Orchestration'],
-    coverage: 'SLA-backed Automation Engine Support'
+    Illustration: AutomationModernizationIllustration,
+    intro: 'We deploy Infrastructure as Code (IaC) configurations, automate server provisioning steps, and build declarative deployment pipelines to reduce manual IT tasks.',
+    techOverview: 'Our setups utilize automation engines, centralized configuration scripts, deployment playbooks, and GitOps workflows to manage server fleets.',
+    architecture: 'We connect configuration control servers with system managers. Automation scripts are stored in version control systems to ensure all changes are tracked and approved.',
+    scope: 'Automated bare-metal setups, server configuration scripts, patch updates, and automated monitoring alert actions.',
+    businessValue: 'Minimizes configuration mistakes caused by manual work, reduces server deployment delays, and establishes consistent setup environments across fleets.',
+    deployment: 'Task workflow mapping, automation script development, sandbox validation dry-runs, and pipeline rollout.',
+    industries: 'Logistics, Manufacturing, Tech Corporates, Retail.',
+    platforms: ['Infrastructure as Code tools', 'Configuration Management engines', 'Container Platforms'],
+    benefits: ['Reduced manual IT administrative task overhead', 'Consistent configuration across server fleets', 'Fast workload deployment capabilities'],
+    usecases: ['Automated server deployment setups', 'Automated patch rollout loops', 'System config monitoring triggers'],
+    timeline: 'Standard project-phased deployment plan',
+    deliverables: ['Automation Code Library', 'Pipeline Configuration maps', 'Drift Monitoring dashboard setups'],
+    services: ['IaC scripting', 'Deployment pipeline setups', 'Configuration audits'],
+    models: ['Declarative GitOps setups'],
+    coverage: 'Automation engine operational support'
   },
   {
-    id: 'business-continuity',
-    name: 'Business Continuity',
+    id: 'erp-mgmt',
+    name: 'ERP & Enterprise Management Solutions',
     code: 'SOL-05',
-    img: 'https://images.unsplash.com/photo-1600267175161-cfaa727b4550?auto=format&fit=crop&w=1200&q=80',
-    intro: 'INNOWORQ designs and implements high-availability disaster recovery architectures that protect your business against data loss and utility interruptions. We deliver zero-data-loss topologies for critical database stacks.',
-    techOverview: 'We configure active replication links, redundant storage systems, automated failover controls, and secure virtualization environments. Our setups monitor heartbeat signals across datacenters and execute failover scripts.',
-    architecture: 'Our disaster recovery setups connect primary datacenters to secondary locations using secure replication links. Real-time storage block replication ensures data remains identical, while automated DNS controls redirect user traffic during primary site failures.',
-    scope: 'Disaster recovery planning, sub-second storage replication, automated workload failover, and regulatory compliance audits.',
-    businessValue: 'Guarantees business survival during hardware failures, utility outages, or cyber attacks. Minimizes financial losses from downtime and ensures compliance with strict regulatory uptime mandates.',
-    deployment: 'Phase-1: Analysis of Recovery Point Objectives (RPO) and Recovery Time Objectives (RTO). Phase-2: Setup of data replication links and backup secondary nodes. Phase-3: Automated failover testing and compliance certification.',
-    industries: 'BFSI, Healthcare, Telecom, Government Sector.',
-    oems: ['Veeam (Availability Suite)', 'Zerto (Real-Time Replication)', 'VMware (Site Recovery Manager)', 'Checkpoint (Security Perimeter)'],
-    benefits: ['Near-Zero Recovery Point Objectives (RPO)', 'Automated Failover for Core Databases', 'Regulatory DR Compliance Guarantee'],
-    usecases: ['Sub-Second Database DR Synchronizations', 'Automated VM Cloud Failovers', 'Active-Active Datacenter Disaster Recovery'],
-    timeline: '8 - 12 Weeks Implementation Cycle',
-    deliverables: ['Disaster Recovery Plan (DRP) Manual', 'Replication Link Bandwidth Map', 'Automated Failover Test Logs'],
-    services: ['Disaster Recovery Engineering', 'IT Resilience Audits', 'Active Replication Administration'],
-    models: ['Multi-Site Active-Active', 'Disaster Recovery as a Service (DRaaS)'],
-    coverage: '24/7/365 Immediate Recovery Support & Escalation'
+    Illustration: ERPMangementIllustration,
+    intro: 'INNOWORQ supports core ERP environments, configures ITSM ticketing platforms, and establishes unified dashboard observability to monitor enterprise database performance.',
+    techOverview: 'We configure server database monitoring probes, alert triggers, service desk integration parameters, and core database tuning rules.',
+    architecture: 'Observability tools collect metrics from ERP databases and servers. Critical metrics are aggregated on central dashboards, triggering service tickets when issues are detected.',
+    scope: 'ITSM system setups, monitoring dashboard integrations, ERP host configurations, and database administration support.',
+    businessValue: 'Improves visibility across IT systems, helps resolve database issues faster, and keeps core ERP systems running smoothly.',
+    deployment: 'Monitoring probe integration, alert threshold definition, service desk link validation, and dashboard layout setup.',
+    industries: 'Logistics, BFSI, Manufacturing, Retail.',
+    platforms: ['Enterprise ERP Databases', 'ITSM Systems', 'Infrastructure Observability dashboards'],
+    benefits: ['Unified system observability controls', 'Streamlined IT ticket routing workflows', 'Optimized ERP database stability'],
+    usecases: ['Enterprise database monitoring', 'ITSM ticketing automation', 'ERP database tuning support'],
+    timeline: 'Standard project-phased deployment plan',
+    deliverables: ['ITSM Workflow charts', 'Database Metric matrices', 'Observability Dashboard layouts'],
+    services: ['Database health tuning', 'ITSM setup configurations', 'ERP system administration support'],
+    models: ['Centralized Console configurations'],
+    coverage: 'ERP Database admin support coverage'
   },
   {
-    id: 'cloud',
-    name: 'Cloud Solutions',
+    id: 'deployment-rollouts',
+    name: 'Deployment & Rollout Services',
     code: 'SOL-06',
-    img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
-    intro: 'We design and build secure multi-cloud architectures, implement container orchestration systems, and optimize public cloud workloads. We ensure secure connections between private datacenters and cloud platforms.',
-    techOverview: 'We configure secure VPC networks, container clusters, API gateways, database replication engines, and cloud optimization rules. Our setups trace database response times and adjust cloud resources automatically.',
-    architecture: 'Our multi-cloud setups utilize secure network connections to bridge on-premises databases with public cloud platforms (AWS/Azure). Container platforms ensure workloads remain portable across different clouds, while global load balancing distributes incoming traffic.',
-    scope: 'Cloud migration planning, Kubernetes cluster management, container pipeline setup, and cost optimization auditing.',
-    businessValue: 'Reduces public cloud spend by up to 30% through resource optimization. Accelerates product development speeds and provides secure scalability during peak traffic windows.',
-    deployment: 'Phase-1: Analysis of current server workloads and cloud compatibility. Phase-2: VPC architecture design, database migration, and cluster setup. Phase-3: Load balancing configuration, security audits, and billing configuration.',
-    industries: 'Logistics, Retail, Education, Enterprise Tech Corporates.',
-    oems: ['AWS (Public Cloud Infrastructure)', 'Microsoft (Azure Cloud)', 'Red Hat (OpenShift Containers)', 'VMware (Cloud Director)'],
-    benefits: ['30% Average Cloud Resource Cost Savings', 'Workload Portability across Hybrid Clouds', 'Scalable Containerized Web Applications'],
-    usecases: ['Legacy Application Cloud Migrations', 'Enterprise Kubernetes Platform setups', 'Workload Cost Optimization Audits'],
-    timeline: '10 - 14 Weeks Deployment Cycle',
-    deliverables: ['Cloud Architecture Topology Map', 'Cost Optimization Recommendation Plan', 'Security Audit and Encryption Keys'],
-    services: ['Multi-Cloud Migration', 'Kubernetes Setup & Orchestration', 'Cloud Architecture Audits'],
-    models: ['Hybrid Cloud / Multi-Cloud / Private SDDC'],
-    coverage: '24/7 Cloud NOC & Resource Monitoring'
+    Illustration: DeploymentRolloutIllustration,
+    intro: 'We provide multi-site IT deployment and rollout services, managing server staging, client OS migrations, data transfers, and hardware configurations.',
+    techOverview: 'Our engineers handle server rack setups, structured cabling verification, client device provisioning, and network path alignments.',
+    architecture: 'Rollout projects follow a structured staging-to-production design. New systems are built in staging zones, verified against baseline setups, and then moved to active production networks.',
+    scope: 'Multi-site server rollouts, client hardware setups, data migration support, and network configuration updates.',
+    businessValue: 'Minimizes business disruption during system upgrades, keeps deployments on schedule, and ensures consistent setups across branches.',
+    deployment: 'Deployment project scoping, staging validation runs, site installations, and post-installation checklists.',
+    industries: 'Retail Chains, Logistics, BFSI, Government Sites.',
+    platforms: ['Enterprise Servers', 'Client OS platforms', 'Local Loop Network configurations'],
+    benefits: ['Consistent hardware configurations across sites', 'Minimized downtime during system rollouts', 'Structured client migration path'],
+    usecases: ['Multi-site branch server rollouts', 'Corporate OS upgrade rollouts', 'Office relocation IT setups'],
+    timeline: 'Standard project-phased deployment plan',
+    deliverables: ['Rollout Project Plan document', 'Staging Validation checklists', 'Post-Deployment Sign-Off logs'],
+    services: ['Server Staging configurations', 'Data Migration support', 'Site IT installations'],
+    models: ['Project-Based Managed Rollouts'],
+    coverage: 'Post-Deployment transition support'
   },
   {
-    id: 'dc-infra',
-    name: 'DC Infrastructure',
+    id: 'support-desk',
+    name: '24/7 Support Desk Services',
     code: 'SOL-07',
-    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
-    intro: 'INNOWORQ designs and deploys high-performance server, blade chassis, SAN/NAS storage, hypervisor networks, and system consolidation configurations.',
-    techOverview: 'We configure high-density blade chassis, SAN switches, fibre channel cards, and hypervisor clusters. Our installations optimize data flow between storage nodes and processing clusters.',
-    architecture: 'Our designs integrate modular blade servers with high-speed SAN/NAS arrays. Redundant hypervisors host virtual machines, while dual fibre channel loops prevent path failures between storage units and compute clusters.',
-    scope: 'Server deployments, SAN design, hypervisor installation, storage consolidation, and hardware support.',
-    businessValue: 'Lowers energy bills and space requirements by consolidating hardware. High-speed storage loops ensure databases operate with minimal latency.',
-    deployment: 'Phase-1: Performance analysis and chassis space allocation. Phase-2: Blade configuration, storage SAN setup, and hypervisor installation. Phase-3: VM migrations and performance validation.',
-    industries: 'BFSI, Telecom, Logistics, Government.',
-    oems: ['Dell (PowerEdge Blade Servers)', 'NetApp (ONTAP Storage)', 'IBM (Power Systems)', 'VMware (vSphere Hypervisor)'],
-    benefits: ['Increased Compute Density per Rack Space', 'Sub-millisecond Storage I/O Latency', 'Consolidated Server Footprint Management'],
-    usecases: ['High-Density Server Consolidations', 'Fibre Channel SAN Implementations', 'VMware Enterprise Virtualization setups'],
-    timeline: '6 - 8 Weeks Implementation Cycle',
-    deliverables: ['Server Rack Integration Diagram', 'SAN Path Configuration Layout', 'Hypervisor Consolidation Report'],
-    services: ['Blade Chassis Deployment', 'SAN Storage Architecture', 'Hypervisor Virtualization Tuning'],
-    models: ['On-Premises Enterprise DC / Colocation Deployments'],
-    coverage: 'SLA-backed hardware support and L3 dispatch'
+    Illustration: SupportDeskIllustration,
+    intro: 'We deliver SLA-driven L1, L2, and L3 support desk services, providing incident management, ticket routing, and technical troubleshooting for global enterprises.',
+    techOverview: 'We configure incident tickets, priority levels, response notifications, troubleshooting guidelines, and technical escalation maps.',
+    architecture: 'Our support desk utilizes a Tiered incident management model. Simple issues are resolved by L1, while complex system alerts are escalated to L2 and L3 engineers.',
+    scope: 'Support desk operations, ticket routing configuration, incident debugging, and technical escalation paths.',
+    businessValue: 'Reduces time to resolve technical issues, provides clear ticket visibility, and ensures L3 engineering expertise is dispatched for complex failures.',
+    deployment: 'Service desk onboarding, ticket workflow setup, priority mapping, and support portal validation.',
+    industries: 'Retail, Logistics, BFSI, Telecom, Healthcare.',
+    platforms: ['ITSM ticket tools', 'Incident management databases', 'Troubleshooting dashboards'],
+    benefits: ['Structured IT support dispatch workflows', 'Clear ticket priority visibility', 'Fast technical incident resolutions'],
+    usecases: ['Enterprise Helpdesk configurations', 'Technical Incident troubleshooting', 'Critical SLA Escalation setups'],
+    timeline: 'Standard project-phased deployment plan',
+    deliverables: ['Support Protocol Manual', 'Escalation Flow Map', 'Service Level Agreement documentation'],
+    services: ['Support desk setups', 'Incident debugging support', 'Incident dispatch planning'],
+    models: ['Managed Support Desk / Integrated Operations'],
+    coverage: 'Guaranteed SLA-bound L3 escalation dispatch'
   },
   {
-    id: 'dc-non-it',
-    name: 'DC Non-IT',
+    id: 'smart-city',
+    name: 'Smart City & ICCC Solutions',
     code: 'SOL-08',
-    img: 'https://images.unsplash.com/photo-1601524909162-be87252be298?auto=format&fit=crop&w=1200&q=80',
-    intro: 'We design and maintain physical datacenter infrastructure environments, including precision cooling units, uninterruptible power systems (UPS), and automated fire suppression systems.',
-    techOverview: 'We configure HVAC cooling units, hot/cold aisle containments, central UPS battery grids, emergency generators, and FM-200 fire suppression controls.',
-    architecture: 'Our physical designs use N+1 or 2N redundancy pathways. Multiple power feeds connect server racks to separate UPS batteries, while containment layouts channel hot air away from hardware to prevent hotspots.',
-    scope: 'Precision cooling tuning, UPS management, generator setups, fire suppression configurations, and security tracking.',
-    businessValue: 'Protects expensive hardware investments from temperature spikes and utility failures. Prevents downtime caused by local power grid drops.',
-    deployment: 'Phase-1: Heat load calculation and air flow design. Phase-2: Installation of cooling ducts, UPS arrays, and generators. Phase-3: Integration of monitoring systems and emergency tests.',
-    industries: 'Datacenter Operators, BFSI Co-locations, Government Sites.',
-    oems: ['Schneider (APC Cooling)', 'Emerson (UPS Systems)', 'Cisco (Physical Security)'],
-    benefits: ['Stable Environmental Temperature Controls', 'Continuous Power Delivery during Outages', 'Compliance with Physical Datacenter Standards'],
-    usecases: ['Hot/Cold Aisle Containment Coolings', 'Dual-Path Utility Power feeds', 'Biometric physical security monitoring'],
-    timeline: '10 - 14 Weeks Construction Cycle',
-    deliverables: ['Airflow Dynamics Layout Map', 'Power Distribution Schematic', 'Environmental Alarm Integration Matrix'],
-    services: ['Facility Design Consulting', 'UPS & Generator Maintenance', 'Environmental Monitoring Tuning'],
-    models: ['Physical Facility Maintenance'],
-    coverage: '24/7 On-Site Facility Engineer Coverage'
+    Illustration: SmartCityICCCIllustration,
+    intro: 'INNOWORQ designs and integrates scalable Smart City architectures that unify municipal services, civic administration, and real-time public safety. We specialize in building Tier-III Integrated Command & Control Centers (ICCC).',
+    techOverview: 'Our smart city solutions rely on high-capacity fiber rings and edge compute gateways. These systems ingest data from utility meters, traffic sensors, and municipal networks.',
+    architecture: 'Our designs separate local sensor networks, core communication lines, and central operations displays. Next-generation firewalls protect edge gateways, while redundant datacenters host databases.',
+    scope: 'Municipal IoT designs, video wall integrations, fiber loop configurations, utility sensor systems, and command center setups.',
+    businessValue: 'Improves response coordination for municipal services, reduces utility operational overhead, and helps manage civic compliance parameters.',
+    deployment: 'Topographical path planning, central control center setup, edge gateway integration, and system verification.',
+    industries: 'Municipalities, Public Transit, Water & Power Utilities, Smart Grids.',
+    platforms: ['IoT Gateways', 'Central command walls', 'Redundant storage arrays'],
+    benefits: ['Coordinated civic response workflows', 'High-availability command center uptime', 'Protected edge sensor pathways'],
+    usecases: ['Municipal ICCC Systems', 'Intelligent Traffic Management setups', 'Utility Sensor Grid integrations'],
+    timeline: 'Standard project-phased deployment plan',
+    deliverables: ['ICCC Layout Blueprint', 'Gateway Configuration documentation', 'Observability Dashboard design'],
+    services: ['ICCC Integration', 'Edge gateway setups', 'Central database configurations'],
+    models: ['Municipal Private Cloud / Colocation Hybrid'],
+    coverage: '24/7 engineering monitoring support'
+  },
+  {
+    id: 'sap-basis',
+    name: 'SAP Basis & Consulting',
+    code: 'SOL-09',
+    Illustration: SAPBasisIllustration,
+    intro: 'We offer SAP Basis administration support, database tuning, NetWeaver configurations, and performance optimization services to maintain enterprise SAP environments.',
+    techOverview: 'Our engineers manage SAP Basis logs, transport paths, database updates, background jobs, kernel patches, and monitoring settings.',
+    architecture: 'We support multi-tier SAP landscapes. The presentation layer connects to application servers, which communicate with backend databases configured for high availability.',
+    scope: 'SAP Basis patch application, transport configuration checks, database health monitors, and system resource allocation tuning.',
+    businessValue: 'Protects critical SAP transactions against downtime, ensures database response times remain stable, and assists in SAP system updates.',
+    deployment: 'SAP system audit, database pathway check, patch deployment planning, and monitoring configuration.',
+    industries: 'BFSI, Manufacturing, Logistics, Telecom.',
+    platforms: ['SAP NetWeaver', 'SAP Databases', 'System Administration consoles'],
+    benefits: ['Stable SAP database performance', 'Managed patch and transport rollouts', 'Proactive database alert monitors'],
+    usecases: ['SAP transport configuration setups', 'SAP Basis system tuning', 'HANA database administration support'],
+    timeline: 'Standard project-phased deployment plan',
+    deliverables: ['SAP Basis Assessment Report', 'Database Tuning configuration logs', 'System Monitoring profiles'],
+    services: ['SAP Basis monitoring', 'Database health tuning', 'SAP patch administration'],
+    models: ['Central Enterprise Management'],
+    coverage: '24/7 database and application support'
+  },
+  {
+    id: 'staff-aug',
+    name: 'Staff Augmentation',
+    code: 'SOL-10',
+    Illustration: StaffAugmentationIllustration,
+    intro: 'INNOWORQ provides certified systems administrators, network operators, and support engineers (L1, L2, L3) to augment client operations teams.',
+    techOverview: 'We dispatch engineers certified in cloud platforms, virtualization software, network routing protocols, and database systems to manage custom client workflows.',
+    architecture: 'Augmented engineers integrate directly into client project teams, following the client\'s established operating workflows and security policies.',
+    scope: 'L1/L2/L3 engineering resource dispatch, technical skill gap audits, and remote operational support.',
+    businessValue: 'Helps enterprises handle temporary project spikes without hiring delays, bridges internal technical skill gaps, and lowers operational overhead.',
+    deployment: 'Skill requirements assessment, engineer selection and onboarding, and project integration checks.',
+    industries: 'BFSI, Healthcare, Telecom, Logistics, Education.',
+    platforms: ['Enterprise Cloud engines', 'Hypervisor setups', 'Database Administration systems'],
+    benefits: ['On-demand technical team scaling', 'Access to certified L3 engineering skills', 'Reduced hiring timeline delays'],
+    usecases: ['Temporary systems administration support', 'Infrastructure rollout project staffing', 'Dedicated technical helpdesk dispatch'],
+    timeline: 'Standard project-phased deployment plan',
+    deliverables: ['Engineer Capability Matrix', 'Project Task allocation plan', 'Daily SLA Activity logs'],
+    services: ['L1 Helpdesk support', 'L2 Systems operations', 'L3 Architecture consulting'],
+    models: ['Onsite / Remote Staff Augmentation'],
+    coverage: 'SLA-backed engineering placements'
+  },
+  {
+    id: 'noc-services',
+    name: 'NOC Services',
+    code: 'SOL-11',
+    Illustration: NOCServicesIllustration,
+    intro: 'We design and operate active network monitoring setups, providing alarm triage, incident management, and real-time performance optimization.',
+    techOverview: 'We configure syslog collection servers, SNMP alerts, ping check loops, network bandwidth trackers, and incident notifications.',
+    architecture: 'Our systems use localized monitoring tools to collect status alerts from networks and routers, reporting back to centralized operator interfaces.',
+    scope: 'Remote network monitoring, alarm validation, packet drop monitoring, and vendor notification paths.',
+    businessValue: 'Proactively identifies network failures before they impact users, helping maintain high network availability.',
+    deployment: 'Network device configuration, alert limits mapping, ticket routing setup, and operator verification runs.',
+    industries: 'Logistics, Telecom, BFSI, Retail, Government.',
+    platforms: ['SNMP monitoring tools', 'Network interface checkers', 'Syslog collectors'],
+    benefits: ['Proactive detection of network failures', 'Immediate incident dispatch alerts', 'Unified status logs across switches'],
+    usecases: ['Corporate WAN monitoring setups', 'Edge routing check networks', 'Automated network alarm generation'],
+    timeline: 'Standard project-phased deployment plan',
+    deliverables: ['NOC Monitoring Setup Plan', 'Escalation Path Flow Chart', 'System Alert Definition Table'],
+    services: ['NOC device integrations', 'Alert threshold tuning', 'Network status logging'],
+    models: ['Co-Managed / Fully Managed NOC'],
+    coverage: '24/7 remote monitoring coverage'
+  },
+  {
+    id: 'dc-operations',
+    name: 'Datacenter Operations & Non-IT DC Facility Management',
+    code: 'SOL-12',
+    Illustration: DCOperationsIllustration,
+    intro: 'We manage physical datacenter facility environments, including precision cooling units, uninterruptible power systems (UPS), and facility access controls.',
+    techOverview: 'We configure environmental monitors, UPS battery banks, hot/cold containment paths, backup generator controllers, and fire suppression systems.',
+    architecture: 'Facility systems use N+1 configurations to prevent power drops. Racks connect to dual power loops, and cooling paths keep server temperatures within target limits.',
+    scope: 'Precision cooling tuning, UPS system checks, generator configurations, fire suppression systems, and physical security tracking.',
+    businessValue: 'Protects enterprise server hardware from overheating and utility drops, helping prevent hardware failures.',
+    deployment: 'Heat load calculation, air duct layouts, UPS installation, generator connections, and sensor integration.',
+    industries: 'Datacenters, BFSI Co-locations, Government Sites.',
+    platforms: ['Precision cooling units', 'UPS battery cabinets', 'Environmental control sensors'],
+    benefits: ['Stable server temperatures and airflow', 'Uninterrupted power delivery during utility failures', 'Compliance with physical datacenter facility regulations'],
+    usecases: ['Hot/Cold aisle containment setups', 'Redundant UPS power layouts', 'Environmental sensor grid integrations'],
+    timeline: 'Standard project-phased deployment plan',
+    deliverables: ['Airflow Path Diagrams', 'Power Distribution Schematics', 'Environmental Alarm Matrices'],
+    services: ['Facility cooling tuning', 'UPS maintenance configs', 'Environmental sensor alignments'],
+    models: ['Physical Facility Operations Support'],
+    coverage: 'On-site facility engineer support coverage'
   },
   {
     id: 'backup-recovery',
-    name: 'Data Backup & Recovery',
-    code: 'SOL-09',
-    img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80',
-    intro: 'We engineer automated data backup configurations, secure snapshot vaults, and bare-metal recovery plans. We protect corporate data assets against hardware failures and security threats.',
-    techOverview: 'We configure backup replication jobs, immutable storage systems, backup vault access controls, and restore automation pipelines.',
-    architecture: 'Our designs use the 3-2-1 backup model (3 data copies, 2 media types, 1 offsite copy). Immutable vaults ensure data cannot be modified or deleted, protecting against ransomware threats.',
-    scope: 'Immutable snapshot vault configuration, backup scheduling, encryption, database backups, and restore operations.',
-    businessValue: 'Secures enterprise data assets against ransomware attacks, guarantees rapid recovery during software corruption, and satisfies compliance audits.',
-    deployment: 'Phase-1: Data audit and retention rules design. Phase-2: Setup of backup appliances and encryption vaults. Phase-3: Automated backup test runs and verify restore times.',
-    industries: 'Healthcare, BFSI, Logistics, Retail.',
-    oems: ['Veeam (Backup & Replication)', 'Veritas (NetBackup)', 'Vinchin (Backup Platform)', 'Dell (PowerProtect DD)'],
-    benefits: ['Ransomware-Proof Backup Storage Vaults', 'Reliable Bare-Metal Restore Timelines', 'Data Retention Compliance Guarantee'],
-    usecases: ['Immutable Storage Backup Vaults', 'Daily Automated Database Snapshots', 'Bare-Metal server recovery configurations'],
-    timeline: '4 - 6 Weeks Deployment Cycle',
-    deliverables: ['Backup and Retention Policy Map', 'Vault Encryption Keys & Logins', 'Bare-Metal Recovery Test Report'],
-    services: ['Backup Strategy Auditing', 'Vault Encryption Configuration', 'Managed Recovery Runs'],
-    models: ['Hybrid Backup Vault / Backup as a Service (BaaS)'],
-    coverage: '24/7/365 Backup Recovery Helpdesk Support'
-  },
-  {
-    id: 'dc-transformation',
-    name: 'Datacentre Solutions & Transformation',
-    code: 'SOL-10',
-    img: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=1200&q=80',
-    intro: 'INNOWORQ consolidates and transforms legacy server environments into highly virtualized, cloud-integrated, software-defined datacenter ecosystems.',
-    techOverview: 'We configure virtualization hosts, storage networks, software-defined networks, and centralized management portals. We deploy hyperconverged clusters that unify processing and storage.',
-    architecture: 'We transition separate server and storage components into hyperconverged clusters. Workloads run inside virtual machines that can be migrated between servers without downtime.',
-    scope: 'Infrastructure consolidation, hyperconverged cluster setup, virtual network design, and legacy migrations.',
-    businessValue: 'Reduces datacenter operating costs by up to 50%, improves resource utilization across server clusters, and simplifies central management workflows.',
-    deployment: 'Phase-1: Workload analysis and migration scheduling. Phase-2: HCI cluster setup and network configurations. Phase-3: Hot VM migrations and server retirements.',
-    industries: 'BFSI, Manufacturing, Telecom, Education.',
-    oems: ['Nutanix (Cloud Platform)', 'VMware (vCloud Suite)', 'Red Hat (OpenShift Platform)', 'Dell (VxRail HCI)'],
-    benefits: ['50% Lower Hardware and Energy Costs', 'Unified Resource Management Dashboard', 'Zero-Downtime Application Migrations'],
-    usecases: ['Server Consolidation Projects', 'Hyperconverged (HCI) Infrastructure setups', 'Legacy Datacenter Modernization runs'],
-    timeline: '12 - 16 Weeks Transformation Cycle',
-    deliverables: ['Virtualization Consolidation Design', 'HCI Cluster Network Configuration Map', 'Workload Migration Sign-Off logs'],
-    services: ['Consolidation Consulting', 'HCI Cluster Engineering', 'Datacenter Migration Runs'],
-    models: ['Software-Defined Datacenter (SDDC)'],
-    coverage: 'Post-Migration Optimization & Support SLA'
-  },
-  {
-    id: 'digital-infra',
-    name: 'Digital Infrastructure',
-    code: 'SOL-11',
-    img: 'https://images.unsplash.com/photo-1596207891396-2270f2f351ef?auto=format&fit=crop&w=1200&q=80',
-    intro: 'We install high-capacity fiber loops, configure core network switches, optimize WAN routing paths, and deploy high-availability routing tables to support enterprise communications.',
-    techOverview: 'We configure core routing protocols (OSPF/BGP), managed switches, fiber patch panels, structured cabling tracks, and WAN optimization settings.',
-    architecture: 'Our network designs use redundant pathways. Multiple WAN connections link branch offices to centralized datacenters, while core switches are configured in high-availability modes.',
-    scope: 'Core switch configurations, WAN setup, structured fiber cabling, routing table updates, and bandwidth management.',
-    businessValue: 'Minimizes network latency across office branches, increases bandwidth capacities, and ensures stable voice and data communications.',
-    deployment: 'Phase-1: Network mapping and cable layout design. Phase-2: Core switch installations and fiber cabling. Phase-3: Routing configuration, security rules, and performance checks.',
-    industries: 'Telecom, Manufacturing, Logistics, Retail.',
-    oems: ['Cisco (Catalyst Switches)', 'Juniper (MX Routers)', 'D-Link (Managed Switches)', 'Fortinet (WAN Optimization)'],
-    benefits: ['Low-Latency Branch Office Network Connections', 'High-Bandwidth Capacity Fiber Backbone', 'Minimized Single-Point Cable Failures'],
-    usecases: ['High-Speed Core Network Fiber Loop installation', 'Multi-site WAN Optimization and Routing Table alignment', 'Structured Copper and Fiber cabling for office sites'],
-    timeline: '8 - 12 Weeks Construction Cycle',
-    deliverables: ['Network Cabling Schematic', 'Routing Tables Configuration Map', 'Bandwidth Test Reports'],
-    services: ['Structured Cabling Deployments', 'Routing Table Optimization', 'WAN Ring Engineering'],
-    models: ['Structured Local Loop Network'],
-    coverage: 'On-site Fiber Diagnostic Dispatch SLA'
-  },
-  {
-    id: 'enterprise-management',
-    name: 'Enterprise Management Solution',
-    code: 'SOL-12',
-    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
-    intro: 'We integrate unified monitoring dashboards, configure automated service ticketing rules, and provide support configurations for core enterprise database networks.',
-    techOverview: 'We configure server agents, database monitoring, alert triggers, ticketing integration, and system dashboards.',
-    architecture: 'We integrate monitoring agents on all servers and databases. These agents report health metrics to a centralized dashboard, which triggers service desk tickets automatically during issues.',
-    scope: 'Dashboard integrations, service desk rules, database monitoring, and system administration support.',
-    businessValue: 'Improves visibility across all IT assets, reduces time spent on incident troubleshooting, and ensures stable ERP database operations.',
-    deployment: 'Phase-1: Monitoring agent setups and alert definitions. Phase-2: Service desk integration and ticket routing. Phase-3: Dashboard customization and metric verification.',
-    industries: 'Logistics, BFSI, Manufacturing, Retail.',
-    oems: ['Microsoft (SCOM Systems)', 'Oracle (Database Management)', 'SAP Basis (SAP NetWeaver)', 'IBM (Systems Director)'],
-    benefits: ['Unified Infrastructure Visual Controls', 'Streamlined IT Ticket Management workflows', 'Optimized SAP ERP Core performance'],
-    usecases: ['Unified Monitoring Dashboard integrations', 'ITSM Service Desk and Ticket routing automation', 'SAP Basis HANA Database performance optimization'],
-    timeline: '6 - 8 Weeks Implementation Cycle',
-    deliverables: ['ITSM Integration Protocol Map', 'Database Alert Threshold Matrix', 'Observability Dashboard Layout'],
-    services: ['ITSM Flow Customization', 'Database Health Tuning', 'SAP Basis Administration support'],
-    models: ['Central SaaS / On-Prem Management Console'],
-    coverage: '24/7/365 Database Admin & ITSM Support SLA'
-  },
-  {
-    id: 'network-security',
-    name: 'Network Infrastructure & Security',
+    name: 'Data Backup & Recovery (Backup Ecosystem Coverage)',
     code: 'SOL-13',
-    img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80',
-    intro: 'INNOWORQ deploys enterprise next-generation firewalls (NGFW), configures perimeter access-control lists, establishes secure VLAN boundaries, and configures secure SD-WAN connections.',
-    techOverview: 'We configure firewall policies, web application firewalls (WAF), secure routing switches, access-control lists, and VPN gateways.',
-    architecture: 'Our security architecture uses a zero-trust model. We segment local networks into secure zones, inspect all traffic at network boundaries, and encrypt communication lines between offices.',
-    scope: 'Firewall configurations, VLAN setups, access controllers, secure SD-WAN, and security assessments.',
-    businessValue: 'Protects enterprise networks from cyber threats, secures sensitive communications, and guarantees compliance with industry security standards.',
-    deployment: 'Phase-1: Security audit and firewall design. Phase-2: Firewall rules setup and VLAN segmentations. Phase-3: Performance testing and intrusion check dry-runs.',
-    industries: 'BFSI, Healthcare, Government, Telecom.',
-    oems: ['Checkpoint (Quantum Firewalls)', 'Fortinet (FortiGate NGFW)', 'F5 (Advanced WAF)', 'Cisco (Catalyst Security)'],
-    benefits: ['Total Perimeter Defense against Network Threats', 'Secure WAN Traffic encryption loops', 'Granular Access-Control at Network boundaries'],
-    usecases: ['Next-Generation Firewall rules configurations', 'Secure SD-WAN setups for distributed sites', 'Network segmentation via secure VLAN boundaries'],
-    timeline: '6 - 10 Weeks Implementation Cycle',
-    deliverables: ['Perimeter Security Configuration Map', 'Firewall Rules and Access Logins', 'Penetration Testing Audit Report'],
-    services: ['Firewall Policies configuration', 'Secure SD-WAN Engineering', 'WAF Protection tuning'],
-    models: ['Zero-Trust Secure Perimeter'],
-    coverage: '24/7/365 Security Incident Response SLA'
+    Illustration: DataBackupIllustration,
+    intro: 'We design secure data backup systems, immutable storage vaults, and bare-metal recovery plans to protect enterprise data assets against hardware failures and security threats.',
+    techOverview: 'We configure scheduled backups, secure snapshot vaults, data encryption policies, and recovery automation pipelines across our supported backup ecosystem.',
+    architecture: 'Our configurations use the 3-2-1 backup layout (3 data copies, 2 media types, 1 offsite copy). Vault settings prevent file changes to protect against ransomware threats.',
+    scope: 'Backup scheduling, vault configurations, dataset recovery tests, and backup ecosystem verification.',
+    businessValue: 'Secures critical data assets against ransomware deletions, supports recovery times, and assists with audit requirements.',
+    deployment: 'Data audit and retention design, backup storage setup, encryption key setup, and restore verification tests.',
+    industries: 'Healthcare, BFSI, Logistics, Retail, Government.',
+    platforms: ['Immutable storage vaults', 'Cloud backup repositories', 'Local backup engines'],
+    benefits: ['Protected storage vaults against unauthorized deletion', 'Verified restore times for host systems', 'Regulatory data retention compliance support'],
+    usecases: ['Immutable backup vault configurations', 'Automated database snapshot setups', 'Host server recovery configurations'],
+    timeline: 'Standard project-phased deployment plan',
+    deliverables: ['Backup and Retention Policy Table', 'Encryption and Vault setup guidelines', 'Restore Verification test logs'],
+    services: ['Backup strategy audits', 'Vault security tuning', 'Ecosystem compatibility checks'],
+    models: ['Hybrid Backup Vault / Backup as a Service (BaaS)'],
+    coverage: 'Supported Backup Ecosystem: Veritas, Veeam, Commvault, Druva, Vinchin, Acronis, Dell NetWorker'
   }
 ];
 
 /* ─────────────────────────────────────────────────────────────
-   Solution Section Component
+   Individual Solution Showcase Section Component
 ────────────────────────────────────────────────────────────── */
 function SolutionSection({ sol, index }) {
   const isEven = index % 2 === 0;
@@ -330,7 +345,7 @@ function SolutionSection({ sol, index }) {
       className="solution-showcase-section"
       style={{
         padding: '8rem 0',
-        minHeight: '100vh',
+        minHeight: '85vh',
         display: 'flex',
         alignItems: 'center',
         background: isEven ? '#ffffff' : '#f8fafc',
@@ -341,7 +356,7 @@ function SolutionSection({ sol, index }) {
     >
       {/* Decorative blueprint grids */}
       <div style={{
-        position: 'absolute', inset: 0, opacity: 0.015, pointerEvents: 'none',
+        position: 'absolute', inset: 0, opacity: 0.01, pointerEvents: 'none',
         backgroundImage: `radial-gradient(circle, rgba(9,97,159,0.5) 1px, transparent 1px)`,
         backgroundSize: '40px 40px'
       }} />
@@ -354,7 +369,7 @@ function SolutionSection({ sol, index }) {
         transform: 'translateX(-50%)',
         width: '2px',
         height: '100px',
-        background: 'linear-gradient(to bottom, rgba(9,97,159,0.1), transparent)',
+        background: 'linear-gradient(to bottom, rgba(9,97,159,0.08), transparent)',
         pointerEvents: 'none'
       }} />
 
@@ -393,10 +408,10 @@ function SolutionSection({ sol, index }) {
 
               {/* Title */}
               <h2 style={{
-                fontSize: '2.5rem',
+                fontSize: '2.4rem',
                 fontWeight: 800,
                 color: 'rgba(12,20,35,0.92)',
-                letterSpacing: '-1.5px',
+                letterSpacing: '-1px',
                 lineHeight: 1.1,
                 margin: '0.25rem 0'
               }}>
@@ -407,7 +422,7 @@ function SolutionSection({ sol, index }) {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '0.5rem' }}>
                 <div>
                   <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'rgba(9,97,159,0.9)', fontWeight: 700, margin: '0 0 0.4rem 0' }}>Introduction</h4>
-                  <p style={{ fontSize: '1.05rem', color: 'rgba(30,40,60,0.85)', lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
+                  <p style={{ fontSize: '1.02rem', color: 'rgba(30,40,60,0.85)', lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
                     {sol.intro}
                   </p>
                 </div>
@@ -446,7 +461,7 @@ function SolutionSection({ sol, index }) {
                 <div style={{
                   padding: '1.25rem 1.5rem',
                   borderRadius: '8px',
-                  background: 'rgba(9,97,159,0.04)',
+                  background: 'rgba(9,97,159,0.03)',
                   borderLeft: '4px solid rgba(9,97,159,0.7)',
                   marginTop: '0.5rem'
                 }}>
@@ -475,11 +490,11 @@ function SolutionSection({ sol, index }) {
                     <span style={{ fontSize: '0.82rem', color: 'rgba(30,40,60,0.75)' }}>{sol.models.join(' · ')}</span>
                   </div>
                   <div>
-                    <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', display: 'block', marginBottom: '0.2rem' }}>Supported OEMs</span>
-                    <span style={{ fontSize: '0.82rem', color: 'rgba(30,40,60,0.75)' }}>{sol.oems.join(', ')}</span>
+                    <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', display: 'block', marginBottom: '0.2rem' }}>Technology Coverage</span>
+                    <span style={{ fontSize: '0.82rem', color: 'rgba(30,40,60,0.75)' }}>{sol.platforms.join(', ')}</span>
                   </div>
                   <div style={{ borderTop: '1px solid rgba(9,97,159,0.08)', paddingTop: '0.6rem', marginTop: '0.4rem' }}>
-                    <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', display: 'block', marginBottom: '0.2rem' }}>Implementation Timeline</span>
+                    <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', display: 'block', marginBottom: '0.2rem' }}>Implementation Process</span>
                     <span style={{ fontSize: '0.82rem', color: 'rgba(30,40,60,0.75)' }}>{sol.timeline}</span>
                   </div>
                   <div style={{ borderTop: '1px solid rgba(9,97,159,0.08)', paddingTop: '0.6rem', marginTop: '0.4rem' }}>
@@ -562,41 +577,32 @@ function SolutionSection({ sol, index }) {
             order: isEven ? 2 : 1
           }}>
             <ScrollReveal variant={isEven ? 'fade-right' : 'fade-left'} style={{ width: '100%' }}>
-              <motion.div
-                whileHover={{ scale: 1.025 }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
+              <div
                 style={{
                   position: 'relative',
                   borderRadius: '12px',
-                  boxShadow: '0 20px 40px rgba(9,97,159,0.08), 0 2px 10px rgba(0,0,0,0.02)',
+                  boxShadow: '0 20px 40px rgba(9,97,159,0.04), 0 2px 10px rgba(0,0,0,0.02)',
                   overflow: 'hidden',
                   width: '100%',
-                  border: '1px solid rgba(9,97,159,0.1)'
+                  background: 'linear-gradient(135deg, #ffffff 0%, #f6faff 100%)',
+                  border: '1px solid rgba(9,97,159,0.12)',
+                  padding: '2rem'
                 }}
                 className="solutions-image-container"
               >
-                {/* Foreground Image */}
-                <img
-                  src={sol.img}
-                  alt={`${sol.name} Enterprise Visual`}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    display: 'block'
-                  }}
-                />
+                {/* Custom-built abstract technical SVG illustration */}
+                <sol.Illustration />
                 
                 {/* Visual Blueprint Grid Overlay */}
                 <div style={{
                   position: 'absolute', inset: 0, opacity: 0.1, pointerEvents: 'none',
                   backgroundImage: `
-                    linear-gradient(rgba(9,97,159,0.3) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(9,97,159,0.3) 1px, transparent 1px)
+                    linear-gradient(rgba(9,97,159,0.2) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(9,97,159,0.2) 1px, transparent 1px)
                   `,
-                  backgroundSize: '24px 24px'
+                  backgroundSize: '20px 20px'
                 }} />
-              </motion.div>
+              </div>
             </ScrollReveal>
           </div>
 
@@ -607,7 +613,7 @@ function SolutionSection({ sol, index }) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Main Solutions Page REDESIGN
+   Main Solutions Page Component
 ────────────────────────────────────────────────────────────── */
 export default function Solutions() {
   return (
@@ -667,7 +673,7 @@ export default function Solutions() {
               fontSize: '1.08rem',
               lineHeight: '1.75'
             }}>
-              Explore INNOWORQ's 13 official enterprise solutions configurations.
+              Explore INNOWORQ's enterprise solutions configurations.
               We design Tier-III compliant server environments, network security boundaries,
               and fully automated cloud deployments for global workloads.
             </p>
@@ -683,7 +689,7 @@ export default function Solutions() {
               {[
                 { value: 13, suffix: '', label: 'Solutions Engineered' },
                 { value: 9, suffix: '', label: 'Industry Sectors' },
-                { value: 20, suffix: '+', label: 'OEM Tech Partners' },
+                { value: 20, suffix: '+', label: 'OEM Tech Coverage' },
                 { value: 2, suffix: '', label: 'ISO Certifications' }
               ].map((stat, i) => (
                 <div
@@ -831,7 +837,10 @@ export default function Solutions() {
           grid-column: span 5;
         }
         .solutions-image-container {
-          height: 480px;
+          height: 340px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .solutions-details-subgrid {
           grid-template-columns: 1fr 1fr;
@@ -854,7 +863,7 @@ export default function Solutions() {
             order: 1 !important;
           }
           .solutions-image-container {
-            height: 320px !important;
+            height: 280px !important;
           }
           .solutions-details-subgrid {
             grid-template-columns: 1fr !important;
