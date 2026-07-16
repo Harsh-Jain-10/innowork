@@ -12,8 +12,18 @@ const calculateReadingTime = (text) => {
   return Math.ceil(words / wordsPerMinute);
 };
 
-// Map category to illustration component
-const renderIllustration = (id, style) => {
+// Map category to illustration or official image
+const renderBlogImage = (article, style) => {
+  if (article.image) {
+    return (
+      <img 
+        src={article.image} 
+        alt={article.title} 
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', ...style }} 
+      />
+    );
+  }
+  const id = article.id;
   if (id === 'datacenter-transformation') {
     return <DatacenterIllustration style={style} />;
   }
@@ -192,7 +202,7 @@ export default function Blogs() {
             <section style={{ marginBottom: '6rem' }}>
               <div className="featured-grid">
                 <div className="featured-illustration-wrapper">
-                  {renderIllustration(featuredArticle.id, { height: '100%', objectFit: 'cover' })}
+                  {renderBlogImage(featuredArticle, { height: '100%', objectFit: 'cover' })}
                 </div>
                 
                 <div className="featured-content">
@@ -277,7 +287,7 @@ export default function Blogs() {
                     className="editorial-card"
                   >
                     <div className="card-illustration-wrapper">
-                      {renderIllustration(post.id, { height: '100%', objectFit: 'cover' })}
+                      {renderBlogImage(post, { height: '100%', objectFit: 'cover' })}
                     </div>
                     
                     <div style={{ padding: '2rem 1.75rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
@@ -316,67 +326,7 @@ export default function Blogs() {
           )
         )}
 
-        {/* 5. EDITORIAL COMING SOON SECTION */}
-        <ScrollReveal variant="fade-up">
-          <section style={{
-            background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
-            border: '1px solid #e2e8f0',
-            borderRadius: '16px',
-            padding: '4rem 3rem',
-            textAlign: 'center',
-            position: 'relative',
-            overflow: 'hidden',
-            boxShadow: '0 10px 30px -10px rgba(0,0,0,0.04)'
-          }}>
-            {/* Subtle light ring indicator */}
-            <div style={{
-              position: 'absolute',
-              top: '-50px',
-              right: '-50px',
-              width: '180px',
-              height: '180px',
-              borderRadius: '50%',
-              border: '2px solid rgba(9, 97, 159, 0.03)',
-              pointerEvents: 'none'
-            }} />
-            
-            <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-              <span className="future-tag">UPCOMING RESEARCH &amp; BRIEFS</span>
-              
-              <h3 style={{ 
-                fontSize: '1.8rem', 
-                fontWeight: 800, 
-                color: '#0f172a', 
-                marginTop: '1rem', 
-                marginBottom: '1rem',
-                fontFamily: 'var(--font-heading)'
-              }}>
-                Future Technical Insights Underway
-              </h3>
-              
-              <p style={{ color: '#475569', fontSize: '1rem', lineHeight: '1.65', marginBottom: '2.5rem' }}>
-                Our systems engineering and operations teams are actively documenting production insights 
-                covering multi-vendor deployments, automation, and enterprise infrastructure management.
-              </p>
 
-              <div className="upcoming-topics-grid">
-                {[
-                  { topic: "Automating Multi-Cloud Operations with Ansible", lead: "DevOps & Automation Team" },
-                  { topic: "SAP HANA Database Performance Optimization", lead: "SAP Basis Consulting Unit" },
-                  { topic: "Configuring Edge Switch Matrices in Telecom Networks", lead: "Network Infrastructure Team" }
-                ].map((item, i) => (
-                  <div key={i} className="upcoming-item">
-                    <div style={{ color: 'var(--brand-blue)', fontSize: '1.25rem' }}>⚡</div>
-                    <div style={{ textAlign: 'left' }}>
-                      <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#0f172a' }}>{item.topic}</div>
-                      <div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 500 }}>{item.lead}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        </ScrollReveal>
 
       </div>
 
@@ -562,34 +512,7 @@ export default function Blogs() {
           transition: all 0.3s ease;
         }
 
-        /* 3. COMING SOON STYLING */
-        .future-tag {
-          color: var(--brand-blue);
-          font-weight: 700;
-          font-size: 0.75rem;
-          letter-spacing: 2px;
-          border: 1px solid rgba(9, 97, 159, 0.25);
-          padding: 0.3rem 0.8rem;
-          border-radius: 20px;
-          display: inline-block;
-          background-color: rgba(9, 97, 159, 0.03);
-        }
-        .upcoming-topics-grid {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-          max-width: 650px;
-          margin: 0 auto;
-        }
-        .upcoming-item {
-          display: flex;
-          align-items: center;
-          gap: 1.25rem;
-          padding: 1.25rem 1.5rem;
-          background: #ffffff;
-          border-radius: 10px;
-          border: 1px solid #f1f5f9;
-        }
+
 
         /* 4. MODAL READER STYLING */
         .modal-overlay {

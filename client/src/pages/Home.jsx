@@ -345,11 +345,9 @@ export default function Home() {
             align-items: center;
             justify-content: center;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            filter: grayscale(100%) opacity(0.5);
           }
           .premium-logo-item:hover {
-            filter: grayscale(0%) opacity(1);
-            transform: scale(1.06);
+            transform: scale(1.05);
           }
           @keyframes marquee-scroll {
             0% {
@@ -639,11 +637,10 @@ export default function Home() {
             justify-content: center;
             height: var(--logo-height);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            filter: grayscale(100%) opacity(0.65);
           }
           .oem-grid-item:hover {
-            transform: scale(1.08);
-            filter: drop-shadow(0 4px 10px rgba(9, 97, 159, 0.15)) grayscale(0%) opacity(1);
+            transform: scale(1.05);
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
           }
           .oem-grid-logo {
             height: 100%;

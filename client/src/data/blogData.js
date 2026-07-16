@@ -9,6 +9,7 @@ export const blogArticles = [
     author: "Nitin Kumar, CTO",
     category: "Datacenter",
     summary: "Exploring the paradigm shift from traditional server racks to software-defined hypervisors and hybrid-cloud integrated platforms.",
+    image: null,
     content: `
       The modern enterprise datacenter is no longer defined by physical boundaries. For decades, the metric of IT capability was raw floor space, rack count, and thermal efficiency. Today, the focus has fundamentally shifted from physical hardware administration to software-defined orchestration. 
 
@@ -33,6 +34,7 @@ export const blogArticles = [
     author: "Anuj Gupta, Global Service Head",
     category: "Cybersecurity",
     summary: "Practical security guidelines to manage access rules, coordinate firewalls, and active perimeter defenses in hybrid clouds.",
+    image: null,
     content: `
       As enterprises scale workloads across multiple cloud providers, the security perimeter shifts from a single boundary to a highly complex, distributed network. Managing security policies across AWS, Microsoft Azure, and local datacenters requires a shift in security paradigms.
 
