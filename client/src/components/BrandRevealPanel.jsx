@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 
 export default function BrandRevealPanel() {
   const containerRef = useRef(null);
@@ -7,40 +7,49 @@ export default function BrandRevealPanel() {
   // Triggers entrance and brand reveal when 30% of the panel is visible in viewport
   const isInView = useInView(containerRef, { once: true, amount: 0.3 });
   
-  // Timeline phases: 'none' | 'boot' | 'reveal' | 'idle'
+  // Timeline phases: 'none' | 'alert' | 'converge' | 'cleanse' | 'reveal' | 'idle'
   const [phase, setPhase] = useState('none');
 
   useEffect(() => {
     if (isInView) {
-      setPhase('boot');
+      setPhase('alert'); // Phase 1: 0s - 4s
       
-      const t1 = setTimeout(() => setPhase('reveal'), 1400);
-      const t2 = setTimeout(() => setPhase('idle'), 3800);
+      const t1 = setTimeout(() => setPhase('converge'), 4000);  // Phase 2: 4s - 7s
+      const t2 = setTimeout(() => setPhase('cleanse'), 7000);   // Phase 3: 7s - 9s
+      const t3 = setTimeout(() => setPhase('reveal'), 9000);    // Phase 4: 9s - 11s (revealing)
+      const t4 = setTimeout(() => setPhase('idle'), 11000);     // Phase 4 final: 11s+ (idle loop)
 
       return () => {
         clearTimeout(t1);
         clearTimeout(t2);
+        clearTimeout(t3);
+        clearTimeout(t4);
       };
     }
   }, [isInView]);
 
-  // Letters of the brand name
-  const letters = ["I", "N", "N", "O", "W", "O", "R", "Q"];
+  // Letters of the brand name split
+  const mainLetters = ["I", "N", "N", "O", "W", "O", "R", "Q"];
 
-  // Constellation nodes for global network theme
-  const nodes = [
-    { x: 120, y: 140, size: 4, delay: 0 },
-    { x: 220, y: 100, size: 5, delay: 0.2 },
-    { x: 280, y: 160, size: 3, delay: 0.5 },
-    { x: 180, y: 220, size: 4, delay: 0.8 },
-    { x: 620, y: 120, size: 5, delay: 0.3 },
-    { x: 680, y: 180, size: 3, delay: 0.6 },
-    { x: 580, y: 220, size: 4, delay: 0.9 },
-    { x: 650, y: 280, size: 5, delay: 1.1 },
-    { x: 150, y: 380, size: 4, delay: 0.4 },
-    { x: 250, y: 420, size: 5, delay: 0.7 },
-    { x: 550, y: 390, size: 4, delay: 0.5 },
-    { x: 680, y: 370, size: 5, delay: 1.0 }
+  // Motherboard track layout paths
+  const motherboardTracks = [
+    { d: "M 80 80 H 220 L 300 200 L 350 250", delay: 0 },
+    { d: "M 720 80 H 580 L 500 200 L 450 250", delay: 0.3 },
+    { d: "M 80 500 H 220 L 300 380 L 350 330", delay: 0.6 },
+    { d: "M 720 500 H 580 L 500 380 L 450 330", delay: 0.9 },
+    { d: "M 400 50 V 230", delay: 0.2 },
+    { d: "M 400 530 V 350", delay: 0.8 },
+    { d: "M 100 290 H 340", delay: 0.5 },
+    { d: "M 700 290 H 460", delay: 1.1 }
+  ];
+
+  // Solder joints for background motherboard details
+  const motherboardPins = [
+    { cx: 80, cy: 80 }, { cx: 220, cy: 80 }, { cx: 300, cy: 200 },
+    { cx: 720, cy: 80 }, { cx: 580, cy: 80 }, { cx: 500, cy: 200 },
+    { cx: 80, cy: 500 }, { cx: 220, cy: 500 }, { cx: 300, cy: 380 },
+    { cx: 720, cy: 500 }, { cx: 580, cy: 500 }, { cx: 500, cy: 380 },
+    { cx: 400, cy: 50 }, { cx: 400, cy: 530 }, { cx: 100, cy: 290 }, { cx: 700, cy: 290 }
   ];
 
   return (
@@ -53,60 +62,97 @@ export default function BrandRevealPanel() {
         position: 'relative',
         width: '100%',
         height: '100%',
-        aspectRatio: '16/10',
-        backgroundColor: '#03050a',
-        borderRadius: '16px',
+        minHeight: '580px',
+        backgroundColor: '#020306',
+        borderRadius: '24px',
         overflow: 'hidden',
-        boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.03)',
+        boxShadow: '0 30px 80px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.03)',
         border: '1px solid rgba(255, 255, 255, 0.05)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'radial-gradient(circle at center, #050a18 0%, #010205 100%)',
+        background: (phase === 'alert' || phase === 'converge') 
+          ? 'radial-gradient(circle at center, #1b050a 0%, #020306 100%)'
+          : 'radial-gradient(circle at center, #050e1f 0%, #010204 100%)',
+        transition: 'background 2s cubic-bezier(0.16, 1, 0.3, 1)'
       }}
       className="brand-reveal-panel"
     >
-      {/* ── 1. AMBIENT MESH GRADIENT LIGHTS (BREATHING & DRITFING) ── */}
-      <motion.div
-        animate={{ 
-          opacity: phase !== 'none' ? [0.15, 0.3, 0.15] : 0,
-          scale: [1, 1.15, 1],
-          x: [0, 20, 0],
-          y: [0, -15, 0]
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+      {/* ── 1. RED ALERT HEARTBEAT GLOW LAYER (Phase 1 & 2) ── */}
+      {(phase === 'alert' || phase === 'converge') && (
+        <motion.div
+          animate={{
+            opacity: [0.35, 0.85, 0.45, 0.95, 0.35],
+            scale: [1, 1.05, 0.98, 1.08, 1]
+          }}
+          transition={{
+            duration: 1.3,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+          style={{
+            position: 'absolute',
+            width: '65%',
+            height: '65%',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(220, 38, 38, 0.32) 0%, transparent 70%)',
+            filter: 'blur(45px)',
+            zIndex: 1,
+            pointerEvents: 'none'
+          }}
+        />
+      )}
+
+      {/* ── 2. CLEANSE FLASH WAVE (Phase 3 transition) ── */}
+      {phase === 'cleanse' && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ duration: 1.6, ease: 'easeInOut' }}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 8,
+            background: 'radial-gradient(circle at center, #e0f7ff 0%, #00f0ff 40%, transparent 100%)',
+            mixBlendMode: 'screen',
+            pointerEvents: 'none'
+          }}
+        />
+      )}
+
+      {/* ── 3. STABLE AMBIENT MESH GRADIENT LIGHTS (Phase 3 & 4) ── */}
+      {(phase === 'cleanse' || phase === 'reveal' || phase === 'idle') && (
+        <motion.div
+          animate={{ 
+            opacity: [0.25, 0.45, 0.25],
+            scale: [1, 1.12, 1]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          style={{
+            position: 'absolute',
+            width: '75%',
+            height: '75%',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(9, 97, 159, 0.32) 0%, rgba(0, 168, 255, 0.04) 50%, transparent 75%)',
+            filter: 'blur(45px)',
+            zIndex: 1,
+            pointerEvents: 'none'
+          }}
+        />
+      )}
+
+      {/* Glass sheen overlay */}
+      <div 
         style={{
           position: 'absolute',
-          width: '70%',
-          height: '70%',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(9, 97, 159, 0.28) 0%, rgba(99, 102, 241, 0.03) 60%, transparent 80%)',
-          filter: 'blur(50px)',
-          zIndex: 1,
-          pointerEvents: 'none'
-        }}
-      />
-      <motion.div
-        animate={{ 
-          opacity: phase !== 'none' ? [0.1, 0.22, 0.1] : 0,
-          scale: [1.1, 0.95, 1.1],
-          x: [0, -25, 0],
-          y: [0, 20, 0]
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        style={{
-          position: 'absolute',
-          width: '60%',
-          height: '60%',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0, 168, 255, 0.18) 0%, rgba(9, 97, 159, 0.02) 60%, transparent 80%)',
-          filter: 'blur(40px)',
-          zIndex: 1,
-          pointerEvents: 'none'
+          inset: 0,
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.015) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.01) 100%)',
+          zIndex: 5,
+          pointerEvents: 'none',
         }}
       />
 
-      {/* ── 2. DELICATE SVG NETWORK CONSTELLATIONS & LIGHT WAVES ── */}
+      {/* ── 4. DETAILED SILICON MOTHERBOARD GRID & CIRCUITS ── */}
       <svg 
         style={{
           position: 'absolute',
@@ -116,22 +162,38 @@ export default function BrandRevealPanel() {
           zIndex: 2,
           pointerEvents: 'none'
         }}
-        viewBox="0 0 800 500"
+        viewBox="0 0 800 580"
       >
         <defs>
-          {/* Wave linear gradients for high-speed fiber-optic representation */}
-          <linearGradient id="wave-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(0, 168, 255, 0)" />
-            <stop offset="50%" stopColor="rgba(0, 240, 255, 0.5)" />
-            <stop offset="100%" stopColor="rgba(0, 168, 255, 0)" />
+          {/* Subtly colored gradients for circuit trace lines */}
+          <linearGradient id="trace-alert-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="rgba(220, 38, 38, 0.3)" />
+            <stop offset="100%" stopColor="rgba(185, 28, 28, 0.05)" />
           </linearGradient>
-          <linearGradient id="wave-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(99, 102, 241, 0)" />
-            <stop offset="50%" stopColor="rgba(129, 140, 248, 0.4)" />
-            <stop offset="100%" stopColor="rgba(99, 102, 241, 0)" />
+          <linearGradient id="trace-stable-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="rgba(0, 168, 255, 0.25)" />
+            <stop offset="100%" stopColor="rgba(9, 97, 159, 0.05)" />
           </linearGradient>
-          <filter id="soft-glow" x="-10%" y="-10%" width="120%" height="120%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
+
+          {/* Central warning core pulsing gradient */}
+          <radialGradient id="warning-core-grad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="40%" stopColor="#ef4444" />
+            <stop offset="80%" stopColor="#7f1d1d" />
+            <stop offset="100%" stopColor="transparent" />
+          </radialGradient>
+
+          {/* Cleansed core gradient */}
+          <radialGradient id="stable-core-grad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="35%" stopColor="#00f0ff" />
+            <stop offset="75%" stopColor="#09619f" />
+            <stop offset="100%" stopColor="transparent" />
+          </radialGradient>
+
+          {/* Intense neon glow filter */}
+          <filter id="neon-glow-filter" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -139,135 +201,218 @@ export default function BrandRevealPanel() {
           </filter>
         </defs>
 
-        {/* Constellation link lines (thin, elegant) */}
-        {phase !== 'none' && (
-          <g stroke="rgba(0, 168, 255, 0.035)" strokeWidth="0.75">
-            {/* Left cluster link */}
-            <line x1="120" y1="140" x2="220" y2="100" />
-            <line x1="220" y1="100" x2="280" y2="160" />
-            <line x1="280" y1="160" x2="180" y2="220" />
-            <line x1="180" y1="220" x2="120" y2="140" />
-            <line x1="150" y1="380" x2="250" y2="420" />
-            
-            {/* Right cluster link */}
-            <line x1="620" y1="120" x2="680" y2="180" />
-            <line x1="680" y1="180" x2="580" y2="220" />
-            <line x1="580" y1="220" x2="650" y2="280" />
-            <line x1="650" y1="280" x2="620" y2="120" />
-            <line x1="550" y1="390" x2="680" y2="370" />
-            
-            {/* Soft global bridges linking clusters */}
-            <line x1="280" y1="160" x2="580" y2="220" stroke="rgba(255, 255, 255, 0.015)" strokeWidth="0.5" />
-            <line x1="180" y1="220" x2="550" y2="390" stroke="rgba(255, 255, 255, 0.015)" strokeWidth="0.5" />
+        {/* Base fine mesh grids */}
+        <g stroke="rgba(255,255,255,0.015)" strokeWidth="0.5">
+          {Array.from({ length: 41 }).map((_, i) => (
+            <line key={`x-${i}`} x1={i * 20} y1="0" x2={i * 20} y2="580" />
+          ))}
+          {Array.from({ length: 30 }).map((_, i) => (
+            <line key={`y-${i}`} x1="0" y1={i * 20} x2="800" y2={i * 20} />
+          ))}
+        </g>
+
+        {/* Silicon Motherboard Tracks */}
+        <g>
+          {motherboardTracks.map((track, idx) => {
+            const isAlert = phase === 'alert' || phase === 'converge';
+            return (
+              <path
+                key={idx}
+                d={track.d}
+                fill="none"
+                stroke={isAlert ? "url(#trace-alert-grad)" : "url(#trace-stable-grad)"}
+                strokeWidth="1.5"
+                style={{ transition: 'stroke 1.5s ease' }}
+              />
+            );
+          })}
+        </g>
+
+        {/* Solder pins details */}
+        <g fill={ (phase === 'alert' || phase === 'converge') ? "rgba(220, 38, 38, 0.25)" : "rgba(0, 168, 255, 0.2)" }>
+          {motherboardPins.map((pin, idx) => (
+            <circle
+              key={idx}
+              cx={pin.cx}
+              cy={pin.cy}
+              r="3"
+              style={{ transition: 'fill 1.5s ease' }}
+            />
+          ))}
+        </g>
+
+        {/* Motherboard Labels Engravings */}
+        <g fill="rgba(255,255,255,0.06)" fontSize="7" fontFamily="monospace" letterSpacing="0.5">
+          <text x="90" y="70">CPU_VCC_LINE_01</text>
+          <text x="730" y="70" textAnchor="end">PCI_BUS_G5_GND</text>
+          <text x="90" y="515">SYS_PWR_BUS_GND</text>
+          <text x="730" y="515" textAnchor="end">TRANS_LINK_V4.2</text>
+        </g>
+
+        {/* ── PHASE 1: HEARTBEAT WARNING CORE (CPU footprint) ── */}
+        {(phase === 'alert' || phase === 'converge') && (
+          <g transform="translate(400, 290)">
+            {/* Warning Octagon */}
+            <motion.polygon
+              points="-30,-12.5 -12.5,-30 12.5,-30 30,-12.5 30,12.5 12.5,30 -12.5,30 -30,12.5"
+              fill="rgba(185, 28, 28, 0.2)"
+              stroke="#ef4444"
+              strokeWidth="2.5"
+              animate={{
+                scale: [1, 1.15, 0.97, 1.2, 1],
+                strokeWidth: [2.5, 3.5, 2, 4, 2.5]
+              }}
+              transition={{
+                duration: 1.3,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            />
+            {/* Core Center Pulse */}
+            <motion.circle
+              r="15"
+              fill="url(#warning-core-grad)"
+              filter="url(#neon-glow-filter)"
+              animate={{
+                scale: [1, 1.22, 0.95, 1.25, 1]
+              }}
+              transition={{
+                duration: 1.3,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            />
+            {/* Alarm lines */}
+            <line x1="-10" y1="0" x2="10" y2="0" stroke="#ef4444" strokeWidth="2.5" />
+            <line x1="0" y1="-10" x2="0" y2="10" stroke="#ef4444" strokeWidth="2.5" />
           </g>
         )}
 
-        {/* Constellation Nodes */}
-        {phase !== 'none' && nodes.map((node, i) => (
-          <motion.g
-            key={i}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 0.5, scale: 1 }}
-            transition={{ duration: 1, delay: node.delay }}
-          >
-            <circle
-              cx={node.x}
-              cy={node.y}
-              r={node.size}
-              fill="rgba(0, 240, 255, 0.25)"
-            />
-            <circle
-              cx={node.x}
-              cy={node.y}
-              r={node.size * 2.5}
-              fill="none"
-              stroke="rgba(0, 168, 255, 0.08)"
-              strokeWidth="0.5"
-            />
-          </motion.g>
-        ))}
-
-        {/* ── FIBER-OPTIC FLUID WAVES (flowing curves representing datacenter highways) ── */}
-        {(phase === 'reveal' || phase === 'idle') && (
+        {/* ── PHASE 2: TRANSMISSION WIRE & ENERGY CONVERGENCE (4s - 7s) ── */}
+        {phase === 'converge' && (
           <g>
-            {/* Wave 1 (Upper Arc) */}
-            <path
-              d="M 50 160 C 250 80, 550 80, 750 160"
+            {/* Transmission cable connecting from left edge to core */}
+            <motion.path
+              d="M 100 290 H 340"
               fill="none"
-              stroke="rgba(255, 255, 255, 0.02)"
-              strokeWidth="1.5"
+              stroke="#00f0ff"
+              strokeWidth="3"
+              filter="url(#soft-glow)"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 1.5, ease: 'easeOut' }}
             />
             <motion.path
-              d="M 50 160 C 250 80, 550 80, 750 160"
+              d="M 700 290 H 460"
               fill="none"
-              stroke="url(#wave-grad-1)"
-              strokeWidth="2"
+              stroke="#00f0ff"
+              strokeWidth="3"
               filter="url(#soft-glow)"
-              initial={{ strokeDasharray: "150 450", strokeDashoffset: 600 }}
-              animate={{ strokeDashoffset: [600, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: "linear" }}
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 1.5, ease: 'easeOut' }}
             />
 
-            {/* Wave 2 (Lower Arc) */}
-            <path
-              d="M 50 340 C 250 420, 550 420, 750 340"
-              fill="none"
-              stroke="rgba(255, 255, 255, 0.02)"
-              strokeWidth="1.5"
-            />
-            <motion.path
-              d="M 50 340 C 250 420, 550 420, 750 340"
-              fill="none"
-              stroke="url(#wave-grad-1)"
-              strokeWidth="2"
-              filter="url(#soft-glow)"
-              initial={{ strokeDasharray: "120 480", strokeDashoffset: -600 }}
-              animate={{ strokeDashoffset: [-600, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-            />
+            {/* Accelerated packets rushing into the CPU footprint */}
+            {motherboardTracks.map((track, idx) => (
+              <motion.circle
+                key={`packet-${idx}`}
+                r="3.5"
+                fill="#00f0ff"
+                filter="url(#neon-glow-filter)"
+                animate={{
+                  offsetDistance: ["0%", "100%"],
+                  opacity: [0, 1, 1, 0]
+                }}
+                transition={{
+                  duration: 1.1,
+                  repeat: Infinity,
+                  ease: 'easeIn',
+                  delay: track.delay
+                }}
+                style={{
+                  motionPath: `path('${track.d}')`,
+                  transformBox: 'fill-box',
+                  transformOrigin: 'center'
+                }}
+              />
+            ))}
+          </g>
+        )}
 
-            {/* Wave 3 (Center Sine S-Curve) */}
-            <path
-              d="M 100 250 Q 250 150 400 250 T 700 250"
+        {/* ── PHASE 3: EXPANDING CLEANSE SHOCKWAVE (7s - 9s) ── */}
+        {(phase === 'cleanse' || phase === 'reveal' || phase === 'idle') && (
+          <g>
+            {/* CPU Socket footprints cleansed */}
+            <g transform="translate(400, 290)">
+              <rect x="-45" y="-45" width="90" height="90" fill="none" stroke="rgba(0, 240, 255, 0.25)" strokeWidth="1.5" />
+              <rect x="-35" y="-35" width="70" height="70" fill="none" stroke="rgba(0, 240, 255, 0.15)" strokeWidth="1.5" />
+              
+              {/* Luminous Central Core */}
+              <circle
+                r="20"
+                fill="url(#stable-core-grad)"
+                filter="url(#neon-glow-filter)"
+              />
+            </g>
+
+            {/* Glowing wave segments drawing and propagating */}
+            <motion.circle
+              cx="400"
+              cy="290"
+              r="20"
               fill="none"
-              stroke="rgba(255, 255, 255, 0.01)"
-              strokeWidth="1"
+              stroke="rgba(0, 240, 255, 0.85)"
+              strokeWidth="4"
+              filter="url(#neon-glow-filter)"
+              animate={{
+                r: phase === 'cleanse' ? [20, 750] : 750,
+                strokeWidth: phase === 'cleanse' ? [4, 0.1] : 0,
+                opacity: phase === 'cleanse' ? [1, 0] : 0
+              }}
+              transition={{ duration: 1.8, ease: 'easeOut' }}
             />
-            <motion.path
-              d="M 100 250 Q 250 150 400 250 T 700 250"
+            <motion.circle
+              cx="400"
+              cy="290"
+              r="20"
               fill="none"
-              stroke="url(#wave-grad-2)"
-              strokeWidth="1.5"
-              initial={{ strokeDasharray: "100 350", strokeDashoffset: 450 }}
-              animate={{ strokeDashoffset: [450, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              stroke="rgba(255, 255, 255, 0.6)"
+              strokeWidth="6"
+              filter="url(#neon-glow-filter)"
+              animate={{
+                r: phase === 'cleanse' ? [20, 600] : 600,
+                strokeWidth: phase === 'cleanse' ? [6, 0.1] : 0,
+                opacity: phase === 'cleanse' ? [0.9, 0] : 0
+              }}
+              transition={{ duration: 1.5, ease: 'easeOut', delay: 0.1 }}
             />
           </g>
         )}
       </svg>
 
-      {/* ── 3. PREMIUM GLASSMORPHIC CARD BACKPLATE ── */}
+      {/* ── 5. GLASSMORPHIC PROCESSOR BRACKET BACKPLATE (Phase 4) ── */}
       {(phase === 'reveal' || phase === 'idle') && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, ease: 'easeOut' }}
+          transition={{ duration: 1.4, ease: 'easeOut' }}
           style={{
             position: 'absolute',
-            width: '80%',
+            width: '82%',
             height: '42%',
             background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.015) 0%, rgba(255, 255, 255, 0.005) 100%)',
             backdropFilter: 'blur(20px) saturate(110%)',
             border: '1px solid rgba(255, 255, 255, 0.035)',
-            borderRadius: '24px',
+            borderRadius: '20px',
             zIndex: 2,
             pointerEvents: 'none',
-            boxShadow: '0 30px 100px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.03)'
+            boxShadow: '0 30px 100px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03)'
           }}
         />
       )}
 
-      {/* ── 4. MAJESTIC LOGO TYPOGRAPHY & SHIMMER EFFECT ── */}
+      {/* ── 6. MAJESTIC LOGO TYPOGRAPHY REVEAL (Phase 4) ── */}
       <div 
         style={{
           zIndex: 3,
@@ -278,11 +423,33 @@ export default function BrandRevealPanel() {
           userSelect: 'none',
         }}
       >
+        {/* Top small header tag */}
+        {(phase === 'reveal' || phase === 'idle') && (
+          <div style={{ overflow: 'hidden', marginBottom: '0.5rem' }}>
+            <motion.span
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 0.55, y: 0 }}
+              transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
+              style={{
+                color: '#e2e8f0',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '0.55em',
+                display: 'block'
+              }}
+            >
+              WORK BY
+            </motion.span>
+          </div>
+        )}
+
+        {/* Main letters grid */}
         <motion.div
           animate={(phase === 'reveal' || phase === 'idle') ? {
-            letterSpacing: ['0.25em', '0.12em'],
-          } : { letterSpacing: '0.25em' }}
-          transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
+            letterSpacing: ['0.35em', '0.14em'],
+          } : { letterSpacing: '0.35em' }}
+          transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
           style={{
             display: 'flex',
             gap: '8px',
@@ -291,7 +458,7 @@ export default function BrandRevealPanel() {
             fontWeight: 800,
             color: '#ffffff',
             position: 'relative',
-            paddingLeft: '0.12em'
+            paddingLeft: '0.14em'
           }}
         >
           {letters.map((letter, index) => {
@@ -299,7 +466,7 @@ export default function BrandRevealPanel() {
             return (
               <motion.span
                 key={index}
-                initial={{ opacity: 0, y: 15, scale: 0.92, filter: 'blur(8px)' }}
+                initial={{ opacity: 0, y: 15, scale: 0.94, filter: 'blur(8px)' }}
                 animate={isShown ? { 
                   opacity: 1, 
                   y: 0, 
@@ -309,7 +476,7 @@ export default function BrandRevealPanel() {
                 transition={{
                   duration: 1.2,
                   ease: [0.16, 1, 0.3, 1],
-                  delay: isShown ? index * 0.12 : 0
+                  delay: isShown ? 0.4 + (index * 0.12) : 0
                 }}
                 style={{
                   display: 'inline-block',
@@ -323,7 +490,7 @@ export default function BrandRevealPanel() {
             );
           })}
 
-          {/* High-gloss silver reflection sweep */}
+          {/* Silver/light reflection sweep across the logo */}
           {(phase === 'reveal' || phase === 'idle') && (
             <motion.div
               initial={{ x: '-150%', skewX: -25 }}
@@ -333,7 +500,7 @@ export default function BrandRevealPanel() {
                 repeat: Infinity,
                 repeatDelay: 5.5,
                 ease: 'easeInOut',
-                delay: 2.0
+                delay: 2.5
               }}
               style={{
                 position: 'absolute',
@@ -347,16 +514,16 @@ export default function BrandRevealPanel() {
           )}
         </motion.div>
 
-        {/* Subtitle tag with reflection shimmer */}
+        {/* Subtitle tag with reflection sheen */}
         {(phase === 'reveal' || phase === 'idle') && (
-          <div style={{ position: 'relative', overflow: 'hidden', marginTop: '1.75rem' }}>
+          <div style={{ position: 'relative', overflow: 'hidden', marginTop: '1.5rem' }}>
             <motion.span
               initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 0.75, y: 0 }}
-              transition={{ duration: 1.5, ease: 'easeOut', delay: 1.2 }}
+              animate={{ opacity: 0.7, y: 0 }}
+              transition={{ duration: 1.5, ease: 'easeOut', delay: 1.6 }}
               style={{
-                color: '#e2e8f0',
-                fontSize: '0.86rem',
+                color: '#cbd5e1',
+                fontSize: '0.82rem',
                 fontWeight: 700,
                 textTransform: 'uppercase',
                 letterSpacing: '0.45em',
@@ -366,7 +533,7 @@ export default function BrandRevealPanel() {
                 textShadow: '0 2px 6px rgba(0,0,0,0.6)'
               }}
             >
-              Technology Infrastructure
+              Technology Infrastructure Partner
             </motion.span>
             
             <motion.div
@@ -377,7 +544,7 @@ export default function BrandRevealPanel() {
                 repeat: Infinity,
                 repeatDelay: 7,
                 ease: 'linear',
-                delay: 3.0
+                delay: 3.5
               }}
               style={{
                 position: 'absolute',
@@ -390,7 +557,7 @@ export default function BrandRevealPanel() {
         )}
       </div>
 
-      {/* ── 5. OPTICAL SPOTLIGHT GLOW REACTION (BRETATHING BEHIND LOGO) ── */}
+      {/* ── 7. OPTICAL CORE GLOW BEHIND LOGO (Phase 4) ── */}
       {(phase === 'reveal' || phase === 'idle') && (
         <motion.div
           animate={{
@@ -400,7 +567,7 @@ export default function BrandRevealPanel() {
           transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
           style={{
             position: 'absolute',
-            width: '320px',
+            width: '350px',
             height: '140px',
             background: 'radial-gradient(circle, rgba(0, 168, 255, 0.12) 0%, transparent 70%)',
             zIndex: 1,
@@ -409,20 +576,59 @@ export default function BrandRevealPanel() {
         />
       )}
 
-      {/* ── 6. ELEGANT FIBER-OPTIC TRACE LINE (BOTTOM BAR) ── */}
-      {(phase === 'reveal' || phase === 'idle') && (
-        <div style={{ position: 'absolute', bottom: '15px', width: '220px', height: '1px', background: 'rgba(255, 255, 255, 0.05)', overflow: 'hidden' }}>
+      {/* ── 8. CINEMATIC AMBIENT EMBER DUST (Phase 4) ── */}
+      {(phase === 'reveal' || phase === 'idle') && Array.from({ length: 30 }).map((_, idx) => {
+        const size = Math.random() * 4.5 + 1.5;
+        const initialX = Math.random() * 70 + 15;
+        const initialY = Math.random() * 65 + 18;
+        const speed = 6 + Math.random() * 6;
+        return (
           <motion.div
-            animate={{ x: ['-100%', '100%'] }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: 'linear' }}
+            key={idx}
+            animate={{
+              y: [0, -50, 0],
+              x: [0, Math.random() * 30 - 15, 0],
+              opacity: [0, 0.55, 0.55, 0],
+              scale: [1, 1.2, 0.8, 1]
+            }}
+            transition={{
+              duration: speed,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: Math.random() * 4
+            }}
             style={{
-              width: '40px',
-              height: '100%',
-              background: 'linear-gradient(90deg, transparent, #00f0ff, transparent)'
+              position: 'absolute',
+              left: `${initialX}%`,
+              top: `${initialY}%`,
+              width: `${size}px`,
+              height: `${size}px`,
+              borderRadius: '50%',
+              backgroundColor: idx % 3 === 0 ? '#38bdf8' : '#00f0ff',
+              boxShadow: '0 0 8px #00f0ff, 0 0 3px rgba(0,240,255,0.4)',
+              pointerEvents: 'none',
+              zIndex: 3
             }}
           />
-        </div>
-      )}
+        );
+      })}
+
+      {/* ── 9. HOLOGRAPHIC FRAME BRACKETS ── */}
+      <div 
+        style={{
+          position: 'absolute',
+          inset: '12px',
+          border: '1px solid rgba(255, 255, 255, 0.04)',
+          borderRadius: '16px',
+          pointerEvents: 'none',
+          zIndex: 3
+        }}
+      >
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '18px', height: '18px', borderTop: '2.5px solid rgba(0, 240, 255, 0.5)', borderLeft: '2.5px solid rgba(0, 240, 255, 0.5)' }} />
+        <div style={{ position: 'absolute', top: 0, right: 0, width: '18px', height: '18px', borderTop: '2.5px solid rgba(0, 240, 255, 0.5)', borderRight: '2.5px solid rgba(0, 240, 255, 0.5)' }} />
+        <div style={{ position: 'absolute', bottom: 0, left: 0, width: '18px', height: '18px', borderBottom: '2.5px solid rgba(0, 240, 255, 0.5)', borderLeft: '2.5px solid rgba(0, 240, 255, 0.5)' }} />
+        <div style={{ position: 'absolute', bottom: 0, right: 0, width: '18px', height: '18px', borderBottom: '2.5px solid rgba(0, 240, 255, 0.5)', borderRight: '2.5px solid rgba(0, 240, 255, 0.5)' }} />
+      </div>
     </motion.div>
   );
 }
