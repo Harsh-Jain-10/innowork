@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ScrollReveal, { StaggerContainer, StaggerItem, CountUp } from '../components/ScrollReveal';
 import configData from '../data/companyConfig.json';
+import HeroCinematicAnimation from '../components/HeroCinematicAnimation';
 
 // Import OEM partner logos
 import dellLogo from '../assets/logos/dell.svg';
@@ -142,82 +143,98 @@ export default function Home() {
         />
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-            style={{ textAlign: 'center', maxWidth: '860px', margin: '0 auto' }}
-          >
-            {/* Badge */}
-            <motion.span
-              variants={itemVariants}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                backgroundColor: 'rgba(9, 97, 159, 0.08)',
-                color: 'var(--brand-blue)',
-                padding: '0.45rem 1.1rem',
-                borderRadius: '50px',
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                letterSpacing: '1.2px',
-                textTransform: 'uppercase',
-                marginBottom: '1.75rem',
-                border: '1px solid rgba(9, 97, 159, 0.2)'
-              }}
+          <div className="hero-split-layout">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={containerVariants}
+              style={{ textAlign: 'left', maxWidth: '720px' }}
             >
+              {/* Badge */}
               <motion.span
-                animate={{ opacity: [1, 0.3, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                style={{ width: 7, height: 7, borderRadius: '50%', backgroundColor: 'var(--brand-blue)', display: 'inline-block' }}
-              />
-              Enterprise IT Support &amp; Services
-            </motion.span>
+                variants={itemVariants}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                  backgroundColor: 'rgba(9, 97, 159, 0.08)',
+                  color: 'var(--brand-blue)',
+                  padding: '0.45rem 1.1rem',
+                  borderRadius: '50px',
+                  fontSize: '0.82rem',
+                  fontWeight: 700,
+                  letterSpacing: '1.2px',
+                  textTransform: 'uppercase',
+                  marginBottom: '1.75rem',
+                  border: '1px solid rgba(9, 97, 159, 0.2)'
+                }}
+              >
+                <motion.span
+                  animate={{ opacity: [1, 0.3, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                  style={{ width: 7, height: 7, borderRadius: '50%', backgroundColor: 'var(--brand-blue)', display: 'inline-block' }}
+                />
+                Enterprise IT Support &amp; Services
+              </motion.span>
 
-            <motion.h1
-              variants={itemVariants}
-              style={{
-                fontSize: '3.75rem',
-                lineHeight: '1.12',
-                fontWeight: 800,
-                color: 'var(--text-light-primary)',
-                marginBottom: '1.5rem',
-                letterSpacing: '-1.5px'
-              }}
-              className="responsive-hero-title"
-            >
-              Welcome to <span style={{ color: 'var(--brand-blue)' }}>INNOWORQ</span><br />
-              Your Technology Support Partner
-            </motion.h1>
+              <motion.h1
+                variants={itemVariants}
+                style={{
+                  fontSize: '3.75rem',
+                  lineHeight: '1.12',
+                  fontWeight: 800,
+                  color: 'var(--text-light-primary)',
+                  marginBottom: '1.5rem',
+                  letterSpacing: '-1.5px'
+                }}
+                className="responsive-hero-title"
+              >
+                Welcome to <span style={{ color: 'var(--brand-blue)' }}>INNOWORQ</span><br />
+                Your Technology Support Partner
+              </motion.h1>
 
-            <motion.p
-              variants={itemVariants}
-              style={{
-                fontSize: '1.2rem',
-                lineHeight: '1.7',
-                color: 'var(--text-light-secondary)',
-                marginBottom: '2.75rem',
-                fontWeight: 400,
-                maxWidth: '680px',
-                margin: '0 auto 2.75rem auto'
-              }}
-            >
-              Delivering secure, scalable, and highly available IT infrastructure, hybrid cloud operations,
-              and proactive cybersecurity systems globally. We manage the complexity of your technology
-              so you can scale your business.
-            </motion.p>
+              <motion.p
+                variants={itemVariants}
+                style={{
+                  fontSize: '1.2rem',
+                  lineHeight: '1.7',
+                  color: 'var(--text-light-secondary)',
+                  fontWeight: 400,
+                  maxWidth: '680px',
+                }}
+                className="hero-desc-p"
+              >
+                Delivering secure, scalable, and highly available IT infrastructure, hybrid cloud operations,
+                and proactive cybersecurity systems globally. We manage the complexity of your technology
+                so you can scale your business.
+              </motion.p>
+
+              <motion.div
+                variants={itemVariants}
+                className="hero-buttons-flex"
+              >
+                <Link to="/support-desk" className="btn btn-primary" style={{ padding: '0.9rem 2.2rem', fontSize: '1rem' }}>
+                  Open Support Ticket
+                </Link>
+                <Link to="/services" className="btn btn-secondary" style={{ padding: '0.9rem 2.2rem', fontSize: '1rem' }}>
+                  Explore Services Catalog
+                </Link>
+              </motion.div>
+            </motion.div>
 
             <motion.div
-              variants={itemVariants}
-              style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: 'easeOut' }}
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                position: 'relative'
+              }}
+              className="hero-animation-container"
             >
-              <Link to="/support-desk" className="btn btn-primary" style={{ padding: '0.9rem 2.2rem', fontSize: '1rem' }}>
-                Open Support Ticket
-              </Link>
-              <Link to="/services" className="btn btn-secondary" style={{ padding: '0.9rem 2.2rem', fontSize: '1rem' }}>
-                Explore Services Catalog
-              </Link>
+              <HeroCinematicAnimation />
             </motion.div>
-          </motion.div>
+          </div>
 
           {/* Trust indicators row */}
           <motion.div
@@ -757,8 +774,43 @@ export default function Home() {
       <style>{`
         .responsive-hero-title { font-size: 3.75rem; }
         .stats-full-grid { grid-template-columns: repeat(7, 1fr); }
+        .hero-split-layout {
+          display: grid;
+          grid-template-columns: 1.15fr 0.85fr;
+          gap: 4rem;
+          align-items: center;
+        }
+        .hero-desc-p {
+          margin: 0 0 2.75rem 0;
+        }
+        .hero-buttons-flex {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
         @media (max-width: 1200px) {
           .stats-full-grid { grid-template-columns: repeat(4, 1fr) !important; }
+        }
+        @media (max-width: 960px) {
+          .hero-split-layout {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            text-align: center;
+          }
+          .hero-split-layout > div {
+            margin: 0 auto;
+            text-align: center !important;
+          }
+          .hero-split-layout > div:first-of-type {
+            max-width: 100% !important;
+          }
+          .hero-desc-p {
+            margin: 0 auto 2.75rem auto !important;
+          }
+          .hero-buttons-flex {
+            justify-content: center !important;
+          }
         }
         @media (max-width: 900px) {
           .responsive-hero-title { font-size: 2.5rem !important; }
