@@ -1,0 +1,329 @@
+{
+  "contact": {
+    "address": "H-49, 4th Floor, Sector-63, Noida, Uttar Pradesh-201309",
+    "phone": "1800 123 5671",
+    "email": "sales@innoworq.com"
+  },
+  "socials": {
+    "linkedin": "https://www.linkedin.com/company/INNOWORQ-infotech-pvt"
+  },
+  "stats": {
+    "professionals": "300+",
+    "clients": "100+",
+    "projects": "400+",
+    "countries": "4",
+    "industries": "10",
+    "devices": "50K+",
+    "alliances": "20+"
+  },
+  "certifications": [
+    "ISO 9001:2015 Certified",
+    "ISO/IEC 27001:2022 Certified"
+  ],
+  "services": [
+    {
+      "id": "it-professional-services",
+      "name": "IT Professional Services",
+      "desc": "Technology roadmaps, IT consulting, infrastructure assessments, and strategic planning aligned with enterprise business objectives."
+    },
+    {
+      "id": "hco-cloud-services",
+      "name": "HCO & Cloud Services",
+      "desc": "Hybrid Cloud Operations (HCO) and multi-cloud strategy planning, seamless migrations, virtualization management, and architecture consulting across AWS, Azure, and GCP."
+    },
+    {
+      "id": "it-datacenter-management",
+      "name": "IT Datacenter Management",
+      "desc": "Continuous server maintenance, storage allocation, blade chassis configurations, and hypervisor administration for high availability."
+    },
+    {
+      "id": "third-party-maintenance",
+      "name": "Third Party Maintenance",
+      "desc": "Cost-effective, multi-vendor support SLA coverage for active and End-of-Service-Life (EOSL) enterprise hardware assets."
+    },
+    {
+      "id": "it-manage-services-digital-transformation",
+      "name": "IT Manage Services & Digital Transformation",
+      "desc": "End-to-end IT outsourcing, IT service desk operations, SLA-driven problem resolution, and progressive digital transformation strategies."
+    },
+    {
+      "id": "noc-services",
+      "name": "NOC Services",
+      "desc": "24/7/365 active remote network monitoring, alarm handling, incident triage, and real-time performance optimizations."
+    },
+    {
+      "id": "staff-augmentation",
+      "name": "Staff Augmentation",
+      "desc": "Deployment of highly qualified, certified L1, L2, and L3 engineers and systems operators to meet transient or long-term client capacity requirements."
+    },
+    {
+      "id": "software-maintenance-development-services",
+      "name": "Software Maintenance & Development Services",
+      "desc": "Custom software development, regular feature upgrades, performance tuning, bug fixing, and software lifecycle maintenance."
+    },
+    {
+      "id": "devops-automation",
+      "name": "DevOps & Automation",
+      "desc": "Elimination of manual IT operations through Ansible automation, shell scripting, Infrastructure as Code (IaC), and container management."
+    },
+    {
+      "id": "sap-basis-consulting",
+      "name": "SAP Basis & Consulting",
+      "desc": "SAP Basis administration, HANA database consulting, system updates, kernel patching, transport management, and performance tuning."
+    },
+    {
+      "id": "it-trainings",
+      "name": "IT Trainings",
+      "desc": "Capability building and enterprise technology training workshops led by certified domain experts."
+    }
+  ],
+  "solutions": [
+    {
+      "name": "Smart City Solution",
+      "desc": "Redefining urban infrastructure through cutting-edge Smart City solutions, seamlessly integrating AI-driven automation, secure IT frameworks, and scalable cloud environments. We design, deploy, and maintain Integrated Command & Control Centers (ICCC)."
+    },
+    {
+      "name": "NOC Solution",
+      "desc": "Enterprise NOC setup providing 24x7 network monitoring, proactive alarm handling, incident management, and capacity planning for mission-critical IT infrastructure."
+    },
+    {
+      "name": "Training and Learning",
+      "desc": "Hands-on workshops, custom curriculum design, and expert-led certification training programs in cloud, virtualization, storage, and database management."
+    },
+    {
+      "name": "Automation & AI",
+      "desc": "Streamlining workflows using AI-driven observability, self-healing systems, automated configurations, and script-based cloud management."
+    },
+    {
+      "name": "Business Continuity",
+      "desc": "Comprehensive disaster recovery planning, cloud-based replication setups, automated failover structures, and IT resilience audits."
+    },
+    {
+      "name": "Cloud Solutions",
+      "desc": "Hybrid, private, and public cloud designs, workloads migrations, Kubernetes container orchestration, and continuous cost optimization profiles."
+    },
+    {
+      "name": "DC Infrastructure",
+      "desc": "High-performance server, blade chassis, SAN/NAS storage, hypervisor networks, and system consolidation designs."
+    },
+    {
+      "name": "DC Non-IT",
+      "desc": "End-to-end facility management including power distribution systems, precision cooling, HVAC, fire suppression, CCTV, and physical access control."
+    },
+    {
+      "name": "Data Backup & Recovery",
+      "desc": "Automated data protection, backup schedules, retention compliance, catalog recoveries, and bare-metal restores."
+    },
+    {
+      "name": "Datacentre Solutions & Transformation",
+      "desc": "Transforming legacy environments into highly virtualized, cloud-integrated, software-defined datacenter ecosystems."
+    },
+    {
+      "name": "Digital Infrastructure",
+      "desc": "Modern digital networking, high-speed fiber routing, structured cabling, routing table alignments, and WAN optimizations."
+    },
+    {
+      "name": "Enterprise Management Solution",
+      "desc": "Consolidated IT infrastructure dashboarding, service desk systems, network observability, and ERP support configurations."
+    },
+    {
+      "name": "Network Infrastructure & Security",
+      "desc": "Perimeter defense systems, firewall configurations, VLAN setups, access controller deployments, and Cisco/Juniper routing table maintenance."
+    }
+  ],
+  "industries": [
+    {
+      "name": "Smart City",
+      "desc": "Integrated Command and Control Centers (ICCC), smart governance enablement, IoT gateways, and video surveillance wall operations."
+    },
+    {
+      "name": "Telecom",
+      "desc": "Supporting edge routing configurations, high-availability switching matrices, base station connectivity, and active networking infrastructure."
+    },
+    {
+      "name": "Healthcare",
+      "desc": "Ensuring continuous IT infrastructure uptime, server resilience, and secure datacenter hosting for clinical systems."
+    },
+    {
+      "name": "Manufacturing",
+      "desc": "OT-IT convergence consulting, automation pipelines, systems monitoring, and shop-floor computing support."
+    },
+    {
+      "name": "BFSI",
+      "desc": "Highly secure datacenter architectures, network firewalls, active-active disaster recovery replication, and regulatory compliance."
+    },
+    {
+      "name": "Logistics",
+      "desc": "Deploying scalable datacenter solutions, transport management system servers, and remote site networking support."
+    },
+    {
+      "name": "Education",
+      "desc": "School and university campus digitization, virtualization, virtual lab hosting, and capability building trainings."
+    },
+    {
+      "name": "Government",
+      "desc": "Enterprise hosting solutions, high-grade security patches, compliance audits, and public command center operations."
+    },
+    {
+      "name": "Media/Entertainment",
+      "desc": "Supporting media storage clusters, fast network distributions, and high-performance CDN architectures."
+    }
+  ],
+  "leadership": [
+    {
+      "name": "Naveen Grover",
+      "title": "Global Sales Head",
+      "desc": "Senior technology leader with over 21 years of industry experience guiding enterprise accounts and B2B growth portfolios."
+    },
+    {
+      "name": "Anuj Gupta",
+      "title": "Global Service Head",
+      "desc": "Technology certified IT Architect with over 21 years of experience in systems integrations and service delivery frameworks."
+    },
+    {
+      "name": "Nitin Kumar",
+      "title": "Chief Technology Officer",
+      "desc": "BTech, MTech, PhD, certified technology architect with 22 years of hands-on expertise in IT infrastructure design."
+    },
+    {
+      "name": "Manish Gupta",
+      "title": "Global Software Head",
+      "desc": "IIT & IIM alumnus, software development architect with over 15 years of experience delivering robust digital applications."
+    }
+  ],
+  "oemPartners": [
+    "Dell",
+    "Microsoft",
+    "IBM",
+    "Cisco",
+    "HP",
+    "Checkpoint",
+    "Fortinet",
+    "F5",
+    "Juniper",
+    "Microfocus",
+    "NetApp",
+    "OpenText",
+    "RedHat",
+    "Veeam",
+    "D-Link",
+    "Veritas",
+    "Vinchin",
+    "Acer",
+    "Zerto",
+    "Oracle"
+  ],
+  "courses": [
+    "AI/ML",
+    "Java",
+    "HTML",
+    "Python",
+    "DevOps",
+    "Redhat Linux",
+    "Windows",
+    "Virtualization – VMWare, KVM, OLVM etc.",
+    "HCI- Nutanix, VxRail, HP SimpliVity",
+    "Storage and Backup",
+    "Network and Security",
+    "Database",
+    "Cybersecurity",
+    "Disaster recovery Solution",
+    "Cloud – AWS, Azure and GCP",
+    "OpenShift (Red hat)",
+    "OpenStack (Red hat private cloud)",
+    "Patching",
+    "Monitoring",
+    "ITSM",
+    "Project Management – PMP",
+    "Design and Solutioning – Togaf",
+    "SAP ERP",
+    "Automation – Ansible, Shell Script, IaC , Configuration management",
+    "DevOPS – Infra",
+    "Data centre management",
+    "Container – Docker",
+    "None"
+  ],
+  "careers": [
+    {
+      "id": "technical-project-manager",
+      "title": "Technical Project Manager",
+      "category": "Technical Project Manager",
+      "location": "Noida",
+      "type": "Full Time",
+      "desc": "Lead end-to-end IT project delivery, manage cross-functional teams, and ensure timely execution of enterprise technology initiatives aligned with client goals.",
+      "requirements": [
+        "PMP or equivalent project management certification.",
+        "5+ years managing IT infrastructure or software projects.",
+        "Strong stakeholder communication and risk management skills."
+      ]
+    },
+    {
+      "id": "corporate-it-trainer",
+      "title": "Corporate IT Trainer",
+      "category": "Corporate IT Trainer",
+      "location": "Noida",
+      "type": "Full Time",
+      "desc": "Design and deliver enterprise IT training curricula covering cloud, virtualization, security, and infrastructure technologies to corporate clients and internal teams.",
+      "requirements": [
+        "Relevant technology certifications (AWS/Azure/RHCE/ITIL etc.).",
+        "3+ years of corporate training or technical instruction experience.",
+        "Excellent presentation and curriculum design skills."
+      ]
+    },
+    {
+      "id": "windows-server-admin",
+      "title": "Windows Server Admin",
+      "category": "Windows Server Admin",
+      "location": "Bangalore",
+      "type": "Full Time",
+      "desc": "Responsible for installation, configuration, maintenance, and support of Windows Server environments ensuring server security, availability, and performance while managing Active Directory, PowerShell scripting, and virtualization platforms.",
+      "requirements": [
+        "Microsoft Certified: Windows Server certification preferred.",
+        "2+ years of Active Directory and PowerShell scripting experience.",
+        "Experience with VMware, Hyper-V or similar virtualization platforms."
+      ]
+    },
+    {
+      "id": "service-desk-engineer",
+      "title": "Service Desk Engineer",
+      "category": "Service Desk Engineer",
+      "location": "Bangalore",
+      "type": "Full Time",
+      "desc": "Provide L1/L2 IT support to enterprise clients, manage incident tickets through ITSM platforms, and ensure prompt resolution within defined SLAs across hardware and software environments.",
+      "requirements": [
+        "ITIL Foundation certification preferred.",
+        "1-3 years in a service desk or helpdesk role.",
+        "Hands-on knowledge of Windows OS, Office 365, and network troubleshooting."
+      ]
+    },
+    {
+      "id": "sales-executives",
+      "title": "Sales Executives",
+      "category": "Sales executives",
+      "location": "Bangalore",
+      "type": "Full Time",
+      "desc": "Drive B2B technology sales for INNOWORQ's IT infrastructure, cloud, and managed services portfolio, developing strategic client relationships and achieving revenue targets across enterprise accounts.",
+      "requirements": [
+        "2+ years of B2B IT sales or technology solutions selling experience.",
+        "Strong understanding of IT services, cloud, and infrastructure markets.",
+        "Proven track record of pipeline generation and deal closure."
+      ]
+    }
+  ],
+  "blogs": [
+    {
+      "id": "datacenter-transformation",
+      "title": "Modernizing IT Datacentres for the Virtualized Future",
+      "date": "May 10, 2025",
+      "summary": "Exploring the paradigm shift from traditional server racks to software-defined hypervisors and hybrid-cloud integrated platforms.",
+      "author": "Nitin Kumar, CTO"
+    },
+    {
+      "id": "securing-multicloud-frameworks",
+      "title": "Securing Multi-Cloud Frameworks Against Cyber Attacks",
+      "date": "April 18, 2025",
+      "summary": "Practical security guidelines to manage access rules, coordinate firewalls, and active perimeter defenses in hybrid clouds.",
+      "author": "Anuj Gupta, Global Service Head"
+    }
+  ]
+}
