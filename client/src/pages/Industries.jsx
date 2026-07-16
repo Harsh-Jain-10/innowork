@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import ScrollReveal from '../components/ScrollReveal';
 import {
   SmartCityIllustration,
@@ -252,261 +252,22 @@ function RadarDashboard({ industry, isActive }) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Industry Panel Component (Vertical Accordion layout for high-end smoothness)
-────────────────────────────────────────────────────────────── */
-function IndustryPanel({ industry, isExpanded, onToggle, index }) {
-  const { Illustration } = industry;
-  const [isHovered, setIsHovered] = useState(false);
-  const panelRef = useRef(null);
-
-  // Smooth scroll into focus when expanded
-  useEffect(() => {
-    if (isExpanded && panelRef.current) {
-      const timer = setTimeout(() => {
-        panelRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 350);
-      return () => clearTimeout(timer);
-    }
-  }, [isExpanded]);
-
-  return (
-    <motion.article
-      ref={panelRef}
-      initial={{ opacity: 0, y: 25 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-20px' }}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
-      style={{
-        background: '#ffffff',
-        border: isExpanded ? '1.5px solid rgba(9,97,159,0.35)' : '1px solid rgba(9,97,159,0.12)',
-        borderRadius: '12px',
-        overflow: 'hidden',
-        boxShadow: isExpanded
-          ? '0 12px 35px rgba(9,97,159,0.06), 0 2px 8px rgba(9,97,159,0.03)'
-          : '0 4px 12px rgba(0,0,0,0.01)',
-        marginBottom: '1rem',
-        transition: 'border-color 0.3s ease, box-shadow 0.3s ease'
-      }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      aria-label={`${industry.name} industry panel`}
-    >
-      {/* Header — toggle expand click target */}
-      <div
-        style={{ 
-          padding: '1.75rem 2rem', 
-          cursor: 'pointer',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          gap: '1.5rem',
-          userSelect: 'none'
-        }}
-        onClick={onToggle}
-        onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && onToggle()}
-        tabIndex={0}
-        role="button"
-        aria-expanded={isExpanded}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: 1 }}>
-          {/* Visual logo avatar */}
-          <div style={{
-            flexShrink: 0,
-            width: '60px', height: '60px',
-            borderRadius: '8px',
-            background: 'linear-gradient(135deg, #f0f7ff, #e8f4fd)',
-            border: '1px solid rgba(9,97,159,0.1)',
-            padding: '4px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <Illustration isHovered={isHovered || isExpanded} />
-          </div>
-
-          <div>
-            <span style={{
-              fontSize: '0.66rem',
-              fontWeight: 700,
-              letterSpacing: '1.5px',
-              color: 'rgba(9,97,159,0.6)',
-              fontFamily: 'monospace',
-              textTransform: 'uppercase',
-              display: 'block',
-              marginBottom: '0.2rem'
-            }}>
-              {industry.shortTag}
-            </span>
-            <h3 style={{
-              fontSize: '1.3rem',
-              fontWeight: 800,
-              color: isExpanded ? 'rgba(9,97,159,0.95)' : 'rgba(12,20,35,0.85)',
-              margin: 0,
-              letterSpacing: '-0.3px',
-              transition: 'color 0.25s'
-            }}>
-              {industry.name}
-            </h3>
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-          {/* Tags (only shown when collapsed for summary info) */}
-          {!isExpanded && (
-            <span className="industry-collapsed-tagline" style={{ fontSize: '0.84rem', color: 'rgba(30,40,60,0.5)', fontWeight: 500 }}>
-              {industry.desc.substring(0, 68)}...
-            </span>
-          )}
-          
-          <motion.div style={{ color: isExpanded ? 'rgba(9,97,159,0.9)' : 'rgba(9,97,159,0.45)' }}>
-            <ChevronIcon isOpen={isExpanded} />
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Expanded Accordion Body — Smooth Height Animation */}
-      <AnimatePresence initial={false}>
-        {isExpanded && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
-            style={{ overflow: 'hidden' }}
-          >
-            <div style={{
-              padding: '0 2rem 2rem 2rem',
-              borderTop: '1px solid rgba(9,97,159,0.06)',
-              paddingTop: '2rem',
-              display: 'grid',
-              gridTemplateColumns: '1.2fr 0.8fr',
-              gap: '3rem',
-              alignItems: 'start'
-            }} className="industry-expanded-grid">
-              
-              {/* Left Column: Scope details */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div>
-                  <h4 style={{ fontSize: '0.74rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Sector Overview</h4>
-                  <p style={{ fontSize: '0.98rem', color: 'rgba(30,40,60,0.75)', lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
-                    {industry.desc}
-                  </p>
-                </div>
-
-                <div>
-                  <h4 style={{ fontSize: '0.74rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Technical Challenges</h4>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    {industry.challenges.map((c, i) => (
-                      <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.86rem', color: 'rgba(30,40,60,0.75)', lineHeight: 1.5 }}>
-                        <CheckIcon />
-                        <span>{c}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 style={{ fontSize: '0.74rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>INNOWORQ Services</h4>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-                    {industry.services.map((s, i) => (
-                      <span key={i} style={{
-                        fontSize: '0.76rem', padding: '0.2rem 0.65rem',
-                        background: 'rgba(9,97,159,0.05)', color: 'rgba(9,97,159,0.85)',
-                        borderRadius: '4px', border: '1px solid rgba(9,97,159,0.12)',
-                        fontWeight: 600, whiteSpace: 'nowrap'
-                      }}>
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column: Interactive Ecosystem */}
-              <div style={{
-                backgroundColor: 'rgba(9,97,159,0.02)',
-                border: '1px solid rgba(9,97,159,0.08)',
-                borderRadius: '8px',
-                padding: '1.5rem',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center'
-              }}>
-                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1rem', display: 'block', textAlign: 'center' }}>
-                  Technology Ecosystem
-                </span>
-                <div style={{ width: '100%', maxWidth: '240px' }}>
-                  <RadarDashboard industry={industry} isActive={isExpanded} />
-                </div>
-                <div style={{ width: '100%', borderTop: '1px solid rgba(9,97,159,0.08)', paddingTop: '1rem', marginTop: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center' }}>
-                  {industry.technologies.map((t, i) => (
-                    <span key={i} style={{
-                      fontSize: '0.7rem',
-                      padding: '0.15rem 0.5rem',
-                      borderRadius: '4px',
-                      background: '#ffffff',
-                      border: '1px solid rgba(9,97,159,0.1)',
-                      color: 'rgba(30,40,60,0.6)'
-                    }}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-
-            {/* Action Buttons */}
-            <div style={{
-              padding: '0 2rem 2rem 2rem',
-              display: 'flex',
-              gap: '1rem',
-              borderTop: '1px solid rgba(9,97,159,0.04)',
-              paddingTop: '1.25rem'
-            }}>
-              <Link
-                to={`/support-desk?sector=${industry.id}`}
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                  padding: '0.6rem 1.3rem',
-                  background: 'rgba(9,97,159,1)',
-                  color: '#fff', borderRadius: '6px',
-                  fontSize: '0.84rem', fontWeight: 700, textDecoration: 'none',
-                  boxShadow: '0 4px 14px rgba(9,97,159,0.18)'
-                }}
-              >
-                Discuss this Sector
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <path d="M2 6h8M6.5 2.5l3.5 3.5-3.5 3.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-              <Link
-                to="/services"
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                  padding: '0.6rem 1.3rem',
-                  background: 'transparent',
-                  color: 'rgba(9,97,159,0.85)', borderRadius: '6px',
-                  fontSize: '0.84rem', fontWeight: 700, textDecoration: 'none',
-                  border: '1px solid rgba(9,97,159,0.2)'
-                }}
-              >
-                View Services
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.article>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────
-   Main Industries Page
+   Main Industries Page - Sector Explorer Redesign
 ────────────────────────────────────────────────────────────── */
 export default function Industries() {
-  const [expandedId, setExpandedId] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [activeFilter, setActiveFilter] = useState('all');
+  
+  const initialSector = searchParams.get('sector') || INDUSTRIES[0].id;
+  const [selectedId, setSelectedId] = useState(initialSector);
+  const [mobileDetailOpen, setMobileDetailOpen] = useState(false);
+
+  useEffect(() => {
+    const sector = searchParams.get('sector');
+    if (sector && INDUSTRIES.some(ind => ind.id === sector)) {
+      setSelectedId(sector);
+    }
+  }, [searchParams]);
 
   const visibleIndustries = activeFilter === 'all'
     ? INDUSTRIES
@@ -515,13 +276,19 @@ export default function Industries() {
         return tag?.match?.includes(ind.id);
       });
 
-  function toggleExpand(id) {
-    setExpandedId(prev => (prev === id ? null : id));
-  }
+  const handleSelect = (id) => {
+    setSelectedId(id);
+    setSearchParams({ sector: id });
+    if (window.innerWidth <= 1024) {
+      setMobileDetailOpen(true);
+    }
+  };
+
+  const activeSector = INDUSTRIES.find(ind => ind.id === selectedId) || INDUSTRIES[0];
+  const ActiveIllustration = activeSector.Illustration;
 
   return (
-    <main id="industries-page-view" style={{ backgroundColor: '#ffffff', color: 'var(--text-light-primary)' }}>
-
+    <main id="industries-page-view" style={{ backgroundColor: '#f8fafc', color: 'var(--text-light-primary)', minHeight: '100vh' }}>
       {/* ── Hero ── */}
       <section style={{
         background: 'linear-gradient(135deg, #f0f7ff 0%, #f8fafc 55%, #eef6fd 100%)',
@@ -582,20 +349,20 @@ export default function Industries() {
         </div>
       </section>
 
-      {/* ── Industry Grid Accordion Stack ── */}
-      <section style={{ padding: '3.5rem 0 6rem 0', backgroundColor: '#f8fafc' }}>
-        <div className="container" style={{ maxWidth: '960px' }}>
-
+      {/* ── Interactive Sector Explorer ── */}
+      <section style={{ padding: '3.5rem 0 7rem 0' }}>
+        <div className="container" style={{ maxWidth: '1200px' }}>
+          
           {/* Filter tabs */}
           <ScrollReveal variant="fade-up">
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '2.5rem', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '3rem', justifyContent: 'center' }}>
               {FILTER_TAGS.map(tag => (
                 <button
                   key={tag.id}
                   id={`filter-${tag.id}`}
-                  onClick={() => { setActiveFilter(tag.id); setExpandedId(null); }}
+                  onClick={() => { setActiveFilter(tag.id); }}
                   style={{
-                    padding: '0.45rem 1.1rem',
+                    padding: '0.5rem 1.25rem',
                     borderRadius: '100px',
                     border: activeFilter === tag.id
                       ? '1.5px solid rgba(9,97,159,0.6)'
@@ -606,7 +373,7 @@ export default function Industries() {
                     color: activeFilter === tag.id
                       ? 'rgba(9,97,159,0.9)'
                       : 'rgba(30,40,60,0.6)',
-                    fontSize: '0.8rem', fontWeight: 600,
+                    fontSize: '0.82rem', fontWeight: 700,
                     cursor: 'pointer', transition: 'all 0.25s',
                   }}
                 >
@@ -616,17 +383,242 @@ export default function Industries() {
             </div>
           </ScrollReveal>
 
-          {/* Vertical Accordion Stack - Buttery Smooth and Lag-free */}
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {visibleIndustries.map((industry, i) => (
-              <IndustryPanel
-                key={industry.id}
-                industry={industry}
-                isExpanded={expandedId === industry.id}
-                onToggle={() => toggleExpand(industry.id)}
-                index={i}
-              />
-            ))}
+          {/* Grid Split explorer */}
+          <div className="industries-explorer-grid">
+            
+            {/* Left Panel: Card Selector Stack */}
+            <div className="sector-selector-grid">
+              {visibleIndustries.map((ind, i) => {
+                const isActive = selectedId === ind.id;
+                const { Illustration } = ind;
+                return (
+                  <motion.div
+                    key={ind.id}
+                    onClick={() => handleSelect(ind.id)}
+                    whileHover={{ y: -4, scale: 1.015 }}
+                    className={`sector-selector-card ${isActive ? 'active' : ''}`}
+                    style={{
+                      backgroundColor: '#ffffff',
+                      border: isActive ? '2.2px solid rgba(9,97,159,0.85)' : '1px solid rgba(9,97,159,0.12)',
+                      borderRadius: '16px',
+                      padding: '1.75rem',
+                      cursor: 'pointer',
+                      boxShadow: isActive ? '0 12px 30px rgba(9, 97, 159, 0.08)' : '0 4px 12px rgba(0, 0, 0, 0.01)',
+                      transition: 'border-color 0.25s, box-shadow 0.25s',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '1.25rem',
+                      position: 'relative'
+                    }}
+                  >
+                    {/* Top Status */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{
+                        fontSize: '0.66rem',
+                        fontWeight: 700,
+                        letterSpacing: '1.2px',
+                        color: isActive ? 'rgba(9,97,159,1)' : 'rgba(30,40,60,0.5)',
+                        fontFamily: 'monospace',
+                        textTransform: 'uppercase',
+                        transition: 'color 0.25s'
+                      }}>{ind.shortTag}</span>
+                      
+                      <span style={{
+                        width: '8px', height: '8px',
+                        borderRadius: '50%',
+                        backgroundColor: isActive ? '#00f0ff' : 'rgba(9, 97, 159, 0.18)',
+                        boxShadow: isActive ? '0 0 8px #00f0ff' : 'none',
+                        display: 'inline-block',
+                        transition: 'all 0.25s'
+                      }} />
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+                      <div style={{ width: '48px', height: '48px', flexShrink: 0 }}>
+                        <Illustration isHovered={isActive} />
+                      </div>
+                      <h3 style={{ fontSize: '1.22rem', fontWeight: 800, margin: 0, color: 'rgba(12,20,35,0.92)' }}>{ind.name}</h3>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Right Panel: Sticky Telemetry Detail Showcase */}
+            <div className="sector-sticky-panel">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedId}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.35, ease: 'easeOut' }}
+                  style={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                    backdropFilter: 'blur(24px) saturate(130%)',
+                    border: '1px solid rgba(9, 97, 159, 0.15)',
+                    borderRadius: '24px',
+                    padding: '2.5rem',
+                    boxShadow: '0 20px 50px rgba(9, 97, 159, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '2.25rem'
+                  }}
+                  className="sector-detail-panel"
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{
+                      fontSize: '0.68rem',
+                      fontWeight: 800,
+                      color: 'rgba(9,97,159,1)',
+                      backgroundColor: 'rgba(9,97,159,0.06)',
+                      padding: '0.25rem 0.75rem',
+                      borderRadius: '20px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '1px'
+                    }}>{activeSector.shortTag}</span>
+                    
+                    <span style={{ fontSize: '0.74rem', color: 'rgba(9,97,159,0.85)', fontWeight: 700, fontFamily: 'monospace' }}>
+                      🟢 SLA SYSTEM OK
+                    </span>
+                  </div>
+
+                  <h2 style={{ fontSize: '2.1rem', fontWeight: 800, color: 'rgba(12,20,35,0.92)', margin: 0 }}>{activeSector.name}</h2>
+
+                  {/* Active Vector Illustration in large box */}
+                  <div style={{
+                    width: '100%',
+                    height: '240px',
+                    backgroundColor: '#020408',
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    border: '1px solid rgba(9, 97, 159, 0.18)',
+                    boxShadow: '0 12px 36px rgba(0, 0, 0, 0.18)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <ActiveIllustration isHovered={true} />
+                  </div>
+
+                  {/* Inner Split: Information left, radar right */}
+                  <div className="panel-inner-split">
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                      {/* Overview */}
+                      <div>
+                        <h4 style={{ fontSize: '0.74rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem', margin: 0 }}>Sector Overview</h4>
+                        <p style={{ fontSize: '0.98rem', color: 'rgba(30,40,60,0.75)', lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
+                          {activeSector.desc}
+                        </p>
+                      </div>
+
+                      {/* Challenges */}
+                      <div>
+                        <h4 style={{ fontSize: '0.74rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem', margin: 0 }}>Technical Challenges</h4>
+                        <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                          {activeSector.challenges.map((c, i) => (
+                            <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.86rem', color: 'rgba(30,40,60,0.75)', lineHeight: 1.5 }}>
+                              <CheckIcon />
+                              <span>{c}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Services */}
+                      <div>
+                        <h4 style={{ fontSize: '0.74rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem', margin: 0 }}>INNOWORQ Services</h4>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                          {activeSector.services.map((s, i) => (
+                            <span key={i} style={{
+                              fontSize: '0.76rem', padding: '0.2rem 0.65rem',
+                              background: 'rgba(9,97,159,0.05)', color: 'rgba(9,97,159,0.85)',
+                              borderRadius: '4px', border: '1px solid rgba(9,97,159,0.12)',
+                              fontWeight: 600
+                            }}>
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Radar & Technologies */}
+                    <div style={{
+                      backgroundColor: 'rgba(9,97,159,0.02)',
+                      border: '1px solid rgba(9,97,159,0.08)',
+                      borderRadius: '12px',
+                      padding: '1.25rem',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.75rem', display: 'block', textAlign: 'center' }}>
+                        Technology Ecosystem
+                      </span>
+                      <div style={{ width: '100%', maxWidth: '170px' }}>
+                        <RadarDashboard industry={activeSector} isActive={true} />
+                      </div>
+                      <div style={{ width: '100%', borderTop: '1px solid rgba(9,97,159,0.08)', paddingTop: '0.75rem', marginTop: '0.75rem', display: 'flex', flexWrap: 'wrap', gap: '0.4rem', justifyContent: 'center' }}>
+                        {activeSector.technologies.map((t, i) => (
+                          <span key={i} style={{
+                            fontSize: '0.68rem',
+                            padding: '0.15rem 0.45rem',
+                            borderRadius: '4px',
+                            background: '#ffffff',
+                            border: '1px solid rgba(9,97,159,0.1)',
+                            color: 'rgba(30,40,60,0.6)'
+                          }}>
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Actions Block */}
+                  <div style={{
+                    display: 'flex',
+                    gap: '1rem',
+                    borderTop: '1px solid rgba(9,97,159,0.08)',
+                    paddingTop: '1.5rem',
+                    marginTop: '1rem'
+                  }}>
+                    <Link
+                      to={`/support-desk?sector=${activeSector.id}`}
+                      style={{
+                        display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                        padding: '0.75rem 1.5rem',
+                        background: 'rgba(9,97,159,1)',
+                        color: '#fff', borderRadius: '6px',
+                        fontSize: '0.86rem', fontWeight: 700, textDecoration: 'none',
+                        boxShadow: '0 4px 14px rgba(9,97,159,0.18)'
+                      }}
+                    >
+                      Discuss this Sector
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                        <path d="M2 6h8M6.5 2.5l3.5 3.5-3.5 3.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </Link>
+                    <Link
+                      to="/services"
+                      style={{
+                        display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                        padding: '0.75rem 1.5rem',
+                        background: 'transparent',
+                        color: 'rgba(9,97,159,0.85)', borderRadius: '6px',
+                        fontSize: '0.86rem', fontWeight: 700, textDecoration: 'none',
+                        border: '1px solid rgba(9,97,159,0.2)'
+                      }}
+                    >
+                      View Services
+                    </Link>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
           </div>
         </div>
       </section>
@@ -687,15 +679,215 @@ export default function Industries() {
         </div>
       </section>
 
+      {/* Mobile Drawer/Modal Detail Overlay */}
+      <AnimatePresence>
+        {mobileDetailOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="mobile-modal-overlay"
+            onClick={() => setMobileDetailOpen(false)}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              backgroundColor: 'rgba(3, 5, 12, 0.65)',
+              backdropFilter: 'blur(8px)',
+              zIndex: 999,
+              display: 'flex',
+              alignItems: 'flex-end',
+              justifyContent: 'center'
+            }}
+          >
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                backgroundColor: '#ffffff',
+                width: '100%',
+                maxHeight: '92vh',
+                borderTopLeftRadius: '24px',
+                borderTopRightRadius: '24px',
+                overflowY: 'auto',
+                padding: '2.25rem 1.75rem',
+                boxShadow: '0 -10px 40px rgba(0, 0, 0, 0.15)'
+              }}
+            >
+              {/* Close Button */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                <span className="badge-tag" style={{
+                  fontSize: '0.66rem',
+                  fontWeight: 700,
+                  color: 'var(--brand-blue)',
+                  backgroundColor: 'rgba(9, 97, 159, 0.08)',
+                  padding: '0.2rem 0.6rem',
+                  borderRadius: '20px',
+                  textTransform: 'uppercase'
+                }}>{activeSector.shortTag}</span>
+                <button
+                  onClick={() => setMobileDetailOpen(false)}
+                  style={{
+                    border: 'none',
+                    background: 'transparent',
+                    color: 'rgba(30,40,60,0.6)',
+                    fontWeight: 800,
+                    fontSize: '0.9rem',
+                    cursor: 'pointer'
+                  }}
+                >
+                  ✕ Close
+                </button>
+              </div>
+
+              {/* Header Title */}
+              <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'rgba(12,20,35,0.92)', marginBottom: '1.25rem' }}>{activeSector.name}</h2>
+
+              {/* Active Vector Illustration */}
+              <div style={{
+                width: '100%',
+                height: '200px',
+                backgroundColor: '#03050c',
+                borderRadius: '12px',
+                overflow: 'hidden',
+                marginBottom: '1.5rem',
+                border: '1px solid rgba(9, 97, 159, 0.15)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <ActiveIllustration isHovered={true} />
+              </div>
+
+              {/* Overview */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                <h4 style={{ fontSize: '0.74rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Sector Overview</h4>
+                <p style={{ fontSize: '0.96rem', color: 'rgba(30,40,60,0.75)', lineHeight: 1.6, margin: 0 }}>{activeSector.desc}</p>
+              </div>
+
+              {/* Challenges */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                <h4 style={{ fontSize: '0.74rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Technical Challenges</h4>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {activeSector.challenges.map((c, i) => (
+                    <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.85rem', color: 'rgba(30,40,60,0.75)', lineHeight: 1.45 }}>
+                      <CheckIcon />
+                      <span>{c}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Services */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                <h4 style={{ fontSize: '0.74rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>INNOWORQ Services</h4>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                  {activeSector.services.map((s, i) => (
+                    <span key={i} style={{
+                      fontSize: '0.74rem', padding: '0.2rem 0.6rem',
+                      background: 'rgba(9,97,159,0.05)', color: 'rgba(9,97,159,0.85)',
+                      borderRadius: '4px', border: '1px solid rgba(9,97,159,0.12)',
+                      fontWeight: 600
+                    }}>{s}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Technology Ecosystem */}
+              <div style={{
+                backgroundColor: 'rgba(9,97,159,0.02)',
+                border: '1px solid rgba(9,97,159,0.08)',
+                borderRadius: '8px',
+                padding: '1.25rem',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                marginBottom: '1.5rem'
+              }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.75rem' }}>Technology Ecosystem</span>
+                <div style={{ width: '100%', maxWidth: '160px' }}>
+                  <RadarDashboard industry={activeSector} isActive={true} />
+                </div>
+                <div style={{ width: '100%', borderTop: '1px solid rgba(9,97,159,0.08)', paddingTop: '0.75rem', marginTop: '0.75rem', display: 'flex', flexWrap: 'wrap', gap: '0.4rem', justifyContent: 'center' }}>
+                  {activeSector.technologies.map((t, i) => (
+                    <span key={i} style={{
+                      fontSize: '0.68rem',
+                      padding: '0.15rem 0.45rem',
+                      borderRadius: '4px',
+                      background: '#ffffff',
+                      border: '1px solid rgba(9,97,159,0.1)',
+                      color: 'rgba(30,40,60,0.6)'
+                    }}>{t}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA Action links */}
+              <div style={{ display: 'flex', gap: '1rem', borderTop: '1px solid rgba(9,97,159,0.08)', paddingTop: '1.25rem', marginTop: '1.5rem' }}>
+                <Link
+                  to={`/support-desk?sector=${activeSector.id}`}
+                  style={{
+                    flex: 1,
+                    textAlign: 'center',
+                    padding: '0.75rem 1.2rem',
+                    background: 'rgba(9,97,159,1)',
+                    color: '#fff', borderRadius: '6px',
+                    fontSize: '0.84rem', fontWeight: 700, textDecoration: 'none'
+                  }}
+                >
+                  Discuss Sector
+                </Link>
+                <Link
+                  to="/services"
+                  style={{
+                    flex: 1,
+                    textAlign: 'center',
+                    padding: '0.75rem 1.2rem',
+                    background: 'transparent',
+                    color: 'rgba(9,97,159,0.85)', borderRadius: '6px',
+                    fontSize: '0.84rem', fontWeight: 700, textDecoration: 'none',
+                    border: '1px solid rgba(9,97,159,0.2)'
+                  }}
+                >
+                  View Services
+                </Link>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Responsive Styles Injection */}
       <style>{`
-        @media (max-width: 768px) {
-          .industry-expanded-grid {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
+        .industries-explorer-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.2fr;
+          gap: 3rem;
+          align-items: start;
+        }
+        .sector-selector-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.25rem;
+        }
+        .panel-inner-split {
+          display: grid;
+          grid-template-columns: 1.15fr 0.85fr;
+          gap: 2.5rem;
+        }
+        @media (max-width: 1024px) {
+          .industries-explorer-grid {
+            grid-template-columns: 1fr;
           }
-          .industry-collapsed-tagline {
+          .sector-sticky-panel {
             display: none !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .sector-selector-grid {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>
