@@ -2,22 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import ScrollReveal from '../components/ScrollReveal';
-import configData from '../data/companyConfig.json';
-import {
-  SmartCityIllustration,
-  NOCIllustration,
-  TrainingIllustration,
-  AutomationIllustration,
-  BusinessContinuityIllustration,
-  CloudIllustration,
-  DCInfrastructureIllustration,
-  DCNonITIllustration,
-  BackupIllustration,
-  DCTransformationIllustration,
-  DigitalInfrastructureIllustration,
-  EnterpriseManagementIllustration,
-  NetworkSecurityIllustration,
-} from '../components/SolutionIllustrations';
 
 /* ─────────────────────────────────────────────────────────────
    Animated Count-Up Component for Hero Stats
@@ -56,333 +40,296 @@ function CountUp({ end, duration = 2, suffix = '' }) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Expanded Solutions Content Configurations (13 Solutions)
+   13 Enterprise Solutions Data Configurations
 ────────────────────────────────────────────────────────────── */
-const SOLUTIONS_DETAIL = [
+const SOLUTIONS_DATA = [
   {
     id: 'smart-city',
     name: 'Smart City Solution',
     code: 'SOL-01',
-    Illustration: SmartCityIllustration,
-    intro: 'Redefining urban infrastructure through cutting-edge Smart City solutions, seamlessly integrating AI-driven automation, secure IT frameworks, and scalable cloud environments. We design, deploy, and maintain Integrated Command & Control Centers (ICCC).',
-    capability: 'Our architectures ingest telemetry from millions of edge sensors, municipal grids, and environmental monitors. We configure reliable fiber-optic loops, redundant microwave links, and high-capacity storage arrays to support continuous citywide operations.',
-    value: 'Improves civic response times by up to 40%, enhances public safety through proactive surveillance telemetry, and optimizes municipal utility operations by leveraging real-time data feeds.',
-    infraScope: 'Unified management of urban IoT gateways, edge networking appliances, core compute nodes, municipal fiber rings, and public surveillance video walls.',
-    deployment: 'High-availability active-active disaster recovery deployment utilizing localized command node clusters connected to centralized municipal datacenters.',
-    useCases: [
-      'Municipal Integrated Command and Control Centers (ICCC)',
-      'Intelligent Traffic Management Systems (ITMS)',
-      'Environmental Telemetry and Smart Lighting Systems'
-    ],
-    technologies: ['Cisco IoT Gateway', 'Dell PowerScale Storage', 'Fortinet FortiGate Firewall', 'IBM Watson IoT Platform'],
-    benefits: ['40% Reduction in Civic Response Overhead', '99.99% Command Center Operational SLA', 'Proactive Threat Triage at Edge Gateways'],
-    services: ['ICCC Integration', 'Surveillance Infrastructure Maintenance', 'Edge Security Operations'],
-    models: ['Hybrid Cloud / Municipal On-Premises'],
-    oems: ['Cisco', 'Dell', 'Fortinet', 'IBM'],
-    industries: ['Government', 'Public Utilities', 'Urban Planning'],
-    coverage: '24/7/365 L3 Engineer Dispatch & SLA Monitoring'
+    img: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=900&q=80',
+    intro: 'INNOWORQ designs and integrates scalable Smart City architectures that unify municipal services, civic administration, and real-time public safety. We specialize in building Tier-III Integrated Command & Control Centers (ICCC) that serve as the centralized intelligence hub for metropolitan environments.',
+    techOverview: 'The backbone of our Smart City topology relies on high-throughput fiber loops and distributed edge computing nodes. By deploying IoT gateways at municipal intersections, civic buildings, and utility hubs, we facilitate the ingestion of environmental, traffic, and security telemetry with sub-millisecond transmission latency.',
+    architecture: 'Our architecture separates edge sensor networks, core transmission paths, and centralized visualization planes. Edge gateways are hardened utilizing Next-Generation Firewalls (NGFW) to prevent lateral security breaches. Central datacenters use redundant SAN storage stacks and clustered compute grids to maintain an active-active high-availability environment.',
+    scope: 'Unified management of urban IoT networks, public video surveillance matrices, civic network backbones, municipal wireless distribution, and public command center facilities.',
+    businessValue: 'By unifying civic telemetry, municipal authorities experience up to a 40% reduction in response time during emergency dispatches. Centralized management minimizes administrative overhead, lowers utility distribution costs, and enhances municipal compliance parameters.',
+    deployment: 'Phase-1: Topological assessment and municipal fiber loop planning. Phase-2: Local command center setup, compute node deployment, and backup power integration. Phase-3: Edge sensor configuration, gateway secure alignments, and centralized dashboard tuning.',
+    industries: 'Government, Civic Administration, Public Utilities, Municipal Transit.',
+    oems: ['Cisco (IoT Gateways)', 'Dell (Storage Clusters)', 'Fortinet (Perimeter NGFW)', 'IBM (Cognitive Telemetry)'],
+    benefits: ['40% Improvement in Civic Response Uptime', '99.99% Central ICCC Operational Availability', 'Hardened Edge Security Perimeter'],
+    usecases: ['Municipal ICCC Deployments', 'Intelligent Traffic Management (ITMS)', 'Utility Sensor Grid Integration'],
+    timeline: '12 - 16 Weeks Deployment Cycle',
+    deliverables: ['Custom ICCC Architectural Layout', 'Edge Gateway Security Configuration Map', 'Centralized Civic Observability Dashboard'],
+    services: ['ICCC Integration', 'Edge Network Hardening', 'Telemetry Ingestion Tuning'],
+    models: ['Municipal Private Cloud / Colocation Hybrid'],
+    coverage: '24/7/365 L3 Engineer Dispatch & Real-Time Monitoring'
   },
   {
     id: 'noc',
     name: 'NOC Solution',
     code: 'SOL-02',
-    Illustration: NOCIllustration,
-    intro: 'Enterprise NOC setup providing 24x7 network monitoring, proactive alarm handling, incident management, and capacity planning for mission-critical IT infrastructure.',
-    capability: 'Our Network Operations Centers integrate advanced observability platforms, dynamic threshold telemetry, and automated alert incident routing. We maintain continuous checks across routing tables, WAN bandwidth saturation, and active firewall logs.',
-    value: 'Minimizes unplanned network downtime by up to 90%, reduces mean time to resolution (MTTR) with L3 engineer availability, and ensures stable application delivery across multi-site configurations.',
-    infraScope: 'Global wide-area networks, SD-WAN fabrics, core routing switches, server virtualization hypervisors, and perimeter access-control lists.',
-    deployment: 'Distributed virtual monitoring cluster nodes backed by active redundant physical NOC control rooms operating in multiple regions.',
-    useCases: [
-      '24/7/365 Active Enterprise Network Monitoring',
-      'Real-time SLA tracking for distributed retail/branch sites',
-      'Automated Incident Management and Vendor Dispatch Escalations'
-    ],
-    technologies: ['Microsoft System Center (SCOM)', 'Cisco Catalyst Center', 'F5 BIG-IP LTM', 'Juniper Junos Space'],
-    benefits: ['90% Reduction in MTTR', 'Proactive Incident Prevention Ticketing', 'Seamless Multi-Vendor Support Coverage'],
-    services: ['24/7 Network Monitoring', 'Alarm Triage & Response', 'Bandwidth Capacity Analysis'],
-    models: ['Managed NOC', 'Co-Managed Hybrid Operations'],
-    oems: ['Cisco', 'Juniper', 'F5', 'Microsoft'],
-    industries: ['Telecom', 'BFSI', 'Logistics', 'Retail'],
-    coverage: 'Guaranteed 15-Minute Critical Incident Response SLA'
+    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80',
+    intro: 'Our Network Operations Center (NOC) designs establish robust monitoring perimeters that continuously evaluate network health, server utilization, and database availability. We build secure, high-performance monitoring centers that protect your core workflows.',
+    techOverview: 'We deploy proactive telemetry probes, dynamic alarm routing engines, and centralized observability consoles. Our architectures monitor WAN interface saturation, core routing tables, system memory allocations, and firewall access-control lists.',
+    architecture: 'Operating on a distributed model, our monitoring nodes feed health metadata to centralized databases. Redundant physical NOC environments operate in multiple geographical zones, ensuring continuous monitoring availability even during localized utility outages.',
+    scope: 'Active remote monitoring of WAN/LAN routers, SD-WAN infrastructure, server virtualization clusters, hypervisors, and security perimeters.',
+    businessValue: 'Transitioning to active NOC oversight minimizes unplanned network downtime by up to 90%. Proactive incident detection reduces the Mean Time to Resolution (MTTR) from hours to minutes, preserving service availability for end-users.',
+    deployment: 'Phase-1: Integration of telemetry probes into active routers and switches. Phase-2: Threshold configuration, alarm classification, and escalation routing. Phase-3: Live simulation testing and continuous dashboard calibration.',
+    industries: 'Telecom, BFSI, Logistics, Retail, Healthcare.',
+    oems: ['Cisco (Catalyst Center)', 'Juniper (Junos Space)', 'F5 (BIG-IP telemetry)', 'Microsoft (SCOM System)'],
+    benefits: ['90% Reduction in Critical Downtime Events', '15-Minute Critical Incident Dispatch SLA', 'Unified Multi-Vendor Telemetry View'],
+    usecases: ['Global WAN Observability Networks', 'Retail Branch WAN Monitoring', 'Automated Incident Ticket Routing Systems'],
+    timeline: '4 - 6 Weeks Configuration Cycle',
+    deliverables: ['Unified Monitoring Console Layout', 'Escalation Protocol Roadmap', 'Active Probing Configuration Scripts'],
+    services: ['NOC System Integration', 'Threshold Tuning', 'Alarm Routing Engineering'],
+    models: ['Dedicated Managed NOC / Co-Managed Integration'],
+    coverage: 'Guaranteed 15-Minute Critical Incident Triage SLA'
   },
   {
     id: 'training',
     name: 'Training and Learning',
     code: 'SOL-03',
-    Illustration: TrainingIllustration,
-    intro: 'Hands-on workshops, custom curriculum design, and expert-led certification training programs in cloud, virtualization, storage, and database management.',
-    capability: 'We provide structured corporate enablement programs across enterprise virtualization layers, hyperconverged stacks, hybrid cloud pipelines, and automated configuration environments.',
-    value: 'Bridges critical team skill gaps, accelerates the adoption of modern hybrid architectures, and improves internal resolution capabilities for complex infrastructure challenges.',
-    infraScope: 'Virtual lab environments, remote hypervisor compute pools, sandbox cloud accounts, and interactive learning management portal instances.',
-    deployment: 'Cloud-hosted sandboxes and on-premises simulation labs tailored to mimic exact production topologies of enterprise clients.',
-    useCases: [
-      'Enterprise DevOps and Infrastructure Automation workshops',
-      'Hyperconverged Infrastructure (HCI) configuration bootcamps',
-      'Certified Database Administration and Storage management courses'
-    ],
-    technologies: ['VMware vSphere Labs', 'Red Hat OpenShift Platform', 'Ansible Playbooks', 'Nutanix HCI Sandboxes'],
-    benefits: ['Accelerated DevOps Adoption Timelines', 'Increased First-Touch Resolution Metrics', 'Customized Client Environment Labs'],
-    services: ['Interactive Technical Workshops', 'Custom Lab Scaffolding', 'ITIL Certification Bootcamps'],
-    models: ['Remote Instructor-Led', 'On-Site Corporate Labs'],
-    oems: ['VMware', 'Red Hat', 'Nutanix'],
-    industries: ['Enterprise IT Teams', 'SI Corporates', 'Government Sectors'],
-    coverage: 'Post-Training Support Portal Access'
+    img: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=80',
+    intro: 'INNOWORQ designs and delivers comprehensive IT training curriculum programs led by certified engineers. We build custom sandbox labs that allow client operations teams to simulate production topologies in a controlled, risk-free environment.',
+    techOverview: 'Our training platform utilizes remote hypervisor pools to host custom lab topologies. Students access sandboxes configured with enterprise routing rules, virtualization clusters, database configurations, and automation engines.',
+    architecture: 'We construct virtual lab nodes separated from production segments. Our platform dynamically provisions server instances per student, allowing hands-on execution of virtualization console actions, network setups, and configuration scripting.',
+    scope: 'Custom IT training workshops, vendor-certified curriculum design, secure laboratory hosting, and student capability certification pipelines.',
+    businessValue: 'By building specialized engineering capabilities internally, enterprises reduce their dependence on external contractors, lower incident recurrence through better triage, and accelerate the adoption of DevOps technologies.',
+    deployment: 'Phase-1: Capabilities assessment and custom syllabus design. Phase-2: Virtual sandbox lab setup mirroring production topography. Phase-3: Guided instructor execution and final verification testing.',
+    industries: 'Enterprise IT Departments, Government Entities, Telecom Networks, SI Corporates.',
+    oems: ['VMware (Virtualization Labs)', 'Red Hat (OpenShift Sandbox)', 'Nutanix (HCI Clusters)'],
+    benefits: ['Accelerated Automation Adoption', 'Lower Incident Recurrence Rates', 'Risk-Free Infrastructure Sandbox Labs'],
+    usecases: ['Internal IT Skills Workshops', 'HCI Operations Onboarding', 'DevOps & GitOps Transformation Camps'],
+    timeline: '2 - 4 Weeks Custom Scaffolding',
+    deliverables: ['Custom Interactive Syllabus', 'Dedicated Remote Lab Sandboxes', 'Student Performance Analytics Reports'],
+    services: ['Curriculum Engineering', 'Lab Scaffolding', 'Technical Workshop Delivery'],
+    models: ['Instructor-Led Virtual / On-Site Physical Labs'],
+    coverage: 'Post-Training Laboratory Support SLA'
   },
   {
     id: 'automation-ai',
     name: 'Automation & AI',
     code: 'SOL-04',
-    Illustration: AutomationIllustration,
-    intro: 'Streamlining workflows using AI-driven observability, self-healing systems, automated configurations, and script-based cloud management.',
-    capability: 'We engineer automated operational pipelines using Infrastructure as Code (IaC), centralized configuration playbooks, and predictive anomaly triggers. We eliminate repetitive manual maintenance workflows across hybrid nodes.',
-    value: 'Reduces operational overhead by up to 60%, eliminates manual configuration drift across server fleets, and speeds up workload delivery times from days to seconds.',
-    infraScope: 'Virtual machine orchestration systems, server configurations, container platforms, cloud resource provisioning, and deployment pipelines.',
-    deployment: 'Declarative GitOps engine deployment integrated with active monitoring platforms for real-time drift detection and recovery.',
-    useCases: [
-      'Automated Virtual Machine and Bare-Metal provisioning',
-      'Zero-Touch configuration patching across distributed server fleets',
-      'Self-healing system responses based on threshold monitoring alerts'
-    ],
-    technologies: ['Red Hat Ansible Engine', 'HashiCorp Terraform', 'Kubernetes clusters', 'Microsoft SCOM Automation'],
-    benefits: ['60% Lower Configuration Overhead', 'Complete Elimination of Configuration Drift', 'Workload Deployment Accelerated by 95%'],
-    services: ['Infrastructure as Code Audits', 'Automation Playbook Engineering', 'AI Observability Tuning'],
-    models: ['Private GitOps Pipelines', 'Managed Hybrid Automation'],
-    oems: ['Red Hat', 'Microsoft', 'Cisco'],
-    industries: ['Logistics', 'BFSI', 'Manufacturing', 'Tech Sectors'],
+    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
+    intro: 'We eliminate manual IT operations by developing automation pipelines, self-healing system configurations, and automated resource orchestration triggers. We transition infrastructure fleets to declarative GitOps models.',
+    techOverview: 'Our automation setups leverage Infrastructure as Code (IaC) templates, central configuration playbooks, and automated monitoring triggers. We implement centralized pipelines that audit config drift and apply corrective configurations.',
+    architecture: 'Our architecture integrates configuration control engines with local system managers. Playbook triggers are managed through secure version control systems, ensuring all infrastructure modifications are logged, approved, and auditable.',
+    scope: 'Automated bare-metal provision setups, network switch configurations, OS patch deployments, and automated failover actions.',
+    businessValue: 'Automating operational tasks reduces manual configuration mistakes by 99% and lowers overall support overhead by up to 60%. Infrastructure scaling changes are completed in seconds rather than days.',
+    deployment: 'Phase-1: Assessment of manual workflow pipelines and drift patterns. Phase-2: Infrastructure as Code script design and sandbox dry-runs. Phase-3: Production pipeline integration and auto-healing setup.',
+    industries: 'Logistics, BFSI, Manufacturing, Technology Sectors.',
+    oems: ['Red Hat (Ansible Automation)', 'HashiCorp (Terraform Engine)', 'Microsoft (System Center Automation)'],
+    benefits: ['60% Reduction in Manual Task Overhead', 'Zero Configuration Drift across Server Fleets', 'Deployment Workflows Accelerated by 95%'],
+    usecases: ['Automated Server Provisioning Pipelines', 'Automated Patch Deployment Systems', 'Predictive Self-Healing Storage Workloads'],
+    timeline: '6 - 10 Weeks Implementation Cycle',
+    deliverables: ['Approved Terraform/Ansible Code Library', 'Configuration Drift Observability Dashboard', 'Automated Triage Incident Maps'],
+    services: ['IaC Architecture Design', 'Workflow Automation Engineering', 'GitOps Engine Integration'],
+    models: ['Private GitOps Pipelines / Multi-Cloud Orchestration'],
     coverage: 'SLA-backed Automation Engine Support'
   },
   {
     id: 'business-continuity',
     name: 'Business Continuity',
     code: 'SOL-05',
-    Illustration: BusinessContinuityIllustration,
-    intro: 'Comprehensive disaster recovery planning, cloud-based replication setups, automated failover structures, and IT resilience audits.',
-    capability: 'We architect sub-second data replication loops, automated DNS failovers, and active-active datacenter recovery clusters. We ensure zero data loss configurations for enterprise application stacks.',
-    value: 'Ensures business continuity with minimal RPO and RTO parameters, guarantees compliance with regulatory uptime mandates, and builds trust with end customers during critical failures.',
-    infraScope: 'Primary and secondary datacenter site nodes, SAN replication channels, virtual network configurations, and public cloud DR targets.',
-    deployment: 'Multi-site active-active or active-passive topologies backed by physical replication links and automated recovery engines.',
-    useCases: [
-      'Sub-second Database Replication and Failover workflows',
-      'Automated Virtual Machine recovery to public cloud regions',
-      'IT Resilience assessments and live Disaster Recovery simulations'
-    ],
-    technologies: ['Veeam Availability Suite', 'Zerto Replication Platform', 'VMware Site Recovery Manager', 'Checkpoint Security Gateway'],
-    benefits: ['Near-Zero Recovery Point Objectives (RPO)', 'Automated Failover for Core Workloads', 'Regulatory DR Compliance Guarantee'],
+    img: 'https://images.unsplash.com/photo-1597852074816-d933c7d2b988?auto=format&fit=crop&w=900&q=80',
+    intro: 'INNOWORQ designs and implements high-availability disaster recovery architectures that protect your business against data loss and utility interruptions. We deliver zero-data-loss topologies for critical database stacks.',
+    techOverview: 'We configure active replication links, redundant storage systems, automated failover controls, and secure virtualization environments. Our setups monitor heartbeat signals across datacenters and execute failover scripts.',
+    architecture: 'Our disaster recovery setups connect primary datacenters to secondary locations using secure replication links. Real-time storage block replication ensures data remains identical, while automated DNS controls redirect user traffic during primary site failures.',
+    scope: 'Disaster recovery planning, sub-second storage replication, automated workload failover, and regulatory compliance audits.',
+    businessValue: 'Guarantees business survival during hardware failures, utility outages, or cyber attacks. Minimizes financial losses from downtime and ensures compliance with strict regulatory uptime mandates.',
+    deployment: 'Phase-1: Analysis of Recovery Point Objectives (RPO) and Recovery Time Objectives (RTO). Phase-2: Setup of data replication links and backup secondary nodes. Phase-3: Automated failover testing and compliance certification.',
+    industries: 'BFSI, Healthcare, Telecom, Government Sector.',
+    oems: ['Veeam (Availability Suite)', 'Zerto (Real-Time Replication)', 'VMware (Site Recovery Manager)', 'Checkpoint (Security Perimeter)'],
+    benefits: ['Near-Zero Recovery Point Objectives (RPO)', 'Automated Failover for Core Databases', 'Regulatory DR Compliance Guarantee'],
+    usecases: ['Sub-Second Database DR Synchronizations', 'Automated VM Cloud Failovers', 'Active-Active Datacenter Disaster Recovery'],
+    timeline: '8 - 12 Weeks Implementation Cycle',
+    deliverables: ['Disaster Recovery Plan (DRP) Manual', 'Replication Link Bandwidth Map', 'Automated Failover Test Logs'],
     services: ['Disaster Recovery Engineering', 'IT Resilience Audits', 'Active Replication Administration'],
-    models: ['Multi-Site Active-Active', 'Disaster Recovery as a Service (DRaaS)'],
-    oems: ['Veeam', 'Zerto', 'VMware', 'Checkpoint'],
-    industries: ['BFSI', 'Healthcare', 'Telecom', 'Government'],
+    models: ['Active-Active Datacenter / Hybrid DRaaS'],
     coverage: '24/7/365 Immediate Recovery Support & Escalation'
   },
   {
     id: 'cloud',
     name: 'Cloud Solutions',
     code: 'SOL-06',
-    Illustration: CloudIllustration,
-    intro: 'Hybrid, private, and public cloud designs, workloads migrations, Kubernetes container orchestration, and continuous cost optimization profiles.',
-    capability: 'We build enterprise hybrid clouds, deploy microservice clusters, and optimize cloud resource allocations. We configure secured API gateways and reliable site-to-site VPN networks.',
-    value: 'Reduces public cloud spend by up to 30% through optimization, improves product launch agility, and ensures secure workload portability across hybrid nodes.',
-    infraScope: 'Multi-cloud resource nodes, virtual private clouds (VPCs), Kubernetes control planes, container registry hubs, and cloud billing systems.',
-    deployment: 'Highly scalable multi-region cloud configurations connected to private datacenter infrastructure.',
-    useCases: [
-      'Legacy Application migration to Public Cloud providers',
-      'Scalable Container Orchestration with Kubernetes clusters',
-      'Continuous Cloud Cost Audits and Automated Resource Sizing'
-    ],
-    technologies: ['Amazon Web Services (AWS)', 'Microsoft Azure', 'Red Hat OpenShift Platform', 'VMware Cloud Director'],
-    benefits: ['30% Average Cloud Resource Cost Savings', 'Workload Portability across Hybrid clouds', 'Enterprise-grade Microservices Hosting'],
+    img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80',
+    intro: 'We design and build secure multi-cloud architectures, implement container orchestration systems, and optimize public cloud workloads. We ensure secure connections between private datacenters and cloud platforms.',
+    techOverview: 'We configure secure VPC networks, container clusters, API gateways, database replication engines, and cloud optimization rules. Our setups trace database response times and adjust cloud resources automatically.',
+    architecture: 'Our multi-cloud setups utilize secure network connections to bridge on-premises databases with public cloud platforms (AWS/Azure). Container platforms ensure workloads remain portable across different clouds, while global load balancing distributes incoming traffic.',
+    scope: 'Cloud migration planning, Kubernetes cluster management, container pipeline setup, and cost optimization auditing.',
+    businessValue: 'Reduces public cloud spend by up to 30% through resource optimization. Accelerates product development speeds and provides secure scalability during peak traffic windows.',
+    deployment: 'Phase-1: Analysis of current server workloads and cloud compatibility. Phase-2: VPC architecture design, database migration, and cluster setup. Phase-3: Load balancing configuration, security audits, and billing configuration.',
+    industries: 'Logistics, Retail, Education, Enterprise Tech Corporates.',
+    oems: ['AWS (Public Cloud Infrastructure)', 'Microsoft (Azure Cloud)', 'Red Hat (OpenShift Containers)', 'VMware (Cloud Director)'],
+    benefits: ['30% Average Cloud Resource Cost Savings', 'Workload Portability across Hybrid Clouds', 'Scalable Containerized Web Applications'],
+    usecases: ['Legacy Application Cloud Migrations', 'Enterprise Kubernetes Platform setups', 'Workload Cost Optimization Audits'],
+    timeline: '10 - 14 Weeks Deployment Cycle',
+    deliverables: ['Cloud Architecture Topology Map', 'Cost Optimization Recommendation Plan', 'Security Audit and Encryption Keys'],
     services: ['Multi-Cloud Migration', 'Kubernetes Setup & Orchestration', 'Cloud Architecture Audits'],
-    models: ['Hybrid Cloud', 'Multi-Cloud', 'Private SDDC'],
-    oems: ['AWS', 'Microsoft', 'Red Hat', 'VMware'],
-    industries: ['Logistics', 'Retail', 'Education', 'Tech Corporates'],
+    models: ['Hybrid Cloud / Multi-Cloud / Private SDDC'],
     coverage: '24/7 Cloud NOC & Resource Monitoring'
   },
   {
     id: 'dc-infra',
     name: 'DC Infrastructure',
     code: 'SOL-07',
-    Illustration: DCInfrastructureIllustration,
-    intro: 'High-performance server, blade chassis, SAN/NAS storage, hypervisor networks, and system consolidation designs.',
-    capability: 'We engineer high-density datacenter fabrics, deploy high-speed SAN/NAS arrays, configure virtual switches, and optimize blade chassis configurations to support demanding enterprise workloads.',
-    value: 'Maximizes hardware compute density, lowers datacenter footprint and energy costs, and ensures high availability of central databases.',
-    infraScope: 'High-performance blade enclosures, SAN/NAS arrays, hypervisor fabrics, virtual networks, and redundant power controllers.',
-    deployment: 'Tier-III and Tier-IV compliant high-density server configurations with active-active redundant power tracks.',
-    useCases: [
-      'High-Density Blade Server deployment and Consolidation',
-      'Fibre Channel SAN deployment for high-transaction databases',
-      'Software-defined storage scaling with high-capacity NAS units'
-    ],
-    technologies: ['Dell PowerEdge Systems', 'NetApp ONTAP Storage', 'IBM Power Systems', 'VMware vSphere Hypervisor'],
-    benefits: ['Increased Compute Density per Rack', 'Sub-millisecond Storage I/O Latency', 'Consolidated Server Footprint Management'],
+    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80',
+    intro: 'INNOWORQ designs and deploys high-performance server, blade chassis, SAN/NAS storage, hypervisor networks, and system consolidation configurations.',
+    techOverview: 'We configure high-density blade chassis, SAN switches, fibre channel cards, and hypervisor clusters. Our installations optimize data flow between storage nodes and processing clusters.',
+    architecture: 'Our designs integrate modular blade servers with high-speed SAN/NAS arrays. Redundant hypervisors host virtual machines, while dual fibre channel loops prevent path failures between storage units and compute clusters.',
+    scope: 'Server deployments, SAN design, hypervisor installation, storage consolidation, and hardware support.',
+    businessValue: 'Lowers energy bills and space requirements by consolidating hardware. High-speed storage loops ensure databases operate with minimal latency.',
+    deployment: 'Phase-1: Performance analysis and chassis space allocation. Phase-2: Blade configuration, storage SAN setup, and hypervisor installation. Phase-3: VM migrations and performance validation.',
+    industries: 'BFSI, Telecom, Logistics, Government.',
+    oems: ['Dell (PowerEdge Blade Servers)', 'NetApp (ONTAP Storage)', 'IBM (Power Systems)', 'VMware (vSphere Hypervisor)'],
+    benefits: ['Increased Compute Density per Rack Space', 'Sub-millisecond Storage I/O Latency', 'Consolidated Server Footprint Management'],
+    usecases: ['High-Density Server Consolidations', 'Fibre Channel SAN Implementations', 'VMware Enterprise Virtualization setups'],
+    timeline: '6 - 8 Weeks Implementation Cycle',
+    deliverables: ['Server Rack Integration Diagram', 'SAN Path Configuration Layout', 'Hypervisor Consolidation Report'],
     services: ['Blade Chassis Deployment', 'SAN Storage Architecture', 'Hypervisor Virtualization Tuning'],
-    models: ['On-Premises Enterprise DC', 'Colocation Deployments'],
-    oems: ['Dell', 'NetApp', 'IBM', 'VMware'],
-    industries: ['BFSI', 'Telecom', 'Logistics', 'Government'],
+    models: ['On-Premises Enterprise DC / Colocation Deployments'],
     coverage: 'SLA-backed hardware support and L3 dispatch'
   },
   {
     id: 'dc-non-it',
     name: 'DC Non-IT',
     code: 'SOL-08',
-    Illustration: DCNonITIllustration,
-    intro: 'End-to-end facility management including power distribution systems, precision cooling, HVAC, fire suppression, CCTV, and physical access control.',
-    capability: 'We design and maintain physical datacenter infrastructure environments, including precision cooling units, uninterruptible power systems (UPS), and automated fire suppression systems.',
-    value: 'Guarantees physical safety and cooling stability for critical server nodes, prevents hardware degradation due to heat, and meets environmental safety regulations.',
-    infraScope: 'Precision cooling (HVAC) systems, central UPS batteries, backup diesel generators, fire suppression zones, and biometric access networks.',
-    deployment: 'N+1 or 2N redundant physical datacenter facility architectures designed to prevent single-point utility failures.',
-    useCases: [
-      'Precision Hot/Cold Aisle containment cooling layouts',
-      'Dual-Path Utility feeds backed by redundant UPS batteries',
-      'Biometric access tracking and environmental monitoring'
-    ],
-    technologies: ['Schneider APC Cooling', 'Emerson UPS Systems', 'FM-200 Fire Suppression', 'Cisco Physical Security'],
+    img: 'https://images.unsplash.com/photo-1601524909162-be87252be298?auto=format&fit=crop&w=900&q=80',
+    intro: 'We design and maintain physical datacenter infrastructure environments, including precision cooling units, uninterruptible power systems (UPS), and automated fire suppression systems.',
+    techOverview: 'We configure HVAC cooling units, hot/cold aisle containments, central UPS battery grids, emergency generators, and FM-200 fire suppression controls.',
+    architecture: 'Our physical designs use N+1 or 2N redundancy pathways. Multiple power feeds connect server racks to separate UPS batteries, while containment layouts channel hot air away from hardware to prevent hotspots.',
+    scope: 'Precision cooling tuning, UPS management, generator setups, fire suppression configurations, and security tracking.',
+    businessValue: 'Protects expensive hardware investments from temperature spikes and utility failures. Prevents downtime caused by local power grid drops.',
+    deployment: 'Phase-1: Heat load calculation and air flow design. Phase-2: Installation of cooling ducts, UPS arrays, and generators. Phase-3: Integration of monitoring systems and emergency tests.',
+    industries: 'Datacenter Operators, BFSI Co-locations, Government Sites.',
+    oems: ['Schneider (APC Cooling)', 'Emerson (UPS Systems)', 'Cisco (Physical Security)'],
     benefits: ['Stable Environmental Temperature Controls', 'Continuous Power Delivery during Outages', 'Compliance with Physical Datacenter Standards'],
+    usecases: ['Hot/Cold Aisle Containment Coolings', 'Dual-Path Utility Power feeds', 'Biometric physical security monitoring'],
+    timeline: '10 - 14 Weeks Construction Cycle',
+    deliverables: ['Airflow Dynamics Layout Map', 'Power Distribution Schematic', 'Environmental Alarm Integration Matrix'],
     services: ['Facility Design Consulting', 'UPS & Generator Maintenance', 'Environmental Monitoring Tuning'],
     models: ['Physical Facility Maintenance'],
-    oems: ['Schneider', 'Emerson', 'Cisco'],
-    industries: ['Datacenter Operators', 'BFSI Co-locations', 'Government Nodes'],
     coverage: '24/7 On-Site Facility Engineer Coverage'
   },
   {
     id: 'backup-recovery',
     name: 'Data Backup & Recovery',
     code: 'SOL-09',
-    Illustration: BackupIllustration,
-    intro: 'Automated data protection, backup schedules, retention compliance, catalog recoveries, and bare-metal restores.',
-    capability: 'We configure daily automated snapshots, immutable backup vaults, and bare-metal recovery plans. We ensure all backups are encrypted and compliant with regulatory standards.',
-    value: 'Secures enterprise data assets against ransomware attacks, guarantees rapid recovery during software corruption, and satisfies compliance audits.',
-    infraScope: 'Immutable storage vaults, cloud backup repositories, local backup appliances, and recovery automation software.',
-    deployment: '3-2-1 backup topology deployment (3 copies of data, 2 different media types, 1 offsite location).',
-    useCases: [
-      'Immutable Ransomware-protected backup storage vaults',
-      'Daily Automated Database and Hypervisor snapshots',
-      'Bare-Metal recovery tests for mission-critical servers'
-    ],
-    technologies: ['Veeam Backup & Replication', 'Veritas NetBackup', 'Vinchin Backup Platform', 'Dell PowerProtect DD'],
-    benefits: ['Total Protection Against Ransomware Deletions', 'Reliable Bare-Metal Restore Timelines', 'Compliance with Data Retention Regulations'],
+    img: 'https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&w=900&q=80',
+    intro: 'We engineer automated data backup configurations, secure snapshot vaults, and bare-metal recovery plans. We protect corporate data assets against hardware failures and security threats.',
+    techOverview: 'We configure backup replication jobs, immutable storage systems, backup vault access controls, and restore automation pipelines.',
+    architecture: 'Our designs use the 3-2-1 backup model (3 data copies, 2 media types, 1 offsite copy). Immutable vaults ensure data cannot be modified or deleted, protecting against ransomware threats.',
+    scope: 'Immutable snapshot vault configuration, backup scheduling, encryption, database backups, and restore operations.',
+    businessValue: 'Secures enterprise data assets against ransomware attacks, guarantees rapid recovery during software corruption, and satisfies compliance audits.',
+    deployment: 'Phase-1: Data audit and retention rules design. Phase-2: Setup of backup appliances and encryption vaults. Phase-3: Automated backup test runs and verify restore times.',
+    industries: 'Healthcare, BFSI, Logistics, Retail.',
+    oems: ['Veeam (Backup & Replication)', 'Veritas (NetBackup)', 'Vinchin (Backup Platform)', 'Dell (PowerProtect DD)'],
+    benefits: ['Ransomware-Proof Backup Storage Vaults', 'Reliable Bare-Metal Restore Timelines', 'Data Retention Compliance Guarantee'],
+    usecases: ['Immutable Storage Backup Vaults', 'Daily Automated Database Snapshots', 'Bare-Metal server recovery configurations'],
+    timeline: '4 - 6 Weeks Deployment Cycle',
+    deliverables: ['Backup and Retention Policy Map', 'Vault Encryption Keys & Logins', 'Bare-Metal Recovery Test Report'],
     services: ['Backup Strategy Auditing', 'Vault Encryption Configuration', 'Managed Recovery Runs'],
-    models: ['Hybrid Backup Vault', 'Backup as a Service (BaaS)'],
-    oems: ['Veeam', 'Veritas', 'Vinchin', 'Dell'],
-    industries: ['Healthcare', 'BFSI', 'Logistics', 'Retail'],
+    models: ['Hybrid Backup Vault / Backup as a Service (BaaS)'],
     coverage: '24/7/365 Backup Recovery Helpdesk Support'
   },
   {
     id: 'dc-transformation',
     name: 'Datacentre Solutions & Transformation',
     code: 'SOL-10',
-    Illustration: DCTransformationIllustration,
-    intro: 'Transforming legacy environments into highly virtualized, cloud-integrated, software-defined datacenter ecosystems.',
-    capability: 'We migrate legacy physical hardware environments into software-defined datacenter (SDDC) architectures. We consolidate server footprints and deploy hyperconverged clusters.',
-    value: 'Reduces datacenter operating costs by up to 50%, improves resource utilization across server clusters, and simplifies central management workflows.',
-    infraScope: 'Legacy server racks, hyperconverged infrastructure (HCI) nodes, virtual storage fabrics, and centralized management software.',
-    deployment: 'Phased hot-migration approach designed to transition production workloads without service interruption.',
-    useCases: [
-      'Physical-to-Virtual (P2V) infrastructure consolidation',
-      'Hyperconverged Infrastructure (HCI) cluster deployments',
-      'Legacy Datacenter decommissioning and Cloud migration'
-    ],
-    technologies: ['Nutanix Cloud Platform', 'VMware vCloud Suite', 'Red Hat OpenShift Platform', 'Dell VxRail HCI'],
-    benefits: ['50% Lower Physical Footprint & Energy Costs', 'Unified Resource Dashboard Control', 'Zero-Downtime Workload Migrations'],
+    img: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=900&q=80',
+    intro: 'INNOWORQ consolidates and transforms legacy server environments into highly virtualized, cloud-integrated, software-defined datacenter ecosystems.',
+    techOverview: 'We configure virtualization hosts, storage networks, software-defined networks, and centralized management portals. We deploy hyperconverged clusters that unify processing and storage.',
+    architecture: 'We transition separate server and storage components into hyperconverged clusters. Workloads run inside virtual machines that can be migrated between servers without downtime.',
+    scope: 'Infrastructure consolidation, hyperconverged cluster setup, virtual network design, and legacy migrations.',
+    businessValue: 'Reduces datacenter operating costs by up to 50%, improves resource utilization across server clusters, and simplifies central management workflows.',
+    deployment: 'Phase-1: Workload analysis and migration scheduling. Phase-2: HCI cluster setup and network configurations. Phase-3: Hot VM migrations and server retirements.',
+    industries: 'BFSI, Manufacturing, Telecom, Education.',
+    oems: ['Nutanix (Cloud Platform)', 'VMware (vCloud Suite)', 'Red Hat (OpenShift Platform)', 'Dell (VxRail HCI)'],
+    benefits: ['50% Lower Hardware and Energy Costs', 'Unified Resource Management Dashboard', 'Zero-Downtime Application Migrations'],
+    usecases: ['Server Consolidation Projects', 'Hyperconverged (HCI) Infrastructure setups', 'Legacy Datacenter Modernization runs'],
+    timeline: '12 - 16 Weeks Transformation Cycle',
+    deliverables: ['Virtualization Consolidation Design', 'HCI Cluster Network Configuration Map', 'Workload Migration Sign-Off logs'],
     services: ['Consolidation Consulting', 'HCI Cluster Engineering', 'Datacenter Migration Runs'],
     models: ['Software-Defined Datacenter (SDDC)'],
-    oems: ['Nutanix', 'VMware', 'Red Hat', 'Dell'],
-    industries: ['BFSI', 'Manufacturing', 'Telecom', 'Education'],
     coverage: 'Post-Migration Optimization & Support SLA'
   },
   {
     id: 'digital-infra',
     name: 'Digital Infrastructure',
     code: 'SOL-11',
-    Illustration: DigitalInfrastructureIllustration,
-    intro: 'Modern digital networking, high-speed fiber routing, structured cabling, routing table alignments, and WAN optimizations.',
-    capability: 'We install high-capacity fiber loops, configure core network switches, optimize WAN routing paths, and deploy high-availability routing tables to support enterprise communications.',
-    value: 'Minimizes network latency across office branches, increases bandwidth capacities, and ensures stable voice and data communications.',
-    infraScope: 'Core switches, fiber patch panels, structured copper cabling tracks, WAN routers, and edge gateway appliances.',
-    deployment: 'High-availability structured ring networks configured to prevent communication failures during hardware outages.',
-    useCases: [
-      'High-Speed Core Network Fiber Loop installation',
-      'Multi-site WAN Optimization and Routing Table alignment',
-      'Structured Copper and Fiber cabling for office sites'
-    ],
-    technologies: ['Cisco Catalyst Switches', 'Juniper MX Routers', 'D-Link Managed Switches', 'Fortinet WAN Optimization'],
-    benefits: ['Near-Zero Latency Branch Connections', 'High-Bandwidth Capacity Backbone', 'Minimized Single-Point Cable Failures'],
+    img: 'https://images.unsplash.com/photo-1596207891396-2270f2f351ef?auto=format&fit=crop&w=900&q=80',
+    intro: 'We install high-capacity fiber loops, configure core network switches, optimize WAN routing paths, and deploy high-availability routing tables to support enterprise communications.',
+    techOverview: 'We configure core routing protocols (OSPF/BGP), managed switches, fiber patch panels, structured cabling tracks, and WAN optimization settings.',
+    architecture: 'Our network designs use redundant pathways. Multiple WAN connections link branch offices to centralized datacenters, while core switches are configured in high-availability modes.',
+    scope: 'Core switch configurations, WAN setup, structured fiber cabling, routing table updates, and bandwidth management.',
+    businessValue: 'Minimizes network latency across office branches, increases bandwidth capacities, and ensures stable voice and data communications.',
+    deployment: 'Phase-1: Network mapping and cable layout design. Phase-2: Core switch installations and fiber cabling. Phase-3: Routing configuration, security rules, and performance checks.',
+    industries: 'Telecom, Manufacturing, Logistics, Retail.',
+    oems: ['Cisco (Catalyst Switches)', 'Juniper (MX Routers)', 'D-Link (Managed Switches)', 'Fortinet (WAN Optimization)'],
+    benefits: ['Low-Latency Branch Office Network Connections', 'High-Bandwidth Capacity Fiber Backbone', 'Minimized Single-Point Cable Failures'],
+    usecases: ['High-Speed Core Network Fiber Loop installation', 'Multi-site WAN Optimization and Routing Table alignment', 'Structured Copper and Fiber cabling for office sites'],
+    timeline: '8 - 12 Weeks Construction Cycle',
+    deliverables: ['Network Cabling Schematic', 'Routing Tables Configuration Map', 'Bandwidth Test Reports'],
     services: ['Structured Cabling Deployments', 'Routing Table Optimization', 'WAN Ring Engineering'],
     models: ['Structured Local Loop Network'],
-    oems: ['Cisco', 'Juniper', 'D-Link', 'Fortinet'],
-    industries: ['Telecom', 'Manufacturing', 'Logistics', 'Retail'],
     coverage: 'On-site Fiber Diagnostic Dispatch SLA'
   },
   {
     id: 'enterprise-management',
     name: 'Enterprise Management Solution',
     code: 'SOL-12',
-    Illustration: EnterpriseManagementIllustration,
-    intro: 'Consolidated IT infrastructure dashboarding, service desk systems, network observability, and ERP support configurations.',
-    capability: 'We integrate unified monitoring dashboards, configure automated service ticketing rules, and provide support configurations for core enterprise database networks.',
-    value: 'Improves visibility across all IT assets, reduces time spent on incident troubleshooting, and ensures stable ERP database operations.',
-    infraScope: 'Central management databases, ITSM platforms, infrastructure monitoring systems, and application servers.',
-    deployment: 'Unified cloud-connected dashboard node integrated with local server monitoring agents.',
-    useCases: [
-      'Unified IT Infrastructure Dashboard integration',
-      'ITSM Service Desk and Ticket routing automation',
-      'SAP Basis HANA Database performance optimization'
-    ],
-    technologies: ['Microsoft System Center (SCOM)', 'Oracle Database Management', 'SAP Basis SAP NetWeaver', 'IBM Systems Director'],
+    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80',
+    intro: 'We integrate unified monitoring dashboards, configure automated service ticketing rules, and provide support configurations for core enterprise database networks.',
+    techOverview: 'We configure server agents, database monitoring, alert triggers, ticketing integration, and system dashboards.',
+    architecture: 'We integrate monitoring agents on all servers and databases. These agents report health metrics to a centralized dashboard, which triggers service desk tickets automatically during issues.',
+    scope: 'Dashboard integrations, service desk rules, database monitoring, and system administration support.',
+    businessValue: 'Improves visibility across all IT assets, reduces time spent on incident troubleshooting, and ensures stable ERP database operations.',
+    deployment: 'Phase-1: Monitoring agent setups and alert definitions. Phase-2: Service desk integration and ticket routing. Phase-3: Dashboard customization and metric verification.',
+    industries: 'Logistics, BFSI, Manufacturing, Retail.',
+    oems: ['Microsoft (SCOM Systems)', 'Oracle (Database Management)', 'SAP Basis (SAP NetWeaver)', 'IBM (Systems Director)'],
     benefits: ['Unified Infrastructure Visual Controls', 'Streamlined IT Ticket Management workflows', 'Optimized SAP ERP Core performance'],
+    usecases: ['Unified Monitoring Dashboard integrations', 'ITSM Service Desk and Ticket routing automation', 'SAP Basis HANA Database performance optimization'],
+    timeline: '6 - 8 Weeks Implementation Cycle',
+    deliverables: ['ITSM Integration Protocol Map', 'Database Alert Threshold Matrix', 'Observability Dashboard Layout'],
     services: ['ITSM Flow Customization', 'Database Health Tuning', 'SAP Basis Administration support'],
     models: ['Central SaaS / On-Prem Management Console'],
-    oems: ['Microsoft', 'Oracle', 'IBM'],
-    industries: ['Logistics', 'BFSI', 'Manufacturing', 'Retail'],
     coverage: '24/7/365 Database Admin & ITSM Support SLA'
   },
   {
     id: 'network-security',
     name: 'Network Infrastructure & Security',
     code: 'SOL-13',
-    Illustration: NetworkSecurityIllustration,
-    intro: 'Perimeter defense systems, firewall configurations, VLAN setups, access controller deployments, and Cisco/Juniper routing table maintenance.',
-    capability: 'We deploy enterprise next-generation firewalls (NGFW), configure perimeter access-control lists, establish secure VLAN boundaries, and configure secure SD-WAN connections.',
-    value: 'Protects enterprise networks from cyber threats, secures sensitive communications, and guarantees compliance with industry security standards.',
-    infraScope: 'Perimeter next-generation firewalls, secure SD-WAN routers, network switches, and wireless access controllers.',
-    deployment: 'Multi-layered security zones (DMZ) with active packet inspection at all ingress points.',
-    useCases: [
-      'Next-Generation Firewall deployment and Rules tuning',
-      'Secure SD-WAN setup for distributed office locations',
-      'Network Segmentation using secure VLAN boundaries'
-    ],
-    technologies: ['Checkpoint Quantum Firewalls', 'Fortinet FortiGate Secure SD-WAN', 'F5 Advanced WAF', 'Cisco Catalyst Security'],
+    img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80',
+    intro: 'INNOWORQ deploys enterprise next-generation firewalls (NGFW), configures perimeter access-control lists, establishes secure VLAN boundaries, and configures secure SD-WAN connections.',
+    techOverview: 'We configure firewall policies, web application firewalls (WAF), secure routing switches, access-control lists, and VPN gateways.',
+    architecture: 'Our security architecture uses a zero-trust model. We segment local networks into secure zones, inspect all traffic at network boundaries, and encrypt communication lines between offices.',
+    scope: 'Firewall configurations, VLAN setups, access controllers, secure SD-WAN, and security assessments.',
+    businessValue: 'Protects enterprise networks from cyber threats, secures sensitive communications, and guarantees compliance with industry security standards.',
+    deployment: 'Phase-1: Security audit and firewall design. Phase-2: Firewall rules setup and VLAN segmentations. Phase-3: Performance testing and intrusion check dry-runs.',
+    industries: 'BFSI, Healthcare, Government, Telecom.',
+    oems: ['Checkpoint (Quantum Firewalls)', 'Fortinet (FortiGate NGFW)', 'F5 (Advanced WAF)', 'Cisco (Catalyst Security)'],
     benefits: ['Total Perimeter Defense against Network Threats', 'Secure WAN Traffic encryption loops', 'Granular Access-Control at Network boundaries'],
+    usecases: ['Next-Generation Firewall rules configurations', 'Secure SD-WAN setups for distributed sites', 'Network segmentation via secure VLAN boundaries'],
+    timeline: '6 - 10 Weeks Implementation Cycle',
+    deliverables: ['Perimeter Security Configuration Map', 'Firewall Rules and Access Logins', 'Penetration Testing Audit Report'],
     services: ['Firewall Policies configuration', 'Secure SD-WAN Engineering', 'WAF Protection tuning'],
     models: ['Zero-Trust Secure Perimeter'],
-    oems: ['Checkpoint', 'Fortinet', 'F5', 'Cisco'],
-    industries: ['BFSI', 'Healthcare', 'Government', 'Telecom'],
     coverage: '24/7/365 Security Incident Response SLA'
   }
 ];
 
 /* ─────────────────────────────────────────────────────────────
-   Individual Solution Showcase Section Component
+   Solution Section Component
 ────────────────────────────────────────────────────────────── */
 function SolutionSection({ sol, index }) {
-  const [activeTab, setActiveTab] = useState('overview');
   const isEven = index % 2 === 0;
-
-  const contentVariants = {
-    hidden: { opacity: 0, x: isEven ? -40 : 40 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
-  };
-
-  const visualVariants = {
-    hidden: { opacity: 0, x: isEven ? 40 : -40 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
-  };
 
   return (
     <section
       id={sol.id}
       style={{
-        padding: '6rem 0',
-        minHeight: '85vh',
+        padding: '8rem 0',
+        minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         background: isEven ? '#ffffff' : '#f8fafc',
@@ -391,28 +338,40 @@ function SolutionSection({ sol, index }) {
         overflow: 'hidden'
       }}
     >
-      {/* Decorative blueprint accents */}
+      {/* Decorative blueprint grids */}
       <div style={{
-        position: 'absolute', inset: 0, opacity: 0.02, pointerEvents: 'none',
+        position: 'absolute', inset: 0, opacity: 0.015, pointerEvents: 'none',
         backgroundImage: `radial-gradient(circle, rgba(9,97,159,0.5) 1px, transparent 1px)`,
-        backgroundSize: '30px 30px'
+        backgroundSize: '40px 40px'
+      }} />
+
+      {/* Floating connection visual connector lines between sections */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '2px',
+        height: '100px',
+        background: 'linear-gradient(to bottom, rgba(9,97,159,0.15), transparent)',
+        pointerEvents: 'none'
       }} />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(12, 1fr)',
-          gap: '2.5rem',
+          gap: '3.5rem',
           alignItems: 'center'
         }}>
           
-          {/* TEXT SIDE (Cols: 1-6 if even, 7-12 if odd) */}
+          {/* TEXT SIDE (Cols: 1-7 if even, 6-12 if odd) */}
           <div style={{
-            gridColumn: isEven ? '1 / 7' : '7 / 13',
+            gridColumn: isEven ? '1 / 8' : '6 / 13',
             gridRow: 1,
             display: 'flex',
             flexDirection: 'column',
-            gap: '1.25rem'
+            gap: '1.5rem'
           }}>
             <ScrollReveal variant={isEven ? 'fade-left' : 'fade-right'}>
               {/* Code badge */}
@@ -425,7 +384,7 @@ function SolutionSection({ sol, index }) {
                 fontSize: '0.72rem',
                 fontWeight: 700,
                 color: 'rgba(9,97,159,0.95)',
-                letterSpacing: '1px',
+                letterSpacing: '1.5px',
                 fontFamily: 'monospace',
                 width: 'fit-content'
               }}>
@@ -434,167 +393,137 @@ function SolutionSection({ sol, index }) {
 
               {/* Title */}
               <h2 style={{
-                fontSize: '2.2rem',
+                fontSize: '2.5rem',
                 fontWeight: 800,
-                color: 'rgba(12,20,35,0.9)',
-                letterSpacing: '-1px',
-                lineHeight: 1.15,
-                margin: '0.5rem 0'
+                color: 'rgba(12,20,35,0.92)',
+                letterSpacing: '-1.5px',
+                lineHeight: 1.1,
+                margin: '0.25rem 0'
               }}>
                 {sol.name}
               </h2>
 
-              {/* Editorial Content Blocks */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                <p style={{ fontSize: '1.02rem', fontWeight: 600, color: 'rgba(9,97,159,0.85)', lineHeight: 1.6, margin: 0 }}>
-                  {sol.intro}
-                </p>
-                <p style={{ fontSize: '0.92rem', color: 'rgba(30,40,60,0.7)', lineHeight: 1.7, margin: 0 }}>
-                  <strong style={{ color: 'rgba(12,20,35,0.8)' }}>Enterprise Capability:</strong> {sol.capability}
-                </p>
-                <p style={{ fontSize: '0.92rem', color: 'rgba(30,40,60,0.7)', lineHeight: 1.7, margin: 0 }}>
-                  <strong style={{ color: 'rgba(12,20,35,0.8)' }}>Business Value:</strong> {sol.value}
-                </p>
-              </div>
+              {/* Editorial Content Blocks - Rich Hierarchy */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginTop: '0.5rem' }}>
+                <div>
+                  <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'rgba(9,97,159,0.9)', fontWeight: 700, margin: '0 0 0.4rem 0' }}>Introduction</h4>
+                  <p style={{ fontSize: '1.05rem', color: 'rgba(30,40,60,0.85)', lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
+                    {sol.intro}
+                  </p>
+                </div>
 
-              {/* Custom Editorial Info Tabs */}
-              <div style={{
-                marginTop: '1.25rem',
-                border: '1px solid rgba(9,97,159,0.15)',
-                borderRadius: '8px',
-                backgroundColor: '#ffffff',
-                overflow: 'hidden',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.02)'
-              }}>
-                {/* Tab headers */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '0.5rem' }}>
+                  <div>
+                    <h4 style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'rgba(30,40,60,0.5)', fontWeight: 700, margin: '0 0 0.3rem 0' }}>Technical Overview</h4>
+                    <p style={{ fontSize: '0.88rem', color: 'rgba(30,40,60,0.7)', lineHeight: 1.6, margin: 0 }}>
+                      {sol.techOverview}
+                    </p>
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'rgba(30,40,60,0.5)', fontWeight: 700, margin: '0 0 0.3rem 0' }}>Architecture & Engineering</h4>
+                    <p style={{ fontSize: '0.88rem', color: 'rgba(30,40,60,0.7)', lineHeight: 1.6, margin: 0 }}>
+                      {sol.architecture}
+                    </p>
+                  </div>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                  <div>
+                    <h4 style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'rgba(30,40,60,0.5)', fontWeight: 700, margin: '0 0 0.3rem 0' }}>Operational Scope</h4>
+                    <p style={{ fontSize: '0.88rem', color: 'rgba(30,40,60,0.7)', lineHeight: 1.6, margin: 0 }}>
+                      {sol.scope}
+                    </p>
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'rgba(30,40,60,0.5)', fontWeight: 700, margin: '0 0 0.3rem 0' }}>Business Benefits</h4>
+                    <p style={{ fontSize: '0.88rem', color: 'rgba(30,40,60,0.7)', lineHeight: 1.6, margin: 0 }}>
+                      {sol.businessValue}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Why Choose This Solution Callout Box */}
                 <div style={{
-                  display: 'flex',
-                  background: 'rgba(9,97,159,0.03)',
-                  borderBottom: '1px solid rgba(9,97,159,0.1)'
+                  padding: '1.25rem 1.5rem',
+                  borderRadius: '8px',
+                  background: 'rgba(9,97,159,0.04)',
+                  borderLeft: '4px solid rgba(9,97,159,0.7)',
+                  marginTop: '0.5rem'
                 }}>
-                  {[
-                    { id: 'overview', label: 'Tech Scope' },
-                    { id: 'deployment', label: 'Use Cases' },
-                    { id: 'benefits', label: 'Specs' }
-                  ].map(tab => (
-                    <button
-                      key={tab.id}
-                      onClick={() => setActiveTab(tab.id)}
-                      style={{
-                        flex: 1,
-                        padding: '0.65rem 1rem',
-                        border: 'none',
-                        background: activeTab === tab.id ? '#ffffff' : 'transparent',
-                        borderRight: '1px solid rgba(9,97,159,0.08)',
-                        color: activeTab === tab.id ? 'rgba(9,97,159,0.9)' : 'rgba(30,40,60,0.5)',
-                        fontSize: '0.78rem',
-                        fontWeight: 700,
-                        cursor: 'pointer',
-                        transition: 'all 0.2s',
-                        outline: 'none'
-                      }}
-                    >
-                      {tab.label}
-                    </button>
-                  ))}
+                  <h4 style={{ fontSize: '0.8rem', color: 'rgba(9,97,159,0.95)', fontWeight: 700, margin: '0 0 0.3rem 0', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    Why Choose This Solution
+                  </h4>
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.86rem', color: 'rgba(30,40,60,0.75)', lineHeight: 1.5 }}>
+                    {sol.benefits.map((b, idx) => (
+                      <li key={idx}>{b}</li>
+                    ))}
+                  </ul>
                 </div>
 
-                {/* Tab body */}
-                <div style={{ padding: '1rem', minHeight: '120px' }}>
-                  {activeTab === 'overview' && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.8rem' }}>
-                      <div>
-                        <strong style={{ color: 'rgba(12,20,35,0.8)' }}>Infrastructure Scope:</strong>
-                        <span style={{ color: 'rgba(30,40,60,0.7)', marginLeft: '0.4rem' }}>{sol.infraScope}</span>
-                      </div>
-                      <div>
-                        <strong style={{ color: 'rgba(12,20,35,0.8)' }}>Supported Technologies:</strong>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginTop: '0.3rem' }}>
-                          {sol.technologies.map((t, idx) => (
-                            <span key={idx} style={{ padding: '0.15rem 0.5rem', borderRadius: '4px', background: 'rgba(9,97,159,0.05)', color: 'rgba(9,97,159,0.85)', fontSize: '0.72rem', fontWeight: 600 }}>
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                {/* Core Specs Tab Grid */}
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '1rem',
+                  padding: '1.25rem',
+                  borderRadius: '8px',
+                  background: '#ffffff',
+                  border: '1px solid rgba(9,97,159,0.12)',
+                  boxShadow: '0 4px 12px rgba(9,97,159,0.03)'
+                }}>
+                  <div>
+                    <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', display: 'block', marginBottom: '0.2rem' }}>Deployment Models</span>
+                    <span style={{ fontSize: '0.82rem', color: 'rgba(30,40,60,0.75)' }}>{sol.models.join(' · ')}</span>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', display: 'block', marginBottom: '0.2rem' }}>Supported OEMs</span>
+                    <span style={{ fontSize: '0.82rem', color: 'rgba(30,40,60,0.75)' }}>{sol.oems.join(', ')}</span>
+                  </div>
+                  <div style={{ borderTop: '1px solid rgba(9,97,159,0.08)', paddingTop: '0.6rem', marginTop: '0.4rem' }}>
+                    <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', display: 'block', marginBottom: '0.2rem' }}>Implementation Timeline</span>
+                    <span style={{ fontSize: '0.82rem', color: 'rgba(30,40,60,0.75)' }}>{sol.timeline}</span>
+                  </div>
+                  <div style={{ borderTop: '1px solid rgba(9,97,159,0.08)', paddingTop: '0.6rem', marginTop: '0.4rem' }}>
+                    <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', display: 'block', marginBottom: '0.2rem' }}>Support Coverage</span>
+                    <span style={{ fontSize: '0.82rem', color: 'rgba(9,97,159,0.95)', fontWeight: 600 }}>{sol.coverage}</span>
+                  </div>
+                </div>
 
-                  {activeTab === 'deployment' && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.8rem' }}>
-                      <strong style={{ color: 'rgba(12,20,35,0.8)' }}>Typical Enterprise Deployments:</strong>
-                      <ul style={{ paddingLeft: '1.2rem', margin: 0, color: 'rgba(30,40,60,0.7)', lineHeight: 1.5 }}>
-                        {sol.useCases.map((uc, idx) => (
-                          <li key={idx} style={{ marginBottom: '0.25rem' }}>{uc}</li>
-                        ))}
-                      </ul>
+                {/* Primary Services and Industries tags */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                  <div>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'rgba(30,40,60,0.4)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Primary Services:</span>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginTop: '0.2rem' }}>
+                      {sol.services.map((srv, idx) => (
+                        <span key={idx} style={{ padding: '0.2rem 0.6rem', borderRadius: '4px', background: 'rgba(9,97,159,0.05)', color: 'rgba(9,97,159,0.85)', fontSize: '0.74rem', fontWeight: 600 }}>
+                          {srv}
+                        </span>
+                      ))}
                     </div>
-                  )}
-
-                  {activeTab === 'benefits' && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.8rem' }}>
-                      <div>
-                        <strong style={{ color: 'rgba(12,20,35,0.8)' }}>Operational Metrics:</strong>
-                        <ul style={{ paddingLeft: '1.2rem', margin: '0.3rem 0 0', color: 'rgba(30,40,60,0.7)', lineHeight: 1.5 }}>
-                          {sol.benefits.map((b, idx) => (
-                            <li key={idx} style={{ marginBottom: '0.2rem' }}>{b}</li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div style={{ borderTop: '1px solid rgba(9,97,159,0.08)', paddingTop: '0.5rem', marginTop: '0.3rem' }}>
-                        <strong style={{ color: 'rgba(12,20,35,0.8)' }}>SLA Coverage:</strong>
-                        <span style={{ color: 'rgba(9,97,159,0.95)', fontWeight: 600, marginLeft: '0.4rem', fontFamily: 'monospace' }}>{sol.coverage}</span>
-                      </div>
-                    </div>
-                  )}
+                  </div>
+                  <div>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'rgba(30,40,60,0.4)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Target Industries:</span>
+                    <span style={{ fontSize: '0.8rem', color: 'rgba(30,40,60,0.7)', marginLeft: '0.5rem' }}>{sol.industries}</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Floating Technical Info Details Panel */}
-              <div style={{
-                marginTop: '1.25rem',
-                display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: '1rem',
-                padding: '1rem',
-                borderRadius: '8px',
-                background: 'linear-gradient(135deg, rgba(9,97,159,0.03) 0%, rgba(9,97,159,0) 100%)',
-                border: '1px solid rgba(9,97,159,0.08)'
-              }}>
-                <div style={{ fontSize: '0.78rem' }}>
-                  <div style={{ fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', fontSize: '0.68rem', letterSpacing: '0.5px' }}>Primary Services</div>
-                  <div style={{ color: 'rgba(30,40,60,0.7)', marginTop: '0.15rem' }}>{sol.services.join(' · ')}</div>
-                </div>
-                <div style={{ fontSize: '0.78rem' }}>
-                  <div style={{ fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', fontSize: '0.68rem', letterSpacing: '0.5px' }}>Deployment Model</div>
-                  <div style={{ color: 'rgba(30,40,60,0.7)', marginTop: '0.15rem' }}>{sol.models.join(' · ')}</div>
-                </div>
-                <div style={{ fontSize: '0.78rem' }}>
-                  <div style={{ fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', fontSize: '0.68rem', letterSpacing: '0.5px' }}>Supported OEMs</div>
-                  <div style={{ color: 'rgba(30,40,60,0.7)', marginTop: '0.15rem' }}>{sol.oems.join(', ')}</div>
-                </div>
-                <div style={{ fontSize: '0.78rem' }}>
-                  <div style={{ fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', fontSize: '0.68rem', letterSpacing: '0.5px' }}>Target Industries</div>
-                  <div style={{ color: 'rgba(30,40,60,0.7)', marginTop: '0.15rem' }}>{sol.industries.join(', ')}</div>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+              {/* Action Buttons - Correct Routes */}
+              <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
                 <Link
-                  to="/contact"
+                  to={`/support-desk?solution=${sol.id}`}
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '0.5rem',
-                    padding: '0.65rem 1.35rem',
+                    padding: '0.75rem 1.6rem',
                     background: 'rgba(9,97,159,1)',
                     color: '#ffffff',
                     borderRadius: '6px',
-                    fontSize: '0.85rem',
+                    fontSize: '0.88rem',
                     fontWeight: 700,
                     textDecoration: 'none',
-                    boxShadow: '0 4px 12px rgba(9,97,159,0.2)'
+                    boxShadow: '0 4px 16px rgba(9,97,159,0.2)'
                   }}
                 >
                   Discuss this Solution
@@ -608,12 +537,12 @@ function SolutionSection({ sol, index }) {
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '0.5rem',
-                    padding: '0.65rem 1.35rem',
+                    padding: '0.75rem 1.6rem',
                     background: '#ffffff',
                     color: 'rgba(9,97,159,0.85)',
                     border: '1px solid rgba(9,97,159,0.2)',
                     borderRadius: '6px',
-                    fontSize: '0.85rem',
+                    fontSize: '0.88rem',
                     fontWeight: 700,
                     textDecoration: 'none'
                   }}
@@ -624,38 +553,51 @@ function SolutionSection({ sol, index }) {
             </ScrollReveal>
           </div>
 
-          {/* VISUAL SIDE (Cols: 7-12 if even, 1-6 if odd) */}
+          {/* VISUAL SIDE (Cols: 8-12 if even, 1-5 if odd) */}
           <div style={{
-            gridColumn: isEven ? '7 / 13' : '1 / 7',
+            gridColumn: isEven ? '9 / 13' : '1 / 5',
             gridRow: 1,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             position: 'relative'
           }}>
-            <ScrollReveal variant={isEven ? 'fade-right' : 'fade-left'} style={{ width: '100%', maxWidth: '440px' }}>
-              <div style={{
-                position: 'relative',
-                background: 'linear-gradient(135deg, #ffffff 0%, #f1f8fe 100%)',
-                borderRadius: '16px',
-                border: '1px solid rgba(9,97,159,0.12)',
-                boxShadow: '0 20px 40px rgba(9,97,159,0.06), 0 2px 10px rgba(0,0,0,0.02)',
-                padding: '1.5rem',
-                overflow: 'hidden'
-              }}>
-                {/* Decorative blueprint grids */}
-                <div style={{
-                  position: 'absolute', inset: 0, opacity: 0.2, pointerEvents: 'none',
-                  backgroundImage: `
-                    linear-gradient(rgba(9,97,159,0.08) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(9,97,159,0.08) 1px, transparent 1px)
-                  `,
-                  backgroundSize: '20px 20px'
-                }} />
+            <ScrollReveal variant={isEven ? 'fade-right' : 'fade-left'} style={{ width: '100%' }}>
+              <motion.div
+                whileHover={{ scale: 1.025 }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+                style={{
+                  position: 'relative',
+                  borderRadius: '12px',
+                  boxShadow: '0 20px 40px rgba(9,97,159,0.08), 0 2px 10px rgba(0,0,0,0.02)',
+                  overflow: 'hidden',
+                  aspectRatio: '4/3',
+                  border: '1px solid rgba(9,97,159,0.1)'
+                }}
+              >
+                {/* Foreground Image */}
+                <img
+                  src={sol.img}
+                  alt={`${sol.name} Enterprise Visual`}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
+                    transition: 'transform 0.6s ease'
+                  }}
+                />
                 
-                {/* Embedded SVG Illustration */}
-                <sol.Illustration isHovered={true} />
-              </div>
+                {/* Visual Blueprint Grid Overlay */}
+                <div style={{
+                  position: 'absolute', inset: 0, opacity: 0.1, pointerEvents: 'none',
+                  backgroundImage: `
+                    linear-gradient(rgba(9,97,159,0.3) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(9,97,159,0.3) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '24px 24px'
+                }} />
+              </motion.div>
             </ScrollReveal>
           </div>
 
@@ -666,7 +608,7 @@ function SolutionSection({ sol, index }) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Solutions Page Layout Redesign
+   Main Solutions Page REDESIGN
 ────────────────────────────────────────────────────────────── */
 export default function Solutions() {
   return (
@@ -680,7 +622,7 @@ export default function Solutions() {
         overflow: 'hidden',
         borderBottom: '1px solid rgba(9,97,159,0.1)'
       }}>
-        {/* Animated blueprint grid backdrop */}
+        {/* Blueprint grid backdrop */}
         <div style={{
           position: 'absolute', inset: 0, opacity: 0.05, pointerEvents: 'none',
           backgroundImage: `
@@ -706,7 +648,7 @@ export default function Solutions() {
               fontFamily: 'monospace',
               marginBottom: '1.25rem'
             }}>
-              Enterprise Solutions Portfolio
+              Enterprise Technology Architecture
             </span>
             <h1 style={{
               fontSize: 'clamp(2.5rem, 5vw, 3.8rem)',
@@ -726,12 +668,12 @@ export default function Solutions() {
               fontSize: '1.08rem',
               lineHeight: '1.75'
             }}>
-              Discover INNOWORQ's 13 official enterprise solutions configurations.
+              Explore INNOWORQ's 13 official enterprise solutions configurations.
               We design Tier-III compliant server environments, network security boundaries,
-              and fully automated cloud deployments.
+              and fully automated cloud deployments for global workloads.
             </p>
 
-            {/* Quick stats strip with anim count */}
+            {/* Quick stats strip */}
             <div style={{
               display: 'flex',
               gap: '1.5rem',
@@ -779,7 +721,7 @@ export default function Solutions() {
 
       {/* ─── SOLUTIONS ALTERNATING SHOWCASE ─── */}
       <div style={{ position: 'relative' }}>
-        {SOLUTIONS_DETAIL.map((sol, index) => (
+        {SOLUTIONS_DATA.map((sol, index) => (
           <SolutionSection key={sol.id} sol={sol} index={index} />
         ))}
       </div>
@@ -826,7 +768,7 @@ export default function Solutions() {
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
-                to="/contact"
+                to="/support-desk"
                 className="btn"
                 style={{
                   padding: '0.85rem 2rem',
