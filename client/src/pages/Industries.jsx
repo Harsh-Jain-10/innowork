@@ -285,20 +285,21 @@ function IndustryPanel({ industry, isExpanded, onToggle, index }) {
         boxShadow: isExpanded
           ? '0 12px 40px rgba(9,97,159,0.12), 0 2px 8px rgba(9,97,159,0.06)'
           : '0 2px 8px rgba(9,97,159,0.04)',
-        cursor: 'pointer',
         height: '100%',
       }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      onClick={onToggle}
-      onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && onToggle()}
-      tabIndex={0}
-      role="button"
-      aria-expanded={isExpanded}
       aria-label={`${industry.name} industry panel`}
     >
-      {/* Header — always visible */}
-      <div style={{ padding: '1.5rem' }}>
+      {/* Header — click target for toggle */}
+      <div
+        style={{ padding: '1.5rem', cursor: 'pointer' }}
+        onClick={onToggle}
+        onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && onToggle()}
+        tabIndex={0}
+        role="button"
+        aria-expanded={isExpanded}
+      >
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
 
           {/* Thumbnail illustration (collapsed only) */}
@@ -352,9 +353,9 @@ function IndustryPanel({ industry, isExpanded, onToggle, index }) {
         </div>
       </div>
 
-      {/* Expanded body */}
+      {/* Expanded body — no click interception needed since article has no onClick */}
       {isExpanded && (
-        <div onClick={e => e.stopPropagation()}>
+        <div>
           <div style={{
             padding: '0 1.5rem 1.5rem',
             borderTop: '1px solid rgba(9,97,159,0.08)',
@@ -452,7 +453,6 @@ function IndustryPanel({ industry, isExpanded, onToggle, index }) {
           }}>
             <Link
               to="/contact"
-              onClick={e => e.stopPropagation()}
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
                 padding: '0.5rem 1.1rem',
@@ -468,7 +468,6 @@ function IndustryPanel({ industry, isExpanded, onToggle, index }) {
             </Link>
             <Link
               to="/services"
-              onClick={e => e.stopPropagation()}
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
                 padding: '0.5rem 1.1rem',
