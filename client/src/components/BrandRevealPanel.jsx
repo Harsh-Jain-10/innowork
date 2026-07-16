@@ -29,7 +29,7 @@ export default function BrandRevealPanel() {
   }, [isInView]);
 
   // Letters of the brand name split
-  const mainLetters = ["I", "N", "N", "O", "W", "O", "R", "Q"];
+  const letters = ["I", "N", "N", "O", "W", "O", "R", "Q"];
 
   // Motherboard track layout paths
   const motherboardTracks = [
