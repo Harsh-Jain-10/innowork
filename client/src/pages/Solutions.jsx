@@ -92,7 +92,7 @@ const SOLUTIONS_DATA = [
     id: 'automation-devops',
     name: 'Automation, DevOps & Modernization',
     code: 'SOL-04',
-    img: 'https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=800&q=80',
     intro: 'Declarative Infrastructure as Code (IaC) deployment pipelines and configuration scripts.',
     description: 'We automate server provisioning steps, deploy standardized server configurations, and integrate deployment pipelines to eliminate manual maintenance errors.',
     scope: [
@@ -137,7 +137,7 @@ const SOLUTIONS_DATA = [
     id: 'support-desk',
     name: '24/7 Support Desk Services',
     code: 'SOL-07',
-    img: 'https://images.unsplash.com/photo-1521791136368-1a8519001321?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=800&q=80',
     intro: 'Guaranteed SLA-bound L1, L2, and L3 support desk engineering operations.',
     description: 'We deliver comprehensive remote support desk services, executing incident triage, troubleshooting network alerts, and coordinating field dispatches for global environments.',
     scope: [
@@ -152,7 +152,7 @@ const SOLUTIONS_DATA = [
     id: 'smart-city',
     name: 'Smart City & ICCC Solutions',
     code: 'SOL-08',
-    img: 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
     intro: 'Integrated Command & Control Center (ICCC) engineering and municipal IoT networks.',
     description: 'We design and configure municipal operations architectures, integrating public surveillance grids, fiber backbones, and central data monitoring consoles.',
     scope: [
