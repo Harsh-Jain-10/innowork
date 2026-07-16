@@ -47,49 +47,49 @@ const SOLUTIONS_DATA = [
     id: 'smart-city',
     name: 'Smart City Solution',
     code: 'SOL-01',
-    img: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=900&q=80',
+    img: 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?auto=format&fit=crop&w=1200&q=80',
     intro: 'INNOWORQ designs and integrates scalable Smart City architectures that unify municipal services, civic administration, and real-time public safety. We specialize in building Tier-III Integrated Command & Control Centers (ICCC) that serve as the centralized intelligence hub for metropolitan environments.',
-    techOverview: 'The backbone of our Smart City topology relies on high-throughput fiber loops and distributed edge computing nodes. By deploying IoT gateways at municipal intersections, civic buildings, and utility hubs, we facilitate the ingestion of environmental, traffic, and security telemetry with sub-millisecond transmission latency.',
-    architecture: 'Our architecture separates edge sensor networks, core transmission paths, and centralized visualization planes. Edge gateways are hardened utilizing Next-Generation Firewalls (NGFW) to prevent lateral security breaches. Central datacenters use redundant SAN storage stacks and clustered compute grids to maintain an active-active high-availability environment.',
-    scope: 'Unified management of urban IoT networks, public video surveillance matrices, civic network backbones, municipal wireless distribution, and public command center facilities.',
-    businessValue: 'By unifying civic telemetry, municipal authorities experience up to a 40% reduction in response time during emergency dispatches. Centralized management minimizes administrative overhead, lowers utility distribution costs, and enhances municipal compliance parameters.',
-    deployment: 'Phase-1: Topological assessment and municipal fiber loop planning. Phase-2: Local command center setup, compute node deployment, and backup power integration. Phase-3: Edge sensor configuration, gateway secure alignments, and centralized dashboard tuning.',
-    industries: 'Government, Civic Administration, Public Utilities, Municipal Transit.',
-    oems: ['Cisco (IoT Gateways)', 'Dell (Storage Clusters)', 'Fortinet (Perimeter NGFW)', 'IBM (Cognitive Telemetry)'],
-    benefits: ['40% Improvement in Civic Response Uptime', '99.99% Central ICCC Operational Availability', 'Hardened Edge Security Perimeter'],
-    usecases: ['Municipal ICCC Deployments', 'Intelligent Traffic Management (ITMS)', 'Utility Sensor Grid Integration'],
+    techOverview: 'The technical blueprint of our Smart City solution relies on high-throughput optical fiber backbones and distributed edge computing gateway appliances. By deploying ruggedized IoT gateways at critical municipal intersections, civic facilities, and utility stations, we facilitate the ingestion of multi-source telemetry—including smart lighting levels, traffic congestion matrices, and environmental sensor streams—with sub-millisecond transmission latency.',
+    architecture: 'Our architecture enforces strict separation between edge sensor zones, optical core transport networks, and centralized visualization planes. Edge gateways are hardened using custom access-control policies and Next-Generation Firewalls (NGFW) to prevent lateral security breaches. Municipal datacenters utilize high-availability compute clusters, redundant SAN storage arrays, and active-active server configurations to ensure zero single-points-of-failure.',
+    scope: 'Unified design and operation of metropolitan IoT networks, public surveillance recording clusters, fiber optic ring routes, smart street utility sensors, and central command center display console matrices.',
+    businessValue: 'Municipalities deploying our Integrated Command & Control Centers report up to a 40% improvement in emergency response dispatch coordination. Consolidating municipal telemetry reduces administrative overhead, lowers public utility power consumption, and ensures compliance with government data protection standards.',
+    deployment: 'Phase-1: Site survey, network planning, and optical path layout. Phase-2: Central ICCC command facility design, server rack setup, and backup generator integration. Phase-3: Edge gateway configuration, firewall policy deployment, and sensor calibration.',
+    industries: 'Municipal Government, Public Safety, Public Transit, Water & Power Utilities.',
+    oems: ['Cisco (IoT Gateway Fabrics)', 'Dell Technologies (PowerScale Storage)', 'Fortinet (Secure NGFW)', 'IBM (Telemetry Management)'],
+    benefits: ['40% Reduction in Civic Response Times', '99.99% Operational Availability for Core ICCC', 'Hardened Zero-Trust Edge Security Perimeter'],
+    usecases: ['Municipal ICCC Systems', 'Intelligent Traffic Optimization', 'Smart Utility Grid Ingestion'],
     timeline: '12 - 16 Weeks Deployment Cycle',
-    deliverables: ['Custom ICCC Architectural Layout', 'Edge Gateway Security Configuration Map', 'Centralized Civic Observability Dashboard'],
-    services: ['ICCC Integration', 'Edge Network Hardening', 'Telemetry Ingestion Tuning'],
+    deliverables: ['ICCC Facility Blueprint Plan', 'Edge Secure Gateway Configuration maps', 'Centralized Municipal Observability Dashboard'],
+    services: ['ICCC Facility Integration', 'IoT Gateway Configuration', 'Redundant Storage Deployment'],
     models: ['Municipal Private Cloud / Colocation Hybrid'],
-    coverage: '24/7/365 L3 Engineer Dispatch & Real-Time Monitoring'
+    coverage: '24/7/365 Dedicated L3 On-Site Dispatch Support'
   },
   {
     id: 'noc',
     name: 'NOC Solution',
     code: 'SOL-02',
-    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80',
-    intro: 'Our Network Operations Center (NOC) designs establish robust monitoring perimeters that continuously evaluate network health, server utilization, and database availability. We build secure, high-performance monitoring centers that protect your core workflows.',
-    techOverview: 'We deploy proactive telemetry probes, dynamic alarm routing engines, and centralized observability consoles. Our architectures monitor WAN interface saturation, core routing tables, system memory allocations, and firewall access-control lists.',
-    architecture: 'Operating on a distributed model, our monitoring nodes feed health metadata to centralized databases. Redundant physical NOC environments operate in multiple geographical zones, ensuring continuous monitoring availability even during localized utility outages.',
-    scope: 'Active remote monitoring of WAN/LAN routers, SD-WAN infrastructure, server virtualization clusters, hypervisors, and security perimeters.',
-    businessValue: 'Transitioning to active NOC oversight minimizes unplanned network downtime by up to 90%. Proactive incident detection reduces the Mean Time to Resolution (MTTR) from hours to minutes, preserving service availability for end-users.',
-    deployment: 'Phase-1: Integration of telemetry probes into active routers and switches. Phase-2: Threshold configuration, alarm classification, and escalation routing. Phase-3: Live simulation testing and continuous dashboard calibration.',
-    industries: 'Telecom, BFSI, Logistics, Retail, Healthcare.',
-    oems: ['Cisco (Catalyst Center)', 'Juniper (Junos Space)', 'F5 (BIG-IP telemetry)', 'Microsoft (SCOM System)'],
-    benefits: ['90% Reduction in Critical Downtime Events', '15-Minute Critical Incident Dispatch SLA', 'Unified Multi-Vendor Telemetry View'],
+    img: 'https://images.unsplash.com/photo-1548345680-f5475ea5df84?auto=format&fit=crop&w=1200&q=80',
+    intro: 'We design and configure high-performance Network Operations Center (NOC) environments that provide continuous network monitoring, alarm handling, incident triage, and proactive capacity planning for global enterprise infrastructure.',
+    techOverview: 'Our NOC setups integrate advanced SNMP/Syslog collectors, dynamic alert thresholding engines, and unified infrastructure dashboards. The system continuously polls WAN interface saturation, latency parameters, packet drop ratios, and routing table updates across core network nodes.',
+    architecture: 'Operating on a highly resilient distributed agent model, monitoring probes report health metrics to centralized databases. Redundant physical NOC environments operate in multiple geographic regions, ensuring continuous monitoring availability even during localized power grid drops.',
+    scope: '24/7/365 active monitoring of core routing matrices, SD-WAN infrastructure, virtual machine hypervisors, and security perimeters.',
+    businessValue: 'Transitioning to active NOC oversight minimizes unplanned network downtime by up to 90%. Proactive incident detection reduces the Mean Time to Resolution (MTTR) from hours to minutes, preserving service availability for enterprise application workloads.',
+    deployment: 'Phase-1: Integration of telemetry probes into active routers and switches. Phase-2: Custom threshold configuration, alert classification, and ticketing system integration. Phase-3: Mock incident drills and dashboard verification.',
+    industries: 'Telecommunications, Financial Services, Logistics, Retail, Healthcare.',
+    oems: ['Cisco (Catalyst Center)', 'Juniper Networks (Junos Space)', 'F5 (BIG-IP telemetry)', 'Microsoft (System Center SCOM)'],
+    benefits: ['90% Average Reduction in Network Downtime', '15-Minute Critical Incident Escalation SLA', 'Unified Multi-Vendor Telemetry Dashboard'],
     usecases: ['Global WAN Observability Networks', 'Retail Branch WAN Monitoring', 'Automated Incident Ticket Routing Systems'],
     timeline: '4 - 6 Weeks Configuration Cycle',
-    deliverables: ['Unified Monitoring Console Layout', 'Escalation Protocol Roadmap', 'Active Probing Configuration Scripts'],
+    deliverables: ['NOC Observability Dashboard Layout', 'Escalation Protocol Roadmap', 'Active Probing Configuration Scripts'],
     services: ['NOC System Integration', 'Threshold Tuning', 'Alarm Routing Engineering'],
     models: ['Dedicated Managed NOC / Co-Managed Integration'],
-    coverage: 'Guaranteed 15-Minute Critical Incident Triage SLA'
+    coverage: 'Guaranteed 15-Minute Critical Incident Response SLA'
   },
   {
     id: 'training',
     name: 'Training and Learning',
     code: 'SOL-03',
-    img: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=80',
+    img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80',
     intro: 'INNOWORQ designs and delivers comprehensive IT training curriculum programs led by certified engineers. We build custom sandbox labs that allow client operations teams to simulate production topologies in a controlled, risk-free environment.',
     techOverview: 'Our training platform utilizes remote hypervisor pools to host custom lab topologies. Students access sandboxes configured with enterprise routing rules, virtualization clusters, database configurations, and automation engines.',
     architecture: 'We construct virtual lab nodes separated from production segments. Our platform dynamically provisions server instances per student, allowing hands-on execution of virtualization console actions, network setups, and configuration scripting.',
@@ -110,7 +110,7 @@ const SOLUTIONS_DATA = [
     id: 'automation-ai',
     name: 'Automation & AI',
     code: 'SOL-04',
-    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
+    img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80',
     intro: 'We eliminate manual IT operations by developing automation pipelines, self-healing system configurations, and automated resource orchestration triggers. We transition infrastructure fleets to declarative GitOps models.',
     techOverview: 'Our automation setups leverage Infrastructure as Code (IaC) templates, central configuration playbooks, and automated monitoring triggers. We implement centralized pipelines that audit config drift and apply corrective configurations.',
     architecture: 'Our architecture integrates configuration control engines with local system managers. Playbook triggers are managed through secure version control systems, ensuring all infrastructure modifications are logged, approved, and auditable.',
@@ -131,7 +131,7 @@ const SOLUTIONS_DATA = [
     id: 'business-continuity',
     name: 'Business Continuity',
     code: 'SOL-05',
-    img: 'https://images.unsplash.com/photo-1597852074816-d933c7d2b988?auto=format&fit=crop&w=900&q=80',
+    img: 'https://images.unsplash.com/photo-1600267175161-cfaa727b4550?auto=format&fit=crop&w=1200&q=80',
     intro: 'INNOWORQ designs and implements high-availability disaster recovery architectures that protect your business against data loss and utility interruptions. We deliver zero-data-loss topologies for critical database stacks.',
     techOverview: 'We configure active replication links, redundant storage systems, automated failover controls, and secure virtualization environments. Our setups monitor heartbeat signals across datacenters and execute failover scripts.',
     architecture: 'Our disaster recovery setups connect primary datacenters to secondary locations using secure replication links. Real-time storage block replication ensures data remains identical, while automated DNS controls redirect user traffic during primary site failures.',
@@ -145,14 +145,14 @@ const SOLUTIONS_DATA = [
     timeline: '8 - 12 Weeks Implementation Cycle',
     deliverables: ['Disaster Recovery Plan (DRP) Manual', 'Replication Link Bandwidth Map', 'Automated Failover Test Logs'],
     services: ['Disaster Recovery Engineering', 'IT Resilience Audits', 'Active Replication Administration'],
-    models: ['Active-Active Datacenter / Hybrid DRaaS'],
+    models: ['Multi-Site Active-Active', 'Disaster Recovery as a Service (DRaaS)'],
     coverage: '24/7/365 Immediate Recovery Support & Escalation'
   },
   {
     id: 'cloud',
     name: 'Cloud Solutions',
     code: 'SOL-06',
-    img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80',
+    img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
     intro: 'We design and build secure multi-cloud architectures, implement container orchestration systems, and optimize public cloud workloads. We ensure secure connections between private datacenters and cloud platforms.',
     techOverview: 'We configure secure VPC networks, container clusters, API gateways, database replication engines, and cloud optimization rules. Our setups trace database response times and adjust cloud resources automatically.',
     architecture: 'Our multi-cloud setups utilize secure network connections to bridge on-premises databases with public cloud platforms (AWS/Azure). Container platforms ensure workloads remain portable across different clouds, while global load balancing distributes incoming traffic.',
@@ -173,7 +173,7 @@ const SOLUTIONS_DATA = [
     id: 'dc-infra',
     name: 'DC Infrastructure',
     code: 'SOL-07',
-    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80',
+    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
     intro: 'INNOWORQ designs and deploys high-performance server, blade chassis, SAN/NAS storage, hypervisor networks, and system consolidation configurations.',
     techOverview: 'We configure high-density blade chassis, SAN switches, fibre channel cards, and hypervisor clusters. Our installations optimize data flow between storage nodes and processing clusters.',
     architecture: 'Our designs integrate modular blade servers with high-speed SAN/NAS arrays. Redundant hypervisors host virtual machines, while dual fibre channel loops prevent path failures between storage units and compute clusters.',
@@ -194,7 +194,7 @@ const SOLUTIONS_DATA = [
     id: 'dc-non-it',
     name: 'DC Non-IT',
     code: 'SOL-08',
-    img: 'https://images.unsplash.com/photo-1601524909162-be87252be298?auto=format&fit=crop&w=900&q=80',
+    img: 'https://images.unsplash.com/photo-1601524909162-be87252be298?auto=format&fit=crop&w=1200&q=80',
     intro: 'We design and maintain physical datacenter infrastructure environments, including precision cooling units, uninterruptible power systems (UPS), and automated fire suppression systems.',
     techOverview: 'We configure HVAC cooling units, hot/cold aisle containments, central UPS battery grids, emergency generators, and FM-200 fire suppression controls.',
     architecture: 'Our physical designs use N+1 or 2N redundancy pathways. Multiple power feeds connect server racks to separate UPS batteries, while containment layouts channel hot air away from hardware to prevent hotspots.',
@@ -215,7 +215,7 @@ const SOLUTIONS_DATA = [
     id: 'backup-recovery',
     name: 'Data Backup & Recovery',
     code: 'SOL-09',
-    img: 'https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&w=900&q=80',
+    img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80',
     intro: 'We engineer automated data backup configurations, secure snapshot vaults, and bare-metal recovery plans. We protect corporate data assets against hardware failures and security threats.',
     techOverview: 'We configure backup replication jobs, immutable storage systems, backup vault access controls, and restore automation pipelines.',
     architecture: 'Our designs use the 3-2-1 backup model (3 data copies, 2 media types, 1 offsite copy). Immutable vaults ensure data cannot be modified or deleted, protecting against ransomware threats.',
@@ -236,7 +236,7 @@ const SOLUTIONS_DATA = [
     id: 'dc-transformation',
     name: 'Datacentre Solutions & Transformation',
     code: 'SOL-10',
-    img: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=900&q=80',
+    img: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=1200&q=80',
     intro: 'INNOWORQ consolidates and transforms legacy server environments into highly virtualized, cloud-integrated, software-defined datacenter ecosystems.',
     techOverview: 'We configure virtualization hosts, storage networks, software-defined networks, and centralized management portals. We deploy hyperconverged clusters that unify processing and storage.',
     architecture: 'We transition separate server and storage components into hyperconverged clusters. Workloads run inside virtual machines that can be migrated between servers without downtime.',
@@ -257,7 +257,7 @@ const SOLUTIONS_DATA = [
     id: 'digital-infra',
     name: 'Digital Infrastructure',
     code: 'SOL-11',
-    img: 'https://images.unsplash.com/photo-1596207891396-2270f2f351ef?auto=format&fit=crop&w=900&q=80',
+    img: 'https://images.unsplash.com/photo-1596207891396-2270f2f351ef?auto=format&fit=crop&w=1200&q=80',
     intro: 'We install high-capacity fiber loops, configure core network switches, optimize WAN routing paths, and deploy high-availability routing tables to support enterprise communications.',
     techOverview: 'We configure core routing protocols (OSPF/BGP), managed switches, fiber patch panels, structured cabling tracks, and WAN optimization settings.',
     architecture: 'Our network designs use redundant pathways. Multiple WAN connections link branch offices to centralized datacenters, while core switches are configured in high-availability modes.',
@@ -278,7 +278,7 @@ const SOLUTIONS_DATA = [
     id: 'enterprise-management',
     name: 'Enterprise Management Solution',
     code: 'SOL-12',
-    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80',
+    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
     intro: 'We integrate unified monitoring dashboards, configure automated service ticketing rules, and provide support configurations for core enterprise database networks.',
     techOverview: 'We configure server agents, database monitoring, alert triggers, ticketing integration, and system dashboards.',
     architecture: 'We integrate monitoring agents on all servers and databases. These agents report health metrics to a centralized dashboard, which triggers service desk tickets automatically during issues.',
@@ -299,7 +299,7 @@ const SOLUTIONS_DATA = [
     id: 'network-security',
     name: 'Network Infrastructure & Security',
     code: 'SOL-13',
-    img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80',
+    img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80',
     intro: 'INNOWORQ deploys enterprise next-generation firewalls (NGFW), configures perimeter access-control lists, establishes secure VLAN boundaries, and configures secure SD-WAN connections.',
     techOverview: 'We configure firewall policies, web application firewalls (WAF), secure routing switches, access-control lists, and VPN gateways.',
     architecture: 'Our security architecture uses a zero-trust model. We segment local networks into secure zones, inspect all traffic at network boundaries, and encrypt communication lines between offices.',
@@ -327,6 +327,7 @@ function SolutionSection({ sol, index }) {
   return (
     <section
       id={sol.id}
+      className="solution-showcase-section"
       style={{
         padding: '8rem 0',
         minHeight: '100vh',
@@ -345,7 +346,7 @@ function SolutionSection({ sol, index }) {
         backgroundSize: '40px 40px'
       }} />
 
-      {/* Floating connection visual connector lines between sections */}
+      {/* Floating connector line between sections */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -353,25 +354,24 @@ function SolutionSection({ sol, index }) {
         transform: 'translateX(-50%)',
         width: '2px',
         height: '100px',
-        background: 'linear-gradient(to bottom, rgba(9,97,159,0.15), transparent)',
+        background: 'linear-gradient(to bottom, rgba(9,97,159,0.1), transparent)',
         pointerEvents: 'none'
       }} />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div style={{
+        <div className="solutions-grid-layout" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(12, 1fr)',
           gap: '3.5rem',
           alignItems: 'center'
         }}>
           
-          {/* TEXT SIDE (Cols: 1-7 if even, 6-12 if odd) */}
-          <div style={{
-            gridColumn: isEven ? '1 / 8' : '6 / 13',
+          {/* TEXT SIDE */}
+          <div className="solutions-text-col" style={{
             gridRow: 1,
             display: 'flex',
             flexDirection: 'column',
-            gap: '1.5rem'
+            gap: '1.5rem',
+            order: isEven ? 1 : 2
           }}>
             <ScrollReveal variant={isEven ? 'fade-left' : 'fade-right'}>
               {/* Code badge */}
@@ -404,7 +404,7 @@ function SolutionSection({ sol, index }) {
               </h2>
 
               {/* Editorial Content Blocks - Rich Hierarchy */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginTop: '0.5rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '0.5rem' }}>
                 <div>
                   <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'rgba(9,97,159,0.9)', fontWeight: 700, margin: '0 0 0.4rem 0' }}>Introduction</h4>
                   <p style={{ fontSize: '1.05rem', color: 'rgba(30,40,60,0.85)', lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
@@ -412,7 +412,7 @@ function SolutionSection({ sol, index }) {
                   </p>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '0.5rem' }}>
+                <div className="solutions-details-subgrid" style={{ display: 'grid', gap: '1.5rem', marginTop: '0.5rem' }}>
                   <div>
                     <h4 style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'rgba(30,40,60,0.5)', fontWeight: 700, margin: '0 0 0.3rem 0' }}>Technical Overview</h4>
                     <p style={{ fontSize: '0.88rem', color: 'rgba(30,40,60,0.7)', lineHeight: 1.6, margin: 0 }}>
@@ -427,7 +427,7 @@ function SolutionSection({ sol, index }) {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <div className="solutions-details-subgrid" style={{ display: 'grid', gap: '1.5rem' }}>
                   <div>
                     <h4 style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'rgba(30,40,60,0.5)', fontWeight: 700, margin: '0 0 0.3rem 0' }}>Operational Scope</h4>
                     <p style={{ fontSize: '0.88rem', color: 'rgba(30,40,60,0.7)', lineHeight: 1.6, margin: 0 }}>
@@ -461,9 +461,8 @@ function SolutionSection({ sol, index }) {
                 </div>
 
                 {/* Core Specs Tab Grid */}
-                <div style={{
+                <div className="solutions-specs-grid" style={{
                   display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
                   gap: '1rem',
                   padding: '1.25rem',
                   borderRadius: '8px',
@@ -553,14 +552,14 @@ function SolutionSection({ sol, index }) {
             </ScrollReveal>
           </div>
 
-          {/* VISUAL SIDE (Cols: 8-12 if even, 1-5 if odd) */}
-          <div style={{
-            gridColumn: isEven ? '9 / 13' : '1 / 5',
+          {/* VISUAL SIDE */}
+          <div className="solutions-visual-col" style={{
             gridRow: 1,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            position: 'relative'
+            position: 'relative',
+            order: isEven ? 2 : 1
           }}>
             <ScrollReveal variant={isEven ? 'fade-right' : 'fade-left'} style={{ width: '100%' }}>
               <motion.div
@@ -571,9 +570,10 @@ function SolutionSection({ sol, index }) {
                   borderRadius: '12px',
                   boxShadow: '0 20px 40px rgba(9,97,159,0.08), 0 2px 10px rgba(0,0,0,0.02)',
                   overflow: 'hidden',
-                  aspectRatio: '4/3',
+                  width: '100%',
                   border: '1px solid rgba(9,97,159,0.1)'
                 }}
+                className="solutions-image-container"
               >
                 {/* Foreground Image */}
                 <img
@@ -583,8 +583,7 @@ function SolutionSection({ sol, index }) {
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    display: 'block',
-                    transition: 'transform 0.6s ease'
+                    display: 'block'
                   }}
                 />
                 
@@ -819,6 +818,55 @@ export default function Solutions() {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* Responsive Styles Injection */}
+      <style>{`
+        .solutions-grid-layout {
+          grid-template-columns: repeat(12, 1fr);
+        }
+        .solutions-text-col {
+          grid-column: span 7;
+        }
+        .solutions-visual-col {
+          grid-column: span 5;
+        }
+        .solutions-image-container {
+          height: 480px;
+        }
+        .solutions-details-subgrid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .solutions-specs-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: 1024px) {
+          .solutions-grid-layout {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+          .solutions-text-col {
+            grid-column: span 12 !important;
+            order: 2 !important;
+          }
+          .solutions-visual-col {
+            grid-column: span 12 !important;
+            order: 1 !important;
+          }
+          .solutions-image-container {
+            height: 320px !important;
+          }
+          .solutions-details-subgrid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+          }
+          .solutions-specs-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+          }
+        }
+      `}</style>
+
     </div>
   );
 }
