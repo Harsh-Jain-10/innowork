@@ -402,7 +402,7 @@ export default function Blogs() {
 
                   {/* Editorial Illustration Inside Article */}
                   <div style={{ width: '100%', height: '300px', backgroundColor: '#0f172a', borderRadius: '8px', overflow: 'hidden', marginBottom: '2.5rem' }}>
-                    {renderIllustration(selectedArticle.id, { height: '100%' })}
+                    {renderBlogImage(selectedArticle, { height: '100%' })}
                   </div>
 
                   {/* Article body */}
