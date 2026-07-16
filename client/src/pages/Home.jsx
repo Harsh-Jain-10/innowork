@@ -4,6 +4,75 @@ import { motion } from 'framer-motion';
 import ScrollReveal, { StaggerContainer, StaggerItem, CountUp } from '../components/ScrollReveal';
 import configData from '../data/companyConfig.json';
 
+// Import OEM partner logos
+import dellLogo from '../assets/logos/dell.svg';
+import microsoftLogo from '../assets/logos/microsoft.svg';
+import ibmLogo from '../assets/logos/ibm.svg';
+import ciscoLogo from '../assets/logos/cisco.svg';
+import hpLogo from '../assets/logos/hp.svg';
+import fortinetLogo from '../assets/logos/fortinet.svg';
+import checkpointLogo from '../assets/logos/checkpoint.svg';
+import f5Logo from '../assets/logos/f5.svg';
+import juniperLogo from '../assets/logos/juniper.svg';
+import microfocusLogo from '../assets/logos/microfocus.svg';
+import netappLogo from '../assets/logos/netapp.svg';
+import opentextLogo from '../assets/logos/opentext.svg';
+import redhatLogo from '../assets/logos/redhat.svg';
+import veeamLogo from '../assets/logos/veeam.svg';
+import dlinkLogo from '../assets/logos/dlink.svg';
+import veritasLogo from '../assets/logos/veritas.svg';
+import vinchinLogo from '../assets/logos/vinchin.png';
+import oracleLogo from '../assets/logos/oracle.svg';
+import acerLogo from '../assets/logos/acer.svg';
+import zertoLogo from '../assets/logos/zerto.png';
+
+const logoMapping = {
+  "Dell": dellLogo,
+  "Microsoft": microsoftLogo,
+  "IBM": ibmLogo,
+  "Cisco": ciscoLogo,
+  "HP": hpLogo,
+  "Checkpoint": checkpointLogo,
+  "Fortinet": fortinetLogo,
+  "F5": f5Logo,
+  "Juniper": juniperLogo,
+  "Microfocus": microfocusLogo,
+  "NetApp": netappLogo,
+  "OpenText": opentextLogo,
+  "RedHat": redhatLogo,
+  "Veeam": veeamLogo,
+  "D-Link": dlinkLogo,
+  "Veritas": veritasLogo,
+  "Vinchin": vinchinLogo,
+  "Acer": acerLogo,
+  "Zerto": zertoLogo,
+  "Oracle": oracleLogo
+};
+
+// Optical alignment configuration (proportional heights)
+const logoDetails = {
+  Dell: { height: 26 },
+  Microsoft: { height: 26 },
+  IBM: { height: 24 },
+  Cisco: { height: 32 },
+  HP: { height: 28 },
+  Checkpoint: { height: 28 },
+  Fortinet: { height: 28 },
+  F5: { height: 28 },
+  Juniper: { height: 28 },
+  Microfocus: { height: 24 },
+  NetApp: { height: 25 },
+  OpenText: { height: 24 },
+  RedHat: { height: 28 },
+  Veeam: { height: 26 },
+  "D-Link": { height: 24 },
+  Veritas: { height: 26 },
+  Vinchin: { height: 26 },
+  Acer: { height: 24 },
+  Zerto: { height: 26 },
+  Oracle: { height: 24 }
+};
+
 export default function Home() {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -247,15 +316,92 @@ export default function Home() {
       </section>
 
       {/* OEM Partner Marquee */}
-      <div style={{ backgroundColor: '#f1f5f9', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0', padding: '1.25rem 0' }}>
-        <div className="marquee-wrapper" style={{ padding: '1rem 0', background: 'transparent', border: 'none' }}>
-          <div className="marquee-content">
-            {[...configData.oemPartners, ...configData.oemPartners].map((oem, i) => (
-              <span key={i} className="marquee-item">{oem}</span>
-            ))}
-          </div>
+      <div className="premium-marquee-container" role="region" aria-label="Technology Partners Marquee">
+        <style>{`
+          .premium-marquee-container {
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1.75rem 0;
+            position: relative;
+          }
+          .premium-marquee-track {
+            display: flex;
+            flex-shrink: 0;
+            gap: 5.5rem;
+            padding-right: 5.5rem;
+            animation: marquee-scroll 45s linear infinite;
+            align-items: center;
+          }
+          .premium-marquee-container:hover .premium-marquee-track,
+          .premium-marquee-container:focus-within .premium-marquee-track {
+            animation-play-state: paused;
+          }
+          .premium-logo-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            filter: grayscale(100%) opacity(0.5);
+          }
+          .premium-logo-item:hover {
+            filter: grayscale(0%) opacity(1);
+            transform: scale(1.06);
+          }
+          @keyframes marquee-scroll {
+            0% {
+              transform: translate3d(0, 0, 0);
+            }
+            100% {
+              transform: translate3d(-100%, 0, 0);
+            }
+          }
+        `}</style>
+        <div className="premium-marquee-track">
+          {configData.oemPartners.map((oem) => {
+            const logoSrc = logoMapping[oem];
+            const details = logoDetails[oem] || { height: 28 };
+            return (
+              <div 
+                key={`m1-${oem}`} 
+                className="premium-logo-item"
+                style={{ height: `${details.height}px` }}
+              >
+                <img 
+                  src={logoSrc} 
+                  alt={`${oem} Logo`} 
+                  loading="lazy" 
+                  style={{ height: '100%', width: 'auto', display: 'block', objectFit: 'contain' }}
+                />
+              </div>
+            );
+          })}
+        </div>
+        <div className="premium-marquee-track" aria-hidden="true">
+          {configData.oemPartners.map((oem) => {
+            const logoSrc = logoMapping[oem];
+            const details = logoDetails[oem] || { height: 28 };
+            return (
+              <div 
+                key={`m2-${oem}`} 
+                className="premium-logo-item"
+                style={{ height: `${details.height}px` }}
+              >
+                <img 
+                  src={logoSrc} 
+                  alt={`${oem} Logo`} 
+                  loading="lazy" 
+                  style={{ height: '100%', width: 'auto', display: 'block', objectFit: 'contain' }}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
+
 
       {/* 3. Core Strengths & Certifications */}
       <section style={{ padding: '7rem 0' }}>
@@ -418,46 +564,110 @@ export default function Home() {
       </section>
 
       {/* 5. Technology Coverage / OEM Grid */}
-      <section style={{ padding: '5.5rem 0', backgroundColor: '#ffffff', borderTop: '1px solid #e2e8f0' }}>
-        <div className="container">
+      <section style={{ 
+        padding: '6.5rem 0', 
+        backgroundColor: '#ffffff', 
+        borderTop: '1px solid #e2e8f0',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        {/* Subtle spotlight background */}
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '600px',
+          height: '600px',
+          background: 'radial-gradient(circle, rgba(9,97,159,0.04) 0%, rgba(255,255,255,0) 70%)',
+          pointerEvents: 'none',
+          zIndex: 0
+        }} />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <ScrollReveal variant="fade-up">
-            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
               <span style={{ color: 'var(--brand-blue)', fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
                 Technology Ecosystem
               </span>
-              <h3 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-light-primary)', marginTop: '0.75rem', marginBottom: '0.75rem' }}>
+              <h3 style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--text-light-primary)', marginTop: '0.5rem', marginBottom: '0.75rem' }}>
                 OEM Coverage &amp; Alliances
               </h3>
-              <p style={{ color: 'var(--text-light-secondary)', fontSize: '0.95rem', maxWidth: '550px', margin: '0 auto' }}>
-                We deliver third-party maintenance and operational support covering systems from leading global technology vendors.
+              <p style={{ color: 'var(--text-light-secondary)', fontSize: '0.98rem', maxWidth: '600px', margin: '0 auto', lineHeight: '1.6' }}>
+                We deliver third-party maintenance and SLA-bound operational support covering enterprise systems from leading global technology vendors.
               </p>
             </div>
           </ScrollReveal>
 
-          <StaggerContainer stagger={0.04} style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem', justifyContent: 'center' }}>
-            {configData.oemPartners.map((oem) => (
-              <StaggerItem key={oem} variant="scale">
-                <motion.span
-                  whileHover={{ y: -3, backgroundColor: 'var(--brand-blue)', color: '#ffffff', borderColor: 'var(--brand-blue)', boxShadow: '0 6px 16px rgba(9,97,159,0.25)' }}
-                  transition={{ duration: 0.22 }}
-                  style={{
-                    display: 'inline-block',
-                    backgroundColor: '#f8fafc',
-                    color: 'var(--text-light-primary)',
-                    padding: '0.5rem 1.1rem',
-                    borderRadius: '6px',
-                    fontSize: '0.85rem',
-                    border: '1px solid #cbd5e1',
-                    fontWeight: 600,
-                    cursor: 'default'
-                  }}
-                >
-                  {oem}
-                </motion.span>
-              </StaggerItem>
-            ))}
+          <StaggerContainer stagger={0.03} className="oem-grid-wrapper">
+            {configData.oemPartners.map((oem) => {
+              const logoSrc = logoMapping[oem];
+              const details = logoDetails[oem] || { height: 28 };
+              return (
+                <StaggerItem key={oem} variant="scale">
+                  <div 
+                    className="oem-grid-item"
+                    style={{ '--logo-height': `${details.height}px` }}
+                  >
+                    <img 
+                      src={logoSrc} 
+                      alt={`${oem} Logo`} 
+                      loading="lazy" 
+                      className="oem-grid-logo"
+                    />
+                  </div>
+                </StaggerItem>
+              );
+            })}
           </StaggerContainer>
         </div>
+
+        <style>{`
+          .oem-grid-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 3.5rem 5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1rem;
+          }
+          .oem-grid-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: var(--logo-height);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: grayscale(100%) opacity(0.65);
+          }
+          .oem-grid-item:hover {
+            transform: scale(1.08);
+            filter: drop-shadow(0 4px 10px rgba(9, 97, 159, 0.15)) grayscale(0%) opacity(1);
+          }
+          .oem-grid-logo {
+            height: 100%;
+            width: auto;
+            display: block;
+            object-fit: contain;
+          }
+          @media (max-width: 768px) {
+            .oem-grid-wrapper {
+              gap: 2.5rem 3.5rem;
+            }
+            .oem-grid-item {
+              height: calc(var(--logo-height) * 0.85);
+            }
+          }
+          @media (max-width: 480px) {
+            .oem-grid-wrapper {
+              gap: 2rem 2.5rem;
+            }
+            .oem-grid-item {
+              height: calc(var(--logo-height) * 0.75);
+            }
+          }
+        `}</style>
       </section>
 
       {/* 6. CTA Band */}
