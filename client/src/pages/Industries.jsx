@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ScrollReveal from '../components/ScrollReveal';
 import {
@@ -28,7 +28,7 @@ const INDUSTRIES = [
       'Securing edge gateways against lateral network threats',
       'High-availability command center uptime across civic operations',
     ],
-    technologies: ['Cisco IoT', 'Dell EMC Storage', 'Fortinet FortiGate', 'IBM Systems'],
+    technologies: ['Cisco IoT Platforms', 'Dell EMC Storage', 'Fortinet Security', 'IBM Systems'],
     services: ['ICCC Integration', 'NOC Operations', 'Edge Gateway Security', 'Video Surveillance Management'],
     Illustration: SmartCityIllustration,
   },
@@ -42,7 +42,7 @@ const INDUSTRIES = [
       'Maintaining base station network continuity at scale',
       'Multi-vendor routing table optimization across distributed POPs',
     ],
-    technologies: ['Juniper MX Series', 'Cisco Core Switches', 'F5 BIG-IP', 'NetApp Storage'],
+    technologies: ['Juniper MX Series', 'Cisco Core Switches', 'F5 BIG-IP systems', 'NetApp Storage'],
     services: ['Edge Routing Configuration', 'High-Availability Switching', 'NOC Operations', 'Third-Party Maintenance'],
     Illustration: TelecomIllustration,
   },
@@ -84,7 +84,7 @@ const INDUSTRIES = [
       'Active-active DR replication with sub-second failover',
       'Stringent RBI and SEBI regulatory compliance requirements',
     ],
-    technologies: ['Checkpoint Quantum', 'F5 Advanced WAF', 'Oracle Database', 'Fortinet Secure SD-WAN'],
+    technologies: ['Checkpoint Quantum', 'F5 Advanced WAF', 'Oracle Database', 'Fortinet SD-WAN'],
     services: ['Secure Datacenter Architecture', 'DR Sync Administration', 'Compliance Audit Preparation', 'Penetration Testing Support'],
     Illustration: BFSIIllustration,
   },
@@ -140,7 +140,7 @@ const INDUSTRIES = [
       'I/O bottlenecks in petabyte-scale media storage clusters',
       'Peak traffic management during live broadcast windows',
     ],
-    technologies: ['F5 BIG-IP LTM', 'NetApp ONTAP', 'Cisco Catalyst', 'Akamai CDN Integration'],
+    technologies: ['F5 BIG-IP systems', 'NetApp Storage', 'Cisco Catalyst', 'CDN Integrations'],
     services: ['CDN Architecture Tuning', 'Media Storage Cluster Support', 'Multi-Vendor Network Maintenance', 'SLA Network Monitoring'],
     Illustration: MediaIllustration,
   },
@@ -161,9 +161,9 @@ const FILTER_TAGS = [
 ────────────────────────────────────────────────────────────── */
 function CheckIcon() {
   return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-      <circle cx="7" cy="7" r="7" fill="rgba(9,97,159,0.12)" />
-      <path d="M4 7.2L6.2 9.4L10 5" stroke="rgba(9,97,159,0.8)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" style={{ marginTop: '2px' }}>
+      <circle cx="7" cy="7" r="7" fill="rgba(9,97,159,0.1)" />
+      <path d="M4 7.2L6.2 9.4L10 5" stroke="rgba(9,97,159,0.85)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -173,20 +173,20 @@ function ChevronIcon({ isOpen }) {
     <motion.svg
       width="16" height="16" viewBox="0 0 16 16" fill="none"
       animate={{ rotate: isOpen ? 180 : 0 }}
-      transition={{ duration: 0.25 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
       aria-hidden="true"
     >
-      <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </motion.svg>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Radar ecosystem visualization (shown on expand)
+   Radar ecosystem visualization (optimized for high smoothness)
 ────────────────────────────────────────────────────────────── */
 function RadarDashboard({ industry, isActive }) {
   const reduced = useReducedMotion();
-  const animate = !reduced;
+  const animate = !reduced && isActive;
   const nodeCount = industry.technologies.length;
 
   return (
@@ -194,17 +194,17 @@ function RadarDashboard({ industry, isActive }) {
       <div style={{ position: 'absolute', inset: 0 }}>
         <svg viewBox="0 0 200 200" style={{ width: '100%', height: '100%' }}
           aria-label={`${industry.name} Technology Ecosystem`}>
-          {/* Rings */}
+          {/* Concentric rings */}
           {[30, 55, 80].map((r, i) => (
             <motion.circle key={i} cx="100" cy="100" r={r}
               fill="none" stroke={`rgba(9,97,159,${0.12 - i * 0.03})`} strokeWidth="1" strokeDasharray="3 4"
-              animate={animate && isActive ? { rotate: i % 2 === 0 ? 360 : -360 } : {}}
+              animate={animate ? { rotate: i % 2 === 0 ? 360 : -360 } : {}}
               style={{ transformOrigin: '100px 100px' }}
-              transition={{ duration: 18 + i * 5, repeat: Infinity, ease: 'linear' }}
+              transition={{ duration: 22 + i * 8, repeat: Infinity, ease: 'linear' }}
             />
           ))}
 
-          {/* Radial spokes */}
+          {/* Radial lines */}
           {Array.from({ length: 6 }).map((_, i) => {
             const angle = (i * 60 * Math.PI) / 180;
             return (
@@ -214,19 +214,14 @@ function RadarDashboard({ industry, isActive }) {
             );
           })}
 
-          {/* Center hub */}
-          <motion.circle cx="100" cy="100" r="14"
-            fill="rgba(9,97,159,0.2)" stroke="rgba(9,97,159,0.6)" strokeWidth="1.5"
-            animate={animate && isActive ? { r: [14, 17, 14], opacity: [0.8, 1, 0.8] } : {}}
-            transition={{ duration: 2.5, repeat: Infinity }}
-          />
-          <motion.circle cx="100" cy="100" r="25"
-            fill="none" stroke="rgba(9,97,159,0.15)" strokeWidth="1"
-            animate={animate && isActive ? { r: [25, 35, 25], opacity: [0.5, 0, 0.5] } : {}}
-            transition={{ duration: 2.5, repeat: Infinity }}
+          {/* Core node */}
+          <motion.circle cx="100" cy="100" r="12"
+            fill="rgba(9,97,159,0.18)" stroke="rgba(9,97,159,0.6)" strokeWidth="1.5"
+            animate={animate ? { r: [12, 14, 12] } : {}}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
           />
 
-          {/* Technology nodes */}
+          {/* Outer active nodes */}
           {industry.technologies.map((tech, i) => {
             const angle = ((i / nodeCount) * 360 - 90) * (Math.PI / 180);
             const r = 62;
@@ -235,21 +230,16 @@ function RadarDashboard({ industry, isActive }) {
             const shortName = tech.split(' ')[0];
             return (
               <g key={i}>
-                <motion.line x1="100" y1="100" x2={cx} y2={cy}
-                  stroke="rgba(9,97,159,0.15)" strokeWidth="1" strokeDasharray="3 3"
-                  animate={animate && isActive ? { opacity: [0.3, 0.8, 0.3] } : {}}
-                  transition={{ duration: 2, delay: i * 0.4, repeat: Infinity }}
+                <line x1="100" y1="100" x2={cx} y2={cy}
+                  stroke="rgba(9,97,159,0.1)" strokeWidth="1" strokeDasharray="2 2"
                 />
-                <motion.circle cx={cx} cy={cy} r="8"
-                  fill="rgba(9,97,159,0.15)" stroke="rgba(9,97,159,0.4)" strokeWidth="1.5"
-                  animate={animate && isActive ? {
-                    r: [8, 10, 8],
-                    stroke: ['rgba(9,97,159,0.4)', 'rgba(9,97,159,0.8)', 'rgba(9,97,159,0.4)'],
-                  } : {}}
-                  transition={{ duration: 2, delay: i * 0.5, repeat: Infinity }}
+                <motion.circle cx={cx} cy={cy} r="7"
+                  fill="rgba(9,97,159,0.15)" stroke="rgba(9,97,159,0.4)" strokeWidth="1.25"
+                  animate={animate ? { r: [7, 8.5, 7] } : {}}
+                  transition={{ duration: 2.5, delay: i * 0.4, repeat: Infinity, ease: 'easeInOut' }}
                 />
-                <text x={cx} y={cy + 3} textAnchor="middle"
-                  fontSize="5" fill="rgba(9,97,159,0.7)" fontFamily="monospace">
+                <text x={cx} y={cy + 2.5} textAnchor="middle"
+                  fontSize="4.5" fill="rgba(9,97,159,0.8)" fontWeight="bold" fontFamily="monospace">
                   {shortName}
                 </text>
               </g>
@@ -262,274 +252,257 @@ function RadarDashboard({ industry, isActive }) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Single industry panel
+   Industry Panel Component (Vertical Accordion layout for high-end smoothness)
 ────────────────────────────────────────────────────────────── */
 function IndustryPanel({ industry, isExpanded, onToggle, index }) {
   const { Illustration } = industry;
   const [isHovered, setIsHovered] = useState(false);
+  const panelRef = useRef(null);
+
+  // Smooth scroll into focus when expanded
+  useEffect(() => {
+    if (isExpanded && panelRef.current) {
+      const timer = setTimeout(() => {
+        panelRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 350);
+      return () => clearTimeout(timer);
+    }
+  }, [isExpanded]);
 
   return (
     <motion.article
-      layout
-      initial={{ opacity: 0, y: 30 }}
+      ref={panelRef}
+      initial={{ opacity: 0, y: 25 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.5, delay: index * 0.06, layout: { duration: 0.4 } }}
+      viewport={{ once: true, margin: '-20px' }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
       style={{
-        background: isExpanded
-          ? 'linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%)'
-          : '#ffffff',
+        background: '#ffffff',
         border: isExpanded ? '1.5px solid rgba(9,97,159,0.35)' : '1px solid rgba(9,97,159,0.12)',
         borderRadius: '12px',
         overflow: 'hidden',
         boxShadow: isExpanded
-          ? '0 12px 40px rgba(9,97,159,0.12), 0 2px 8px rgba(9,97,159,0.06)'
-          : '0 2px 8px rgba(9,97,159,0.04)',
-        height: '100%',
+          ? '0 12px 35px rgba(9,97,159,0.06), 0 2px 8px rgba(9,97,159,0.03)'
+          : '0 4px 12px rgba(0,0,0,0.01)',
+        marginBottom: '1rem',
+        transition: 'border-color 0.3s ease, box-shadow 0.3s ease'
       }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       aria-label={`${industry.name} industry panel`}
     >
-      {/* Header — click target for toggle */}
+      {/* Header — toggle expand click target */}
       <div
-        style={{ padding: '1.5rem', cursor: 'pointer' }}
+        style={{ 
+          padding: '1.75rem 2rem', 
+          cursor: 'pointer',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: '1.5rem',
+          userSelect: 'none'
+        }}
         onClick={onToggle}
         onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && onToggle()}
         tabIndex={0}
         role="button"
         aria-expanded={isExpanded}
       >
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-
-          {/* Thumbnail illustration (collapsed only) */}
-          {!isExpanded && (
-            <div style={{
-              flexShrink: 0,
-              width: '80px', height: '80px',
-              borderRadius: '8px',
-              background: 'linear-gradient(135deg, #f0f7ff, #e8f4fd)',
-              border: '1px solid rgba(9,97,159,0.1)',
-              padding: '4px',
-            }}>
-              <Illustration isHovered={isHovered} />
-            </div>
-          )}
-
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem' }}>
-              <div>
-                <span style={{
-                  fontSize: '0.65rem', fontWeight: 700, letterSpacing: '2px',
-                  color: 'rgba(9,97,159,0.6)', fontFamily: 'monospace',
-                  textTransform: 'uppercase', display: 'block', marginBottom: '0.25rem',
-                }}>
-                  {industry.shortTag}
-                </span>
-                <h2 style={{
-                  fontSize: isExpanded ? '1.35rem' : '1.05rem',
-                  fontWeight: 700, color: 'rgba(9,97,159,0.9)',
-                  margin: 0, letterSpacing: '-0.3px',
-                }}>
-                  {industry.name}
-                </h2>
-              </div>
-              <motion.div style={{ color: 'rgba(9,97,159,0.5)', flexShrink: 0 }}
-                animate={{ color: isHovered ? 'rgba(9,97,159,0.9)' : 'rgba(9,97,159,0.5)' }}>
-                <ChevronIcon isOpen={isExpanded} />
-              </motion.div>
-            </div>
-            <p style={{
-              color: 'rgba(30,40,60,0.7)', fontSize: '0.85rem',
-              lineHeight: 1.6, margin: '0.5rem 0 0',
-              display: '-webkit-box',
-              WebkitLineClamp: isExpanded ? 'unset' : 2,
-              WebkitBoxOrient: 'vertical',
-              overflow: isExpanded ? 'visible' : 'hidden',
-            }}>
-              {industry.desc}
-            </p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: 1 }}>
+          {/* Visual logo avatar */}
+          <div style={{
+            flexShrink: 0,
+            width: '60px', height: '60px',
+            borderRadius: '8px',
+            background: 'linear-gradient(135deg, #f0f7ff, #e8f4fd)',
+            border: '1px solid rgba(9,97,159,0.1)',
+            padding: '4px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <Illustration isHovered={isHovered || isExpanded} />
           </div>
+
+          <div>
+            <span style={{
+              fontSize: '0.66rem',
+              fontWeight: 700,
+              letterSpacing: '1.5px',
+              color: 'rgba(9,97,159,0.6)',
+              fontFamily: 'monospace',
+              textTransform: 'uppercase',
+              display: 'block',
+              marginBottom: '0.2rem'
+            }}>
+              {industry.shortTag}
+            </span>
+            <h3 style={{
+              fontSize: '1.3rem',
+              fontWeight: 800,
+              color: isExpanded ? 'rgba(9,97,159,0.95)' : 'rgba(12,20,35,0.85)',
+              margin: 0,
+              letterSpacing: '-0.3px',
+              transition: 'color 0.25s'
+            }}>
+              {industry.name}
+            </h3>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          {/* Tags (only shown when collapsed for summary info) */}
+          {!isExpanded && (
+            <span className="industry-collapsed-tagline" style={{ fontSize: '0.84rem', color: 'rgba(30,40,60,0.5)', fontWeight: 500 }}>
+              {industry.desc.substring(0, 68)}...
+            </span>
+          )}
+          
+          <motion.div style={{ color: isExpanded ? 'rgba(9,97,159,0.9)' : 'rgba(9,97,159,0.45)' }}>
+            <ChevronIcon isOpen={isExpanded} />
+          </motion.div>
         </div>
       </div>
 
-      {/* Expanded body — no click interception needed since article has no onClick */}
-      {isExpanded && (
-        <div>
-          <div style={{
-            padding: '0 1.5rem 1.5rem',
-            borderTop: '1px solid rgba(9,97,159,0.08)',
-            paddingTop: '1rem',
-            display: 'grid',
-            gridTemplateColumns: '1fr 220px',
-            gap: '2rem',
-            alignItems: 'start',
-          }}>
-            {/* Left: illustration + challenges + services */}
-            <div>
-              {/* Full illustration */}
+      {/* Expanded Accordion Body — Smooth Height Animation */}
+      <AnimatePresence initial={false}>
+        {isExpanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
+            style={{ overflow: 'hidden' }}
+          >
+            <div style={{
+              padding: '0 2rem 2rem 2rem',
+              borderTop: '1px solid rgba(9,97,159,0.06)',
+              paddingTop: '2rem',
+              display: 'grid',
+              gridTemplateColumns: '1.2fr 0.8fr',
+              gap: '3rem',
+              alignItems: 'start'
+            }} className="industry-expanded-grid">
+              
+              {/* Left Column: Scope details */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div>
+                  <h4 style={{ fontSize: '0.74rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Sector Overview</h4>
+                  <p style={{ fontSize: '0.98rem', color: 'rgba(30,40,60,0.75)', lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
+                    {industry.desc}
+                  </p>
+                </div>
+
+                <div>
+                  <h4 style={{ fontSize: '0.74rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Technical Challenges</h4>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    {industry.challenges.map((c, i) => (
+                      <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.86rem', color: 'rgba(30,40,60,0.75)', lineHeight: 1.5 }}>
+                        <CheckIcon />
+                        <span>{c}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 style={{ fontSize: '0.74rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>INNOWORQ Services</h4>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                    {industry.services.map((s, i) => (
+                      <span key={i} style={{
+                        fontSize: '0.76rem', padding: '0.2rem 0.65rem',
+                        background: 'rgba(9,97,159,0.05)', color: 'rgba(9,97,159,0.85)',
+                        borderRadius: '4px', border: '1px solid rgba(9,97,159,0.12)',
+                        fontWeight: 600, whiteSpace: 'nowrap'
+                      }}>
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Interactive Ecosystem */}
               <div style={{
-                width: '100%', height: '200px',
-                background: 'linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 100%)',
-                borderRadius: '8px', marginBottom: '1.25rem',
-                border: '1px solid rgba(9,97,159,0.1)',
-                overflow: 'hidden',
+                backgroundColor: 'rgba(9,97,159,0.02)',
+                border: '1px solid rgba(9,97,159,0.08)',
+                borderRadius: '8px',
+                padding: '1.5rem',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
               }}>
-                <Illustration isHovered />
-              </div>
-
-              {/* Challenges */}
-              <div style={{ marginBottom: '1.25rem' }}>
-                <h3 style={{
-                  fontSize: '0.7rem', fontWeight: 700, color: 'rgba(9,97,159,0.6)',
-                  textTransform: 'uppercase', letterSpacing: '2px', fontFamily: 'monospace',
-                  marginBottom: '0.6rem',
-                }}>
-                  Technical Challenges
-                </h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                  {industry.challenges.map((c, i) => (
-                    <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.82rem', color: 'rgba(30,40,60,0.75)', lineHeight: 1.5 }}>
-                      <span style={{ flexShrink: 0, marginTop: '2px' }}><CheckIcon /></span>
-                      {c}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Services */}
-              <div>
-                <h3 style={{
-                  fontSize: '0.7rem', fontWeight: 700, color: 'rgba(9,97,159,0.6)',
-                  textTransform: 'uppercase', letterSpacing: '2px', fontFamily: 'monospace',
-                  marginBottom: '0.6rem',
-                }}>
-                  INNOWORQ Services
-                </h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-                  {industry.services.map((s, i) => (
+                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'rgba(9,97,159,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1rem', display: 'block', textAlign: 'center' }}>
+                  Technology Ecosystem
+                </span>
+                <div style={{ width: '100%', maxWidth: '240px' }}>
+                  <RadarDashboard industry={industry} isActive={isExpanded} />
+                </div>
+                <div style={{ width: '100%', borderTop: '1px solid rgba(9,97,159,0.08)', paddingTop: '1rem', marginTop: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center' }}>
+                  {industry.technologies.map((t, i) => (
                     <span key={i} style={{
-                      fontSize: '0.75rem', padding: '0.25rem 0.65rem',
-                      background: 'rgba(9,97,159,0.08)', color: 'rgba(9,97,159,0.8)',
-                      borderRadius: '100px', border: '1px solid rgba(9,97,159,0.15)',
-                      fontWeight: 500, whiteSpace: 'nowrap',
+                      fontSize: '0.7rem',
+                      padding: '0.15rem 0.5rem',
+                      borderRadius: '4px',
+                      background: '#ffffff',
+                      border: '1px solid rgba(9,97,159,0.1)',
+                      color: 'rgba(30,40,60,0.6)'
                     }}>
-                      {s}
+                      {t}
                     </span>
                   ))}
                 </div>
               </div>
+
             </div>
 
-            {/* Right: Radar */}
-            <div>
-              <h3 style={{
-                fontSize: '0.7rem', fontWeight: 700, color: 'rgba(9,97,159,0.6)',
-                textTransform: 'uppercase', letterSpacing: '2px', fontFamily: 'monospace',
-                marginBottom: '0.75rem', textAlign: 'center',
-              }}>
-                Technology Ecosystem
-              </h3>
-              <RadarDashboard industry={industry} isActive={isExpanded} />
-              <div style={{ marginTop: '0.75rem' }}>
-                {industry.technologies.map((t, i) => (
-                  <div key={i} style={{
-                    display: 'flex', alignItems: 'center', gap: '0.4rem',
-                    fontSize: '0.75rem', color: 'rgba(30,40,60,0.65)', marginBottom: '0.3rem',
-                  }}>
-                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'rgba(9,97,159,0.5)', flexShrink: 0 }} />
-                    {t}
-                  </div>
-                ))}
-              </div>
+            {/* Action Buttons */}
+            <div style={{
+              padding: '0 2rem 2rem 2rem',
+              display: 'flex',
+              gap: '1rem',
+              borderTop: '1px solid rgba(9,97,159,0.04)',
+              paddingTop: '1.25rem'
+            }}>
+              <Link
+                to={`/support-desk?sector=${industry.id}`}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                  padding: '0.6rem 1.3rem',
+                  background: 'rgba(9,97,159,1)',
+                  color: '#fff', borderRadius: '6px',
+                  fontSize: '0.84rem', fontWeight: 700, textDecoration: 'none',
+                  boxShadow: '0 4px 14px rgba(9,97,159,0.18)'
+                }}
+              >
+                Discuss this Sector
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6h8M6.5 2.5l3.5 3.5-3.5 3.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+              <Link
+                to="/services"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                  padding: '0.6rem 1.3rem',
+                  background: 'transparent',
+                  color: 'rgba(9,97,159,0.85)', borderRadius: '6px',
+                  fontSize: '0.84rem', fontWeight: 700, textDecoration: 'none',
+                  border: '1px solid rgba(9,97,159,0.2)'
+                }}
+              >
+                View Services
+              </Link>
             </div>
-          </div>
-
-          {/* CTA row */}
-          <div style={{
-            padding: '0.75rem 1.5rem 1.25rem',
-            borderTop: '1px solid rgba(9,97,159,0.06)',
-            display: 'flex', alignItems: 'center', gap: '1rem',
-          }}>
-            <Link
-              to={`/support-desk?sector=${industry.id}`}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-                padding: '0.5rem 1.1rem',
-                background: 'rgba(9,97,159,1)',
-                color: '#fff', borderRadius: '6px',
-                fontSize: '0.8rem', fontWeight: 600, textDecoration: 'none',
-              }}
-            >
-              Discuss this Sector
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <path d="M2 6h8M6.5 2.5l3.5 3.5-3.5 3.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </Link>
-            <Link
-              to="/services"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-                padding: '0.5rem 1.1rem',
-                background: 'transparent',
-                color: 'rgba(9,97,159,0.8)', borderRadius: '6px',
-                fontSize: '0.8rem', fontWeight: 600, textDecoration: 'none',
-                border: '1px solid rgba(9,97,159,0.25)',
-              }}
-            >
-              View Services
-            </Link>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.article>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Hero stats strip
-────────────────────────────────────────────────────────────── */
-const STATS = [
-  { value: '9',     label: 'Industry Sectors'  },
-  { value: '24/7',  label: 'NOC Operations'    },
-  { value: '99.9%', label: 'SLA Uptime Target' },
-  { value: '20+',   label: 'OEM Partnerships'  },
-];
-
-function StatsStrip() {
-  return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: 'repeat(4, 1fr)',
-      borderTop: '1px solid rgba(9,97,159,0.1)',
-      borderBottom: '1px solid rgba(9,97,159,0.1)',
-    }}>
-      {STATS.map((s, i) => (
-        <div key={i} style={{
-          padding: '1.5rem 2rem',
-          borderRight: i < STATS.length - 1 ? '1px solid rgba(9,97,159,0.08)' : 'none',
-          textAlign: 'center',
-        }}>
-          <div style={{
-            fontSize: '1.8rem', fontWeight: 800, color: 'rgba(9,97,159,0.9)',
-            letterSpacing: '-1px', lineHeight: 1,
-          }}>
-            {s.value}
-          </div>
-          <div style={{
-            fontSize: '0.72rem', color: 'rgba(30,40,60,0.5)',
-            marginTop: '0.3rem', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '1px',
-          }}>
-            {s.label}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────
-   Main page
+   Main Industries Page
 ────────────────────────────────────────────────────────────── */
 export default function Industries() {
   const [expandedId, setExpandedId] = useState(null);
@@ -547,13 +520,14 @@ export default function Industries() {
   }
 
   return (
-    <main id="industries-page-view" style={{ backgroundColor: '#f8fafc', color: 'var(--text-light-primary)' }}>
+    <main id="industries-page-view" style={{ backgroundColor: '#ffffff', color: 'var(--text-light-primary)' }}>
 
       {/* ── Hero ── */}
       <section style={{
-        background: 'linear-gradient(155deg, #f0f7ff 0%, #f8fafc 55%, #eef6fd 100%)',
-        padding: '7rem 0 0',
+        background: 'linear-gradient(135deg, #f0f7ff 0%, #f8fafc 55%, #eef6fd 100%)',
+        padding: '8rem 0 3rem 0',
         position: 'relative', overflow: 'hidden',
+        borderBottom: '1px solid rgba(9,97,159,0.1)'
       }}>
         {/* Blueprint grid */}
         <div style={{
@@ -563,41 +537,31 @@ export default function Industries() {
             linear-gradient(90deg, rgba(9,97,159,0.04) 1px, transparent 1px)
           `,
           backgroundSize: '40px 40px',
-        }} />
-
-        {/* Radial glow */}
-        <div style={{
-          position: 'absolute', top: '-30%', left: '50%', transform: 'translateX(-50%)',
-          width: '900px', height: '900px', borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(9,97,159,0.06) 0%, transparent 70%)',
-          pointerEvents: 'none',
+          opacity: 0.8
         }} />
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ textAlign: 'center', paddingBottom: '3rem' }}>
+          <div style={{ textAlign: 'center', paddingBottom: '2rem' }}>
             <ScrollReveal variant="fade-down">
-              <motion.span
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                style={{
-                  display: 'inline-block',
-                  background: 'rgba(9,97,159,0.08)',
-                  border: '1px solid rgba(9,97,159,0.2)',
-                  borderRadius: '100px',
-                  padding: '0.3rem 1rem',
-                  fontSize: '0.72rem', fontWeight: 700,
-                  color: 'rgba(9,97,159,0.8)',
-                  letterSpacing: '2px', textTransform: 'uppercase',
-                  fontFamily: 'monospace',
-                  marginBottom: '1.5rem',
-                }}
-              >
+              <span style={{
+                display: 'inline-block',
+                background: 'rgba(9,97,159,0.08)',
+                border: '1px solid rgba(9,97,159,0.2)',
+                borderRadius: '100px',
+                padding: '0.3rem 1.2rem',
+                fontSize: '0.74rem',
+                fontWeight: 700,
+                color: 'rgba(9,97,159,0.95)',
+                letterSpacing: '2px',
+                textTransform: 'uppercase',
+                fontFamily: 'monospace',
+                marginBottom: '1.25rem',
+              }}>
                 Domain Alignments
-              </motion.span>
+              </span>
 
               <h1 style={{
-                fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
+                fontSize: 'clamp(2.5rem, 5vw, 3.8rem)',
                 fontWeight: 800, letterSpacing: '-1.5px',
                 color: 'rgba(12,20,35,0.92)',
                 lineHeight: 1.1, marginBottom: '1.25rem',
@@ -606,49 +570,44 @@ export default function Industries() {
               </h1>
 
               <p style={{
-                fontSize: '1.05rem', color: 'rgba(30,40,60,0.65)',
-                maxWidth: '620px', margin: '0 auto', lineHeight: 1.75,
+                fontSize: '1.08rem', color: 'rgba(30,40,60,0.65)',
+                maxWidth: '680px', margin: '0 auto', lineHeight: 1.75,
               }}>
                 INNOWORQ designs SLA-driven infrastructure architectures for{' '}
-                <strong style={{ color: 'rgba(9,97,159,0.85)' }}>9 industry verticals</strong>,
+                <strong style={{ color: 'rgba(9,97,159,0.95)' }}>9 industry verticals</strong>,
                 from critical banking infrastructure to smart city deployments and telecom networks.
               </p>
             </ScrollReveal>
           </div>
         </div>
-
-        {/* Stats strip */}
-        <div className="container" style={{ padding: 0, maxWidth: '100%' }}>
-          <StatsStrip />
-        </div>
       </section>
 
-      {/* ── Industry Grid ── */}
-      <section style={{ padding: '4rem 0 5rem' }}>
-        <div className="container">
+      {/* ── Industry Grid Accordion Stack ── */}
+      <section style={{ padding: '3.5rem 0 6rem 0', backgroundColor: '#f8fafc' }}>
+        <div className="container" style={{ maxWidth: '960px' }}>
 
           {/* Filter tabs */}
           <ScrollReveal variant="fade-up">
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '2.5rem', justifyContent: 'center' }}>
               {FILTER_TAGS.map(tag => (
                 <button
                   key={tag.id}
                   id={`filter-${tag.id}`}
                   onClick={() => { setActiveFilter(tag.id); setExpandedId(null); }}
                   style={{
-                    padding: '0.45rem 1rem',
+                    padding: '0.45rem 1.1rem',
                     borderRadius: '100px',
                     border: activeFilter === tag.id
                       ? '1.5px solid rgba(9,97,159,0.6)'
                       : '1px solid rgba(9,97,159,0.18)',
                     background: activeFilter === tag.id
-                      ? 'rgba(9,97,159,0.1)'
-                      : 'rgba(255,255,255,0.8)',
+                      ? 'rgba(9,97,159,0.08)'
+                      : '#ffffff',
                     color: activeFilter === tag.id
                       ? 'rgba(9,97,159,0.9)'
                       : 'rgba(30,40,60,0.6)',
                     fontSize: '0.8rem', fontWeight: 600,
-                    cursor: 'pointer', transition: 'all 0.2s',
+                    cursor: 'pointer', transition: 'all 0.25s',
                   }}
                 >
                   {tag.label}
@@ -657,22 +616,16 @@ export default function Industries() {
             </div>
           </ScrollReveal>
 
-          {/* Industry panels — plain CSS grid; wrapper div controls column span */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+          {/* Vertical Accordion Stack - Buttery Smooth and Lag-free */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
             {visibleIndustries.map((industry, i) => (
-              <div
+              <IndustryPanel
                 key={industry.id}
-                style={{
-                  gridColumn: expandedId === industry.id ? 'span 2' : 'span 1',
-                }}
-              >
-                <IndustryPanel
-                  industry={industry}
-                  isExpanded={expandedId === industry.id}
-                  onToggle={() => toggleExpand(industry.id)}
-                  index={i}
-                />
-              </div>
+                industry={industry}
+                isExpanded={expandedId === industry.id}
+                onToggle={() => toggleExpand(industry.id)}
+                index={i}
+              />
             ))}
           </div>
         </div>
@@ -682,34 +635,33 @@ export default function Industries() {
       <section style={{
         background: 'linear-gradient(135deg, rgba(9,97,159,0.06) 0%, rgba(9,97,159,0.02) 100%)',
         borderTop: '1px solid rgba(9,97,159,0.1)',
-        borderBottom: '1px solid rgba(9,97,159,0.1)',
-        padding: '4rem 0',
+        padding: '5rem 0',
       }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <ScrollReveal variant="fade-up">
             <h2 style={{
-              fontSize: '1.75rem', fontWeight: 800, color: 'rgba(12,20,35,0.88)',
-              letterSpacing: '-0.5px', marginBottom: '0.75rem',
+              fontSize: '2.25rem', fontWeight: 800, color: 'rgba(12,20,35,0.9)',
+              letterSpacing: '-1px', marginBottom: '0.75rem',
             }}>
-              Ready to architect for your sector?
+              Ready to Architect for Your Sector?
             </h2>
             <p style={{
               fontSize: '1rem', color: 'rgba(30,40,60,0.6)',
-              maxWidth: '480px', margin: '0 auto 1.75rem', lineHeight: 1.7,
+              maxWidth: '520px', margin: '0 auto 2.25rem', lineHeight: 1.7,
             }}>
               Our sector specialists will assess your IT infrastructure demands and
               deliver a tailored SLA architecture roadmap.
             </p>
-            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
                 to="/support-desk"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                  padding: '0.75rem 1.75rem',
+                  padding: '0.8rem 1.8rem',
                   background: 'rgba(9,97,159,1)',
                   color: '#fff', borderRadius: '8px',
                   fontSize: '0.9rem', fontWeight: 700, textDecoration: 'none',
-                  boxShadow: '0 4px 16px rgba(9,97,159,0.25)',
+                  boxShadow: '0 4px 16px rgba(9,97,159,0.2)',
                 }}
               >
                 Request a Sector Assessment
@@ -721,7 +673,7 @@ export default function Industries() {
                 to="/services"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                  padding: '0.75rem 1.75rem',
+                  padding: '0.8rem 1.8rem',
                   background: '#ffffff',
                   color: 'rgba(9,97,159,0.85)', borderRadius: '8px',
                   fontSize: '0.9rem', fontWeight: 700, textDecoration: 'none',
@@ -734,6 +686,19 @@ export default function Industries() {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* Responsive Styles Injection */}
+      <style>{`
+        @media (max-width: 768px) {
+          .industry-expanded-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+          .industry-collapsed-tagline {
+            display: none !important;
+          }
+        }
+      `}</style>
     </main>
   );
 }
