@@ -27,50 +27,51 @@ const TEAM_IMAGES = {
 };
 
 const CERTIFICATES = [
-  { name: "ISO 45001:2018", img: iso45001 },
-  { name: "ISO 9001:2015", img: iso9001 },
-  { name: "ISO 27001:2022", img: iso27001 },
-  { name: "ISO 20000-1:2018", img: iso20000 },
-  { name: "CMMI Level 3", img: cmmiLevel3 }
-];
-
-const CORE_STATS = [
-  {
-    number: "99+",
-    label: "Happy Clients",
-    desc: "Professional and certified professionals",
-    delay: 0
-  },
-  {
-    number: "298+",
-    label: "Head Count",
-    desc: "Fortune Clients",
-    delay: 0.1
-  },
-  {
-    number: "49K+",
-    label: "Devices Supported",
-    desc: "Unix, Windows Servers and DC assets",
-    delay: 0.2
-  },
-  {
-    number: "19+",
-    label: "Strategic Alliances",
-    desc: "Partner ecosystem",
-    delay: 0.3
-  }
-];
-
-const FACTS_FIGURES = [
-  { number: "400+", label: "Projects Delivered", delay: 0 },
-  { number: "300+", label: "Team of Innovators", delay: 0.08 },
-  { number: "100+", label: "Our Clients", delay: 0.16 },
-  { number: "4", label: "Countries", delay: 0.24 },
-  { number: "10", label: "Industries Served", delay: 0.32 }
+  { name: "ISO 45001:2018", number: "Registration No: 44 126 20042", img: iso45001 },
+  { name: "ISO 9001:2015", number: "Registration No: 44 100 20084", img: iso9001 },
+  { name: "ISO 27001:2022", number: "Registration No: 44 121 22002", img: iso27001 },
+  { name: "ISO 20000-1:2018", number: "Registration No: 44 135 20001", img: iso20000 },
+  { name: "CMMI Level 3", number: "Appraisal ID: 52914 / CMMI-DEV3", img: cmmiLevel3 }
 ];
 
 export default function About() {
   const leadership = configData.leadership;
+  const stats = configData.stats;
+
+  const CORE_STATS = [
+    {
+      number: stats.clients,
+      label: "Happy Clients",
+      desc: "Enterprise client footprint",
+      delay: 0
+    },
+    {
+      number: stats.professionals,
+      label: "Head Count",
+      desc: "Certified technical innovators",
+      delay: 0.1
+    },
+    {
+      number: stats.devices,
+      label: "Devices Supported",
+      desc: "Unix, Windows Servers, and DC assets",
+      delay: 0.2
+    },
+    {
+      number: stats.alliances,
+      label: "Strategic Alliances",
+      desc: "Partner technology ecosystem",
+      delay: 0.3
+    }
+  ];
+
+  const FACTS_FIGURES = [
+    { number: stats.projects, label: "Projects Delivered", delay: 0 },
+    { number: stats.professionals, label: "Team of Innovators", delay: 0.08 },
+    { number: stats.clients, label: "Our Clients", delay: 0.16 },
+    { number: stats.countries, label: "Countries", delay: 0.24 },
+    { number: stats.industries, label: "Industries Served", delay: 0.32 }
+  ];
 
   return (
     <div style={{ backgroundColor: 'var(--bg-light)', minHeight: '100vh' }} id="about-page-view">
@@ -308,16 +309,32 @@ export default function About() {
           </ScrollReveal>
 
           <ScrollReveal variant="fade-up" delay={0.2}>
-            <div className="certifications-container">
+            <div className="certifications-container" style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '2rem',
+              justifyContent: 'center',
+              alignItems: 'stretch',
+              marginTop: '3rem'
+            }}>
               {CERTIFICATES.map((cert, index) => (
-                <motion.img
+                <motion.div
                   key={cert.name}
-                  src={cert.img}
-                  alt={cert.name}
-                  title={cert.name}
-                  className="certification-logo"
+                  style={{
+                    backgroundColor: '#ffffff',
+                    border: '1px solid rgba(9,97,159,0.1)',
+                    borderRadius: '8px',
+                    padding: '1.5rem',
+                    textAlign: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    width: '180px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.02)'
+                  }}
                   animate={{
-                    y: [0, -8, 0]
+                    y: [0, -6, 0]
                   }}
                   transition={{
                     duration: 3.5,
@@ -326,8 +343,18 @@ export default function About() {
                     ease: "easeInOut",
                     delay: index * 0.4
                   }}
-                  whileHover={{ scale: 1.08 }}
-                />
+                  whileHover={{ scale: 1.03, borderColor: 'rgba(9,97,159,0.3)' }}
+                >
+                  <img
+                    src={cert.img}
+                    alt={cert.name}
+                    style={{ height: '55px', width: 'auto', display: 'block', objectFit: 'contain', marginBottom: '1rem' }}
+                  />
+                  <div>
+                    <h5 style={{ fontSize: '0.84rem', fontWeight: 700, color: 'var(--text-light-primary)', margin: '0 0 0.25rem 0' }}>{cert.name}</h5>
+                    <span style={{ fontSize: '0.68rem', color: 'var(--text-light-secondary)', fontFamily: 'monospace', display: 'block' }}>{cert.number}</span>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </ScrollReveal>
