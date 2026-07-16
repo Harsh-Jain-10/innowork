@@ -49,28 +49,28 @@ const logoMapping = {
   "Oracle": oracleLogo
 };
 
-// Optical alignment configuration (proportional heights)
+// Optical alignment configuration (proportional heights - enlarged for prominence)
 const logoDetails = {
-  Dell: { height: 26 },
-  Microsoft: { height: 26 },
-  IBM: { height: 24 },
-  Cisco: { height: 32 },
-  HP: { height: 28 },
-  Checkpoint: { height: 28 },
-  Fortinet: { height: 28 },
-  F5: { height: 28 },
-  Juniper: { height: 28 },
-  Microfocus: { height: 24 },
-  NetApp: { height: 25 },
-  OpenText: { height: 24 },
-  RedHat: { height: 28 },
-  Veeam: { height: 26 },
-  "D-Link": { height: 24 },
-  Veritas: { height: 26 },
-  Vinchin: { height: 26 },
-  Acer: { height: 24 },
-  Zerto: { height: 26 },
-  Oracle: { height: 24 }
+  Dell: { height: 38 },
+  Microsoft: { height: 38 },
+  IBM: { height: 34 },
+  Cisco: { height: 46 },
+  HP: { height: 38 },
+  Checkpoint: { height: 38 },
+  Fortinet: { height: 38 },
+  F5: { height: 38 },
+  Juniper: { height: 38 },
+  Microfocus: { height: 34 },
+  NetApp: { height: 34 },
+  OpenText: { height: 34 },
+  RedHat: { height: 38 },
+  Veeam: { height: 36 },
+  "D-Link": { height: 34 },
+  Veritas: { height: 36 },
+  Vinchin: { height: 36 },
+  Acer: { height: 34 },
+  Zerto: { height: 36 },
+  Oracle: { height: 34 }
 };
 
 export default function Home() {
@@ -344,10 +344,12 @@ export default function Home() {
             display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 0.9;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
           }
           .premium-logo-item:hover {
-            transform: scale(1.05);
+            opacity: 1;
+            transform: scale(1.08);
           }
           @keyframes marquee-scroll {
             0% {
