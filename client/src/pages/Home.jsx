@@ -21,10 +21,10 @@ import redhatLogo from '../assets/logos/redhat.svg';
 import veeamLogo from '../assets/logos/veeam.svg';
 import dlinkLogo from '../assets/logos/dlink.svg';
 import veritasLogo from '../assets/logos/veritas.svg';
-import vinchinLogo from '../assets/logos/vinchin.png';
+import vinchinLogo from '../assets/logos/vinchin.svg';
 import oracleLogo from '../assets/logos/oracle.svg';
 import acerLogo from '../assets/logos/acer.svg';
-import zertoLogo from '../assets/logos/zerto.png';
+import zertoLogo from '../assets/logos/zerto.svg';
 
 const logoMapping = {
   "Dell": dellLogo,
