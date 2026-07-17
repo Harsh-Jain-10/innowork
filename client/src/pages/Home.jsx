@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ScrollReveal, { StaggerContainer, StaggerItem, CountUp } from '../components/ScrollReveal';
 import configData from '../data/companyConfig.json';
-import HeroCinematicAnimation from '../components/HeroCinematicAnimation';
+import { Suspense } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { EffectComposer, Bloom, DepthOfField, Vignette } from '@react-three/postprocessing';
+import MotherboardScene from '../components/WebGLMotherboard/MotherboardScene';
 
 // Import OEM partner logos
 import dellLogo from '../assets/logos/dell.svg';
@@ -105,58 +108,85 @@ export default function Home() {
       <section
         style={{
           position: 'relative',
-          padding: '9rem 0 7rem 0',
-          background: 'linear-gradient(140deg, #f0f7ff 0%, #f8fafc 40%, #eef6fd 100%)',
-          borderBottom: '1px solid #e2e8f0',
+          height: '92vh',
+          minHeight: '680px',
+          backgroundColor: '#020306',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
           overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'center'
         }}
+        id="hero-webgl-section"
       >
-        {/* Animated radial dot-grid background */}
-        <div style={{
-          position: 'absolute', inset: 0, opacity: 0.07,
-          backgroundImage: 'radial-gradient(circle, #09619f 1px, transparent 1px)',
-          backgroundSize: '28px 28px', pointerEvents: 'none'
-        }} />
+        {/* Background WebGL Motherboard Animation */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }}>
+          <Canvas
+            shadows
+            camera={{ fov: 45, near: 0.1, far: 20, position: [-2.2, 0.6, 1.2] }}
+            gl={{ 
+              antialias: true, 
+              powerPreference: 'high-performance',
+              toneMapping: 3
+            }}
+          >
+            <Suspense fallback={null}>
+              <MotherboardScene />
+              
+              {/* Cinematic Post-Processing */}
+              <EffectComposer multisampling={4}>
+                <DepthOfField 
+                  focusDistance={0.012} 
+                  focalLength={0.03} 
+                  bokehScale={4.0} 
+                />
+                <Bloom 
+                  luminanceThreshold={0.12} 
+                  luminanceSmoothing={0.9} 
+                  height={300} 
+                  intensity={1.8} 
+                />
+                <Vignette eskil={false} offset={0.1} darkness={1.2} />
+              </EffectComposer>
+            </Suspense>
+          </Canvas>
+        </div>
 
-        {/* Floating blobs */}
-        <motion.div
-          animate={{ scale: [1, 1.12, 1], x: [0, 18, 0], y: [0, -12, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        {/* Middle Layer: Dark Radial Vignette for Content Readability */}
+        <div 
           style={{
-            position: 'absolute', top: '8%', right: '10%',
-            width: 340, height: 340,
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(9,97,159,0.07) 0%, transparent 70%)',
+            position: 'absolute',
+            inset: 0,
+            background: 'radial-gradient(circle at center, rgba(3, 7, 18, 0.35) 0%, rgba(2, 3, 6, 0.88) 100%)',
+            zIndex: 2,
             pointerEvents: 'none'
           }}
         />
-        <motion.div
-          animate={{ scale: [1, 1.08, 1], x: [0, -14, 0], y: [0, 10, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-          style={{
-            position: 'absolute', bottom: '5%', left: '6%',
-            width: 260, height: 260,
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(9,97,159,0.05) 0%, transparent 70%)',
-            pointerEvents: 'none'
-          }}
-        />
 
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="hero-split-layout">
+        {/* Foreground Content Overlay */}
+        <div className="container" style={{ position: 'relative', zIndex: 3, width: '100%' }}>
+          <div className="hero-glass-card" style={{
+            textAlign: 'left',
+            maxWidth: '720px',
+            padding: '2.8rem',
+            borderRadius: '16px',
+            backgroundColor: 'rgba(3, 7, 18, 0.55)',
+            border: '1px solid rgba(255, 255, 255, 0.04)',
+            backdropFilter: 'blur(12px)',
+            boxShadow: '0 24px 60px rgba(0, 0, 0, 0.7)',
+            position: 'relative'
+          }}>
             <motion.div
               initial="hidden"
               animate="visible"
               variants={containerVariants}
-              style={{ textAlign: 'left', maxWidth: '720px' }}
             >
               {/* Badge */}
               <motion.span
                 variants={itemVariants}
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                  backgroundColor: 'rgba(9, 97, 159, 0.08)',
-                  color: 'var(--brand-blue)',
+                  backgroundColor: 'rgba(0, 240, 255, 0.08)',
+                  color: '#00f0ff',
                   padding: '0.45rem 1.1rem',
                   borderRadius: '50px',
                   fontSize: '0.82rem',
@@ -164,41 +194,42 @@ export default function Home() {
                   letterSpacing: '1.2px',
                   textTransform: 'uppercase',
                   marginBottom: '1.75rem',
-                  border: '1px solid rgba(9, 97, 159, 0.2)'
+                  border: '1px solid rgba(0, 240, 255, 0.2)',
+                  textShadow: '0 0 8px rgba(0, 240, 255, 0.3)'
                 }}
               >
-                <motion.span
-                  animate={{ opacity: [1, 0.3, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                  style={{ width: 7, height: 7, borderRadius: '50%', backgroundColor: 'var(--brand-blue)', display: 'inline-block' }}
-                />
+                <span style={{ width: 6, height: 6, borderRadius: '50%', backgroundColor: '#00f0ff', display: 'inline-block', boxShadow: '0 0 6px #00f0ff' }} />
                 Enterprise IT Support &amp; Services
               </motion.span>
 
+              {/* Title */}
               <motion.h1
                 variants={itemVariants}
                 style={{
                   fontSize: '3.75rem',
                   lineHeight: '1.12',
                   fontWeight: 800,
-                  color: 'var(--text-light-primary)',
+                  color: '#ffffff',
                   marginBottom: '1.5rem',
-                  letterSpacing: '-1.5px'
+                  letterSpacing: '-1.5px',
+                  textShadow: '0 2px 10px rgba(0,0,0,0.5)'
                 }}
                 className="responsive-hero-title"
               >
-                Welcome to <span style={{ color: 'var(--brand-blue)' }}>INNOWORQ</span><br />
+                Welcome to <span style={{ color: '#00f0ff', textShadow: '0 0 10px rgba(0, 240, 255, 0.4)' }}>INNOWORQ</span><br />
                 Your Technology Support Partner
               </motion.h1>
 
+              {/* Description */}
               <motion.p
                 variants={itemVariants}
                 style={{
                   fontSize: '1.2rem',
-                  lineHeight: '1.7',
-                  color: 'var(--text-light-secondary)',
+                  lineHeight: '1.75',
+                  color: '#94a3b8',
                   fontWeight: 400,
                   maxWidth: '680px',
+                  textShadow: '0 1px 4px rgba(0,0,0,0.4)'
                 }}
                 className="hero-desc-p"
               >
@@ -207,32 +238,46 @@ export default function Home() {
                 so you can scale your business.
               </motion.p>
 
+              {/* CTA Buttons */}
               <motion.div
                 variants={itemVariants}
                 className="hero-buttons-flex"
+                style={{ marginTop: '2rem' }}
               >
-                <Link to="/support-desk" className="btn btn-primary" style={{ padding: '0.9rem 2.2rem', fontSize: '1rem' }}>
+                <Link 
+                  to="/support-desk" 
+                  className="btn" 
+                  style={{ 
+                    padding: '0.9rem 2.2rem', 
+                    fontSize: '1rem',
+                    backgroundColor: '#00f0ff',
+                    color: '#020617',
+                    border: '1px solid #00f0ff',
+                    fontWeight: 700,
+                    borderRadius: '6px',
+                    boxShadow: '0 4px 20px rgba(0, 240, 255, 0.35)',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
                   Open Support Ticket
                 </Link>
-                <Link to="/services" className="btn btn-secondary" style={{ padding: '0.9rem 2.2rem', fontSize: '1rem' }}>
+                <Link 
+                  to="/services" 
+                  className="btn" 
+                  style={{ 
+                    padding: '0.9rem 2.2rem', 
+                    fontSize: '1rem',
+                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    color: '#ffffff',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    fontWeight: 600,
+                    borderRadius: '6px',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
                   Explore Services Catalog
                 </Link>
               </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: 'easeOut' }}
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                position: 'relative'
-              }}
-              className="hero-animation-container"
-            >
-              <HeroCinematicAnimation />
             </motion.div>
           </div>
 
@@ -259,7 +304,7 @@ export default function Home() {
                 transition={{ delay: 1.0 + i * 0.1 }}
                 style={{
                   fontSize: '0.82rem', fontWeight: 600,
-                  color: 'var(--text-light-secondary)',
+                  color: '#94a3b8',
                   display: 'flex', alignItems: 'center', gap: '0.4rem'
                 }}
               >
@@ -789,10 +834,19 @@ export default function Home() {
           flex-wrap: wrap;
           justify-content: flex-start;
         }
+        .hero-glass-card {
+          transition: all 0.3s ease;
+        }
         @media (max-width: 1200px) {
           .stats-full-grid { grid-template-columns: repeat(4, 1fr) !important; }
         }
         @media (max-width: 960px) {
+          .hero-glass-card {
+            padding: 1.75rem !important;
+            margin: 0 auto !important;
+            text-align: center !important;
+            background-color: rgba(3, 7, 18, 0.65) !important;
+          }
           .hero-split-layout {
             grid-template-columns: 1fr;
             gap: 2.5rem;

@@ -2,13 +2,53 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
 import gsap from 'gsap';
+import * as THREE from 'three';
 import Motherboard3D from './Motherboard3D';
 import PowerConnector3D from './PowerConnector3D';
 import ForgingSystem from './ForgingSystem';
 
+// Procedural Jagged Lightning Arc for electrical sparks & discharges
+function LightningArc({ start, end, active, color }) {
+  const lineRef = useRef();
+
+  useFrame(() => {
+    if (!active || !lineRef.current) return;
+    const points = [];
+    const segments = 6;
+    const startVec = new THREE.Vector3(...start);
+    const endVec = new THREE.Vector3(...end);
+
+    for (let i = 0; i <= segments; i++) {
+      const t = i / segments;
+      const p = new THREE.Vector3().lerpVectors(startVec, endVec, t);
+      if (i > 0 && i < segments) {
+        // Jagged crackling offset
+        p.x += (Math.random() - 0.5) * 0.16;
+        p.y += (Math.random() - 0.5) * 0.16;
+        p.z += (Math.random() - 0.5) * 0.16;
+      }
+      points.push(p);
+    }
+    lineRef.current.geometry.setFromPoints(points);
+  });
+
+  if (!active) return null;
+  return (
+    <line ref={lineRef}>
+      <bufferGeometry />
+      <lineBasicMaterial color={color} linewidth={2.5} transparent opacity={0.8} />
+    </line>
+  );
+}
+
 export default function MotherboardScene({ onComplete }) {
   const { clock } = useThree();
   const connectorRef = useRef();
+  const scannerRef = useRef();
+
+  // Dynamic point lights animated to follow trace paths
+  const traceLight1Ref = useRef();
+  const traceLight2Ref = useRef();
 
   // Color & intensity states driven by ref to maintain high 60+ FPS
   const animValuesRef = useRef({
@@ -18,8 +58,16 @@ export default function MotherboardScene({ onComplete }) {
     traceIntensity: 0.15,
     flashIntensity: 0.0,
     shakeIntensity: 0.0,
+    debugCode: "00",
+    isFailed: false,
+    isHealthy: true,
+    connectorSparks: false,
+    pathDischarge: false,
+    traceLight1Pos: [-4.8, 0.4, 1.8],
+    traceLight2Pos: [-2.2, 0.4, 0.0],
+    traceLightIntensity: 0.0,
     letters: Array.from({ length: 8 }).map((_, i) => ({
-      x: [-4.0, -2.8, -1.6, -0.4, 0.8, 2.0, 3.2, 4.4][i],
+      x: [0.8, 1.45, 2.1, 2.75, 3.4, 4.05, 4.7, 5.35][i],
       y: 5.0,
       visible: false,
       vibrate: false,
@@ -31,10 +79,15 @@ export default function MotherboardScene({ onComplete }) {
     }))
   });
 
-  // Local React states for components reading values not in useFrame loop
+  // Local React states for elements that render statically
   const [traceColorState, setTraceColorState] = useState('#0ea5e9');
   const [traceIntensityState, setTraceIntensityState] = useState(0.15);
   const [flashIntensityState, setFlashIntensityState] = useState(0);
+  const [debugCodeState, setDebugCodeState] = useState("00");
+  const [isFailedState, setIsFailedState] = useState(false);
+  const [isHealthyState, setIsHealthyState] = useState(true);
+  const [connectorSparksState, setConnectorSparksState] = useState(false);
+  const [pathDischargeState, setPathDischargeState] = useState(false);
   const [letterStates, setLetterStates] = useState(animValuesRef.current.letters);
 
   useEffect(() => {
@@ -45,31 +98,37 @@ export default function MotherboardScene({ onComplete }) {
       }
     });
 
-    // ── STAGE 1: SYSTEM BOOT (0s - 3s) ──
+    // ── SCENE 1: BOOT & STANDBY STATE (0s - 4.5s) ──
     tl.to(val.cameraPos, {
       0: -2.6, 1: 0.8, 2: 1.4,
-      duration: 3,
+      duration: 4.5,
       ease: 'power1.inOut'
     });
 
-    // ── STAGE 2: INTRUSION GLITCH & HEARTBEAT ALARM (3s - 7s) ──
+    // ── SCENE 2: SYSTEM FAILURE & HEARTBEAT RED ALARM (4.5s - 8.5s) ──
     tl.to({}, {
       duration: 0.1,
       onStart: () => {
         val.traceColor = '#ef4444'; // turn red
         setTraceColorState('#ef4444');
-        val.shakeIntensity = 0.15; // Camera shake
+        val.debugCode = "E8"; // Error Warning Code
+        setDebugCodeState("E8");
+        val.isFailed = true;
+        setIsFailedState(true);
+        val.isHealthy = false;
+        setIsHealthyState(false);
+        val.shakeIntensity = 0.14; // Camera vibration
       }
-    }, 3.0);
+    }, 4.5);
 
     tl.to(val, {
       shakeIntensity: 0.0,
       duration: 0.6,
       ease: 'power2.out'
-    }, 3.1);
+    }, 4.6);
 
-    // Alert red trace heartbeat pulses
-    const heartbeatTimes = [3.2, 4.2, 5.2, 6.2];
+    // Heartbeat warning pulses
+    const heartbeatTimes = [4.7, 5.7, 6.7, 7.7];
     heartbeatTimes.forEach((time) => {
       tl.to(val, {
         traceIntensity: 1.8,
@@ -85,83 +144,122 @@ export default function MotherboardScene({ onComplete }) {
       }, time + 0.2);
     });
 
-    // Camera zooms close to error
+    // Camera zooms close to error socket
     tl.to(val.cameraPos, {
       0: -2.3, 1: 0.5, 2: 1.0,
-      duration: 3.5,
+      duration: 4.0,
       ease: 'power2.inOut'
-    }, 3.2);
+    }, 4.5);
 
-    // ── STAGE 3: POWER CONNECTOR INJECTION (7s - 10s) ──
-    // camera pans to power socket
+    // ── SCENE 3: INDUSTRIAL POWER CONNECTOR INJECTION (8.5s - 11.5s) ──
+    // camera pans to look at socket
     tl.to(val.cameraPos, {
       0: -4.1, 1: 1.2, 2: 3.2,
       duration: 2.2,
       ease: 'power2.inOut'
-    }, 7.0);
+    }, 8.5);
     tl.to(val.cameraLook, {
       0: -4.8, 1: 0.1, 2: 1.8,
       duration: 2.2,
       ease: 'power2.inOut'
-    }, 7.0);
+    }, 8.5);
 
-    // Plug descends and snaps in
+    // Plug descends
     if (connectorRef.current) {
       tl.to(connectorRef.current.position, {
-        y: 0.25,
-        duration: 1.8,
+        y: 0.28,
+        duration: 2.0,
         ease: 'back.out(1.1)'
-      }, 7.5);
+      }, 9.0);
     }
 
-    // ── STAGE 4: ELECTRICAL DISCHARGE & CLEANSE (10s - 11.5s) ──
+    // Spark pre-connect crackle
     tl.to({}, {
       duration: 0.1,
       onStart: () => {
-        val.traceColor = '#00f0ff'; // Turn cyan
+        val.connectorSparks = true;
+        setConnectorSparksState(true);
+      }
+    }, 10.4);
+
+    tl.to({}, {
+      duration: 0.1,
+      onStart: () => {
+        val.connectorSparks = false;
+        setConnectorSparksState(false);
+      }
+    }, 10.95);
+
+    // Snap & Snap Discharge Event
+    tl.to({}, {
+      duration: 0.1,
+      onStart: () => {
+        val.traceColor = '#00f0ff'; // swap to cyan
         setTraceColorState('#00f0ff');
         val.traceIntensity = 3.5;
         setTraceIntensityState(3.5);
         val.flashIntensity = 1.0;
         setFlashIntensityState(1.0);
-        val.shakeIntensity = 0.25; // Shake on connect snap
+        val.shakeIntensity = 0.25; // snap impact vibration
+        val.pathDischarge = true;
+        setPathDischargeState(true);
+        val.traceLightIntensity = 4.0;
       }
-    }, 9.3);
+    }, 11.0);
 
-    // Decays flash & trace intensity to nominal values
+    // Power Point Light 1 flows from ATX Socket to CPU
+    tl.to(val.traceLight1Pos, {
+      0: -2.2, 1: 0.4, 2: 0.0,
+      duration: 0.6,
+      ease: 'power1.out'
+    }, 11.0);
+
+    // Power Point Light 2 flows from CPU to RAM and Chipset
+    tl.to(val.traceLight2Pos, {
+      0: 2.8, 1: 0.4, 2: 0.8,
+      duration: 0.7,
+      ease: 'power1.out'
+    }, 11.4);
+
+    // Decays flash & shake
     tl.to(val, {
       flashIntensity: 0.0,
       shakeIntensity: 0.0,
       traceIntensity: 0.8,
+      traceLightIntensity: 0.0,
       duration: 1.5,
       ease: 'power2.out',
       onUpdate: () => {
         setFlashIntensityState(val.flashIntensity);
         setTraceIntensityState(val.traceIntensity);
+      },
+      onComplete: () => {
+        val.pathDischarge = false;
+        setPathDischargeState(false);
       }
-    }, 9.4);
+    }, 11.1);
 
-    // ── STAGE 5: LETTER FORGING SEQUENCES (11s - 22s) ──
-    const letterXCoords = [-4.0, -2.8, -1.6, -0.4, 0.8, 2.0, 3.2, 4.4];
-    const letterStartTimes = [11.0, 12.3, 13.6, 14.9, 16.2, 17.5, 18.8, 20.1];
+    // ── SCENE 4: SIGNATURE FORGING FOR ALL 8 LETTERS (11.5s - 22s) ──
+    const letterXCoords = [0.8, 1.45, 2.1, 2.75, 3.4, 4.05, 4.7, 5.35];
+    const letterStartTimes = [11.5, 12.8, 14.1, 15.4, 16.7, 18.0, 19.3, 20.6];
 
     letterStartTimes.forEach((startTime, idx) => {
       const targetX = letterXCoords[idx];
 
-      // Pan camera to look at the letter forging spot
+      // Pan camera to follow letter position
       tl.to(val.cameraPos, {
-        0: targetX, 1: 0.9, 2: 2.2,
+        0: targetX, 1: 1.0, 2: 3.2,
         duration: 1.1,
         ease: 'power1.inOut'
       }, startTime - 0.2);
 
       tl.to(val.cameraLook, {
-        0: targetX, 1: 0.2, 2: 0,
+        0: targetX, 1: 0.2, 2: 1.3,
         duration: 1.1,
         ease: 'power1.inOut'
       }, startTime - 0.2);
 
-      // 1. Build Phase: Transistor vibrates & Energy builds
+      // Transistor cluster vibration build
       tl.to({}, {
         duration: 0.1,
         onStart: () => {
@@ -171,7 +269,7 @@ export default function MotherboardScene({ onComplete }) {
         }
       }, startTime);
 
-      // Energy fountain scales up
+      // Fountain build
       tl.to(val.letters[idx], {
         fountainIntensity: 1.0,
         duration: 0.5,
@@ -179,14 +277,14 @@ export default function MotherboardScene({ onComplete }) {
         onUpdate: () => setLetterStates([...val.letters])
       }, startTime);
 
-      // 2. Forge & Fall Phase: Letter drops from energy fountain
+      // Letter falling landing
       tl.to(val.letters[idx], {
         y: 0.0,
         duration: 0.8,
-        ease: 'bounce.out' // Snappy weight landing
+        ease: 'bounce.out'
       }, startTime + 0.4);
 
-      // 3. Landing Phase: Shockwave, particle burst, camera vibration
+      // Land impact shockwave, sparks, shake
       tl.to({}, {
         duration: 0.1,
         onStart: () => {
@@ -194,12 +292,12 @@ export default function MotherboardScene({ onComplete }) {
           val.letters[idx].fountainIntensity = 0.0;
           val.letters[idx].shockwaveOpacity = 1.0;
           val.letters[idx].particlesActive = true;
-          val.shakeIntensity = 0.12; // Camera vibration on impact
+          val.shakeIntensity = 0.12;
           setLetterStates([...val.letters]);
         }
       }, startTime + 1.2);
 
-      // Animate shockwave expanding and fading
+      // Shockwave expand decay
       tl.to(val.letters[idx], {
         shockwaveScale: 3.5,
         shockwaveOpacity: 0.0,
@@ -213,46 +311,58 @@ export default function MotherboardScene({ onComplete }) {
         }
       }, startTime + 1.21);
 
-      // Decays camera vibration
       tl.to(val, {
         shakeIntensity: 0.0,
         duration: 0.3
       }, startTime + 1.25);
     });
 
-    // ── STAGE 6: PULL BACK & STABILIZE (22s - 25s) ──
+    // ── SCENE 5: PULL BACK & STABILIZE LOGO (22s - 26s) ──
     tl.to(val.cameraPos, {
-      0: 0.2, 1: 4.8, 2: 5.6,
-      duration: 3.2,
+      0: 1.2, 1: 4.8, 2: 5.6,
+      duration: 3.5,
       ease: 'power2.inOut'
-    }, 21.8);
+    }, 22.0);
 
     tl.to(val.cameraLook, {
-      0: 0.2, 1: 0.1, 2: 0,
-      duration: 3.2,
+      0: 1.2, 1: 0.1, 2: 1.3,
+      duration: 3.5,
       ease: 'power2.inOut'
-    }, 21.8);
+    }, 22.0);
 
-    // Branding glows softly at end
+    // Restores display nominal status code
+    tl.to({}, {
+      duration: 0.1,
+      onStart: () => {
+        val.debugCode = "FF"; // Boot Success Nominal Code
+        setDebugCodeState("FF");
+        val.isFailed = false;
+        setIsFailedState(false);
+        val.isHealthy = true;
+        setIsHealthyState(true);
+      }
+    }, 22.2);
+
+    // Stable soft trace glows
     tl.to(val, {
       traceIntensity: 1.3,
       duration: 2.0,
       ease: 'power1.inOut',
       onUpdate: () => setTraceIntensityState(val.traceIntensity)
-    }, 22.0);
+    }, 22.5);
 
   }, [onComplete]);
 
-  // Handle camera position updates and handheld shake in useFrame
+  // Handle R3F camera position, target interpolation, scanner rotations, and point light paths
   useFrame(({ camera }) => {
     const val = animValuesRef.current;
     const time = clock.getElapsedTime();
 
-    // 1. Handheld Camera Sway (Subtle noise/sine wave)
-    const swayX = Math.sin(time * 1.4) * 0.035;
-    const swayY = Math.cos(time * 1.1) * 0.035;
+    // 1. Handheld Camera Sway
+    const swayX = Math.sin(time * 1.5) * 0.035;
+    const swayY = Math.cos(time * 1.2) * 0.035;
 
-    // 2. Camera Shake (Explosions/Glitches impact)
+    // 2. Impact Vibration Shake
     const shakeX = (Math.random() - 0.5) * val.shakeIntensity;
     const shakeY = (Math.random() - 0.5) * val.shakeIntensity;
 
@@ -267,34 +377,101 @@ export default function MotherboardScene({ onComplete }) {
       val.cameraLook[1] + shakeY,
       val.cameraLook[2]
     );
+
+    // 3. Volumetric Spotlight Cone Scan rotation
+    if (scannerRef.current) {
+      scannerRef.current.rotation.z = Math.sin(time * 0.8) * 0.18;
+      scannerRef.current.rotation.x = Math.cos(time * 0.6) * 0.12;
+    }
+
+    // 4. Update dynamic trace point lights position
+    if (traceLight1Ref.current) {
+      traceLight1Ref.current.position.set(...val.traceLight1Pos);
+    }
+    if (traceLight2Ref.current) {
+      traceLight2Ref.current.position.set(...val.traceLight2Pos);
+    }
   });
 
   return (
     <>
-      {/* ── Lighting Setup ── */}
-      <ambientLight intensity={0.12} />
+      {/* ── Lighting ── */}
+      <ambientLight intensity={0.14} />
       <directionalLight 
-        position={[5, 12, 4]} 
-        intensity={1.2} 
+        position={[4, 10, 5]} 
+        intensity={1.25} 
         castShadow 
         shadow-mapSize={[1024, 1024]}
         shadow-bias={-0.001}
       />
-      <pointLight position={[-4, 3, -2]} intensity={0.5} />
-      
-      {/* Dynamic light at connector plug */}
-      {traceIntensityState > 1.5 && (
-        <pointLight position={[-4.8, 0.4, 1.8]} color="#00f0ff" intensity={2.5} distance={5} />
+      <pointLight position={[-4, 3, -3]} intensity={0.4} />
+
+      {/* Volumetric Scan Light Cylinder */}
+      <group position={[0, 4.5, 0]} ref={scannerRef}>
+        <mesh rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.8, 2.5, 8.0, 16, 1, true]} />
+          <meshBasicMaterial 
+            color={isFailedState ? "#ef4444" : "#00f0ff"} 
+            transparent 
+            opacity={0.025} 
+            blending={THREE.AdditiveBlending}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
+      </group>
+
+      {/* ── Dynamic Trace Point Lights (flowing power packets) ── */}
+      {pathDischargeState && (
+        <>
+          <pointLight 
+            ref={traceLight1Ref} 
+            color="#00f0ff" 
+            intensity={animValuesRef.current.traceLightIntensity} 
+            distance={4} 
+          />
+          <pointLight 
+            ref={traceLight2Ref} 
+            color="#00f0ff" 
+            intensity={animValuesRef.current.traceLightIntensity} 
+            distance={4} 
+          />
+        </>
       )}
 
-      {/* HDR Environmental reflections */}
+      {/* ── Procedural Electrical Arcs ── */}
+      {/* ATX Connect socket sparks */}
+      <LightningArc 
+        start={[-4.8, 1.2, 1.8]} 
+        end={[-4.8, 0.35, 1.8]} 
+        active={connectorSparksState} 
+        color="#00f0ff" 
+      />
+      <LightningArc 
+        start={[-4.6, 1.2, 2.0]} 
+        end={[-4.6, 0.35, 2.0]} 
+        active={connectorSparksState} 
+        color="#fbbf24" 
+      />
+
+      {/* Circuit discharge trace crackles */}
+      <LightningArc 
+        start={[-4.8, 0.22, 1.8]} 
+        end={[-2.2, 0.25, 0]} 
+        active={pathDischargeState} 
+        color="#00f0ff" 
+      />
+
+      {/* Environmental reflections */}
       <Environment preset="warehouse" />
 
-      {/* ── 3D Scene Components ── */}
+      {/* ── scene objects ── */}
       <Motherboard3D 
         traceColor={traceColorState} 
         traceEmissiveIntensity={traceIntensityState}
         flashIntensity={flashIntensityState}
+        debugCode={debugCodeState}
+        isFailed={isFailedState}
+        isHealthy={isHealthyState}
       />
 
       <PowerConnector3D ref={connectorRef} />

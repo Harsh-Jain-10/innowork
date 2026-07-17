@@ -155,7 +155,7 @@ export function MetalLetter({ type }) {
 
 export default function ForgingSystem({ letterStates, letters }) {
   return (
-    <group position={[0, 1.15, 0]}>
+    <group position={[0, 1.15, 1.3]}>
       {letters.map((letter, index) => {
         const state = letterStates[index];
         if (!state) return null;
@@ -199,7 +199,7 @@ export default function ForgingSystem({ letterStates, letters }) {
 
             {/* ── C. METALLIC FORGED LETTER ── */}
             {state.visible && (
-              <group position={[dx, state.y, dz]} rotation={[0, 0, 0]}>
+              <group position={[dx, state.y, dz]} rotation={[0, 0, 0]} scale={[0.45, 0.45, 0.45]}>
                 <MetalLetter type={letter} />
               </group>
             )}
