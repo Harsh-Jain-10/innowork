@@ -115,8 +115,8 @@ export function MetalLetter({ type }) {
             {metalMaterial}
           </mesh>
           {/* Diagonal leg */}
-          <mesh castShadow position={[0.25, -0.45, 0]} rotation={[0, 0, -0.55]}>
-            <boxGeometry args={[0.26, 1.1, 0.26]} />
+          <mesh castShadow position={[0.2, -0.4, 0]} rotation={[0, 0, 0.55]}>
+            <boxGeometry args={[0.26, 1.0, 0.26]} />
             {metalMaterial}
           </mesh>
         </group>
