@@ -199,7 +199,7 @@ export default function ForgingSystem({ letterStates, letters }) {
 
             {/* ── C. METALLIC FORGED LETTER ── */}
             {state.visible && (
-              <group position={[dx, state.y, dz]} rotation={[0, 0, 0]} scale={[0.45, 0.45, 0.45]}>
+              <group position={[dx, state.y, dz]} rotation={[0, 0, 0]} scale={[0.35, 0.35, 0.35]}>
                 <MetalLetter type={letter} />
               </group>
             )}
