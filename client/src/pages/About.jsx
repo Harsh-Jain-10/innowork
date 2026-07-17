@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import ScrollReveal, { StaggerContainer, StaggerItem, CountUp } from '../components/ScrollReveal';
 import configData from '../data/companyConfig.json';
 
-// Import BrandRevealPanel component
-import BrandRevealPanel from '../components/BrandRevealPanel';
+// Import GlobalConnectivitySphere component
+import GlobalConnectivitySphere from '../components/GlobalConnectivitySphere';
 
 // Import certifications
 import iso45001 from '../assets/certificates/iso_45001.png';
@@ -125,7 +125,7 @@ export default function About() {
       <div className="container" style={{ padding: '6rem 0' }}>
         <div className="about-split-row" style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '4rem', alignItems: 'center' }}>
           <ScrollReveal variant="fade-left" duration={0.8}>
-            <BrandRevealPanel />
+            <GlobalConnectivitySphere />
           </ScrollReveal>
 
           <ScrollReveal variant="fade-right" duration={0.8} delay={0.2}>

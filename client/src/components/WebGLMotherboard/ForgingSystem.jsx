@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import * as THREE from 'three';
 
 // 3D Metal Letter components constructed from solid bars (industrial sci-fi look)
