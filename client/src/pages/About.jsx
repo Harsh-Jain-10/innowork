@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import ScrollReveal, { StaggerContainer, StaggerItem, CountUp } from '../components/ScrollReveal';
 import configData from '../data/companyConfig.json';
+import DigitalWaveBackground from '../components/DigitalWaveBackground';
 
 // Import GlobalConnectivitySphere component
 import GlobalConnectivitySphere from '../components/GlobalConnectivitySphere';
@@ -78,42 +79,47 @@ export default function About() {
       
       {/* Page Hero Header */}
       <div style={{
-        background: 'linear-gradient(180deg, #f0f9ff 0%, #f8fafc 100%)',
-        padding: '6rem 0 4rem 0',
+        backgroundColor: '#020306',
+        padding: '7rem 0 5rem 0',
         position: 'relative',
         overflow: 'hidden',
-        borderBottom: '1px solid var(--border-light)'
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
       }}>
-        {/* Grid overlay */}
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: 'radial-gradient(var(--border-light) 1px, transparent 1px)',
-          backgroundSize: '24px 24px',
-          opacity: 0.5,
-          pointerEvents: 'none'
-        }} />
+        {/* Background Canvas Digital Wave Animation */}
+        <DigitalWaveBackground />
+
+        {/* Middle Layer: Dark Radial Vignette for Content Readability */}
+        <div 
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'radial-gradient(circle at center, rgba(3, 7, 18, 0.3) 0%, rgba(2, 3, 6, 0.8) 100%)',
+            zIndex: 2,
+            pointerEvents: 'none'
+          }}
+        />
         
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="container" style={{ position: 'relative', zIndex: 3 }}>
           <ScrollReveal variant="fade-down" duration={0.6}>
             <div style={{ textAlign: 'center' }}>
               <span style={{ 
-                color: 'var(--brand-blue)', 
+                color: '#00f0ff', 
                 fontWeight: 700, 
                 fontSize: '0.85rem', 
                 textTransform: 'uppercase', 
                 letterSpacing: '1.5px', 
-                background: 'rgba(9, 97, 159, 0.06)', 
+                background: 'rgba(0, 240, 255, 0.08)', 
                 padding: '0.35rem 1rem', 
                 borderRadius: '30px', 
-                border: '1px solid rgba(9, 97, 159, 0.1)' 
+                border: '1px solid rgba(0, 240, 255, 0.2)',
+                textShadow: '0 0 8px rgba(0, 240, 255, 0.3)'
               }}>
                 Corporate Profile
               </span>
-              <h1 style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--text-light-primary)', marginTop: '1.5rem', marginBottom: '1rem', letterSpacing: '-0.03em' }}>
+              <h1 style={{ fontSize: '3rem', fontWeight: 800, color: '#ffffff', marginTop: '1.5rem', marginBottom: '1rem', letterSpacing: '-0.03em' }}>
                 About INNOWORQ
               </h1>
-              <p style={{ color: 'var(--text-light-secondary)', maxWidth: '700px', margin: '0 auto', fontSize: '1.15rem', lineHeight: '1.6', fontWeight: 500 }}>
+              <p style={{ color: 'rgba(255, 255, 255, 0.7)', maxWidth: '700px', margin: '0 auto', fontSize: '1.15rem', lineHeight: '1.6', fontWeight: 500 }}>
                 Providing high-grade, SLA-bound multi-vendor technology support, cloud managed integrations, and infrastructure services globally.
               </p>
             </div>
