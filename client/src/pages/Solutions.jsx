@@ -310,7 +310,7 @@ function SolutionSection({ sol, index }) {
                 width: 'fit-content',
                 marginBottom: '0.25rem'
               }}>
-                {sol.code}
+                {(index + 1).toString().padStart(2, '0')} // ENTERPRISE SOLUTION
               </span>
 
               {/* Title */}

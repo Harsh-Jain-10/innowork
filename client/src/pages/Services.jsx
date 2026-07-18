@@ -184,7 +184,7 @@ function ServiceSection({ srv, index }) {
                   letterSpacing: '1px',
                   fontFamily: 'monospace'
                 }}>
-                  SERVICE LINE {(index + 1).toString().padStart(2, '0')}
+                  {(index + 1).toString().padStart(2, '0')} // CORE CAPABILITY
                 </span>
               </div>
 
