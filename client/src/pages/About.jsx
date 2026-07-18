@@ -102,21 +102,7 @@ export default function About() {
         <div className="container" style={{ position: 'relative', zIndex: 3 }}>
           <ScrollReveal variant="fade-down" duration={0.6}>
             <div style={{ textAlign: 'center' }}>
-              <span style={{ 
-                color: '#00f0ff', 
-                fontWeight: 700, 
-                fontSize: '0.85rem', 
-                textTransform: 'uppercase', 
-                letterSpacing: '1.5px', 
-                background: 'rgba(0, 240, 255, 0.08)', 
-                padding: '0.35rem 1rem', 
-                borderRadius: '30px', 
-                border: '1px solid rgba(0, 240, 255, 0.2)',
-                textShadow: '0 0 8px rgba(0, 240, 255, 0.3)'
-              }}>
-                Corporate Profile
-              </span>
-              <h1 style={{ fontSize: '3rem', fontWeight: 800, color: '#ffffff', marginTop: '1.5rem', marginBottom: '1rem', letterSpacing: '-0.03em' }}>
+              <h1 style={{ fontSize: '3rem', fontWeight: 800, color: '#ffffff', marginTop: '0', marginBottom: '1rem', letterSpacing: '-0.03em' }}>
                 About INNOWORQ
               </h1>
               <p style={{ color: 'rgba(255, 255, 255, 0.7)', maxWidth: '700px', margin: '0 auto', fontSize: '1.15rem', lineHeight: '1.6', fontWeight: 500 }}>
