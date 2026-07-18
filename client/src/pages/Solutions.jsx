@@ -296,22 +296,23 @@ function SolutionSection({ sol, index }) {
           }}>
             <ScrollReveal variant={isEven ? 'fade-left' : 'fade-right'}>
               {/* Code badge */}
-              <span style={{
-                display: 'inline-block',
-                background: 'rgba(9,97,159,0.08)',
-                border: '1px solid rgba(9,97,159,0.2)',
-                borderRadius: '100px',
-                padding: '0.25rem 0.85rem',
-                fontSize: '0.7rem',
-                fontWeight: 700,
-                color: 'rgba(9,97,159,0.95)',
-                letterSpacing: '1.5px',
-                fontFamily: 'monospace',
-                width: 'fit-content',
-                marginBottom: '0.25rem'
-              }}>
-                {(index + 1).toString().padStart(2, '0')} // ENTERPRISE SOLUTION
-              </span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem', width: 'fit-content' }}>
+                <span style={{ 
+                  width: '18px', 
+                  height: '2px', 
+                  backgroundColor: 'rgba(9,97,159,0.8)', 
+                  borderRadius: '2px'
+                }} />
+                <span style={{
+                  fontSize: '0.85rem',
+                  fontWeight: 800,
+                  color: 'rgba(9,97,159,0.95)',
+                  letterSpacing: '1px',
+                  fontFamily: 'monospace'
+                }}>
+                  {(index + 1).toString().padStart(2, '0')}
+                </span>
+              </div>
 
               {/* Title */}
               <h2 style={{

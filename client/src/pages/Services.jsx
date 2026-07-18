@@ -172,19 +172,22 @@ function ServiceSection({ srv, index }) {
           }}>
             <ScrollReveal variant={isEven ? 'fade-left' : 'fade-right'}>
               {/* Service Line ID Badge */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.2rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
+                <span style={{ 
+                  width: '18px', 
+                  height: '2px', 
+                  backgroundColor: 'var(--brand-blue)', 
+                  borderRadius: '2px',
+                  opacity: 0.8 
+                }} />
                 <span style={{
-                  background: 'rgba(9,97,159,0.06)',
-                  border: '1px solid rgba(9,97,159,0.18)',
-                  borderRadius: '100px',
-                  padding: '0.2rem 0.75rem',
-                  fontSize: '0.68rem',
-                  fontWeight: 700,
-                  color: 'rgba(9,97,159,0.9)',
+                  fontSize: '0.85rem',
+                  fontWeight: 800,
+                  color: 'var(--brand-blue)',
                   letterSpacing: '1px',
                   fontFamily: 'monospace'
                 }}>
-                  {(index + 1).toString().padStart(2, '0')} // CORE CAPABILITY
+                  {(index + 1).toString().padStart(2, '0')}
                 </span>
               </div>
 
