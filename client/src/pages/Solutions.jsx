@@ -295,23 +295,19 @@ function SolutionSection({ sol, index }) {
             order: isEven ? 1 : 2
           }}>
             <ScrollReveal variant={isEven ? 'fade-left' : 'fade-right'}>
-              {/* Code badge */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem', width: 'fit-content' }}>
-                <span style={{ 
-                  width: '18px', 
-                  height: '2px', 
-                  backgroundColor: 'rgba(9,97,159,0.8)', 
-                  borderRadius: '2px'
-                }} />
-                <span style={{
-                  fontSize: '0.85rem',
-                  fontWeight: 800,
-                  color: 'rgba(9,97,159,0.95)',
-                  letterSpacing: '1px',
-                  fontFamily: 'monospace'
-                }}>
-                  {(index + 1).toString().padStart(2, '0')}
-                </span>
+              {/* Large Aesthetic Section Number */}
+              <div style={{
+                fontSize: '4.5rem',
+                fontWeight: 900,
+                color: 'rgba(9, 97, 159, 0.07)',
+                fontFamily: '"Outfit", "Inter", sans-serif',
+                lineHeight: 1,
+                letterSpacing: '-3px',
+                marginBottom: '-1.5rem',
+                userSelect: 'none',
+                pointerEvents: 'none'
+              }}>
+                {(index + 1).toString().padStart(2, '0')}
               </div>
 
               {/* Title */}

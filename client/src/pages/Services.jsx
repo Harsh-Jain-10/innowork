@@ -171,24 +171,19 @@ function ServiceSection({ srv, index }) {
             order: isEven ? 1 : 2
           }}>
             <ScrollReveal variant={isEven ? 'fade-left' : 'fade-right'}>
-              {/* Service Line ID Badge */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
-                <span style={{ 
-                  width: '18px', 
-                  height: '2px', 
-                  backgroundColor: 'var(--brand-blue)', 
-                  borderRadius: '2px',
-                  opacity: 0.8 
-                }} />
-                <span style={{
-                  fontSize: '0.85rem',
-                  fontWeight: 800,
-                  color: 'var(--brand-blue)',
-                  letterSpacing: '1px',
-                  fontFamily: 'monospace'
-                }}>
-                  {(index + 1).toString().padStart(2, '0')}
-                </span>
+              {/* Large Aesthetic Section Number */}
+              <div style={{
+                fontSize: '4.5rem',
+                fontWeight: 900,
+                color: 'rgba(9, 97, 159, 0.07)',
+                fontFamily: '"Outfit", "Inter", sans-serif',
+                lineHeight: 1,
+                letterSpacing: '-3px',
+                marginBottom: '-1.5rem',
+                userSelect: 'none',
+                pointerEvents: 'none'
+              }}>
+                {(index + 1).toString().padStart(2, '0')}
               </div>
 
               {/* Title */}
