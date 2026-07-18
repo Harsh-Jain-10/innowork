@@ -2,8 +2,9 @@ import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 /* ─────────────────────────────────────────────────────────────
-   Shared helpers
- ────────────────────────────────────────────────────────────── */
+   Shared Layout Helper
+   All illustrations fit inside a 480x320 view box
+  ────────────────────────────────────────────────────────────── */
 const BASE = { width: '100%', height: '100%' };
 
 function useMotion() {
@@ -12,964 +13,607 @@ function useMotion() {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   1. Smart City
- ────────────────────────────────────────────────────────────── */
+   1. Smart City Illustration (Civic Tech)
+   Features modern skyline, wind turbine, solar panels, and routing arcs
+  ────────────────────────────────────────────────────────────── */
 export function SmartCityIllustration({ isHovered, isMini = false }) {
   const animate = useMotion() && !isMini;
   return (
-    <svg viewBox="0 0 480 320" style={BASE} aria-label="Smart City Visualization">
-      <defs>
-        <radialGradient id="sc-bg" cx="50%" cy="60%" r="60%">
-          <stop offset="0%" stopColor="rgba(56, 189, 248, 0.15)" />
-          <stop offset="100%" stopColor="rgba(56, 189, 248, 0)" />
-        </radialGradient>
-        <filter id="sc-glow">
-          <feGaussianBlur stdDeviation="2.5" result="blur" />
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
+    <svg viewBox="0 0 480 320" style={BASE} aria-label="Smart City Architecture">
+      {/* Background soft glow */}
+      <circle cx="240" cy="160" r="130" fill="rgba(2, 132, 199, 0.05)" />
 
-      {/* Background glow */}
-      <ellipse cx="240" cy="200" rx="200" ry="120" fill="url(#sc-bg)" />
+      {/* Skyline silhouettes */}
+      <rect x="70" y="160" width="45" height="120" rx="3" fill="#e2e8f0" stroke="#cbd5e1" strokeWidth="1" />
+      <rect x="130" y="120" width="55" height="160" rx="3" fill="#cbd5e1" stroke="#94a3b8" strokeWidth="1" />
+      <rect x="290" y="140" width="50" height="140" rx="3" fill="#cbd5e1" stroke="#94a3b8" strokeWidth="1" />
+      <rect x="360" y="180" width="40" height="100" rx="3" fill="#e2e8f0" stroke="#cbd5e1" strokeWidth="1" />
 
-      {/* Blueprint grid */}
-      {!isMini && [0,1,2,3,4,5].map(i => (
-        <line key={`hg-${i}`} x1="20" y1={50+i*45} x2="460" y2={50+i*45} stroke="rgba(56,189,248,0.06)" strokeWidth="1" />
-      ))}
-      {!isMini && [0,1,2,3,4,5,6].map(i => (
-        <line key={`vg-${i}`} x1={20+i*70} y1="30" x2={20+i*70} y2="290" stroke="rgba(56,189,248,0.06)" strokeWidth="1" />
-      ))}
-
-      {/* City skyline */}
-      {/* Buildings */}
-      <rect x="40" y="200" width="30" height="80" rx="2" fill="rgba(56,189,248,0.1)" stroke="rgba(56,189,248,0.25)" strokeWidth="1" />
-      {!isMini && (
-        <>
-          <rect x="46" y="210" width="6" height="6" fill="rgba(56,189,248,0.5)" />
-          <rect x="58" y="210" width="6" height="6" fill="rgba(56,189,248,0.5)" />
-          <rect x="46" y="222" width="6" height="6" fill="rgba(56,189,248,0.3)" />
-          <rect x="58" y="222" width="6" height="6" fill="rgba(56,189,248,0.5)" />
-        </>
-      )}
-
-      <rect x="80" y="170" width="40" height="110" rx="2" fill="rgba(56,189,248,0.12)" stroke="rgba(56,189,248,0.3)" strokeWidth="1" />
-      {!isMini && (
-        <>
-          <rect x="87" y="180" width="8" height="8" fill="rgba(56,189,248,0.5)" />
-          <rect x="103" y="180" width="8" height="8" fill="rgba(56,189,248,0.3)" />
-          <rect x="87" y="195" width="8" height="8" fill="rgba(56,189,248,0.5)" />
-          <rect x="103" y="195" width="8" height="8" fill="rgba(56,189,248,0.5)" />
-          <rect x="87" y="210" width="8" height="8" fill="rgba(56,189,248,0.3)" />
-          <rect x="103" y="210" width="8" height="8" fill="rgba(56,189,248,0.5)" />
-        </>
-      )}
-
-      {/* Central tower */}
-      <rect x="200" y="130" width="50" height="150" rx="2" fill="rgba(56,189,248,0.18)" stroke="rgba(56,189,248,0.5)" strokeWidth="1.5" />
-      <rect x="222" y="115" width="6" height="20" fill="rgba(56,189,248,0.6)" />
-      {!isMini && (
-        <>
-          <rect x="209" y="145" width="10" height="10" fill="rgba(56,189,248,0.6)" />
-          <rect x="231" y="145" width="10" height="10" fill="rgba(56,189,248,0.6)" />
-          <rect x="231" y="163" width="10" height="10" fill="rgba(56,189,248,0.4)" />
-          <rect x="209" y="163" width="10" height="10" fill="rgba(56,189,248,0.6)" />
-          <rect x="209" y="181" width="10" height="10" fill="rgba(56,189,248,0.4)" />
-          <rect x="231" y="181" width="10" height="10" fill="rgba(56,189,248,0.6)" />
-        </>
-      )}
-
-      <rect x="270" y="155" width="45" height="125" rx="2" fill="rgba(56,189,248,0.12)" stroke="rgba(56,189,248,0.3)" strokeWidth="1" />
-      {!isMini && (
-        <>
-          <rect x="278" y="165" width="9" height="9" fill="rgba(56,189,248,0.5)" />
-          <rect x="296" y="165" width="9" height="9" fill="rgba(56,189,248,0.3)" />
-          <rect x="278" y="181" width="9" height="9" fill="rgba(56,189,248,0.5)" />
-          <rect x="296" y="181" width="9" height="9" fill="rgba(56,189,248,0.5)" />
-        </>
-      )}
-
-      <rect x="330" y="185" width="35" height="95" rx="2" fill="rgba(56,189,248,0.1)" stroke="rgba(56,189,248,0.25)" strokeWidth="1" />
-      {!isMini && (
-        <>
-          <rect x="338" y="195" width="7" height="7" fill="rgba(56,189,248,0.5)" />
-          <rect x="352" y="195" width="7" height="7" fill="rgba(56,189,248,0.3)" />
-          <rect x="338" y="208" width="7" height="7" fill="rgba(56,189,248,0.5)" />
-        </>
-      )}
-
-      <rect x="380" y="200" width="28" height="80" rx="2" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.2)" strokeWidth="1" />
-
-      {/* Ground */}
-      <line x1="30" y1="280" x2="450" y2="280" stroke="rgba(56,189,248,0.3)" strokeWidth="2" />
-
-      {/* IoT Connection nodes */}
-      {[
-        { cx: 55, cy: 190, tx: 225, ty: 145 },
-        { cx: 100, cy: 160, tx: 225, ty: 145 },
-        { cx: 293, cy: 145, tx: 225, ty: 145 },
-        { cx: 348, cy: 175, tx: 225, ty: 145 },
-        ...(!isMini ? [
-          { cx: 160, cy: 240, tx: 225, ty: 145 },
-          { cx: 390, cy: 250, tx: 225, ty: 145 }
-        ] : [])
-      ].map((n, i) => (
-        <g key={i}>
-          <line x1={n.cx} y1={n.cy} x2={n.tx} y2={n.ty}
-            stroke="rgba(56,189,248,0.12)" strokeWidth="1" strokeDasharray="4 3" />
-          {animate && (
-            <motion.line x1={n.cx} y1={n.cy} x2={n.tx} y2={n.ty}
-              stroke="rgba(0, 240, 255, 0.7)" strokeWidth="1.5" strokeDasharray="4 3"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{
-                pathLength: [0, 1, 1, 0],
-                opacity: [0, 1, 1, 0]
-              }}
-              transition={{ duration: 2.5, delay: i * 0.4, repeat: Infinity, repeatDelay: 1.5 }}
-            />
-          )}
-          <motion.circle cx={n.cx} cy={n.cy} r={isMini ? 4 : 5}
-            fill="rgba(3, 7, 18, 0.6)" stroke="rgba(56,189,248,0.6)" strokeWidth="1.5"
-            animate={animate ? {
-              r: [5, 7, 5],
-              stroke: ['rgba(56,189,248,0.6)', '#00f0ff', 'rgba(56,189,248,0.6)']
-            } : {}}
-            transition={{ duration: 2, delay: i * 0.4, repeat: Infinity }}
-          />
-        </g>
-      ))}
-
-      {/* Central hub */}
-      <motion.circle cx="225" cy="145" r={isMini ? 8 : 10}
-        fill="rgba(56, 189, 248, 0.3)" stroke="#00f0ff" strokeWidth="2"
-        filter="url(#sc-glow)"
-        animate={animate ? { r: [10, 13, 10], opacity: [0.8, 1, 0.8] } : {}}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
+      {/* Central Smart Command Hub Tower */}
+      <rect x="200" y="90" width="70" height="190" rx="4" fill="#f1f5f9" stroke="#0284c7" strokeWidth="2" />
       
+      {/* Smart Command Hub Antenna */}
+      <line x1="235" y1="90" x2="235" y2="60" stroke="#0284c7" strokeWidth="2" />
+      <circle cx="235" cy="58" r="4" fill="#0d9488" />
+      {animate && (
+        <motion.circle cx="235" cy="58" r="14" fill="none" stroke="rgba(13, 148, 136, 0.4)" strokeWidth="1"
+          animate={{ scale: [1, 2, 1], opacity: [0.6, 0, 0.6] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        />
+      )}
+
+      {/* Solar Panel details */}
       {!isMini && (
-        <>
-          <motion.circle cx="225" cy="145" r="18"
-            fill="none" stroke="rgba(0, 240, 255, 0.25)" strokeWidth="1"
-            animate={animate ? { r: [18, 26, 18], opacity: [0.6, 0, 0.6] } : {}}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-          <motion.circle cx="225" cy="145" r="35"
-            fill="none" stroke="rgba(56,189,248,0.15)" strokeWidth="1" strokeDasharray="3 5"
+        <g transform="translate(80, 200)">
+          <polygon points="0,20 30,20 25,40 5,40" fill="#0ea5e9" stroke="#0284c7" strokeWidth="1" />
+          <line x1="15" y1="20" x2="15" y2="40" stroke="#ffffff" strokeWidth="0.8" />
+          <line x1="5" y1="30" x2="25" y2="30" stroke="#ffffff" strokeWidth="0.8" />
+        </g>
+      )}
+
+      {/* Wind Turbine (Civic Green Energy) */}
+      {!isMini && (
+        <g transform="translate(320, 160)">
+          <line x1="0" y1="0" x2="0" y2="80" stroke="#64748b" strokeWidth="2.5" />
+          <motion.g
             animate={animate ? { rotate: 360 } : {}}
-            style={{ transformOrigin: '225px 145px' }}
-            transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-          />
-          {animate && [
-            { path: 'M55,190 L225,145', delay: 0 },
-            { path: 'M348,175 L225,145', delay: 0.8 },
-            { path: 'M100,160 L225,145', delay: 1.6 },
-          ].map((p, i) => (
-            <motion.circle key={i} r="3" fill="#00f0ff" filter="url(#sc-glow)">
-              <animateMotion dur={`${1.5 + i * 0.3}s`} repeatCount="indefinite" begin={`${p.delay}s`} path={p.path} />
-            </motion.circle>
-          ))}
-          <text x="225" y="310" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.4)" fontFamily="monospace" letterSpacing="2">
-            SMART CITY COMMAND
-          </text>
-        </>
+            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+          >
+            <circle cx="0" cy="0" r="3.5" fill="#0d9488" />
+            <path d="M0,0 L0,-35 L4,-35 Z" fill="#0d9488" />
+            <path d="M0,0 L30,17 L28,21 Z" fill="#0d9488" />
+            <path d="M0,0 L-30,17 L-28,21 Z" fill="#0d9488" />
+          </motion.g>
+        </g>
+      )}
+
+      {/* Grid Ground Line */}
+      <line x1="40" y1="280" x2="440" y2="280" stroke="#94a3b8" strokeWidth="2.5" />
+
+      {/* Connection Arcs */}
+      {!isMini && (
+        <g>
+          <path d="M100,160 Q235,100 370,180" fill="none" stroke="rgba(2, 132, 199, 0.2)" strokeWidth="1.5" strokeDasharray="3 3" />
+          <path d="M150,120 Q235,130 310,140" fill="none" stroke="rgba(13, 148, 136, 0.2)" strokeWidth="1.5" strokeDasharray="3 3" />
+        </g>
       )}
     </svg>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   2. Telecom
- ────────────────────────────────────────────────────────────── */
+   2. Telecom Illustration (Network Ops)
+   Features a radio transmission tower, network waves, and core router
+  ────────────────────────────────────────────────────────────── */
 export function TelecomIllustration({ isHovered, isMini = false }) {
   const animate = useMotion() && !isMini;
-  const nodes = isMini ? [
-    { cx: 240, cy: 155, label: '' },
-    { cx: 120, cy: 90, label: '' },
-    { cx: 360, cy: 90, label: '' },
-    { cx: 240, cy: 250, label: '' },
-  ] : [
-    { cx: 240, cy: 155, label: 'HUB', main: true },
-    { cx: 120, cy: 90, label: 'POP-A' },
-    { cx: 360, cy: 90, label: 'POP-B' },
-    { cx: 80, cy: 200, label: 'BS-01' },
-    { cx: 400, cy: 200, label: 'BS-02' },
-    { cx: 160, cy: 260, label: 'EDGE-1' },
-    { cx: 320, cy: 260, label: 'EDGE-2' },
-  ];
-  
-  const edges = isMini ? [
-    [0, 1], [0, 2], [0, 3], [1, 2], [2, 3], [3, 1]
-  ] : [
-    [0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[1,3],[2,4],[3,5],[4,6]
-  ];
-
   return (
-    <svg viewBox="0 0 480 320" style={BASE} aria-label="Telecom Network Topology">
-      <defs>
-        <radialGradient id="tc-bg" cx="50%" cy="50%" r="60%">
-          <stop offset="0%" stopColor="rgba(56, 189, 248, 0.12)" />
-          <stop offset="100%" stopColor="transparent" />
-        </radialGradient>
-        <filter id="tc-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      </defs>
-      <ellipse cx="240" cy="175" rx="210" ry="135" fill="url(#tc-bg)" />
+    <svg viewBox="0 0 480 320" style={BASE} aria-label="Telecom Network Architecture">
+      {/* Background soft glow */}
+      <circle cx="240" cy="160" r="130" fill="rgba(79, 70, 229, 0.05)" />
 
-      {/* Grid */}
-      {!isMini && [0,1,2,3,4].map(i => (
-        <line key={i} x1="20" y1={40+i*60} x2="460" y2={40+i*60} stroke="rgba(56,189,248,0.05)" strokeWidth="1" />
-      ))}
+      {/* Central Tower Stand */}
+      <path d="M220,280 L235,120 L245,120 L260,280 Z" fill="none" stroke="#4f46e5" strokeWidth="2.5" />
+      <line x1="230" y1="200" x2="250" y2="200" stroke="#4f46e5" strokeWidth="1.5" />
+      <line x1="233" y1="160" x2="247" y2="160" stroke="#4f46e5" strokeWidth="1.5" />
+      <line x1="225" y1="240" x2="255" y2="240" stroke="#4f46e5" strokeWidth="1.5" />
 
-      {/* Edges */}
-      {edges.map(([a,b], i) => (
-        <g key={i}>
-          <line x1={nodes[a].cx} y1={nodes[a].cy} x2={nodes[b].cx} y2={nodes[b].cy}
-            stroke="rgba(56,189,248,0.2)" strokeWidth="1.5" />
-          {animate && (
-            <motion.line x1={nodes[a].cx} y1={nodes[a].cy} x2={nodes[b].cx} y2={nodes[b].cy}
-              stroke="rgba(0, 240, 255, 0.6)" strokeWidth="2" strokeDasharray="5 4"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: [0,1,0] }}
-              transition={{ duration: 2, delay: i * 0.25, repeat: Infinity, repeatDelay: 0.5 }}
-            />
-          )}
-        </g>
-      ))}
+      {/* Tower Head / Transmitter */}
+      <circle cx="240" cy="115" r="7" fill="#4f46e5" />
+      <circle cx="240" cy="115" r="3" fill="#818cf8" />
 
-      {/* Traveling packets */}
-      {animate && edges.slice(0, isMini ? 3 : 5).map(([a,b], i) => (
-        <motion.circle key={i} r="3" fill="#00f0ff" filter="url(#tc-glow)">
-          <animateMotion
-            dur={`${1.2 + i * 0.2}s`} repeatCount="indefinite"
-            begin={`${i * 0.4}s`}
-            path={`M${nodes[a].cx},${nodes[a].cy} L${nodes[b].cx},${nodes[b].cy}`}
-          />
-        </motion.circle>
-      ))}
-
-      {/* Nodes */}
-      {nodes.map((n, i) => {
-        const isMain = i === 0;
+      {/* Radio Transmission Waves */}
+      {[20, 36, 52, 68].map((radius, idx) => {
+        if (isMini && idx > 1) return null;
         return (
-          <g key={i}>
-            <motion.circle cx={n.cx} cy={n.cy} r={isMain ? 14 : 8}
-              fill={isMain ? 'rgba(56,189,248,0.3)' : 'rgba(15, 23, 42, 0.8)'}
-              stroke={isMain ? '#00f0ff' : 'rgba(56,189,248,0.6)'}
-              strokeWidth={isMain ? 2 : 1.5}
-              filter={isMain ? 'url(#tc-glow)' : undefined}
-              animate={animate ? {
-                r: isMain ? [14,17,14] : [8,10,8],
-                opacity: [0.8,1,0.8]
-              } : {}}
-              transition={{ duration: 2.5, delay: i*0.3, repeat: Infinity }}
-            />
-            {isMain && !isMini && (
-              <motion.circle cx={n.cx} cy={n.cy} r="24"
-                fill="none" stroke="rgba(0, 240, 255, 0.2)" strokeWidth="1"
-                animate={animate ? { r: [24,34,24], opacity: [0.5,0,0.5] } : {}}
-                transition={{ duration: 2.5, repeat: Infinity }}
-              />
-            )}
-            {!isMini && n.label && (
-              <text x={n.cx} y={n.cy + (isMain ? 28 : 22)} textAnchor="middle"
-                fontSize="8" fill="rgba(255,255,255,0.5)" fontFamily="monospace">
-                {n.label}
-              </text>
-            )}
-          </g>
+          <motion.circle
+            key={idx}
+            cx="240"
+            cy="115"
+            r={radius}
+            fill="none"
+            stroke="rgba(79, 70, 229, 0.3)"
+            strokeWidth="1.5"
+            animate={animate ? {
+              r: [radius, radius + 15, radius],
+              opacity: [0.8, 0.2, 0.8]
+            } : {}}
+            transition={{ duration: 3, delay: idx * 0.4, repeat: Infinity }}
+          />
         );
       })}
+
+      {/* Base Server Cabinets (Subscribers/Routing nodes) */}
       {!isMini && (
-        <text x="240" y="308" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.4)" fontFamily="monospace" letterSpacing="2">
-          NETWORK TOPOLOGY
-        </text>
+        <g>
+          {/* Router Node A */}
+          <rect x="80" y="210" width="50" height="70" rx="3" fill="#ffffff" stroke="#4f46e5" strokeWidth="1.5" />
+          <circle cx="105" cy="225" r="3" fill="#818cf8" />
+          <line x1="90" y1="245" x2="120" y2="245" stroke="#cbd5e1" strokeWidth="2" />
+          <line x1="90" y1="255" x2="120" y2="255" stroke="#cbd5e1" strokeWidth="2" />
+          <line x1="130" y1="245" x2="228" y2="200" stroke="rgba(79, 70, 229, 0.25)" strokeWidth="1.2" strokeDasharray="3 3" />
+
+          {/* Router Node B */}
+          <rect x="350" y="210" width="50" height="70" rx="3" fill="#ffffff" stroke="#4f46e5" strokeWidth="1.5" />
+          <circle cx="375" cy="225" r="3" fill="#818cf8" />
+          <line x1="360" y1="245" x2="390" y2="245" stroke="#cbd5e1" strokeWidth="2" />
+          <line x1="360" y1="255" x2="390" y2="255" stroke="#cbd5e1" strokeWidth="2" />
+          <line x1="350" y1="245" x2="252" y2="200" stroke="rgba(79, 70, 229, 0.25)" strokeWidth="1.2" strokeDasharray="3 3" />
+        </g>
       )}
+
+      {/* Ground Line */}
+      <line x1="40" y1="280" x2="440" y2="280" stroke="#94a3b8" strokeWidth="2.5" />
     </svg>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   3. Healthcare
- ────────────────────────────────────────────────────────────── */
+   3. Healthcare Illustration (Clinical IT)
+   Features a hospital cross inside medical shield and pulsing ECG wave
+  ────────────────────────────────────────────────────────────── */
 export function HealthcareIllustration({ isHovered, isMini = false }) {
   const animate = useMotion() && !isMini;
   return (
-    <svg viewBox="0 0 480 320" style={BASE} aria-label="Healthcare Infrastructure">
-      <defs>
-        <radialGradient id="hc-bg" cx="50%" cy="50%" r="55%">
-          <stop offset="0%" stopColor="rgba(56, 189, 248, 0.12)" />
-          <stop offset="100%" stopColor="transparent" />
-        </radialGradient>
-        <filter id="hc-glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      </defs>
-      <ellipse cx="240" cy="160" rx="200" ry="130" fill="url(#hc-bg)" />
+    <svg viewBox="0 0 480 320" style={BASE} aria-label="Healthcare IT Architecture">
+      {/* Background soft glow */}
+      <circle cx="240" cy="160" r="130" fill="rgba(5, 150, 105, 0.05)" />
 
-      {/* Server racks */}
-      {[0,1,2].map(i => {
-        if (isMini && i !== 1) return null; // Show only middle rack on mini
-        const xOffset = isMini ? 205 : 80 + i*110;
-        return (
-          <g key={i} transform={`translate(${xOffset}, 80)`}>
-            <rect x="0" y="0" width="70" height="120" rx="4"
-              fill="rgba(15, 23, 42, 0.7)" stroke="rgba(56,189,248,0.4)" strokeWidth="1.5" />
-            {[0,1,2,3,4].map(j => (
-              <g key={j}>
-                <rect x="8" y={12+j*20} width="54" height="12" rx="2"
-                  fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.15)" strokeWidth="1" />
-                <motion.circle cx="55" cy="18+j*20" r="3"
-                  fill="#00f0ff"
-                  animate={animate ? {
-                    opacity: [1, 0.3, 1],
-                    fill: j===2 ? ['#00f0ff', 'rgba(56,189,248,0.4)', '#00f0ff'] : undefined
-                  } : {}}
-                  transition={{ duration: 1.5, delay: (i*0.4 + j*0.25), repeat: Infinity }}
-                />
-              </g>
-            ))}
-            {!isMini && (
-              <text x="35" y="135" textAnchor="middle" fontSize="8"
-                fill="rgba(255,255,255,0.5)" fontFamily="monospace">
-                SRV-{String.fromCharCode(65+i)}
-              </text>
-            )}
-          </g>
-        );
-      })}
-
-      {/* Connection lines between servers */}
-      {!isMini && [0,1].map(i => (
-        <motion.line key={i}
-          x1={150 + i*110} y1="140" x2={190 + i*110} y2="140"
-          stroke="rgba(0, 240, 255, 0.6)" strokeWidth="2" strokeDasharray="4 3"
-          animate={animate ? { opacity: [0.3,1,0.3] } : {}}
-          transition={{ duration: 1.5, delay: i*0.5, repeat: Infinity }}
+      {/* Heartbeat ECG monitor line */}
+      {!isMini && (
+        <motion.path
+          d="M60,160 L140,160 L155,110 L170,210 L185,150 L200,170 L215,160 L420,160"
+          fill="none"
+          stroke="rgba(5, 150, 105, 0.18)"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          animate={animate ? {
+            strokeDasharray: ['20 40', '40 20', '20 40'],
+            strokeDashoffset: [0, 60, 120]
+          } : {}}
+          transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
         />
-      ))}
+      )}
 
-      {/* Cross icon */}
-      <g transform={isMini ? "translate(240, 245)" : "translate(240, 230)"}>
-        <rect x="-8" y="-22" width="16" height="44" rx="3" fill="rgba(56,189,248,0.3)" />
-        <rect x="-22" y="-8" width="44" height="16" rx="3" fill="rgba(56,189,248,0.3)" />
-        <motion.rect x="-8" y="-22" width="16" height="44" rx="3"
-          fill="rgba(0, 240, 255, 0.3)"
-          animate={animate ? { opacity: [0.2,0.6,0.2] } : {}}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
+      {/* Protective Shield */}
+      <path
+        d="M200,80 Q240,70 280,80 Q280,150 240,210 Q200,150 200,80 Z"
+        fill="#ffffff"
+        stroke="#059669"
+        strokeWidth="3.5"
+        strokeLinejoin="round"
+      />
+
+      {/* Inner Medical Cross */}
+      <g transform="translate(240, 140)">
+        <rect x="-6" y="-18" width="12" height="36" rx="2" fill="#34d399" />
+        <rect x="-18" y="-6" width="36" height="12" rx="2" fill="#34d399" />
+        {animate && (
+          <motion.rect
+            x="-6" y="-18" width="12" height="36" rx="2"
+            fill="#059669"
+            animate={{ opacity: [0.3, 0.8, 0.3] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+        )}
       </g>
 
-      {/* Uptime monitor */}
+      {/* Server & DR Monitoring Console */}
       {!isMini && (
-        <>
-          <g transform="translate(30, 230)">
-            <rect x="0" y="0" width="100" height="50" rx="6"
-              fill="rgba(15, 23, 42, 0.5)" stroke="rgba(56,189,248,0.25)" strokeWidth="1" />
-            <text x="8" y="14" fontSize="7" fill="rgba(255,255,255,0.4)" fontFamily="monospace">UPTIME MONITOR</text>
-            <motion.path d="M8,35 L20,25 L30,30 L42,15 L52,22 L62,18 L72,28 L82,20 L92,25"
-              fill="none" stroke="#00f0ff" strokeWidth="1.5"
-              initial={{ pathLength: 0 }}
-              animate={animate ? { pathLength: 1 } : {}}
-              transition={{ duration: 2, ease: 'easeOut' }}
-            />
-            <text x="8" y="45" fontSize="7" fill="rgba(56,189,248,0.6)" fontFamily="monospace">99.99% SLA</text>
-          </g>
+        <g>
+          {/* Uptime cabinet */}
+          <rect x="50" y="210" width="80" height="50" rx="5" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.5" />
+          <circle cx="65" cy="225" r="3.5" fill="#34d399" />
+          <line x1="78" y1="225" x2="115" y2="225" stroke="#475569" strokeWidth="2.5" />
+          <line x1="60" y1="242" x2="115" y2="242" stroke="#94a3b8" strokeWidth="2" />
 
-          {/* DR Status */}
-          <g transform="translate(350, 230)">
-            <rect x="0" y="0" width="100" height="50" rx="6"
-              fill="rgba(15, 23, 42, 0.5)" stroke="rgba(56,189,248,0.25)" strokeWidth="1" />
-            <text x="8" y="14" fontSize="7" fill="rgba(255,255,255,0.4)" fontFamily="monospace">DR STATUS</text>
-            <motion.circle cx="20" cy="30" r="8" fill="rgba(56,189,248,0.12)"
-              stroke="rgba(0, 240, 255, 0.7)" strokeWidth="1.5"
-              animate={animate ? { r: [8,10,8], opacity: [0.8,1,0.8] } : {}}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <text x="36" y="26" fontSize="7" fill="rgba(255,255,255,0.7)" fontFamily="monospace">ACTIVE-ACTIVE</text>
-            <text x="36" y="36" fontSize="7" fill="rgba(0, 240, 255, 0.7)" fontFamily="monospace">REPLICATION OK</text>
-          </g>
-
-          <text x="240" y="308" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.4)" fontFamily="monospace" letterSpacing="2">
-            CLINICAL INFRASTRUCTURE
-          </text>
-        </>
+          {/* DR Cabinet */}
+          <rect x="350" y="210" width="80" height="50" rx="5" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.5" />
+          <circle cx="365" cy="225" r="3.5" fill="#34d399" />
+          <line x1="378" y1="225" x2="415" y2="225" stroke="#475569" strokeWidth="2.5" />
+          <line x1="360" y1="242" x2="415" y2="242" stroke="#94a3b8" strokeWidth="2" />
+        </g>
       )}
+
+      {/* Ground Line */}
+      <line x1="40" y1="280" x2="440" y2="280" stroke="#94a3b8" strokeWidth="2.5" />
     </svg>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   4. Manufacturing
- ────────────────────────────────────────────────────────────── */
+   4. Manufacturing Illustration (OT-IT Convergence)
+   Features robotic arm, active gears, assembly line
+  ────────────────────────────────────────────────────────────── */
 export function ManufacturingIllustration({ isHovered, isMini = false }) {
   const animate = useMotion() && !isMini;
   return (
-    <svg viewBox="0 0 480 320" style={BASE} aria-label="Manufacturing Automation">
-      <defs>
-        <radialGradient id="mfg-bg" cx="50%" cy="60%" r="55%">
-          <stop offset="0%" stopColor="rgba(56, 189, 248, 0.12)" />
-          <stop offset="100%" stopColor="transparent" />
-        </radialGradient>
-      </defs>
-      <ellipse cx="240" cy="190" rx="200" ry="120" fill="url(#mfg-bg)" />
+    <svg viewBox="0 0 480 320" style={BASE} aria-label="Manufacturing & OT Infrastructure">
+      {/* Background soft glow */}
+      <circle cx="240" cy="160" r="130" fill="rgba(217, 119, 6, 0.05)" />
 
-      {/* Assembly belt */}
-      <rect x="30" y="230" width="420" height="20" rx="3" fill="rgba(15, 23, 42, 0.7)" stroke="rgba(56,189,248,0.3)" strokeWidth="1" />
-      {animate && (
-        <motion.rect x="30" y="233" width="420" height="4"
-          fill="rgba(56,189,248,0.15)"
-          animate={{ x: [30, -30, 30] }}
-          transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-        />
-      )}
-
-      {/* Belt items */}
-      {animate && [0,1,2,3].map(i => (
-        <motion.rect key={i} y="218" width="28" height="14" rx="3"
-          fill="rgba(56,189,248,0.2)" stroke="#00f0ff" strokeWidth="1"
-          animate={{ x: [440 - i*110, -30] }}
-          transition={{ duration: 6, delay: i*1.5, repeat: Infinity, ease: 'linear' }}
-        />
-      ))}
-
-      {/* Robot arm 1 (Left) */}
-      {!isMini && (
-        <g transform="translate(120, 130)">
-          <rect x="-5" y="0" width="10" height="80" rx="3" fill="rgba(56,189,248,0.15)" stroke="rgba(56,189,248,0.35)" strokeWidth="1.5" />
-          <motion.g
-            animate={animate ? { rotate: [-15, 15, -15] } : {}}
-            style={{ transformOrigin: '0px 0px' }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            <rect x="-4" y="-45" width="8" height="50" rx="3" fill="rgba(56,189,248,0.2)" stroke="rgba(56,189,248,0.4)" strokeWidth="1.5" />
-            <circle cx="0" cy="-48" r="5" fill="#00f0ff" />
-          </motion.g>
-          <circle cx="0" cy="0" r="6" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(56,189,248,0.5)" strokeWidth="1.5" />
-          <text x="-12" y="95" fontSize="8" fill="rgba(255,255,255,0.4)" fontFamily="monospace">ARM-01</text>
-        </g>
-      )}
-
-      {/* Robot arm 2 (Center) */}
-      <g transform={isMini ? "translate(240, 140)" : "translate(240, 120)"}>
-        <rect x="-5" y="0" width="10" height="90" rx="3" fill="rgba(56,189,248,0.2)" stroke="rgba(56,189,248,0.4)" strokeWidth="1.5" />
+      {/* Interlocking Gears */}
+      <g transform={isMini ? "translate(240, 160) scale(1.3)" : "translate(150, 150)"}>
+        {/* Gear A */}
         <motion.g
-          animate={animate ? { rotate: [20, -20, 20] } : {}}
+          animate={animate ? { rotate: 360 } : {}}
+          transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
           style={{ transformOrigin: '0px 0px' }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
         >
-          <rect x="-4" y="-55" width="8" height="60" rx="3" fill="rgba(56,189,248,0.25)" stroke="#00f0ff" strokeWidth="1.5" />
-          <circle cx="0" cy="-58" r="5" fill="#00f0ff" />
+          <circle cx="0" cy="0" r="30" fill="none" stroke="#d97706" strokeWidth="5" strokeDasharray="10 6" />
+          <circle cx="0" cy="0" r="18" fill="none" stroke="#d97706" strokeWidth="2" />
+          <circle cx="0" cy="0" r="5" fill="#d97706" />
         </motion.g>
-        <circle cx="0" cy="0" r="6" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(56,189,248,0.5)" strokeWidth="1.5" />
-        {!isMini && <text x="-12" y="105" fontSize="8" fill="rgba(255,255,255,0.4)" fontFamily="monospace">ARM-02</text>}
+
+        {/* Gear B */}
+        {!isMini && (
+          <motion.g
+            transform="translate(48, 38)"
+            animate={animate ? { rotate: -360 } : {}}
+            transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+            style={{ transformOrigin: '0px 0px' }}
+          >
+            <circle cx="0" cy="0" r="22" fill="none" stroke="#f59e0b" strokeWidth="4" strokeDasharray="8 5" />
+            <circle cx="0" cy="0" r="12" fill="none" stroke="#f59e0b" strokeWidth="1.5" />
+            <circle cx="0" cy="0" r="3.5" fill="#f59e0b" />
+          </motion.g>
+        )}
       </g>
 
-      {/* Robot arm 3 (Right) */}
+      {/* Precision Robotic Arm */}
       {!isMini && (
-        <g transform="translate(360, 130)">
-          <rect x="-5" y="0" width="10" height="80" rx="3" fill="rgba(56,189,248,0.15)" stroke="rgba(56,189,248,0.35)" strokeWidth="1.5" />
+        <g transform="translate(300, 130)">
+          {/* Arm Base */}
+          <rect x="40" y="90" width="40" height="60" rx="3" fill="#cbd5e1" stroke="#64748b" strokeWidth="1.5" />
+          
+          {/* Arm segments */}
           <motion.g
-            animate={animate ? { rotate: [-10, 25, -10] } : {}}
-            style={{ transformOrigin: '0px 0px' }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+            animate={animate ? { rotate: [-10, 15, -10] } : {}}
+            style={{ transformOrigin: '50px 100px' }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <rect x="-4" y="-45" width="8" height="50" rx="3" fill="rgba(56,189,248,0.2)" stroke="rgba(56,189,248,0.4)" strokeWidth="1.5" />
-            <circle cx="0" cy="-48" r="5" fill="#00f0ff" />
+            <line x1="50" y1="100" x2="20" y2="40" stroke="#d97706" strokeWidth="7" strokeLinecap="round" />
+            
+            <motion.g
+              transform="translate(20, 40)"
+              animate={animate ? { rotate: [15, -20, 15] } : {}}
+              style={{ transformOrigin: '0px 0px' }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <line x1="0" y1="0" x2="-40" y2="20" stroke="#f59e0b" strokeWidth="5" strokeLinecap="round" />
+              {/* Welding Node spark */}
+              <circle cx="-40" cy="20" r="4" fill="#d97706" />
+              {animate && (
+                <motion.circle cx="-40" cy="20" r="10" fill="none" stroke="#f59e0b" strokeWidth="1.5"
+                  animate={{ scale: [1, 2.5, 1], opacity: [0.8, 0, 0.8] }}
+                  transition={{ duration: 1.2, repeat: Infinity }}
+                />
+              )}
+            </motion.g>
           </motion.g>
-          <circle cx="0" cy="0" r="6" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(56,189,248,0.5)" strokeWidth="1.5" />
-          <text x="-12" y="95" fontSize="8" fill="rgba(255,255,255,0.4)" fontFamily="monospace">ARM-03</text>
         </g>
       )}
 
-      {/* OT-IT Bridge */}
-      {!isMini && (
-        <g transform="translate(30, 50)">
-          <rect x="0" y="0" width="120" height="55" rx="6"
-            fill="rgba(15, 23, 42, 0.5)" stroke="rgba(56,189,248,0.2)" strokeWidth="1" />
-          <text x="8" y="14" fontSize="7" fill="rgba(255,255,255,0.4)" fontFamily="monospace">OT-IT BRIDGE</text>
-          <text x="8" y="28" fontSize="8" fill="rgba(56,189,248,0.8)" fontFamily="monospace" fontWeight="bold">ANSIBLE AUTO</text>
-          <motion.rect x="8" y="35" width="80" height="6" rx="2"
-            fill="rgba(56,189,248,0.12)"
-            animate={animate ? { width: [0, 80, 0] } : {}}
-            transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-          />
-          <text x="94" y="40" fontSize="7" fill="#00f0ff" fontFamily="monospace">RUN</text>
-        </g>
-      )}
-
-      {!isMini && (
-        <text x="240" y="308" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.4)" fontFamily="monospace" letterSpacing="2">
-          AUTOMATED PRODUCTION FLOOR
-        </text>
-      )}
+      {/* Assembly line ground platform */}
+      <line x1="40" y1="280" x2="440" y2="280" stroke="#94a3b8" strokeWidth="2.5" />
     </svg>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   5. BFSI
- ────────────────────────────────────────────────────────────── */
+   5. BFSI Illustration (Financial Security)
+   Features high security bank vault door, locking pins, combination dial
+  ────────────────────────────────────────────────────────────── */
 export function BFSIIllustration({ isHovered, isMini = false }) {
   const animate = useMotion() && !isMini;
   return (
-    <svg viewBox="0 0 480 320" style={BASE} aria-label="BFSI Secure Infrastructure">
-      <defs>
-        <radialGradient id="bfsi-bg" cx="50%" cy="50%" r="55%">
-          <stop offset="0%" stopColor="rgba(56, 189, 248, 0.15)" />
-          <stop offset="100%" stopColor="transparent" />
-        </radialGradient>
-        <filter id="bfsi-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      </defs>
-      <ellipse cx="240" cy="160" rx="200" ry="130" fill="url(#bfsi-bg)" />
+    <svg viewBox="0 0 480 320" style={BASE} aria-label="Banking & Financial IT Security">
+      {/* Background soft glow */}
+      <circle cx="240" cy="160" r="130" fill="rgba(15, 23, 42, 0.03)" />
 
-      {/* Vault */}
-      <circle cx="240" cy="155" r={isMini ? 60 : 70} fill="rgba(15, 23, 42, 0.6)" stroke="rgba(56,189,248,0.4)" strokeWidth="2" />
-      <circle cx="240" cy="155" r={isMini ? 45 : 55} fill="rgba(15, 23, 42, 0.4)" stroke="rgba(56,189,248,0.25)" strokeWidth="1.5" />
+      {/* Outer Vault Frame */}
+      <rect x="150" y="70" width="180" height="180" rx="10" fill="#ffffff" stroke="#1e293b" strokeWidth="3" />
+      <rect x="160" y="80" width="160" height="160" rx="6" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="1.5" />
 
-      {/* Vault door details */}
-      {[0,45,90,135,180,225,270,315].map((deg, i) => {
-        const r = isMini ? 50 : 60;
-        const rad = (deg * Math.PI) / 180;
-        const x = 240 + r * Math.cos(rad);
-        const y = 155 + r * Math.sin(rad);
-        return <circle key={i} cx={x} cy={y} r={isMini ? 3 : 4} fill="rgba(56,189,248,0.3)" stroke="rgba(56,189,248,0.5)" strokeWidth="1" />;
-      })}
+      {/* Heavy Hinge Plate */}
+      <rect x="140" y="100" width="15" height="120" rx="3" fill="#475569" stroke="#1e293b" strokeWidth="1.5" />
 
-      {/* Rotating dial */}
-      <motion.circle cx="240" cy="155" r="25"
-        fill="rgba(56,189,248,0.12)" stroke="#00f0ff" strokeWidth="1.5"
-        animate={animate ? { rotate: 360 } : {}}
-        style={{ transformOrigin: '240px 155px' }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-      />
-      <motion.line x1="240" y1="155" x2="240" y2="135"
-        stroke="#00f0ff" strokeWidth="2"
-        animate={animate ? { rotate: 360 } : {}}
-        style={{ transformOrigin: '240px 155px' }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-      />
+      {/* Main vault door wheel (Combination lock) */}
+      <g transform="translate(240, 160)">
+        <circle cx="0" cy="0" r="50" fill="#ffffff" stroke="#1e293b" strokeWidth="3" />
+        <circle cx="0" cy="0" r="42" fill="none" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3 4" />
 
-      {/* Shield layers */}
-      {!isMini && [85, 75, 65].map((r, i) => (
-        <motion.circle key={i} cx="240" cy="155" r={r}
-          fill="none" stroke={`rgba(56,189,248,${0.08 - i*0.02})`} strokeWidth="1" strokeDasharray="4 4"
-          animate={animate ? { rotate: i % 2 === 0 ? 360 : -360, opacity: [0.4, 0.8, 0.4] } : {}}
-          style={{ transformOrigin: '240px 155px' }}
-          transition={{ duration: 12 + i * 3, repeat: Infinity, ease: 'linear' }}
-        />
-      ))}
+        {/* Rotatable wheel spokes */}
+        <motion.g
+          animate={animate ? { rotate: 360 } : {}}
+          transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
+          style={{ transformOrigin: '0px 0px' }}
+        >
+          <line x1="0" y1="-50" x2="0" y2="50" stroke="#1e293b" strokeWidth="3" />
+          <line x1="-50" y1="0" x2="50" y2="0" stroke="#1e293b" strokeWidth="3" />
+          <circle cx="0" cy="-50" r="6" fill="#b45309" stroke="#1e293b" strokeWidth="1.5" />
+          <circle cx="0" cy="50" r="6" fill="#b45309" stroke="#1e293b" strokeWidth="1.5" />
+          <circle cx="-50" cy="0" r="6" fill="#b45309" stroke="#1e293b" strokeWidth="1.5" />
+          <circle cx="50" cy="0" r="6" fill="#b45309" stroke="#1e293b" strokeWidth="1.5" />
+        </motion.g>
 
-      {/* Security labels */}
-      {!isMini && [
-        { x: 60, y: 100, text: 'FIREWALL', sub: 'ACTIVE' },
-        { x: 360, y: 100, text: 'WAF', sub: 'PROTECTED' },
-        { x: 60, y: 240, text: 'DR-SYNC', sub: '0ms LAG' },
-        { x: 360, y: 240, text: 'ENCRYPT', sub: 'AES-256' },
-      ].map((label, i) => (
-        <g key={i}>
-          <rect x={label.x-30} y={label.y-16} width="60" height="32" rx="4"
-            fill="rgba(15, 23, 42, 0.5)" stroke="rgba(56,189,248,0.25)" strokeWidth="1" />
-          <text x={label.x} y={label.y} textAnchor="middle"
-            fontSize="7" fill="rgba(255,255,255,0.5)" fontFamily="monospace">{label.text}</text>
-          <motion.text x={label.x} y={label.y+11} textAnchor="middle"
-            fontSize="7" fontFamily="monospace" fontWeight="bold"
-            animate={animate ? { fill: ['rgba(0, 240, 255, 0.7)', '#00f0ff', 'rgba(0, 240, 255, 0.7)'] } : { fill: 'rgba(0, 240, 255, 0.7)' }}
-            transition={{ duration: 2, delay: i*0.5, repeat: Infinity }}
-          >{label.sub}</motion.text>
-          <line x1={label.x} y1={label.y + (label.y > 155 ? -16 : 16)}
-            x2="240" y2={label.y > 155 ? 210 : 100}
-            stroke="rgba(56,189,248,0.15)" strokeWidth="1" strokeDasharray="3 3" />
-        </g>
-      ))}
+        {/* Central dial lock */}
+        <circle cx="0" cy="0" r="16" fill="#b45309" stroke="#1e293b" strokeWidth="2" />
+        <circle cx="0" cy="0" r="6" fill="#ffffff" />
+      </g>
 
-      {/* Glow */}
-      <motion.circle cx="240" cy="155" r="10"
-        fill="rgba(0, 240, 255, 0.25)" filter="url(#bfsi-glow)"
-        animate={animate ? { r: [10, 14, 10], opacity: [0.7, 1, 0.7] } : {}}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
-
+      {/* Left/Right Security Locking Bolts */}
       {!isMini && (
-        <text x="240" y="308" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.4)" fontFamily="monospace" letterSpacing="2">
-          SECURE BANKING CORE
-        </text>
+        <g>
+          <rect x="325" y="105" width="20" height="12" rx="2" fill="#b45309" stroke="#1e293b" strokeWidth="1" />
+          <rect x="325" y="154" width="20" height="12" rx="2" fill="#b45309" stroke="#1e293b" strokeWidth="1" />
+          <rect x="325" y="203" width="20" height="12" rx="2" fill="#b45309" stroke="#1e293b" strokeWidth="1" />
+        </g>
+      )}
+
+      {/* Security Status Tag */}
+      {!isMini && (
+        <g transform="translate(60, 135)">
+          <rect x="0" y="0" width="70" height="50" rx="4" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.2" />
+          <circle cx="15" cy="20" r="4" fill="#22c55e" />
+          <line x1="30" y1="20" x2="58" y2="20" stroke="#475569" strokeWidth="2" />
+          <line x1="12" y1="38" x2="58" y2="38" stroke="#94a3b8" strokeWidth="1.5" />
+        </g>
       )}
     </svg>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   6. Logistics
- ────────────────────────────────────────────────────────────── */
+   6. Logistics Illustration (Supply Chain)
+   Features parcel cargo, tracking routing lines, map marker pins
+  ────────────────────────────────────────────────────────────── */
 export function LogisticsIllustration({ isHovered, isMini = false }) {
   const animate = useMotion() && !isMini;
-  const hubs = isMini ? [
-    { cx: 240, cy: 155, label: '' },
-    { cx: 100, cy: 80, label: '' },
-    { cx: 380, cy: 80, label: '' },
-    { cx: 240, cy: 260, label: '' },
-  ] : [
-    { cx: 240, cy: 155, label: 'DC-HQ' },
-    { cx: 100, cy: 80, label: 'WH-01' },
-    { cx: 380, cy: 80, label: 'WH-02' },
-    { cx: 70, cy: 220, label: 'DEPOT-A' },
-    { cx: 410, cy: 220, label: 'DEPOT-B' },
-    { cx: 180, cy: 270, label: 'PORT-W' },
-    { cx: 310, cy: 270, label: 'PORT-E' },
-  ];
-  
-  const routes = isMini ? [[0,1],[0,2],[0,3]] : [[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[1,3],[2,4]];
-
   return (
-    <svg viewBox="0 0 480 320" style={BASE} aria-label="Global Logistics Network">
-      <defs>
-        <radialGradient id="log-bg" cx="50%" cy="50%" r="55%">
-          <stop offset="0%" stopColor="rgba(56, 189, 248, 0.1)" />
-          <stop offset="100%" stopColor="transparent" />
-        </radialGradient>
-      </defs>
-      <ellipse cx="240" cy="175" rx="210" ry="130" fill="url(#log-bg)" />
+    <svg viewBox="0 0 480 320" style={BASE} aria-label="Supply Chain & Logistics IT">
+      {/* Background soft glow */}
+      <circle cx="240" cy="160" r="130" fill="rgba(124, 58, 237, 0.05)" />
 
-      {/* Subtle world map dots */}
-      {!isMini && Array.from({ length: 60 }).map((_, i) => (
-        <circle key={i} cx={30 + (i % 12) * 36} cy={50 + Math.floor(i / 12) * 45}
-          r="1" fill="rgba(56,189,248,0.12)" />
-      ))}
-
-      {/* Routes */}
-      {routes.map(([a, b], i) => (
-        <g key={i}>
-          <line x1={hubs[a].cx} y1={hubs[a].cy} x2={hubs[b].cx} y2={hubs[b].cy}
-            stroke="rgba(56,189,248,0.15)" strokeWidth="1.5" strokeDasharray="5 4" />
-          <motion.circle r={isMini ? 3.5 : 4} fill="#00f0ff">
-            <animateMotion
-              dur={`${2 + i * 0.3}s`} repeatCount="indefinite"
-              begin={`${i * 0.5}s`}
-              path={`M${hubs[a].cx},${hubs[a].cy} L${hubs[b].cx},${hubs[b].cy}`}
-            />
-          </motion.circle>
-        </g>
-      ))}
-
-      {/* Hubs */}
-      {hubs.map((h, i) => {
-        const isMain = i === 0;
-        return (
-          <g key={i}>
-            <motion.circle cx={h.cx} cy={h.cy} r={isMain ? 12 : 7}
-              fill={isMain ? 'rgba(56,189,248,0.25)' : 'rgba(15, 23, 42, 0.8)'}
-              stroke={isMain ? '#00f0ff' : 'rgba(56,189,248,0.5)'}
-              strokeWidth={isMain ? 2 : 1.5}
-              animate={animate ? { opacity: [0.7, 1, 0.7] } : {}}
-              transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
-            />
-            {!isMini && h.label && (
-              <text x={h.cx} y={h.cy + (isMain ? 24 : 20)} textAnchor="middle"
-                fontSize="7" fill="rgba(255,255,255,0.5)" fontFamily="monospace">{h.label}</text>
-            )}
-          </g>
-        );
-      })}
-
+      {/* Geometric Routing Maps Lines */}
       {!isMini && (
-        <text x="240" y="308" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.4)" fontFamily="monospace" letterSpacing="2">
-          GLOBAL SUPPLY CHAIN
-        </text>
+        <g>
+          <path
+            d="M80,180 L160,110 L240,210 L320,130 L400,200"
+            fill="none"
+            stroke="rgba(124, 58, 237, 0.2)"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          {animate && (
+            <motion.path
+              d="M80,180 L160,110 L240,210 L320,130 L400,200"
+              fill="none"
+              stroke="#a78bfa"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              animate={{
+                strokeDasharray: ['15 35', '35 15', '15 35'],
+                strokeDashoffset: [0, 50, 100]
+              }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
+            />
+          )}
+        </g>
+      )}
+
+      {/* Isometric Shipping Box (3D Package) */}
+      <g transform={isMini ? "translate(240, 155) scale(1.3)" : "translate(240, 150)"}>
+        {/* Left facet */}
+        <polygon points="0,0 -40,-20 -40,20 0,40" fill="#7c3aed" stroke="#6d28d9" strokeWidth="1" />
+        {/* Right facet */}
+        <polygon points="0,0 40,-20 40,20 0,40" fill="#a78bfa" stroke="#8b5cf6" strokeWidth="1" />
+        {/* Top facet */}
+        <polygon points="0,0 -40,-20 0,-40 40,-20" fill="#c084fc" stroke="#a78bfa" strokeWidth="1" />
+        {/* Tape strips */}
+        <polygon points="0,-15 15,-23 0,-30 -15,-23" fill="#6d28d9" />
+      </g>
+
+      {/* Map location Pin drops */}
+      {!isMini && (
+        <g>
+          {/* Pin 1 */}
+          <g transform="translate(160, 110)">
+            <path d="M0,0 C-6,-6 -10,-12 -10,-18 C-10,-24 -5,-28 0,-28 C5,-28 10,-24 10,-18 C10,-12 6,-6 0,0 Z" fill="#7c3aed" />
+            <circle cx="0" cy="-18" r="3.5" fill="#ffffff" />
+          </g>
+          
+          {/* Pin 2 */}
+          <g transform="translate(320, 130)">
+            <path d="M0,0 C-6,-6 -10,-12 -10,-18 C-10,-24 -5,-28 0,-28 C5,-28 10,-24 10,-18 C10,-12 6,-6 0,0 Z" fill="#7c3aed" />
+            <circle cx="0" cy="-18" r="3.5" fill="#ffffff" />
+          </g>
+        </g>
       )}
     </svg>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   7. Education
- ────────────────────────────────────────────────────────────── */
+   7. Education Illustration (Campus Tech)
+   Features open academic book, floating graduation cap
+  ────────────────────────────────────────────────────────────── */
 export function EducationIllustration({ isHovered, isMini = false }) {
   const animate = useMotion() && !isMini;
   return (
-    <svg viewBox="0 0 480 320" style={BASE} aria-label="Digital Campus Network">
-      <defs>
-        <radialGradient id="edu-bg" cx="50%" cy="50%" r="55%">
-          <stop offset="0%" stopColor="rgba(56, 189, 248, 0.12)" />
-          <stop offset="100%" stopColor="transparent" />
-        </radialGradient>
-      </defs>
-      <ellipse cx="240" cy="170" rx="200" ry="125" fill="url(#edu-bg)" />
+    <svg viewBox="0 0 480 320" style={BASE} aria-label="Campus & Education IT">
+      {/* Background soft glow */}
+      <circle cx="240" cy="160" r="130" fill="rgba(234, 88, 12, 0.05)" />
 
-      {/* Grid/Campus blueprint */}
-      {!isMini && [0,1,2].map(i => <line key={`h${i}`} x1="40" y1={80+i*80} x2="440" y2={80+i*80} stroke="rgba(56,189,248,0.06)" strokeWidth="1" />)}
-      {!isMini && [0,1,2,3].map(i => <line key={`v${i}`} x1={80+i*100} y1="50" x2={80+i*100} y2="270" stroke="rgba(56,189,248,0.06)" strokeWidth="1" />)}
-
-      {/* Campus buildings */}
-      {[
-        { x: isMini ? 190 : 60, y: 110, w: isMini ? 100 : 90, h: 80, label: 'MAIN CAMPUS' },
-        ...(!isMini ? [
-          { x: 190, y: 95, w: 70, h: 95, label: 'DATA CENTER' },
-          { x: 310, y: 120, w: 80, h: 70, label: 'RESEARCH LAB' },
-        ] : []),
-      ].map((b, i) => (
-        <g key={i}>
-          <rect x={b.x} y={b.y} width={b.w} height={b.h} rx="3"
-            fill="rgba(15, 23, 42, 0.7)" stroke="rgba(56,189,248,0.35)" strokeWidth="1.5" />
-          {Array.from({ length: isMini ? 4 : 6 }).map((_, j) => (
-            <motion.rect key={j}
-              x={b.x + 8 + (j % (isMini ? 2 : 3)) * 25} y={b.y + 12 + Math.floor(j / (isMini ? 2 : 3)) * 22}
-              width={isMini ? 15 : 12} height="10" rx="1"
-              fill="rgba(0, 240, 255, 0.3)"
-              animate={animate ? { opacity: [0.3, 0.8, 0.3] } : {}}
-              transition={{ duration: 2, delay: (i + j) * 0.3, repeat: Infinity }}
-            />
-          ))}
-          {!isMini && (
-            <text x={b.x + b.w/2} y={b.y + b.h + 12} textAnchor="middle"
-              fontSize="7" fill="rgba(255,255,255,0.5)" fontFamily="monospace">{b.label}</text>
-          )}
-        </g>
-      ))}
-
-      {/* WiFi/Network connections */}
-      {isMini ? (
-        <g transform="translate(240, 150)">
-          <motion.circle cx="0" cy="0" r="16" fill="none" stroke="rgba(56,189,248,0.3)" strokeWidth="1"
-            animate={animate ? { r: [16, 28, 16], opacity: [0.5, 0, 0.5] } : {}}
-            transition={{ duration: 2.5, repeat: Infinity }}
-          />
-        </g>
-      ) : (
-        [[105, 150], [225, 143], [350, 155]].map(([cx, cy], i) => (
-          <g key={i}>
-            <motion.circle cx={cx} cy={cy} r="20"
-              fill="none" stroke="rgba(56,189,248,0.2)" strokeWidth="1"
-              animate={animate ? { r: [20, 32, 20], opacity: [0.5, 0, 0.5] } : {}}
-              transition={{ duration: 2.5, delay: i * 0.8, repeat: Infinity }}
-            />
-            <motion.circle cx={cx} cy={cy} r="12"
-              fill="none" stroke="rgba(0, 240, 255, 0.3)" strokeWidth="1"
-              animate={animate ? { r: [12, 20, 12], opacity: [0.6, 0, 0.6] } : {}}
-              transition={{ duration: 2.5, delay: i * 0.8 + 0.4, repeat: Infinity }}
-            />
-          </g>
-        ))
-      )}
-
-      {/* Backbone line */}
-      {!isMini && (
-        <motion.path d="M105,150 C150,150 175,143 225,143 C275,143 300,155 350,155"
-          fill="none" stroke="rgba(0, 240, 255, 0.5)" strokeWidth="2" strokeDasharray="6 4"
-          initial={{ pathLength: 0 }}
-          animate={animate ? { pathLength: 1 } : {}}
-          transition={{ duration: 2, ease: 'easeOut' }}
-        />
-      )}
-
-      {/* Virtual lab panel */}
-      {!isMini && (
-        <g transform="translate(30, 220)">
-          <rect x="0" y="0" width="120" height="42" rx="5"
-            fill="rgba(15, 23, 42, 0.5)" stroke="rgba(56,189,248,0.2)" strokeWidth="1" />
-          <text x="8" y="13" fontSize="7" fill="rgba(255,255,255,0.4)" fontFamily="monospace">VIRTUAL LABS</text>
-          {[0,1,2].map(i => (
-            <motion.rect key={i} x={8+i*36} y="20" width="28" height="16" rx="3"
-              fill="rgba(56,189,248,0.15)" stroke="rgba(0, 240, 255, 0.4)" strokeWidth="1"
-              animate={animate ? { opacity: [0.5, 1, 0.5] } : {}}
-              transition={{ duration: 1.5, delay: i * 0.5, repeat: Infinity }}
-            />
-          ))}
-        </g>
-      )}
-
-      {!isMini && (
-        <text x="240" y="308" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.4)" fontFamily="monospace" letterSpacing="2">
-          DIGITAL CAMPUS NETWORK
-        </text>
-      )}
-    </svg>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────
-   8. Government
- ────────────────────────────────────────────────────────────── */
-export function GovernmentIllustration({ isHovered, isMini = false }) {
-  const animate = useMotion() && !isMini;
-  return (
-    <svg viewBox="0 0 480 320" style={BASE} aria-label="Government Security Infrastructure">
-      <defs>
-        <radialGradient id="gov-bg" cx="50%" cy="50%" r="60%">
-          <stop offset="0%" stopColor="rgba(56, 189, 248, 0.12)" />
-          <stop offset="100%" stopColor="transparent" />
-        </radialGradient>
-        <filter id="gov-glow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      </defs>
-      <ellipse cx="240" cy="170" rx="210" ry="130" fill="url(#gov-bg)" />
-
-      {/* Government building */}
-      <rect x="165" y="130" width="150" height="130" rx="2" fill="rgba(15, 23, 42, 0.7)" stroke="rgba(56,189,248,0.3)" strokeWidth="1.5" />
-      {/* Columns */}
-      {[0,1,2,3,4].map(i => {
-        if (isMini && (i === 0 || i === 4)) return null; // Show fewer columns on mini
-        return (
-          <rect key={i} x={172+i*26} y="145" width="10" height="115" rx="2"
-            fill="rgba(56,189,248,0.15)" stroke="rgba(56,189,248,0.25)" strokeWidth="1" />
-        );
-      })}
-      {/* Pediment */}
-      <polygon points="155,130 325,130 240,80" fill="rgba(56,189,248,0.2)" stroke="rgba(56,189,248,0.35)" strokeWidth="1.5" />
-      
-      {/* Windows */}
-      {!isMini && [0,1,2].map(r => [0,1,2,3,4].map(c => (
-        <motion.rect key={`${r}-${c}`} x={173+c*26} y={155+r*30} width="8" height="14" rx="1"
-          fill="rgba(0, 240, 255, 0.3)"
-          animate={animate ? { opacity: [0.3, 0.8, 0.3] } : {}}
-          transition={{ duration: 2, delay: (r*5+c)*0.2, repeat: Infinity }}
-        />
-      )))}
-
-      {/* Security layers - pulsing rings */}
-      {!isMini && [90, 120, 150].map((r, i) => (
-        <motion.circle key={i} cx="240" cy="195" r={r}
-          fill="none" stroke={`rgba(56,189,248,${0.12 - i*0.03})`} strokeWidth="1" strokeDasharray="4 5"
-          animate={animate ? { rotate: i % 2 === 0 ? 360 : -360 } : {}}
-          style={{ transformOrigin: '240px 195px' }}
-          transition={{ duration: 20 + i * 5, repeat: Infinity, ease: 'linear' }}
-        />
-      ))}
-
-      {/* Shield icon */}
-      <g transform={isMini ? "translate(240, 195)" : "translate(240, 105)"}>
-        <path d="M0,-20 L14,0 L10,18 L0,22 L-10,18 L-14,0 Z"
-          fill="rgba(15, 23, 42, 0.8)" stroke="#00f0ff" strokeWidth="1.5" />
-        <motion.path d="M0,-20 L14,0 L10,18 L0,22 L-10,18 L-14,0 Z"
-          fill="rgba(0, 240, 255, 0.2)"
-          animate={animate ? { opacity: [0.1, 0.4, 0.1] } : {}}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
+      {/* Open Hardcover Book */}
+      <g transform="translate(240, 200)">
+        {/* Book spine & cover */}
+        <path d="M-100,20 L0,10 L100,20 L100,30 L0,20 L-100,30 Z" fill="#ea580c" />
+        
+        {/* Left Pages */}
+        <path d="M-96,16 Q-48,2 0,10 L0,20 Q-48,12 -96,26 Z" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1" />
+        {/* Right Pages */}
+        <path d="M96,16 Q48,2 0,10 L0,20 Q48,12 96,26 Z" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1" />
       </g>
 
-      {/* Status bars */}
-      {!isMini && [
-        { x: 30, y: 140, label: 'PATCH LEVEL', val: '98%', pct: 0.98 },
-        { x: 360, y: 140, label: 'COMPLIANCE', val: '100%', pct: 1 },
-        { x: 30, y: 220, label: 'UPTIME', val: '99.9%', pct: 0.999 },
-        { x: 360, y: 220, label: 'AUDIT STATUS', val: 'CLEAN', pct: 0.95 },
-      ].map((s, i) => (
-        <g key={i}>
-          <rect x={s.x} y={s.y} width="90" height="48" rx="5"
-            fill="rgba(15, 23, 42, 0.5)" stroke="rgba(56,189,248,0.2)" strokeWidth="1" />
-          <text x={s.x+6} y={s.y+14} fontSize="7" fill="rgba(255,255,255,0.4)" fontFamily="monospace">{s.label}</text>
-          <rect x={s.x+6} y={s.y+20} width="78" height="5" rx="2" fill="rgba(56,189,248,0.1)" />
-          <motion.rect x={s.x+6} y={s.y+20} width={78*s.pct} height="5" rx="2"
-            fill="rgba(0, 240, 255, 0.7)"
-            initial={{ width: 0 }}
-            animate={animate ? { width: 78 * s.pct } : {}}
-            transition={{ duration: 1.5, delay: i * 0.3 }}
-          />
-          <text x={s.x+6} y={s.y+38} fontSize="9" fill="rgba(255,255,255,0.8)" fontFamily="monospace" fontWeight="bold">{s.val}</text>
-        </g>
-      ))}
+      {/* Floating Academic Graduation Cap */}
+      <g transform={isMini ? "translate(240, 135) scale(1.2)" : "translate(240, 110)"}>
+        <motion.g
+          animate={animate ? { y: [-6, 6, -6] } : {}}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          {/* Skull cap band */}
+          <path d="M-25,5 L-25,18 Q0,26 25,18 L25,5 Z" fill="#ea580c" stroke="#475569" strokeWidth="1.5" />
+          
+          {/* Diamond top board */}
+          <polygon points="0,-18 50,0 0,18 -50,0" fill="#f97316" stroke="#ea580c" strokeWidth="2.5" />
+          
+          {/* Tassel */}
+          <path d="M0,0 L28,6 L28,24" fill="none" stroke="#ea580c" strokeWidth="1.5" />
+          <rect x="25" y="24" width="6" height="10" fill="#f97316" />
+        </motion.g>
+      </g>
 
+      {/* Virtual Lab terminal overlay */}
       {!isMini && (
-        <text x="240" y="308" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.4)" fontFamily="monospace" letterSpacing="2">
-          PUBLIC SECTOR SECURITY
-        </text>
+        <g transform="translate(340, 60)">
+          <rect x="0" y="0" width="70" height="50" rx="4" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.2" />
+          <circle cx="12" cy="12" r="3" fill="#ea580c" />
+          <line x1="22" y1="12" x2="58" y2="12" stroke="#475569" strokeWidth="2.5" />
+          <line x1="8" y1="28" x2="58" y2="28" stroke="#94a3b8" strokeWidth="2" />
+        </g>
       )}
     </svg>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   9. Media/Entertainment
- ────────────────────────────────────────────────────────────── */
+   8. Government Illustration (Public Sector)
+   Features classic temple facade, structural columns, scales emblem
+  ────────────────────────────────────────────────────────────── */
+export function GovernmentIllustration({ isHovered, isMini = false }) {
+  return (
+    <svg viewBox="0 0 480 320" style={BASE} aria-label="Public Sector IT Architecture">
+      {/* Background soft glow */}
+      <circle cx="240" cy="160" r="130" fill="rgba(30, 58, 138, 0.05)" />
+
+      {/* Neoclassic Temple Building Façade */}
+      <g transform={isMini ? "translate(240, 160) scale(0.9)" : "translate(240, 160)"}>
+        {/* Triangular Pediment (Roof) */}
+        <polygon points="0,-75 -110,-40 110,-40" fill="#ffffff" stroke="#1e3a8a" strokeWidth="3" />
+        <polygon points="0,-65 -90,-38 90,-38" fill="#60a5fa" opacity="0.3" />
+
+        {/* Entablature (Horizontal architrave beam) */}
+        <rect x="-100" y="-40" width="200" height="18" fill="#ffffff" stroke="#1e3a8a" strokeWidth="2.5" />
+
+        {/* Structural Columns */}
+        {/* Column 1 (Left) */}
+        <rect x="-80" y="-22" width="18" height="85" fill="#ffffff" stroke="#1e3a8a" strokeWidth="2.5" />
+        {/* Column 2 (Inner Left) */}
+        <rect x="-35" y="-22" width="18" height="85" fill="#ffffff" stroke="#1e3a8a" strokeWidth="2.5" />
+        {/* Column 3 (Inner Right) */}
+        <rect x="17" y="-22" width="18" height="85" fill="#ffffff" stroke="#1e3a8a" strokeWidth="2.5" />
+        {/* Column 4 (Right) */}
+        <rect x="62" y="-22" width="18" height="85" fill="#ffffff" stroke="#1e3a8a" strokeWidth="2.5" />
+
+        {/* High-quality Columns Pedestal foundation steps */}
+        <rect x="-110" y="63" width="220" height="15" rx="2" fill="#ffffff" stroke="#1e3a8a" strokeWidth="2.5" />
+        <rect x="-120" y="78" width="240" height="15" rx="3" fill="#1e3a8a" />
+      </g>
+
+      {/* Scale of Justice emblem in central gap */}
+      {!isMini && (
+        <g transform="translate(240, 150) scale(0.75)">
+          <line x1="0" y1="-20" x2="0" y2="35" stroke="#60a5fa" strokeWidth="3" />
+          <line x1="-30" y1="-10" x2="30" y2="-10" stroke="#60a5fa" strokeWidth="3" />
+          {/* Left pan */}
+          <line x1="-30" y1="-10" x2="-30" y2="15" stroke="#cbd5e1" strokeWidth="1.5" />
+          <path d="M-42,15 Q-30,28 -18,15 Z" fill="#60a5fa" />
+          {/* Right pan */}
+          <line x1="30" y1="-10" x2="30" y2="15" stroke="#cbd5e1" strokeWidth="1.5" />
+          <path d="M18,15 Q30,28 42,15 Z" fill="#60a5fa" />
+        </g>
+      )}
+    </svg>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   9. Media Illustration (CDN & Streaming)
+   Features media play button inside film canister and media wave streams
+  ────────────────────────────────────────────────────────────── */
 export function MediaIllustration({ isHovered, isMini = false }) {
   const animate = useMotion() && !isMini;
   return (
-    <svg viewBox="0 0 480 320" style={BASE} aria-label="Media CDN Infrastructure">
-      <defs>
-        <radialGradient id="med-bg" cx="50%" cy="50%" r="55%">
-          <stop offset="0%" stopColor="rgba(56, 189, 248, 0.12)" />
-          <stop offset="100%" stopColor="transparent" />
-        </radialGradient>
-        <filter id="med-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      </defs>
-      <ellipse cx="240" cy="160" rx="200" ry="120" fill="url(#med-bg)" />
+    <svg viewBox="0 0 480 320" style={BASE} aria-label="Media Streaming & CDN">
+      {/* Background soft glow */}
+      <circle cx="240" cy="160" r="130" fill="rgba(219, 39, 119, 0.05)" />
 
-      {/* CDN Origin */}
-      <motion.circle cx="240" cy="150" r={isMini ? 20 : 24}
-        fill="rgba(15, 23, 42, 0.7)" stroke="#00f0ff" strokeWidth="2"
-        filter="url(#med-glow)"
-        animate={animate ? { r: [24, 27, 24], opacity: [0.8, 1, 0.8] } : {}}
-        transition={{ duration: 2.5, repeat: Infinity }}
-      />
+      {/* Glowing Multimedia streaming waves */}
       {!isMini && (
-        <>
-          <text x="240" y="147" textAnchor="middle" fontSize="7" fill="rgba(255,255,255,0.9)" fontFamily="monospace">CDN</text>
-          <text x="240" y="157" textAnchor="middle" fontSize="7" fill="rgba(255,255,255,0.9)" fontFamily="monospace">ORIGIN</text>
-        </>
-      )}
-
-      {/* Distribution waves */}
-      {!isMini && [40, 70, 100, 135].map((r, i) => (
-        <motion.circle key={i} cx="240" cy="150" r={r}
-          fill="none" stroke="rgba(56,189,248,0.15)" strokeWidth="1"
-          animate={animate ? {
-            r: [r, r + 10, r],
-            opacity: [0.4, 0.1, 0.4]
-          } : {}}
-          transition={{ duration: 3, delay: i * 0.5, repeat: Infinity }}
-        />
-      ))}
-
-      {/* Edge nodes */}
-      {[
-        { cx: 80, cy: 80, label: 'EDGE-N' },
-        { cx: 400, cy: 80, label: 'EDGE-E' },
-        ...(!isMini ? [
-          { cx: 80, cy: 240, label: 'EDGE-S' },
-          { cx: 400, cy: 240, label: 'EDGE-W' },
-          { cx: 150, cy: 270, label: 'POP-1' },
-          { cx: 330, cy: 270, label: 'POP-2' },
-        ] : []),
-      ].map((n, i) => (
-        <g key={i}>
-          <line x1={n.cx} y1={n.cy} x2="240" y2="150"
-            stroke="rgba(56,189,248,0.15)" strokeWidth="1.5" strokeDasharray="4 3" />
+        <g>
+          <path
+            d="M50,200 Q140,90 240,160 T430,120"
+            fill="none"
+            stroke="rgba(219, 39, 119, 0.2)"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+          />
           {animate && (
-            <motion.circle r="3" fill="#00f0ff" filter="url(#med-glow)">
-              <animateMotion
-                dur={`${1.5 + i * 0.2}s`} repeatCount="indefinite"
-                begin={`${i * 0.4}s`}
-                path={`M${n.cx},${n.cy} L240,150`}
-              />
-            </motion.circle>
+            <motion.path
+              d="M50,200 Q140,90 240,160 T430,120"
+              fill="none"
+              stroke="#f472b6"
+              strokeWidth="4"
+              strokeLinecap="round"
+              animate={{
+                strokeDasharray: ['20 40', '40 20', '20 40'],
+                strokeDashoffset: [0, -60, -120]
+              }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: 'linear' }}
+            />
           )}
-          <motion.circle cx={n.cx} cy={n.cy} r={isMini ? 6 : 9}
-            fill="rgba(15, 23, 42, 0.8)" stroke="rgba(56,189,248,0.4)" strokeWidth="1.5"
-            animate={animate ? { opacity: [0.6, 1, 0.6] } : {}}
-            transition={{ duration: 2, delay: i * 0.4, repeat: Infinity }}
-          />
-          {!isMini && (
-            <text x={n.cx} y={n.cy + 20} textAnchor="middle"
-              fontSize="7" fill="rgba(255,255,255,0.5)" fontFamily="monospace">{n.label}</text>
-          )}
-        </g>
-      ))}
-
-      {/* Bandwidth meter */}
-      {!isMini && (
-        <g transform="translate(30, 50)">
-          <rect x="0" y="0" width="100" height="45" rx="5"
-            fill="rgba(15, 23, 42, 0.5)" stroke="rgba(56,189,248,0.2)" strokeWidth="1" />
-          <text x="6" y="14" fontSize="7" fill="rgba(255,255,255,0.4)" fontFamily="monospace">BANDWIDTH</text>
-          <rect x="6" y="20" width="88" height="5" rx="2" fill="rgba(56,189,248,0.1)" />
-          <motion.rect x="6" y="20" width="0" height="5" rx="2"
-            fill="rgba(0, 240, 255, 0.7)"
-            animate={animate ? { width: [0, 88, 60, 88] } : {}}
-            transition={{ duration: 4, repeat: Infinity }}
-          />
-          <text x="6" y="38" fontSize="8" fill="rgba(0, 240, 255, 0.8)" fontFamily="monospace" fontWeight="bold">100 Gbps</text>
         </g>
       )}
 
+      {/* Film reel structure */}
+      <g transform={isMini ? "translate(240, 160) scale(1.3)" : "translate(240, 160)"}>
+        <circle cx="0" cy="0" r="54" fill="#ffffff" stroke="#db2777" strokeWidth="3" />
+        <circle cx="0" cy="0" r="46" fill="none" stroke="#f472b6" strokeWidth="1" strokeDasharray="4 6" />
+
+        {/* Rotatable Film Reel openings */}
+        <motion.g
+          animate={animate ? { rotate: -360 } : {}}
+          transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
+          style={{ transformOrigin: '0px 0px' }}
+        >
+          <circle cx="0" cy="-28" r="9" fill="rgba(219, 39, 119, 0.15)" stroke="#db2777" strokeWidth="1.5" />
+          <circle cx="24" cy="14" r="9" fill="rgba(219, 39, 119, 0.15)" stroke="#db2777" strokeWidth="1.5" />
+          <circle cx="-24" cy="14" r="9" fill="rgba(219, 39, 119, 0.15)" stroke="#db2777" strokeWidth="1.5" />
+        </motion.g>
+
+        {/* Central Triangle Media Play symbol */}
+        <polygon points="-8,-14 16,0 -8,14" fill="#db2777" stroke="#db2777" strokeWidth="2.5" strokeLinejoin="round" />
+      </g>
+
+      {/* Edge CDN nodes */}
       {!isMini && (
-        <text x="240" y="308" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.4)" fontFamily="monospace" letterSpacing="2">
-          CONTENT DELIVERY NETWORK
-        </text>
+        <g>
+          {/* Storage node A */}
+          <rect x="50" y="70" width="70" height="45" rx="4" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.2" />
+          <circle cx="65" cy="85" r="3.5" fill="#db2777" />
+          <line x1="78" y1="85" x2="105" y2="85" stroke="#475569" strokeWidth="2" />
+          <line x1="60" y1="98" x2="105" y2="98" stroke="#94a3b8" strokeWidth="1.5" />
+
+          {/* Storage node B */}
+          <rect x="360" y="210" width="70" height="45" rx="4" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.2" />
+          <circle cx="375" cy="225" r="3.5" fill="#db2777" />
+          <line x1="388" y1="225" x2="415" y2="225" stroke="#475569" strokeWidth="2" />
+          <line x1="370" y1="238" x2="415" y2="238" stroke="#94a3b8" strokeWidth="1.5" />
+        </g>
       )}
     </svg>
   );
