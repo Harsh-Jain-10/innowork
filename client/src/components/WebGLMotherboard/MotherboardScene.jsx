@@ -67,7 +67,7 @@ export default function MotherboardScene({ onComplete }) {
     traceLight2Pos: [-2.2, 0.4, 0.0],
     traceLightIntensity: 0.0,
     letters: Array.from({ length: 8 }).map((_, i) => ({
-      x: [2.0, 2.52, 3.04, 3.56, 4.08, 4.6, 5.12, 5.64][i],
+      x: [1.5, 2.1, 2.7, 3.3, 3.9, 4.5, 5.1, 5.7][i],
       y: 5.0,
       visible: false,
       vibrate: false,
@@ -240,7 +240,7 @@ export default function MotherboardScene({ onComplete }) {
     }, 11.1);
 
     // ── SCENE 4: SIGNATURE FORGING FOR ALL 8 LETTERS (11.5s - 22s) ──
-    const letterXCoords = [2.0, 2.52, 3.04, 3.56, 4.08, 4.6, 5.12, 5.64];
+    const letterXCoords = [1.5, 2.1, 2.7, 3.3, 3.9, 4.5, 5.1, 5.7];
     const letterStartTimes = [11.5, 12.8, 14.1, 15.4, 16.7, 18.0, 19.3, 20.6];
 
     letterStartTimes.forEach((startTime, idx) => {
@@ -319,13 +319,13 @@ export default function MotherboardScene({ onComplete }) {
 
     // ── SCENE 5: PULL BACK & STABILIZE LOGO (22s - 26s) ──
     tl.to(val.cameraPos, {
-      0: 2.2, 1: 4.8, 2: 5.6,
+      0: 2.0, 1: 4.8, 2: 5.6,
       duration: 3.5,
       ease: 'power2.inOut'
     }, 22.0);
 
     tl.to(val.cameraLook, {
-      0: 2.2, 1: 0.1, 2: 1.3,
+      0: 2.0, 1: 0.1, 2: 1.3,
       duration: 3.5,
       ease: 'power2.inOut'
     }, 22.0);
