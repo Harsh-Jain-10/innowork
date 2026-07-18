@@ -299,11 +299,11 @@ function SolutionSection({ sol, index }) {
               <div style={{
                 fontSize: '4.5rem',
                 fontWeight: 900,
-                color: 'rgba(9, 97, 159, 0.07)',
+                color: 'rgba(9, 97, 159, 0.18)',
                 fontFamily: '"Outfit", "Inter", sans-serif',
                 lineHeight: 1,
                 letterSpacing: '-3px',
-                marginBottom: '-1.5rem',
+                marginBottom: '0.25rem',
                 userSelect: 'none',
                 pointerEvents: 'none'
               }}>
