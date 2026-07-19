@@ -60,7 +60,7 @@ const SERVICES_METADATA = {
     tagline: 'Active server cluster monitoring, SAN storage allocation, and hardware management.',
     standards: ['ISO/IEC 27001 data safety compliance', 'Redundant path provisioning', 'Strict hardware status tracking'],
     scope: ['Server hardware rack maintenance', 'Fibre Channel storage configurations', 'Blade chassis status checking'],
-    img: 'https://images.unsplash.com/photo-1597852074816-d933c4d2b988?auto=format&fit=crop&w=800&q=80'
+    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80'
   },
   'third-party-maintenance': {
     tagline: 'SLA-bound multi-vendor support for active and End-of-Service-Life hardware.',
