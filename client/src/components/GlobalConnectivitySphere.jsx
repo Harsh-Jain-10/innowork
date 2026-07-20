@@ -37,6 +37,20 @@ function NodeMesh() {
     return { nodes: tempNodes, connections: tempConnections };
   }, []);
 
+  // Shared geometries
+  const sphereGeometry = useMemo(() => new THREE.SphereGeometry(0.045, 8, 8), []);
+  const packetGeometry = useMemo(() => new THREE.SphereGeometry(0.026, 6, 6), []);
+  const coreGeometry = useMemo(() => new THREE.IcosahedronGeometry(0.55, 1), []);
+  const innerCoreGeometry = useMemo(() => new THREE.SphereGeometry(0.24, 16, 16), []);
+
+  // Shared materials
+  const cyanWireframeMaterial = useMemo(() => new THREE.MeshBasicMaterial({ color: "#00f0ff", wireframe: true, transparent: true, opacity: 0.25 }), []);
+  const cyanSolidMaterial = useMemo(() => new THREE.MeshBasicMaterial({ color: "#00f0ff", transparent: true, opacity: 0.6 }), []);
+  const cyanNodeMaterial = useMemo(() => new THREE.MeshBasicMaterial({ color: "#00f0ff" }), []);
+  const blueNodeMaterial = useMemo(() => new THREE.MeshBasicMaterial({ color: "#3b82f6" }), []);
+  const yellowNodeMaterial = useMemo(() => new THREE.MeshBasicMaterial({ color: "#fbbf24" }), []);
+  const linePathMaterial = useMemo(() => new THREE.LineBasicMaterial({ color: "#334155", transparent: true, opacity: 0.45 }), []);
+
   // Generate lines geometry
   const lineGeometry = useMemo(() => {
     return new THREE.BufferGeometry().setFromPoints(connections);
@@ -93,35 +107,26 @@ function NodeMesh() {
   return (
     <group ref={groupRef}>
       {/* Central spinning Core wireframe */}
-      <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
-        <icosahedronGeometry args={[0.55, 1]} />
-        <meshBasicMaterial color="#00f0ff" wireframe transparent opacity={0.25} />
-      </mesh>
-      <mesh>
-        <sphereGeometry args={[0.24, 16, 16]} />
-        <meshBasicMaterial color="#00f0ff" transparent opacity={0.6} />
-      </mesh>
+      <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]} geometry={coreGeometry} material={cyanWireframeMaterial} />
+      <mesh geometry={innerCoreGeometry} material={cyanSolidMaterial} />
 
       {/* Connectivity nodes */}
       {nodes.map((pos, idx) => (
-        <mesh key={idx} position={pos}>
-          <sphereGeometry args={[0.045, 8, 8]} />
-          <meshBasicMaterial color={idx % 3 === 0 ? "#00f0ff" : idx % 3 === 1 ? "#3b82f6" : "#fbbf24"} />
-        </mesh>
+        <mesh 
+          key={idx} 
+          position={pos} 
+          geometry={sphereGeometry} 
+          material={idx % 3 === 0 ? cyanNodeMaterial : idx % 3 === 1 ? blueNodeMaterial : yellowNodeMaterial} 
+        />
       ))}
 
       {/* Grid paths */}
-      <lineSegments geometry={lineGeometry}>
-        <lineBasicMaterial color="#334155" transparent opacity={0.45} />
-      </lineSegments>
+      <lineSegments geometry={lineGeometry} material={linePathMaterial} />
 
       {/* Moving data packets */}
       <group ref={packetGroupRef}>
         {packets.map((_, idx) => (
-          <mesh key={idx}>
-            <sphereGeometry args={[0.026, 6, 6]} />
-            <meshBasicMaterial color="#fbbf24" />
-          </mesh>
+          <mesh key={idx} geometry={packetGeometry} material={yellowNodeMaterial} />
         ))}
       </group>
     </group>
@@ -172,7 +177,7 @@ export default function GlobalConnectivitySphere() {
           <ambientLight intensity={0.4} />
           <pointLight position={[10, 10, 10]} intensity={1.5} />
           
-          <EffectComposer multisampling={4}>
+          <EffectComposer multisampling={0}>
             <Bloom luminanceThreshold={0.05} luminanceSmoothing={0.9} height={300} intensity={1.4} />
           </EffectComposer>
         </Suspense>

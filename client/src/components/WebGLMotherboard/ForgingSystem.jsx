@@ -1,23 +1,31 @@
 import React from 'react';
 import * as THREE from 'three';
 
-// 3D Metal Letter components constructed from solid bars (industrial sci-fi look)
-export function MetalLetter({ type }) {
-  const metalMaterial = (
-    <meshStandardMaterial 
-      color="#e2e8f0" 
-      metalness={0.95} 
-      roughness={0.12} 
-    />
-  );
+// Shared materials and geometries created once to avoid GC/WebGL buffer compilation overhead
+const metalMaterial = new THREE.MeshStandardMaterial({ 
+  color: "#e2e8f0", 
+  metalness: 0.95, 
+  roughness: 0.12 
+});
 
+const baseChipGeo = new THREE.BoxGeometry(0.6, 0.1, 0.6);
+const baseChipMat = new THREE.MeshStandardMaterial({ color: "#0b0f19", roughness: 0.7 });
+const transistorGeo = new THREE.BoxGeometry(0.12, 0.08, 0.12);
+const transistorMat = new THREE.MeshStandardMaterial({ color: "#0f172a", roughness: 0.8 });
+
+// Caching unit geometries so we can scale/transform the mesh instead of reconstructing geometries on the fly
+const unitSphereGeo = new THREE.SphereGeometry(1, 4, 4);
+const unitRingGeo = new THREE.RingGeometry(0.9, 1.0, 32);
+const unitCylinderGeo = new THREE.CylinderGeometry(0.2, 0.4, 3.0, 8);
+
+// ── 3D Metal Letter components constructed from solid bars (industrial sci-fi look) ──
+export function MetalLetter({ type }) {
   switch (type) {
     case 'I':
       return (
         <group>
-          <mesh castShadow>
+          <mesh castShadow material={metalMaterial}>
             <boxGeometry args={[0.3, 1.8, 0.3]} />
-            {metalMaterial}
           </mesh>
         </group>
       );
@@ -25,19 +33,16 @@ export function MetalLetter({ type }) {
       return (
         <group>
           {/* Left Vertical */}
-          <mesh castShadow position={[-0.5, 0, 0]}>
+          <mesh castShadow position={[-0.5, 0, 0]} material={metalMaterial}>
             <boxGeometry args={[0.26, 1.8, 0.26]} />
-            {metalMaterial}
           </mesh>
           {/* Right Vertical */}
-          <mesh castShadow position={[0.5, 0, 0]}>
+          <mesh castShadow position={[0.5, 0, 0]} material={metalMaterial}>
             <boxGeometry args={[0.26, 1.8, 0.26]} />
-            {metalMaterial}
           </mesh>
           {/* Diagonal */}
-          <mesh castShadow rotation={[0, 0, -0.56]} position={[0, 0, 0]}>
+          <mesh castShadow rotation={[0, 0, -0.56]} position={[0, 0, 0]} material={metalMaterial}>
             <boxGeometry args={[0.24, 2.05, 0.26]} />
-            {metalMaterial}
           </mesh>
         </group>
       );
@@ -45,24 +50,20 @@ export function MetalLetter({ type }) {
       return (
         <group>
           {/* Top */}
-          <mesh castShadow position={[0, 0.75, 0]}>
+          <mesh castShadow position={[0, 0.75, 0]} material={metalMaterial}>
             <boxGeometry args={[1.1, 0.26, 0.26]} />
-            {metalMaterial}
           </mesh>
           {/* Bottom */}
-          <mesh castShadow position={[0, -0.75, 0]}>
+          <mesh castShadow position={[0, -0.75, 0]} material={metalMaterial}>
             <boxGeometry args={[1.1, 0.26, 0.26]} />
-            {metalMaterial}
           </mesh>
           {/* Left */}
-          <mesh castShadow position={[-0.5, 0, 0]}>
+          <mesh castShadow position={[-0.5, 0, 0]} material={metalMaterial}>
             <boxGeometry args={[0.26, 1.24, 0.26]} />
-            {metalMaterial}
           </mesh>
           {/* Right */}
-          <mesh castShadow position={[0.5, 0, 0]}>
+          <mesh castShadow position={[0.5, 0, 0]} material={metalMaterial}>
             <boxGeometry args={[0.26, 1.24, 0.26]} />
-            {metalMaterial}
           </mesh>
         </group>
       );
@@ -70,24 +71,20 @@ export function MetalLetter({ type }) {
       return (
         <group>
           {/* Outer Left */}
-          <mesh castShadow position={[-0.75, 0, 0]} rotation={[0, 0, 0.18]}>
+          <mesh castShadow position={[-0.75, 0, 0]} rotation={[0, 0, 0.18]} material={metalMaterial}>
             <boxGeometry args={[0.24, 1.8, 0.24]} />
-            {metalMaterial}
           </mesh>
           {/* Outer Right */}
-          <mesh castShadow position={[0.75, 0, 0]} rotation={[0, 0, -0.18]}>
+          <mesh castShadow position={[0.75, 0, 0]} rotation={[0, 0, -0.18]} material={metalMaterial}>
             <boxGeometry args={[0.24, 1.8, 0.24]} />
-            {metalMaterial}
           </mesh>
           {/* Inner Left */}
-          <mesh castShadow position={[-0.24, -0.1, 0]} rotation={[0, 0, -0.28]}>
+          <mesh castShadow position={[-0.24, -0.1, 0]} rotation={[0, 0, -0.28]} material={metalMaterial}>
             <boxGeometry args={[0.24, 1.35, 0.24]} />
-            {metalMaterial}
           </mesh>
           {/* Inner Right */}
-          <mesh castShadow position={[0.24, -0.1, 0]} rotation={[0, 0, 0.28]}>
+          <mesh castShadow position={[0.24, -0.1, 0]} rotation={[0, 0, 0.28]} material={metalMaterial}>
             <boxGeometry args={[0.24, 1.35, 0.24]} />
-            {metalMaterial}
           </mesh>
         </group>
       );
@@ -95,29 +92,24 @@ export function MetalLetter({ type }) {
       return (
         <group>
           {/* Vertical Stem */}
-          <mesh castShadow position={[-0.5, 0, 0]}>
+          <mesh castShadow position={[-0.5, 0, 0]} material={metalMaterial}>
             <boxGeometry args={[0.26, 1.8, 0.26]} />
-            {metalMaterial}
           </mesh>
           {/* Top horizontal */}
-          <mesh castShadow position={[0, 0.75, 0]}>
+          <mesh castShadow position={[0, 0.75, 0]} material={metalMaterial}>
             <boxGeometry args={[0.8, 0.26, 0.26]} />
-            {metalMaterial}
           </mesh>
           {/* Middle horizontal */}
-          <mesh castShadow position={[0, 0, 0]}>
+          <mesh castShadow position={[0, 0, 0]} material={metalMaterial}>
             <boxGeometry args={[0.8, 0.26, 0.26]} />
-            {metalMaterial}
           </mesh>
           {/* Loop right vertical */}
-          <mesh castShadow position={[0.38, 0.38, 0]}>
+          <mesh castShadow position={[0.38, 0.38, 0]} material={metalMaterial}>
             <boxGeometry args={[0.26, 0.74, 0.26]} />
-            {metalMaterial}
           </mesh>
           {/* Diagonal leg */}
-          <mesh castShadow position={[0.2, -0.4, 0]} rotation={[0, 0, 0.55]}>
+          <mesh castShadow position={[0.2, -0.4, 0]} rotation={[0, 0, 0.55]} material={metalMaterial}>
             <boxGeometry args={[0.26, 1.0, 0.26]} />
-            {metalMaterial}
           </mesh>
         </group>
       );
@@ -125,26 +117,21 @@ export function MetalLetter({ type }) {
       return (
         <group>
           {/* Outer O box shape */}
-          <mesh castShadow position={[0, 0.75, 0]}>
+          <mesh castShadow position={[0, 0.75, 0]} material={metalMaterial}>
             <boxGeometry args={[1.1, 0.26, 0.26]} />
-            {metalMaterial}
           </mesh>
-          <mesh castShadow position={[0, -0.75, 0]}>
+          <mesh castShadow position={[0, -0.75, 0]} material={metalMaterial}>
             <boxGeometry args={[1.1, 0.26, 0.26]} />
-            {metalMaterial}
           </mesh>
-          <mesh castShadow position={[-0.5, 0, 0]}>
+          <mesh castShadow position={[-0.5, 0, 0]} material={metalMaterial}>
             <boxGeometry args={[0.26, 1.24, 0.26]} />
-            {metalMaterial}
           </mesh>
-          <mesh castShadow position={[0.5, 0, 0]}>
+          <mesh castShadow position={[0.5, 0, 0]} material={metalMaterial}>
             <boxGeometry args={[0.26, 1.24, 0.26]} />
-            {metalMaterial}
           </mesh>
           {/* Q Tail */}
-          <mesh castShadow position={[0.45, -0.55, 0]} rotation={[0, 0, -Math.PI / 4]}>
+          <mesh castShadow position={[0.45, -0.55, 0]} rotation={[0, 0, -Math.PI / 4]} material={metalMaterial}>
             <boxGeometry args={[0.24, 0.7, 0.24]} />
-            {metalMaterial}
           </mesh>
         </group>
       );
@@ -171,23 +158,20 @@ export default function ForgingSystem({ letterStates, letters }) {
             {/* ── A. TRANSISTOR CLUSTER AT BASE (PCB level) ── */}
             <group position={[dx, -1.05 + dy, dz]}>
               {/* Central microchip base */}
-              <mesh castShadow>
-                <boxGeometry args={[0.6, 0.1, 0.6]} />
-                <meshStandardMaterial color="#0b0f19" roughness={0.7} />
-              </mesh>
+              <mesh castShadow geometry={baseChipGeo} material={baseChipMat} />
               {/* Surrounding minor transistors */}
               {[-0.22, 0.22].map((tx, i) => (
-                <mesh key={i} castShadow position={[tx, 0.08, tx]}>
-                  <boxGeometry args={[0.12, 0.08, 0.12]} />
-                  <meshStandardMaterial color="#0f172a" roughness={0.8} />
-                </mesh>
+                <mesh key={i} castShadow position={[tx, 0.08, tx]} geometry={transistorGeo} material={transistorMat} />
               ))}
             </group>
 
             {/* ── B. BLUE ENERGY FOUNTAIN ERUPTING UPWARD ── */}
             {state.fountainIntensity > 0.05 && (
-              <mesh position={[0, state.fountainIntensity * 1.5 - 1.0, 0]}>
-                <cylinderGeometry args={[0.2, 0.4, state.fountainIntensity * 3.0, 8]} />
+              <mesh 
+                position={[0, state.fountainIntensity * 1.5 - 1.0, 0]} 
+                scale={[1, state.fountainIntensity, 1]} 
+                geometry={unitCylinderGeo}
+              >
                 <meshBasicMaterial
                   color="#00f0ff"
                   transparent
@@ -207,9 +191,12 @@ export default function ForgingSystem({ letterStates, letters }) {
             {/* ── D. LANDING SHOCKWAVE ── */}
             {state.shockwaveOpacity > 0.01 && (
               <group position={[0, -1.04, 0]}>
-                {/* Horizontal expanding energy ring */}
-                <mesh rotation={[Math.PI / 2, 0, 0]}>
-                  <ringGeometry args={[state.shockwaveScale * 0.9, state.shockwaveScale, 32]} />
+                {/* Horizontal expanding energy ring using static geometry + mesh scale */}
+                <mesh 
+                  rotation={[Math.PI / 2, 0, 0]} 
+                  scale={[state.shockwaveScale, state.shockwaveScale, 1]} 
+                  geometry={unitRingGeo}
+                >
                   <meshBasicMaterial
                     color="#00f0ff"
                     transparent
@@ -232,8 +219,12 @@ export default function ForgingSystem({ letterStates, letters }) {
                   const pScale = (1.0 - state.particleTimer) * 0.08;
 
                   return (
-                    <mesh key={pIdx} position={[px, py, pz]}>
-                      <sphereGeometry args={[pScale, 4, 4]} />
+                    <mesh 
+                      key={pIdx} 
+                      position={[px, py, pz]} 
+                      scale={[pScale, pScale, pScale]} 
+                      geometry={unitSphereGeo}
+                    >
                       <meshBasicMaterial
                         color="#00f0ff"
                         transparent

@@ -55,8 +55,6 @@ export default function DigitalWaveBackground() {
         ctx.save();
         ctx.globalAlpha = this.alpha;
         ctx.fillStyle = '#00f0ff';
-        ctx.shadowColor = '#00f0ff';
-        ctx.shadowBlur = 8;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -131,46 +129,51 @@ export default function DigitalWaveBackground() {
         }
       }
 
+      // Create a single linear gradient across the canvas for grid lines
+      const gridGradient = ctx.createLinearGradient(0, 0, width, 0);
+      gridGradient.addColorStop(0, 'rgba(0, 240, 255, 0.6)');
+      gridGradient.addColorStop(0.5, 'rgba(59, 130, 246, 0.6)');
+      gridGradient.addColorStop(1, 'rgba(168, 85, 247, 0.6)');
+
       // Draw Grid Mesh Lines
       ctx.lineWidth = 0.8;
+      ctx.strokeStyle = gridGradient;
+
       for (let r = 0; r < rows; r++) {
+        const scale = points[r][0].scale;
+        ctx.globalAlpha = scale * 0.22;
+
+        // Horizontal lines in this row
+        ctx.beginPath();
         for (let c = 0; c < cols; c++) {
           const p = points[r][c];
           if (!p.visible) continue;
 
-          // Connect to right neighbor
           if (c < cols - 1) {
             const pRight = points[r][c + 1];
             if (pRight.visible) {
-              const grad = ctx.createLinearGradient(p.x, p.y, pRight.x, pRight.y);
-              grad.addColorStop(0, p.color);
-              grad.addColorStop(1, pRight.color);
-              ctx.strokeStyle = grad;
-              ctx.globalAlpha = p.scale * 0.25;
-              ctx.beginPath();
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(pRight.x, pRight.y);
-              ctx.stroke();
-            }
-          }
-
-          // Connect to bottom neighbor
-          if (r < rows - 1) {
-            const pBottom = points[r + 1][c];
-            if (pBottom.visible) {
-              const grad = ctx.createLinearGradient(p.x, p.y, pBottom.x, pBottom.y);
-              grad.addColorStop(0, p.color);
-              grad.addColorStop(1, pBottom.color);
-              ctx.strokeStyle = grad;
-              ctx.globalAlpha = p.scale * 0.25;
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(pBottom.x, pBottom.y);
-              ctx.stroke();
             }
           }
         }
+        ctx.stroke();
+
+        // Vertical lines connecting to the bottom row
+        if (r < rows - 1) {
+          ctx.beginPath();
+          for (let c = 0; c < cols; c++) {
+            const p = points[r][c];
+            const pBottom = points[r + 1][c];
+            if (p.visible && pBottom.visible) {
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(pBottom.x, pBottom.y);
+            }
+          }
+          ctx.stroke();
+        }
       }
+      ctx.globalAlpha = 1.0; // Reset globalAlpha
 
       // Draw Grid Points (Glowing Nodes)
       for (let r = 0; r < rows; r++) {
@@ -185,15 +188,13 @@ export default function DigitalWaveBackground() {
           ctx.arc(p.x, p.y, dotRadius, 0, Math.PI * 2);
           ctx.fill();
 
-          // Add extra glow for closer nodes
+          // Add extra glow for closer nodes by drawing a larger transparent circle
           if (p.scale > 0.6 && (r + c) % 4 === 0) {
             ctx.save();
-            ctx.globalAlpha = p.scale * 0.3;
-            ctx.shadowColor = p.color;
-            ctx.shadowBlur = 10;
+            ctx.globalAlpha = p.scale * 0.15;
             ctx.fillStyle = p.color;
             ctx.beginPath();
-            ctx.arc(p.x, p.y, dotRadius * 1.8, 0, Math.PI * 2);
+            ctx.arc(p.x, p.y, dotRadius * 2.2, 0, Math.PI * 2);
             ctx.fill();
             ctx.restore();
           }
