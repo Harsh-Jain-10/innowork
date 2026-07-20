@@ -130,8 +130,8 @@ export function MetalLetter({ type }) {
             <boxGeometry args={[0.26, 1.24, 0.26]} />
           </mesh>
           {/* Q Tail */}
-          <mesh castShadow position={[0.45, -0.55, 0]} rotation={[0, 0, -Math.PI / 4]} material={metalMaterial}>
-            <boxGeometry args={[0.24, 0.7, 0.24]} />
+          <mesh castShadow position={[0.55, -0.75, 0]} rotation={[0, 0, -Math.PI / 4]} material={metalMaterial}>
+            <boxGeometry args={[0.26, 1.1, 0.26]} />
           </mesh>
         </group>
       );
