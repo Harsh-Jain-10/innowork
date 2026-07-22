@@ -6,6 +6,7 @@ import DigitalWaveBackground from '../components/DigitalWaveBackground';
 
 // Import GlobalConnectivitySphere component
 import GlobalConnectivitySphere from '../components/GlobalConnectivitySphere';
+import GlobalPresence from '../components/GlobalPresence';
 
 // Import certifications
 import iso45001 from '../assets/certificates/iso_45001.png';
@@ -199,6 +200,9 @@ export default function About() {
           </StaggerContainer>
         </div>
       </div>
+
+      {/* Global Presence & MEA Expansion Section */}
+      <GlobalPresence />
 
       {/* Facts & Figures Band */}
       <div className="container" style={{ margin: '6rem auto' }}>

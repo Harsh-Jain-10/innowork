@@ -7,6 +7,7 @@ import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { EffectComposer, Bloom, DepthOfField, Vignette } from '@react-three/postprocessing';
 import MotherboardScene from '../components/WebGLMotherboard/MotherboardScene';
+import GlobalPresence from '../components/GlobalPresence';
 
 // Import OEM partner logos
 import dellLogo from '../assets/logos/dell.svg';
@@ -464,6 +465,8 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Global Presence & MEA Expansion Section */}
+      <GlobalPresence />
 
       {/* 3. Core Strengths & Certifications */}
       <section style={{ padding: '7rem 0' }}>
