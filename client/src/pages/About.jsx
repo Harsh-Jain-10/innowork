@@ -353,6 +353,26 @@ export default function About() {
         </div>
       </section>
 
+      <style>{`
+        @media (max-width: 900px) {
+          .about-split-row {
+            grid-template-columns: 1fr !important;
+            gap: 2.5rem !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .certifications-container > div {
+            width: 140px !important;
+            padding: 1rem 0.75rem !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .certifications-container > div {
+            width: 100% !important;
+            max-width: 220px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

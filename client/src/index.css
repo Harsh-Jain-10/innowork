@@ -444,3 +444,116 @@ html {
   }
 }
 
+/* ─── Comprehensive Mobile & Tablet Responsive Engine ─── */
+
+/* Responsive Image & SVG scaling */
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Touch-friendly target heights for buttons and form elements */
+@media (max-width: 1024px) {
+  .btn, input, select, textarea, button {
+    min-height: 44px;
+  }
+}
+
+/* 1024px Breakpoint (Tablet Landscape / Small Laptop) */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1.75rem;
+  }
+  .responsive-grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* 768px Breakpoint (Tablet Portrait) */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+  
+  h1 { font-size: clamp(2rem, 6vw, 2.75rem); }
+  h2 { font-size: clamp(1.6rem, 5vw, 2.1rem); }
+  h3 { font-size: clamp(1.2rem, 4vw, 1.5rem); }
+  
+  /* Generic grid stack utility */
+  .grid-2-col, .grid-3-col, .grid-4-col {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Form field pair stack */
+  .form-row-split {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* Touch tab bar horizontal slider */
+  .horizontal-touch-tabs {
+    display: flex !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+  .horizontal-touch-tabs::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* 640px Breakpoint (Small Tablets & Large Phones) */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+  }
+  
+  .marquee-content {
+    gap: 2.5rem;
+  }
+}
+
+/* 480px Breakpoint (Standard Mobile Phones) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.875rem;
+  }
+  
+  h1 { font-size: clamp(1.75rem, 7vw, 2.25rem); }
+  h2 { font-size: clamp(1.4rem, 5.5vw, 1.8rem); }
+  h3 { font-size: clamp(1.1rem, 4.5vw, 1.35rem); }
+  
+  .fact-card {
+    padding: 1rem 0.75rem;
+  }
+  
+  .fact-number {
+    font-size: 1.75rem;
+  }
+}
+
+/* 360px Breakpoint (Small Compact Phones) */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  h1 { font-size: 1.6rem !important; }
+  h2 { font-size: 1.35rem !important; }
+  h3 { font-size: 1.05rem !important; }
+  
+  .btn {
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+

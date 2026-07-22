@@ -709,7 +709,7 @@ export default function Solutions() {
         @media (max-width: 1024px) {
           .solutions-grid-layout {
             grid-template-columns: 1fr !important;
-            gap: 2rem !important;
+            gap: 2.5rem !important;
           }
           .solutions-text-col {
             grid-column: span 12 !important;
@@ -729,6 +729,22 @@ export default function Solutions() {
           .solutions-specs-grid {
             grid-template-columns: 1fr !important;
             gap: 1rem !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .solution-showcase-section {
+            padding: 3.5rem 0 !important;
+          }
+          .solutions-image-container {
+            aspect-ratio: 1.6 !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .solution-showcase-section {
+            padding: 2.5rem 0 !important;
+          }
+          .solutions-image-container {
+            aspect-ratio: 1.4 !important;
           }
         }
       `}</style>

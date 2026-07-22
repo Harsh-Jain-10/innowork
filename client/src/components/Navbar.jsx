@@ -252,7 +252,7 @@ export default function Navbar() {
             }}
             className="mobile-nav-drawer"
           >
-            <Link to="/about" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.25rem 0' }}>About Us</Link>
+            <Link to="/about" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.65rem 0', minHeight: '44px', display: 'flex', alignItems: 'center' }}>About Us</Link>
 
             {/* Mobile Touch-Friendly Services Expandable */}
             <div>
@@ -261,27 +261,30 @@ export default function Navbar() {
                 style={{
                   display: 'flex',
                   justifyContent: 'space-between',
+                  alignItems: 'center',
                   width: '100%',
                   fontWeight: 600,
                   color: '#334155',
                   background: 'none',
                   border: 'none',
                   fontSize: '1rem',
-                  padding: '0.25rem 0',
-                  textAlign: 'left'
+                  padding: '0.65rem 0',
+                  minHeight: '44px',
+                  textAlign: 'left',
+                  cursor: 'pointer'
                 }}
               >
                 Services
-                <span>{isMobileServicesOpen ? '▲' : '▼'}</span>
+                <span style={{ fontSize: '0.8rem' }}>{isMobileServicesOpen ? '▲' : '▼'}</span>
               </button>
               {isMobileServicesOpen && (
-                <div style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.5rem' }}>
+                <div style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.25rem', marginTop: '0.25rem' }}>
                   {services.map((srv) => (
                     <Link
                       key={srv.id}
                       to={`/services#${srv.id}`}
                       onClick={() => setIsOpen(false)}
-                      style={{ fontSize: '0.9rem', color: 'var(--text-light-secondary)' }}
+                      style={{ fontSize: '0.92rem', color: 'var(--text-light-secondary)', padding: '0.5rem 0', minHeight: '40px', display: 'flex', alignItems: 'center' }}
                     >
                       {srv.name}
                     </Link>
@@ -290,18 +293,18 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link to="/solutions" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.25rem 0' }}>Solutions</Link>
-            <Link to="/industries" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.25rem 0' }}>Industries</Link>
-            <Link to="/blogs" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.25rem 0' }}>Blogs</Link>
-            <Link to="/career" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.25rem 0' }}>Career</Link>
-            <Link to="/partner-registration" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.25rem 0' }}>Partner Registration</Link>
+            <Link to="/solutions" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.65rem 0', minHeight: '44px', display: 'flex', alignItems: 'center' }}>Solutions</Link>
+            <Link to="/industries" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.65rem 0', minHeight: '44px', display: 'flex', alignItems: 'center' }}>Industries</Link>
+            <Link to="/blogs" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.65rem 0', minHeight: '44px', display: 'flex', alignItems: 'center' }}>Blogs</Link>
+            <Link to="/career" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.65rem 0', minHeight: '44px', display: 'flex', alignItems: 'center' }}>Career</Link>
+            <Link to="/partner-registration" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.65rem 0', minHeight: '44px', display: 'flex', alignItems: 'center' }}>Partner Registration</Link>
 
             <Link
               to="/support-desk"
               onClick={() => setIsOpen(false)}
               className="btn btn-primary"
               id="nav-cta-support-mobile"
-              style={{ width: '100%', marginTop: '0.5rem' }}
+              style={{ width: '100%', marginTop: '0.75rem', minHeight: '46px' }}
             >
               Support Desk
             </Link>
@@ -316,6 +319,11 @@ export default function Navbar() {
           }
           .mobile-toggle-btn {
             display: flex !important;
+          }
+        }
+        @media (max-width: 360px) {
+          #nav-brand-logo img {
+            height: 28px !important;
           }
         }
       `}</style>

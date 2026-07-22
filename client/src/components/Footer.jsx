@@ -115,6 +115,7 @@ export default function Footer() {
 
         {/* Legal Disclaimer & Copyright */}
         <div
+          className="footer-bottom-bar"
           style={{
             borderTop: '1px solid #cbd5e1',
             paddingTop: '2rem',
@@ -144,8 +145,24 @@ export default function Footer() {
 
       <style>{`
         @media (max-width: 900px) {
+          .footer-col-1 {
+            grid-column: span 12 !important;
+          }
+          .footer-col-2, .footer-col-3 {
+            grid-column: span 6 !important;
+          }
+          .footer-col-4 {
+            grid-column: span 12 !important;
+          }
+        }
+        @media (max-width: 640px) {
           .footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4 {
             grid-column: span 12 !important;
+          }
+          .footer-bottom-bar {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 1.25rem !important;
           }
         }
       `}</style>

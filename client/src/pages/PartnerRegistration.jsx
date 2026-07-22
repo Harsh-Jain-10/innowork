@@ -602,6 +602,14 @@ export default function PartnerRegistration() {
             gap: 1.25rem !important;
           }
         }
+        @media (max-width: 480px) {
+          form {
+            padding: 1.25rem 0.85rem !important;
+          }
+          .partner-stepper-bar span:not(:first-child) {
+            font-size: 0.72rem !important;
+          }
+        }
       `}</style>
     </div>
   );

@@ -852,6 +852,11 @@ export default function Industries() {
             gap: 1.5rem;
           }
         }
+        @media (max-width: 480px) {
+          .industry-card-inner {
+            padding: 1.25rem !important;
+          }
+        }
       `}</style>
     </main>
   );

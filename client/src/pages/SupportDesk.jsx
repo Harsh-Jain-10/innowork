@@ -338,6 +338,11 @@ export default function SupportDesk() {
             gap: 1.25rem !important;
           }
         }
+        @media (max-width: 480px) {
+          form {
+            padding: 1.25rem 0.85rem !important;
+          }
+        }
       `}</style>
     </div>
   );

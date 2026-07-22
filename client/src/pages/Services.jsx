@@ -571,7 +571,7 @@ export default function Services() {
         @media (max-width: 1024px) {
           .services-grid-layout {
             grid-template-columns: 1fr !important;
-            gap: 2rem !important;
+            gap: 2.5rem !important;
           }
           .services-text-col {
             grid-column: span 12 !important;
@@ -583,6 +583,22 @@ export default function Services() {
           }
           .services-image-container {
             aspect-ratio: 1.77 !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .service-showcase-section {
+            padding: 3.5rem 0 !important;
+          }
+          .services-image-container {
+            aspect-ratio: 1.6 !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .service-showcase-section {
+            padding: 2.5rem 0 !important;
+          }
+          .services-image-container {
+            aspect-ratio: 1.4 !important;
           }
         }
       `}</style>

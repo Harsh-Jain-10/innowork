@@ -166,7 +166,7 @@ export default function Blogs() {
         boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)'
       }}>
         <div className="container">
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div className="category-bar-flex" style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
             {CATEGORIES.map((cat) => {
               const isActive = activeCategory === cat;
               return (
@@ -593,6 +593,17 @@ export default function Blogs() {
           }
         }
         @media (max-width: 768px) {
+          .category-bar-flex {
+            flex-wrap: nowrap !important;
+            justify-content: flex-start !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 0.25rem;
+            scrollbar-width: none;
+          }
+          .category-bar-flex::-webkit-scrollbar {
+            display: none;
+          }
           .blog-posts-grid {
             grid-template-columns: 1fr;
           }
@@ -604,7 +615,12 @@ export default function Blogs() {
             border-radius: 0;
           }
           .modal-scroll-body {
-            padding: 1.5rem 1.5rem;
+            padding: 1.5rem 1.25rem;
+          }
+        }
+        @media (max-width: 480px) {
+          .featured-grid {
+            padding: 1.25rem !important;
           }
         }
       `}</style>

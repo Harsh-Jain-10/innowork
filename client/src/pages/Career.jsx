@@ -966,6 +966,23 @@ export default function Career() {
         @media (min-width: 900px) {
           .job-cat-badge { display: inline-block !important; }
         }
+        @media (max-width: 900px) {
+          .career-cta-split {
+            grid-template-columns: 1fr !important;
+            gap: 2.5rem !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .apply-modal-content {
+            padding: 1.5rem !important;
+            max-height: 90vh !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .apply-modal-content {
+            padding: 1.25rem 1rem !important;
+          }
+        }
       `}</style>
     </div>
   );
