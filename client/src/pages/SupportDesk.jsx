@@ -52,69 +52,18 @@ export default function SupportDesk() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus({ loading: true, success: false, errors: [], ticketId: '', priority: '', responseSLA: '', message: '' });
-
-    try {
-      const response = await fetch('http://localhost:5000/api/support-desk', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          usersAffected: parseInt(formData.usersAffected) || 1
-        })
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        setStatus({
-          loading: false,
-          success: true,
-          errors: [],
-          ticketId: data.ticketId,
-          priority: data.priority,
-          responseSLA: data.responseSLA,
-          message: data.message
-        });
-        setFormData({
-          contactName: '',
-          contactEmail: '',
-          contactNumber: '',
-          companyName: '',
-          systemModel: '',
-          serialNumber: '',
-          problemDesc: '',
-          operatingSystem: '',
-          usersAffected: '1',
-          businessImpact: 'Low',
-          siteAddress: '',
-          locationCity: ''
-        });
-      } else {
-        const errorList = data.errors ? data.errors.map(err => err.msg) : [data.message || 'Unable to log ticket.'];
-        setStatus({
-          loading: false,
-          success: false,
-          errors: errorList,
-          ticketId: '',
-          priority: '',
-          responseSLA: '',
-          message: ''
-        });
-      }
-    } catch (err) {
-      setStatus({
-        loading: false,
-        success: false,
-        errors: ['Unable to communicate with the server. Please try again later.'],
-        ticketId: '',
-        priority: '',
-        responseSLA: '',
-        message: ''
-      });
-    }
+    const mockTicketId = 'INW-PRV-' + Math.floor(100000 + Math.random() * 900000);
+    setStatus({
+      loading: false,
+      success: true,
+      errors: [],
+      ticketId: mockTicketId,
+      priority: formData.businessImpact || 'Medium',
+      responseSLA: '4 Hours (Presentation Mode)',
+      message: 'Ticket recorded in static presentation mode. Thank you for exploring the INNOWORQ asset support center.'
+    });
   };
 
   return (

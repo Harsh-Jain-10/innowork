@@ -112,50 +112,17 @@ export default function PartnerRegistration() {
     window.scrollTo(0, 0);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus({ loading: true, success: false, errors: [], partnerCode: '', message: '' });
-
-    try {
-      const response = await fetch('http://localhost:5000/api/partner', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          industry: 'Technology'
-        })
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        setStatus({
-          loading: false,
-          success: true,
-          errors: [],
-          partnerCode: data.partnerCode,
-          message: data.message
-        });
-        setStep(5);
-      } else {
-        const errorList = data.errors ? data.errors.map(err => err.msg) : [data.message || 'Onboarding failed.'];
-        setStatus({
-          loading: false,
-          success: false,
-          errors: errorList,
-          partnerCode: '',
-          message: ''
-        });
-      }
-    } catch (err) {
-      setStatus({
-        loading: false,
-        success: false,
-        errors: ['Unable to communicate with the server. Please try again later.'],
-        partnerCode: '',
-        message: ''
-      });
-    }
+    const mockPartnerCode = 'INW-PTR-' + Math.floor(1000 + Math.random() * 9000);
+    setStatus({
+      loading: false,
+      success: true,
+      errors: [],
+      partnerCode: mockPartnerCode,
+      message: 'Your partner registration details have been received in static presentation mode.'
+    });
+    setStep(5);
   };
 
   return (

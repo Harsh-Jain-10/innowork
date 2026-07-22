@@ -49,7 +49,7 @@ export default function Footer() {
               </div>
               {/* Social Icons */}
               <div style={{ display: 'flex', gap: '1rem' }}>
-                <a href={configData.socials.linkedin} target="_blank" rel="noopener noreferrer" style={{ color: '#0077b5', fontSize: '0.88rem', fontWeight: 600 }}>LinkedIn</a>
+                <span style={{ color: '#0077b5', fontSize: '0.88rem', fontWeight: 600, cursor: 'default' }}>LinkedIn</span>
               </div>
             </div>
 
@@ -101,11 +101,11 @@ export default function Footer() {
                 </div>
                 <div>
                   <span style={{ display: 'block', fontSize: '0.8rem', color: '#64748b', textTransform: 'uppercase' }}>Toll Free</span>
-                  <a href={`tel:${configData.contact.phone}`} style={{ color: 'var(--text-light-primary)', fontWeight: 700 }}>{configData.contact.phone}</a>
+                  <span style={{ color: 'var(--text-light-primary)', fontWeight: 700 }}>{configData.contact.phone}</span>
                 </div>
                 <div>
                   <span style={{ display: 'block', fontSize: '0.8rem', color: '#64748b', textTransform: 'uppercase' }}>Sales &amp; Queries</span>
-                  <a href={`mailto:${configData.contact.email}`} style={{ color: 'var(--brand-blue)', fontWeight: 700 }}>{configData.contact.email}</a>
+                  <span style={{ color: 'var(--brand-blue)', fontWeight: 700 }}>{configData.contact.email}</span>
                 </div>
               </div>
             </div>
