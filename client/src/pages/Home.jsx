@@ -372,9 +372,10 @@ export default function Home() {
                 >
                   <div style={{ fontSize: '1.75rem', marginBottom: '0.5rem' }}>{stat.icon}</div>
                   <div style={{
-                    fontSize: '2.25rem', fontWeight: 900, color: '#ffffff',
+                    fontSize: '1.95rem', fontWeight: 900, color: '#ffffff',
                     fontFamily: 'var(--font-heading)', lineHeight: 1,
-                    marginBottom: '0.5rem'
+                    marginBottom: '0.5rem',
+                    whiteSpace: 'nowrap'
                   }}>
                     <CountUp target={stat.value} delay={i * 0.12} duration={1.6} />
                   </div>

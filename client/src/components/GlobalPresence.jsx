@@ -293,7 +293,7 @@ export default function GlobalPresence() {
 
             {/* Mobile Map structured descriptions below the map */}
             <div className="mobile-map-details">
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '1.5rem', padding: '0 0.5rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem', marginTop: '1.25rem', padding: '0 0.25rem' }}>
                 <div style={{ borderLeft: '3px solid #00f0ff', paddingLeft: '1rem' }}>
                   <h4 style={{ color: '#00f0ff', fontSize: '1.05rem', fontWeight: 800, marginBottom: '0.3rem', fontFamily: 'var(--font-heading)' }}>DUBAI, UAE</h4>
                   <p style={{ color: '#ffffff', fontSize: '0.88rem', margin: 0, lineHeight: '1.6' }}>
@@ -424,7 +424,7 @@ export default function GlobalPresence() {
         }
         @media (max-width: 768px) {
           .global-presence-container {
-            padding: 5.5rem 0 !important;
+            padding: 4rem 0 !important;
           }
           .mobile-map-details {
             display: block !important;
@@ -440,18 +440,19 @@ export default function GlobalPresence() {
             margin-right: 0 !important;
             border-radius: 12px !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            padding: 1.75rem 1rem !important;
+            padding: 1.5rem 0.85rem !important;
+            margin-bottom: 2.25rem !important;
           }
           .map-svg-wrapper {
-            padding: 0 0.5rem !important;
-            min-height: 200px !important;
+            padding: 0 0.25rem !important;
+            min-height: 190px !important;
           }
           .presence-cards-grid {
             grid-template-columns: 1fr !important;
-            gap: 2rem !important;
+            gap: 1.25rem !important;
           }
           .presence-cards-grid > div {
-            padding: 2.25rem 1.75rem !important;
+            padding: 1.75rem 1.25rem !important;
           }
         }
       `}</style>

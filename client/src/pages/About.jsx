@@ -185,7 +185,7 @@ export default function About() {
                     alignItems: 'center'
                   }}
                 >
-                  <div className="fact-number" style={{ fontSize: '2.75rem', fontWeight: 800, color: 'var(--brand-blue)', marginBottom: '0.5rem' }}>
+                  <div className="fact-number" style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--brand-blue)', marginBottom: '0.5rem', whiteSpace: 'nowrap' }}>
                     <CountUp target={stat.number} delay={stat.delay} />
                   </div>
                   <h4 style={{ color: 'var(--text-light-primary)', fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.5rem' }}>
