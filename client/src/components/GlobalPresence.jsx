@@ -436,15 +436,14 @@ export default function GlobalPresence() {
             display: none !important;
           }
           .map-glass-card {
-            margin-left: -24px !important;
-            margin-right: -24px !important;
-            border-radius: 0 !important;
-            border-left: none !important;
-            border-right: none !important;
-            padding: 2.25rem 0 !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            border-radius: 12px !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            padding: 1.75rem 1rem !important;
           }
           .map-svg-wrapper {
-            padding: 0 1.5rem !important;
+            padding: 0 0.5rem !important;
             min-height: 200px !important;
           }
           .presence-cards-grid {
