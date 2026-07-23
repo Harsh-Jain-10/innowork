@@ -134,12 +134,20 @@ function NodeMesh() {
 }
 
 export default function GlobalConnectivitySphere() {
+  const [isMobile, setIsMobile] = React.useState(false);
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div
       style={{
         position: 'relative',
         width: '100%',
-        height: '460px',
+        height: isMobile ? '300px' : '460px',
         backgroundColor: '#020306',
         borderRadius: '24px',
         overflow: 'hidden',
@@ -177,9 +185,11 @@ export default function GlobalConnectivitySphere() {
           <ambientLight intensity={0.4} />
           <pointLight position={[10, 10, 10]} intensity={1.5} />
           
-          <EffectComposer multisampling={0}>
-            <Bloom luminanceThreshold={0.05} luminanceSmoothing={0.9} height={300} intensity={1.4} />
-          </EffectComposer>
+          {!isMobile && (
+            <EffectComposer multisampling={0}>
+              <Bloom luminanceThreshold={0.05} luminanceSmoothing={0.9} height={300} intensity={1.4} />
+            </EffectComposer>
+          )}
         </Suspense>
       </Canvas>
     </div>

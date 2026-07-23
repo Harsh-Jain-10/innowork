@@ -128,7 +128,7 @@ export default function SupportDesk() {
             <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem', color: 'var(--text-light-primary)' }}>Ticket Logged Successfully</h3>
             <p style={{ fontSize: '0.95rem', color: 'var(--text-light-secondary)', marginBottom: '1.5rem' }}>{status.message}</p>
             
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', backgroundColor: '#f1f5f9', padding: '1rem', borderRadius: '6px', border: '1px solid #cbd5e1' }}>
+            <div className="success-details-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', backgroundColor: '#f1f5f9', padding: '1rem', borderRadius: '6px', border: '1px solid #cbd5e1' }}>
               <div>
                 <span style={{ display: 'block', fontSize: '0.75rem', color: '#64748b', textTransform: 'uppercase' }}>Ticket ID</span>
                 <strong style={{ color: 'var(--text-light-primary)' }}>{status.ticketId}</strong>
@@ -280,16 +280,26 @@ export default function SupportDesk() {
       <style>{`
         @media (max-width: 768px) {
           form {
-            padding: 1.5rem !important;
+            padding: 1.75rem 1.25rem !important;
           }
           .form-grid, .form-grid-3 {
             grid-template-columns: 1fr !important;
             gap: 1.25rem !important;
           }
+          #ticket-success-banner {
+            padding: 1.75rem 1.25rem !important;
+          }
+          .success-details-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+          }
         }
         @media (max-width: 480px) {
           form {
             padding: 1.25rem 0.85rem !important;
+          }
+          #ticket-success-banner {
+            padding: 1.5rem 1rem !important;
           }
         }
       `}</style>

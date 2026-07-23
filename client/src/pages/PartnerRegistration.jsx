@@ -146,40 +146,45 @@ export default function PartnerRegistration() {
 
         {/* Stepper Progress Indicator */}
         {step <= 4 && (
-          <div style={{ display: 'flex', justifySelf: 'center', width: '100%', maxWidth: '600px', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
-            {[1, 2, 3, 4].map(s => (
-              <motion.div 
-                key={s} 
-                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
-                animate={{ scale: step === s ? 1.05 : 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.span 
-                  animate={{ 
-                    backgroundColor: step === s ? 'var(--brand-blue)' : step > s ? 'rgba(9, 97, 159, 0.2)' : '#e2e8f0',
-                    color: step === s ? '#ffffff' : step > s ? 'var(--brand-blue)' : '#64748b',
-                    scale: step === s ? 1.15 : 1
-                  }}
-                  transition={{ duration: 0.35, ease: 'easeOut' }}
-                  style={{ 
-                    width: '32px', 
-                    height: '32px', 
-                    borderRadius: '50%', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center',
-                    fontWeight: 700,
-                    fontSize: '0.88rem'
-                  }}
+          <>
+            <div className="stepper-container" style={{ display: 'flex', justifySelf: 'center', width: '100%', maxWidth: '600px', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
+              {[1, 2, 3, 4].map(s => (
+                <motion.div 
+                  key={s} 
+                  style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+                  animate={{ scale: step === s ? 1.05 : 1 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  {step > s ? '✓' : s}
-                </motion.span>
-                <span style={{ fontSize: '0.8rem', color: step === s ? 'var(--text-light-primary)' : '#64748b', fontWeight: step === s ? 700 : 500 }}>
-                  {s === 1 ? 'Profile' : s === 2 ? 'Address' : s === 3 ? 'SLA' : 'Details'}
-                </span>
-              </motion.div>
-            ))}
-          </div>
+                  <motion.span 
+                    animate={{ 
+                      backgroundColor: step === s ? 'var(--brand-blue)' : step > s ? 'rgba(9, 97, 159, 0.2)' : '#e2e8f0',
+                      color: step === s ? '#ffffff' : step > s ? 'var(--brand-blue)' : '#64748b',
+                      scale: step === s ? 1.15 : 1
+                    }}
+                    transition={{ duration: 0.35, ease: 'easeOut' }}
+                    style={{ 
+                      width: '32px', 
+                      height: '32px', 
+                      borderRadius: '50%', 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center',
+                      fontWeight: 700,
+                      fontSize: '0.88rem'
+                    }}
+                  >
+                    {step > s ? '✓' : s}
+                  </motion.span>
+                  <span className="step-label" style={{ fontSize: '0.8rem', color: step === s ? 'var(--text-light-primary)' : '#64748b', fontWeight: step === s ? 700 : 500 }}>
+                    {s === 1 ? 'Profile' : s === 2 ? 'Address' : s === 3 ? 'SLA' : 'Details'}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+            <div className="mobile-step-description" style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '0.92rem', fontWeight: 700, color: 'var(--brand-blue)' }}>
+              Step {step} of 4: {step === 1 ? 'Company Profile' : step === 2 ? 'Facility Addresses' : step === 3 ? 'Capabilities & SLA' : 'Financials & Matrix'}
+            </div>
+          </>
         )}
 
         {/* Validation Errors */}
@@ -560,21 +565,33 @@ export default function PartnerRegistration() {
       </div>
 
       <style>{`
+        .mobile-step-description {
+          display: none;
+        }
         @media (max-width: 768px) {
           form {
-            padding: 1.5rem !important;
+            padding: 1.75rem 1.25rem !important;
           }
           .form-grid, .form-grid-3 {
             grid-template-columns: 1fr !important;
             gap: 1.25rem !important;
           }
+          .stepper-container {
+            max-width: 280px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            margin-bottom: 1.5rem !important;
+          }
+          .step-label {
+            display: none !important;
+          }
+          .mobile-step-description {
+            display: block !important;
+          }
         }
         @media (max-width: 480px) {
           form {
             padding: 1.25rem 0.85rem !important;
-          }
-          .partner-stepper-bar span:not(:first-child) {
-            font-size: 0.72rem !important;
           }
         }
       `}</style>

@@ -28,6 +28,17 @@ const presets = {
   }
 };
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  return isMobile;
+}
+
 /**
  * ScrollReveal — wraps children in a framer-motion div that
  * animates into view when scrolled into the viewport.
@@ -51,20 +62,22 @@ export default function ScrollReveal({
   style = {},
   ...rest
 }) {
-  const preset = presets[variant] || presets['fade-up'];
+  const isMobile = useIsMobile();
+  const activeVariant = isMobile ? 'fade' : variant;
+  const preset = presets[activeVariant] || presets['fade-up'];
 
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, amount: threshold }}
+      viewport={{ once, amount: isMobile ? 0.05 : threshold }}
       variants={{
         hidden: preset.hidden,
         visible: {
           ...preset.visible,
           transition: {
-            duration,
-            delay,
+            duration: isMobile ? 0.4 : duration,
+            delay: isMobile ? 0 : delay,
             ease: [0.25, 0.8, 0.25, 1]
           }
         }
@@ -92,18 +105,19 @@ export function StaggerContainer({
   style = {},
   ...rest
 }) {
+  const isMobile = useIsMobile();
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, amount: threshold }}
+      viewport={{ once, amount: isMobile ? 0.05 : threshold }}
       variants={{
         hidden: { opacity: 0 },
         visible: {
           opacity: 1,
           transition: {
-            delayChildren: delay,
-            staggerChildren: stagger
+            delayChildren: isMobile ? 0 : delay,
+            staggerChildren: isMobile ? 0.04 : stagger
           }
         }
       }}
@@ -127,7 +141,9 @@ export function StaggerItem({
   style = {},
   ...rest
 }) {
-  const preset = presets[variant] || presets['fade-up'];
+  const isMobile = useIsMobile();
+  const activeVariant = isMobile ? 'fade' : variant;
+  const preset = presets[activeVariant] || presets['fade-up'];
 
   return (
     <motion.div
@@ -135,7 +151,7 @@ export function StaggerItem({
         hidden: preset.hidden,
         visible: {
           ...preset.visible,
-          transition: { duration, ease: [0.25, 0.8, 0.25, 1] }
+          transition: { duration: isMobile ? 0.4 : duration, ease: [0.25, 0.8, 0.25, 1] }
         }
       }}
       className={className}

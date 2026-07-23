@@ -469,25 +469,46 @@ img, svg {
   }
 }
 
-/* 768px Breakpoint (Tablet Portrait) */
+/* 768px Breakpoint (Tablet Portrait & Mobile) */
 @media (max-width: 768px) {
   .container {
-    padding: 0 1.25rem;
+    padding: 0 1.5rem !important; /* Generous 24px padding to prevent words touching screen edges */
   }
   
-  h1 { font-size: clamp(2rem, 6vw, 2.75rem); }
-  h2 { font-size: clamp(1.6rem, 5vw, 2.1rem); }
-  h3 { font-size: clamp(1.2rem, 4vw, 1.5rem); }
+  body, p, li {
+    line-height: 1.75 !important; /* Increased readability */
+  }
+
+  section {
+    padding-top: 5.5rem !important; /* More vertical spacing between sections */
+    padding-bottom: 5.5rem !important;
+  }
+  
+  h1 { 
+    font-size: clamp(2rem, 7vw, 2.5rem) !important; 
+    line-height: 1.2 !important;
+    letter-spacing: -0.02em !important;
+  }
+  h2 { 
+    font-size: clamp(1.6rem, 6vw, 2.05rem) !important; 
+    line-height: 1.25 !important;
+    letter-spacing: -0.01em !important;
+  }
+  h3 { 
+    font-size: clamp(1.2rem, 5vw, 1.45rem) !important; 
+    line-height: 1.3 !important;
+  }
   
   /* Generic grid stack utility */
   .grid-2-col, .grid-3-col, .grid-4-col {
     grid-template-columns: 1fr !important;
+    gap: 2rem !important; /* More breathing room */
   }
   
   /* Form field pair stack */
   .form-row-split {
     grid-template-columns: 1fr !important;
-    gap: 1rem !important;
+    gap: 1.25rem !important;
   }
   
   /* Touch tab bar horizontal slider */
@@ -508,12 +529,13 @@ img, svg {
 /* 640px Breakpoint (Small Tablets & Large Phones) */
 @media (max-width: 640px) {
   .container {
-    padding: 0 1rem;
+    padding: 0 1.5rem !important; /* Preserve minimum 24px side padding */
   }
   
   .btn {
     width: 100%;
     padding: 0.85rem 1.25rem;
+    min-height: 48px; /* Touch target size */
   }
   
   .marquee-content {
@@ -524,35 +546,35 @@ img, svg {
 /* 480px Breakpoint (Standard Mobile Phones) */
 @media (max-width: 480px) {
   .container {
-    padding: 0 0.875rem;
+    padding: 0 1.5rem !important; /* Preserve minimum 24px side padding */
   }
   
-  h1 { font-size: clamp(1.75rem, 7vw, 2.25rem); }
-  h2 { font-size: clamp(1.4rem, 5.5vw, 1.8rem); }
-  h3 { font-size: clamp(1.1rem, 4.5vw, 1.35rem); }
+  h1 { font-size: clamp(1.75rem, 7vw, 2.25rem) !important; }
+  h2 { font-size: clamp(1.4rem, 5.5vw, 1.8rem) !important; }
+  h3 { font-size: clamp(1.1rem, 4.5vw, 1.35rem) !important; }
   
   .fact-card {
-    padding: 1rem 0.75rem;
+    padding: 1.75rem 1.25rem !important; /* Keep card padding generous */
   }
   
   .fact-number {
-    font-size: 1.75rem;
+    font-size: 2rem !important;
   }
 }
 
 /* 360px Breakpoint (Small Compact Phones) */
 @media (max-width: 360px) {
   .container {
-    padding: 0 0.75rem;
+    padding: 0 1.5rem !important; /* Preserve minimum 24px side padding */
   }
   
-  h1 { font-size: 1.6rem !important; }
-  h2 { font-size: 1.35rem !important; }
-  h3 { font-size: 1.05rem !important; }
+  h1 { font-size: 1.65rem !important; }
+  h2 { font-size: 1.4rem !important; }
+  h3 { font-size: 1.15rem !important; }
   
   .btn {
-    font-size: 0.85rem;
-    padding: 0.75rem 1rem;
+    font-size: 0.88rem;
+    padding: 0.8rem 1.2rem;
   }
 }
 

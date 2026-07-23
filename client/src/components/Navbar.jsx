@@ -10,6 +10,17 @@ export default function Navbar() {
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const location = useLocation();
 
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const services = configData.services;
 
   return (
@@ -27,7 +38,7 @@ export default function Navbar() {
       }}
       id="main-navigation"
     >
-      <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+      <div className="container" style={{ display: 'flex', justifyBetween: 'space-between', alignItems: 'center', width: '100%', justifyContent: 'space-between' }}>
         
         {/* Brand Logo Anchor to Home */}
         <Link to="/" style={{ display: 'flex', alignItems: 'center' }} id="nav-brand-logo">
@@ -235,24 +246,25 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
             style={{
-              position: 'absolute',
+              position: 'fixed',
               top: '76px',
               left: 0,
               right: 0,
+              bottom: 0,
               backgroundColor: '#ffffff',
               borderBottom: '1px solid #e2e8f0',
-              padding: '1.5rem',
+              padding: '2rem 1.5rem',
               display: 'flex',
               flexDirection: 'column',
-              gap: '1rem',
+              gap: '1.25rem',
               zIndex: 99,
-              maxHeight: 'calc(100vh - 76px)',
+              height: 'calc(100vh - 76px)',
               overflowY: 'auto',
               boxShadow: '0 4px 20px rgba(0,0,0,0.05)'
             }}
             className="mobile-nav-drawer"
           >
-            <Link to="/about" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.65rem 0', minHeight: '44px', display: 'flex', alignItems: 'center' }}>About Us</Link>
+            <Link to="/about" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.75rem 0', minHeight: '48px', display: 'flex', alignItems: 'center' }}>About Us</Link>
 
             {/* Mobile Touch-Friendly Services Expandable */}
             <div>
@@ -268,8 +280,8 @@ export default function Navbar() {
                   background: 'none',
                   border: 'none',
                   fontSize: '1rem',
-                  padding: '0.65rem 0',
-                  minHeight: '44px',
+                  padding: '0.75rem 0',
+                  minHeight: '48px',
                   textAlign: 'left',
                   cursor: 'pointer'
                 }}
@@ -284,7 +296,7 @@ export default function Navbar() {
                       key={srv.id}
                       to={`/services#${srv.id}`}
                       onClick={() => setIsOpen(false)}
-                      style={{ fontSize: '0.92rem', color: 'var(--text-light-secondary)', padding: '0.5rem 0', minHeight: '40px', display: 'flex', alignItems: 'center' }}
+                      style={{ fontSize: '0.92rem', color: 'var(--text-light-secondary)', padding: '0.65rem 0', minHeight: '44px', display: 'flex', alignItems: 'center' }}
                     >
                       {srv.name}
                     </Link>
@@ -293,18 +305,18 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link to="/solutions" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.65rem 0', minHeight: '44px', display: 'flex', alignItems: 'center' }}>Solutions</Link>
-            <Link to="/industries" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.65rem 0', minHeight: '44px', display: 'flex', alignItems: 'center' }}>Industries</Link>
-            <Link to="/blogs" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.65rem 0', minHeight: '44px', display: 'flex', alignItems: 'center' }}>Blogs</Link>
-            <Link to="/career" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.65rem 0', minHeight: '44px', display: 'flex', alignItems: 'center' }}>Career</Link>
-            <Link to="/partner-registration" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.65rem 0', minHeight: '44px', display: 'flex', alignItems: 'center' }}>Partner Registration</Link>
+            <Link to="/solutions" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.75rem 0', minHeight: '48px', display: 'flex', alignItems: 'center' }}>Solutions</Link>
+            <Link to="/industries" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.75rem 0', minHeight: '48px', display: 'flex', alignItems: 'center' }}>Industries</Link>
+            <Link to="/blogs" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.75rem 0', minHeight: '48px', display: 'flex', alignItems: 'center' }}>Blogs</Link>
+            <Link to="/career" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.75rem 0', minHeight: '48px', display: 'flex', alignItems: 'center' }}>Career</Link>
+            <Link to="/partner-registration" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.75rem 0', minHeight: '48px', display: 'flex', alignItems: 'center' }}>Partner Registration</Link>
 
             <Link
               to="/support-desk"
               onClick={() => setIsOpen(false)}
               className="btn btn-primary"
               id="nav-cta-support-mobile"
-              style={{ width: '100%', marginTop: '0.75rem', minHeight: '46px' }}
+              style={{ width: '100%', marginTop: '0.75rem', minHeight: '48px' }}
             >
               Support Desk
             </Link>

@@ -79,6 +79,14 @@ const logoDetails = {
 };
 
 export default function Home() {
+  const [isMobile, setIsMobile] = React.useState(false);
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -133,21 +141,23 @@ export default function Home() {
             <Suspense fallback={null}>
               <MotherboardScene />
               
-              {/* Cinematic Post-Processing */}
-              <EffectComposer multisampling={4}>
-                <DepthOfField 
-                  focusDistance={0.012} 
-                  focalLength={0.03} 
-                  bokehScale={4.0} 
-                />
-                <Bloom 
-                  luminanceThreshold={0.12} 
-                  luminanceSmoothing={0.9} 
-                  height={300} 
-                  intensity={1.8} 
-                />
-                <Vignette eskil={false} offset={0.1} darkness={1.2} />
-              </EffectComposer>
+              {/* Cinematic Post-Processing - Disabled on mobile for 60 FPS scrolling */}
+              {!isMobile && (
+                <EffectComposer multisampling={4}>
+                  <DepthOfField 
+                    focusDistance={0.012} 
+                    focalLength={0.03} 
+                    bokehScale={4.0} 
+                  />
+                  <Bloom 
+                    luminanceThreshold={0.12} 
+                    luminanceSmoothing={0.9} 
+                    height={300} 
+                    intensity={1.8} 
+                  />
+                  <Vignette eskil={false} offset={0.1} darkness={1.2} />
+                </EffectComposer>
+              )}
             </Suspense>
           </Canvas>
         </div>
@@ -485,7 +495,7 @@ export default function Home() {
                 Our corporate structure is organized around reliable service execution. With pan-India presence and global support delivery channels, INNOWORQ is trusted by Fortune 500 companies and growing enterprises alike.
               </p>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginTop: '2rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginTop: '2rem' }} className="home-cards-subgrid">
                 {[
                   { icon: '🚀', title: 'Our Vision', text: 'To be the global benchmark for seamless, multi-vendor IT infrastructure and cloud managed services.' },
                   { icon: '🎯', title: 'Our Mission', text: 'Providing SLA-bound proactive support, minimizing system downtime, and ensuring absolute compliance standards.' },
@@ -875,9 +885,23 @@ export default function Home() {
           }
         }
         @media (max-width: 768px) {
-          .responsive-hero-title { font-size: 2.4rem !important; }
-          .stats-full-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .responsive-hero-title { font-size: 2.25rem !important; }
+          .stats-full-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 1.25rem !important; }
           .premium-marquee-track { gap: 3.5rem !important; padding-right: 3.5rem !important; }
+          .home-cards-subgrid {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+          }
+          .home-services-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+          .about-split {
+            gap: 4rem !important;
+          }
+          .hero-glass-card {
+            padding: 2.25rem 1.5rem !important;
+          }
         }
         @media (max-width: 640px) {
           .hero-buttons-flex {

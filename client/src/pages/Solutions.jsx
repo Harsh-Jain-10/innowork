@@ -370,7 +370,7 @@ function SolutionSection({ sol, index }) {
               </div>
 
               {/* Action Buttons */}
-              <div style={{ display: 'flex', gap: '1rem' }}>
+              <div className="solution-actions-flex" style={{ display: 'flex', gap: '1rem' }}>
                 <Link
                   to={`/support-desk?solution=${sol.id}`}
                   style={{
@@ -733,18 +733,28 @@ export default function Solutions() {
         }
         @media (max-width: 768px) {
           .solution-showcase-section {
-            padding: 3.5rem 0 !important;
+            padding: 5.5rem 0 !important; /* Increase vertical spacing on mobile */
           }
           .solutions-image-container {
-            aspect-ratio: 1.6 !important;
+            aspect-ratio: 1.618 !important;
+          }
+          .solution-actions-flex {
+            flex-direction: column !important;
+            gap: 0.75rem !important;
+            width: 100% !important;
+          }
+          .solution-actions-flex a {
+            width: 100% !important;
+            justify-content: center !important;
+            min-height: 48px !important;
           }
         }
         @media (max-width: 480px) {
           .solution-showcase-section {
-            padding: 2.5rem 0 !important;
+            padding: 5.5rem 0 !important;
           }
           .solutions-image-container {
-            aspect-ratio: 1.4 !important;
+            aspect-ratio: 1.618 !important;
           }
         }
       `}</style>

@@ -364,6 +364,22 @@ export default function About() {
             gap: 2.5rem !important;
           }
         }
+        @media (max-width: 768px) {
+          .leadership-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2.25rem !important;
+          }
+          .team-card {
+            padding: 2.5rem 1.5rem !important;
+          }
+          .facts-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+          }
+          .fact-card {
+            padding: 1.75rem 1.25rem !important;
+          }
+        }
         @media (max-width: 640px) {
           .certifications-container > div {
             width: 140px !important;

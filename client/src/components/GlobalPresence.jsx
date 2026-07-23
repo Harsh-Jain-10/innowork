@@ -3,6 +3,21 @@ import { motion } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
 
 export default function GlobalPresence() {
+  const [viewBox, setViewBox] = React.useState('0 0 1000 480');
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setViewBox('410 80 460 260'); // Custom mobile zoom for active MEA, India, Europe & APAC routes
+      } else {
+        setViewBox('0 0 1000 480');
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const regionalHubs = [
     {
       id: 'dubai-mea',
@@ -49,7 +64,7 @@ export default function GlobalPresence() {
   return (
     <section 
       style={{
-        padding: '6rem 0',
+        padding: '6.5rem 0',
         backgroundColor: '#ffffff',
         borderTop: '1px solid #e2e8f0',
         borderBottom: '1px solid #e2e8f0',
@@ -57,6 +72,7 @@ export default function GlobalPresence() {
         overflow: 'hidden'
       }}
       id="global-presence-section"
+      className="global-presence-container"
     >
       {/* Blueprint Grid Texture Background */}
       <div style={{
@@ -78,10 +94,10 @@ export default function GlobalPresence() {
               <span style={{ width: 6, height: 6, borderRadius: '50%', backgroundColor: 'var(--brand-blue)', display: 'inline-block' }} />
               Expanding Regional Reach
             </span>
-            <h2 style={{ fontSize: '2.4rem', fontWeight: 800, color: 'var(--text-light-primary)', letterSpacing: '-0.5px', marginBottom: '1rem' }}>
+            <h2 style={{ fontSize: '2.4rem', fontWeight: 800, color: 'var(--text-light-primary)', letterSpacing: '-0.5px', marginBottom: '1rem' }} className="section-title">
               Global Presence &amp; MEA Expansion
             </h2>
-            <p style={{ color: 'var(--text-light-secondary)', maxWidth: '680px', margin: '0 auto', fontSize: '1.02rem', lineHeight: '1.7' }}>
+            <p style={{ color: 'var(--text-light-secondary)', maxWidth: '680px', margin: '0 auto', fontSize: '1.02rem', lineHeight: '1.75' }} className="section-desc">
               Building on our strong operational foundation in India, INNOWORQ is expanding its regional service coverage into Dubai and the Middle East &amp; Africa (MEA) region to deliver 24/7 SLA-driven technology support.
             </p>
           </div>
@@ -107,9 +123,9 @@ export default function GlobalPresence() {
             }} />
 
             {/* Custom Responsive SVG Map Display */}
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '2.1 / 1', minHeight: '280px' }}>
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '2.1 / 1', minHeight: '240px' }} className="map-svg-wrapper">
               <svg 
-                viewBox="0 0 1000 480" 
+                viewBox={viewBox} 
                 style={{ width: '100%', height: '100%', display: 'block' }}
                 aria-label="INNOWORQ Global Reach Vector Map"
               >
@@ -215,14 +231,14 @@ export default function GlobalPresence() {
                 <g transform="translate(490, 130)">
                   <circle r="4" fill="#7c3aed" opacity="0.8" />
                   <circle r="9" fill="none" stroke="#7c3aed" strokeWidth="1" opacity="0.4" />
-                  <text x="12" y="4" fill="#cbd5e1" fontSize="10" fontWeight="600" fontFamily="sans-serif">Europe Alliances</text>
+                  <text x="12" y="4" fill="#cbd5e1" fontSize="10" fontWeight="600" fontFamily="sans-serif" className="map-svg-label">Europe Alliances</text>
                 </g>
 
                 {/* Secondary Hub: Southeast Asia / APAC (x=800, y=290) */}
                 <g transform="translate(800, 290)">
                   <circle r="4" fill="#059669" opacity="0.8" />
                   <circle r="9" fill="none" stroke="#059669" strokeWidth="1" opacity="0.4" />
-                  <text x="12" y="4" fill="#cbd5e1" fontSize="10" fontWeight="600" fontFamily="sans-serif">APAC Region</text>
+                  <text x="12" y="4" fill="#cbd5e1" fontSize="10" fontWeight="600" fontFamily="sans-serif" className="map-svg-label">APAC Region</text>
                 </g>
 
                 {/* ── CORE OPERATIONS NODE: India (x=705, y=235) ── */}
@@ -238,8 +254,8 @@ export default function GlobalPresence() {
                   />
                   <circle r="7" fill="var(--brand-blue)" filter="url(#glowBlue)" />
                   <circle r="3" fill="#ffffff" />
-                  <text x="14" y="-8" fill="#ffffff" fontSize="12" fontWeight="700" fontFamily="sans-serif">India (HQ &amp; Labs)</text>
-                  <text x="14" y="8" fill="#94a3b8" fontSize="9" fontWeight="500" fontFamily="sans-serif">Pan-India Operations</text>
+                  <text x="14" y="-8" fill="#ffffff" fontSize="12" fontWeight="700" fontFamily="sans-serif" className="map-svg-label">India (HQ &amp; Labs)</text>
+                  <text x="14" y="8" fill="#94a3b8" fontSize="9" fontWeight="500" fontFamily="sans-serif" className="map-svg-label">Pan-India Operations</text>
                 </g>
 
                 {/* ── NEWEST REGIONAL PRESENCE: Dubai, UAE (x=590, y=215) ── */}
@@ -265,7 +281,7 @@ export default function GlobalPresence() {
                   <circle r="3.5" fill="#020617" />
 
                   {/* Highlighted Dubai Callout Badge */}
-                  <g transform="translate(-70, -45)">
+                  <g transform="translate(-70, -45)" className="map-dubai-callout">
                     <rect x="0" y="0" width="140" height="30" rx="6" fill="rgba(0, 240, 255, 0.15)" stroke="#00f0ff" strokeWidth="1.2" />
                     <text x="70" y="14" fill="#00f0ff" fontSize="10" fontWeight="800" textAnchor="middle" fontFamily="sans-serif">DUBAI, UAE</text>
                     <text x="70" y="24" fill="#ffffff" fontSize="8" fontWeight="600" textAnchor="middle" fontFamily="sans-serif">MEA Expansion Hub</text>
@@ -275,8 +291,38 @@ export default function GlobalPresence() {
               </svg>
             </div>
 
+            {/* Mobile Map structured descriptions below the map */}
+            <div className="mobile-map-details">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '1.5rem', padding: '0 0.5rem' }}>
+                <div style={{ borderLeft: '3px solid #00f0ff', paddingLeft: '1rem' }}>
+                  <h4 style={{ color: '#00f0ff', fontSize: '1.05rem', fontWeight: 800, marginBottom: '0.3rem', fontFamily: 'var(--font-heading)' }}>DUBAI, UAE</h4>
+                  <p style={{ color: '#ffffff', fontSize: '0.88rem', margin: 0, lineHeight: '1.6' }}>
+                    <strong>MEA Expansion Hub:</strong> Delivering SLA-bound IT infrastructure support, cloud managed services, and multi-vendor maintenance.
+                  </p>
+                </div>
+                <div style={{ borderLeft: '3px solid var(--brand-blue)', paddingLeft: '1rem' }}>
+                  <h4 style={{ color: '#ffffff', fontSize: '1.05rem', fontWeight: 800, marginBottom: '0.3rem', fontFamily: 'var(--font-heading)' }}>INDIA (HQ &amp; LABS)</h4>
+                  <p style={{ color: '#94a3b8', fontSize: '0.88rem', margin: 0, lineHeight: '1.6' }}>
+                    <strong>Operations HQ:</strong> Central technical hub in Noida &amp; Bangalore hosting 300+ certified engineers and 24/7/365 NOC desks.
+                  </p>
+                </div>
+                <div style={{ borderLeft: '3px solid #059669', paddingLeft: '1rem' }}>
+                  <h4 style={{ color: '#cbd5e1', fontSize: '1.05rem', fontWeight: 800, marginBottom: '0.3rem', fontFamily: 'var(--font-heading)' }}>APAC REGION</h4>
+                  <p style={{ color: '#94a3b8', fontSize: '0.88rem', margin: 0, lineHeight: '1.6' }}>
+                    <strong>Service Coverage:</strong> Coordinating regional IT deployments and multi-country hardware support.
+                  </p>
+                </div>
+                <div style={{ borderLeft: '3px solid #7c3aed', paddingLeft: '1rem' }}>
+                  <h4 style={{ color: '#cbd5e1', fontSize: '1.05rem', fontWeight: 800, marginBottom: '0.3rem', fontFamily: 'var(--font-heading)' }}>EUROPE ALLIANCES</h4>
+                  <p style={{ color: '#94a3b8', fontSize: '0.88rem', margin: 0, lineHeight: '1.6' }}>
+                    <strong>Global Footprint:</strong> International support delivery and OEM alliance coordination.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Map Legend Overlay Bar */}
-            <div style={{
+            <div className="map-legend-desktop" style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
@@ -356,7 +402,7 @@ export default function GlobalPresence() {
                     {hub.title}
                   </h4>
 
-                  <p style={{ fontSize: '0.86rem', color: 'var(--text-light-secondary)', lineHeight: '1.6', margin: 0 }}>
+                  <p style={{ fontSize: '0.86rem', color: 'var(--text-light-secondary)', lineHeight: '1.65', margin: 0 }}>
                     {hub.desc}
                   </p>
                 </div>
@@ -367,19 +413,46 @@ export default function GlobalPresence() {
       </div>
 
       <style>{`
+        .mobile-map-details {
+          display: none;
+        }
         @media (max-width: 1024px) {
           .presence-cards-grid {
             grid-template-columns: repeat(2, 1fr) !important;
             gap: 1.25rem !important;
           }
         }
-        @media (max-width: 640px) {
-          .presence-cards-grid {
-            grid-template-columns: 1fr !important;
-            gap: 1rem !important;
+        @media (max-width: 768px) {
+          .global-presence-container {
+            padding: 5.5rem 0 !important;
+          }
+          .mobile-map-details {
+            display: block !important;
+          }
+          .map-legend-desktop {
+            display: none !important;
+          }
+          .map-svg-label, .map-dubai-callout {
+            display: none !important;
           }
           .map-glass-card {
-            padding: 1.5rem 0.75rem !important;
+            margin-left: -24px !important;
+            margin-right: -24px !important;
+            border-radius: 0 !important;
+            border-left: none !important;
+            border-right: none !important;
+            padding: 2.25rem 0 !important;
+          }
+          .map-svg-wrapper {
+            padding: 0 1.5rem !important;
+            min-height: 200px !important;
+          }
+          .presence-cards-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+          .presence-cards-grid > div {
+            padding: 2.25rem 1.75rem !important;
           }
         }
       `}</style>
