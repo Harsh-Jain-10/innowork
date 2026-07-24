@@ -352,6 +352,8 @@ html {
   font-size: 2.25rem;
   font-weight: 800;
   color: var(--brand-blue);
+  white-space: nowrap !important;
+  display: inline-block;
 }
 
 .fact-label {

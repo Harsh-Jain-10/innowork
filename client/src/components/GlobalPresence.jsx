@@ -483,23 +483,23 @@ export default function GlobalPresence() {
             }} className="desktop-stats-bar">
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <div style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>🌐</div>
-                <div><div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#0f172a' }}>5+</div><div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 600 }}>Countries</div></div>
+                <div><div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#0f172a', whiteSpace: 'nowrap' }}>5+</div><div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 600 }}>Countries</div></div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <div style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: '#f0fdf4', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>👥</div>
-                <div><div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#0f172a' }}>Global</div><div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 600 }}>Delivery Model</div></div>
+                <div><div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#0f172a', whiteSpace: 'nowrap' }}>Global</div><div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 600 }}>Delivery Model</div></div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <div style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: '#fef3c7', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>🕒</div>
-                <div><div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#0f172a' }}>24×7</div><div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 600 }}>Support</div></div>
+                <div><div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#0f172a', whiteSpace: 'nowrap' }}>24×7</div><div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 600 }}>Support</div></div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <div style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>🛡️</div>
-                <div><div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#0f172a' }}>100%</div><div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 600 }}>Commitment</div></div>
+                <div><div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#0f172a', whiteSpace: 'nowrap' }}>100%</div><div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 600 }}>Commitment</div></div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <div style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: '#fdf2f8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>🤝</div>
-                <div><div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#0f172a' }}>Trusted</div><div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 600 }}>By Enterprises Worldwide</div></div>
+                <div><div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#0f172a', whiteSpace: 'nowrap' }}>Trusted</div><div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 600 }}>By Enterprises Worldwide</div></div>
               </div>
             </div>
           </ScrollReveal>
@@ -706,25 +706,25 @@ export default function GlobalPresence() {
             }}>
               <div>
                 <div style={{ fontSize: '1.3rem', marginBottom: '0.25rem' }}>🌐</div>
-                <div style={{ fontSize: '0.85rem', fontWeight: 900, color: '#2563eb', lineHeight: 1.1 }}>5+</div>
+                <div style={{ fontSize: '0.85rem', fontWeight: 900, color: '#2563eb', lineHeight: 1.1, whiteSpace: 'nowrap' }}>5+</div>
                 <div style={{ fontSize: '0.68rem', color: '#475569', fontWeight: 600 }}>Countries</div>
               </div>
 
               <div>
                 <div style={{ fontSize: '1.3rem', marginBottom: '0.25rem' }}>🎧</div>
-                <div style={{ fontSize: '0.85rem', fontWeight: 900, color: '#2563eb', lineHeight: 1.1 }}>24×7</div>
+                <div style={{ fontSize: '0.85rem', fontWeight: 900, color: '#2563eb', lineHeight: 1.1, whiteSpace: 'nowrap' }}>24×7</div>
                 <div style={{ fontSize: '0.68rem', color: '#475569', fontWeight: 600 }}>Support</div>
               </div>
 
               <div>
                 <div style={{ fontSize: '1.3rem', marginBottom: '0.25rem' }}>🛡️</div>
-                <div style={{ fontSize: '0.85rem', fontWeight: 900, color: '#2563eb', lineHeight: 1.1 }}>100%</div>
+                <div style={{ fontSize: '0.85rem', fontWeight: 900, color: '#2563eb', lineHeight: 1.1, whiteSpace: 'nowrap' }}>100%</div>
                 <div style={{ fontSize: '0.68rem', color: '#475569', fontWeight: 600 }}>Commitment</div>
               </div>
 
               <div>
                 <div style={{ fontSize: '1.3rem', marginBottom: '0.25rem' }}>🤝</div>
-                <div style={{ fontSize: '0.85rem', fontWeight: 900, color: '#2563eb', lineHeight: 1.1 }}>Trusted</div>
+                <div style={{ fontSize: '0.85rem', fontWeight: 900, color: '#2563eb', lineHeight: 1.1, whiteSpace: 'nowrap' }}>Trusted</div>
                 <div style={{ fontSize: '0.68rem', color: '#475569', fontWeight: 600 }}>Worldwide</div>
               </div>
             </div>
