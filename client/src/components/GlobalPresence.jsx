@@ -149,42 +149,12 @@ export default function GlobalPresence() {
     }
   ];
 
-  // Dot Matrix World Map Points Data (x, y)
-  const dotMatrixMapPoints = [
-    [100, 90], [120, 90], [140, 80], [160, 80], [180, 90], [200, 90],
-    [80, 110], [100, 110], [120, 110], [140, 110], [160, 110], [180, 110], [200, 110], [220, 110],
-    [100, 130], [120, 130], [140, 130], [160, 130], [180, 130], [200, 130], [220, 130],
-    [120, 150], [140, 150], [160, 150], [180, 150], [200, 150],
-    [220, 210], [240, 210], [260, 210],
-    [220, 230], [240, 230], [260, 230], [280, 230],
-    [240, 250], [260, 250], [280, 250],
-    [420, 90], [440, 80], [460, 80], [480, 80], [500, 90],
-    [400, 110], [420, 110], [440, 110], [460, 110], [480, 110], [500, 110], [520, 110],
-    [420, 130], [440, 130], [460, 130], [480, 130], [500, 130],
-    [400, 170], [420, 170], [440, 170], [460, 170], [480, 170], [500, 170],
-    [420, 190], [440, 190], [460, 190], [480, 190], [500, 190],
-    [440, 210], [460, 210], [480, 210],
-    [540, 150], [560, 150], [580, 150],
-    [540, 170], [560, 170], [580, 170], [600, 170],
-    [620, 110], [640, 110], [660, 100], [680, 100], [700, 100], [720, 100], [740, 110],
-    [620, 130], [640, 130], [660, 130], [680, 130], [700, 130], [720, 130], [740, 130],
-    [620, 150], [640, 150], [660, 150], [680, 150], [700, 150], [720, 150],
-    [640, 170], [660, 170], [680, 170], [700, 170], [720, 170],
-    [660, 190], [680, 190], [700, 190],
-    [760, 110], [780, 110], [800, 110],
-    [760, 130], [780, 130], [800, 130], [820, 130],
-    [760, 170], [780, 170], [800, 170],
-    [780, 270], [800, 270], [820, 270],
-    [760, 290], [780, 290], [800, 290], [820, 290], [840, 290],
-    [860, 310], [880, 310]
-  ];
-
   return (
     <section 
       id="global-presence-section"
       className="global-presence-exact-section"
       style={{
-        padding: '4rem 0',
+        padding: '4.5rem 0',
         backgroundColor: '#f8fafc',
         backgroundImage: 'radial-gradient(circle at 50% 0%, rgba(224, 242, 254, 0.4) 0%, transparent 70%)',
         position: 'relative',
@@ -287,7 +257,7 @@ export default function GlobalPresence() {
               </div>
             </ScrollReveal>
 
-            {/* RIGHT SIDE: Desktop Interactive Map */}
+            {/* RIGHT SIDE: Desktop Interactive Map with Complete World Map Vector Outlines */}
             <ScrollReveal variant="fade-up" delay={0.15}>
               <div style={{ position: 'relative', width: '100%', aspectRatio: '2.1 / 1', minHeight: '320px' }}>
                 <svg viewBox="50 40 860 320" style={{ width: '100%', height: '100%', display: 'block', overflow: 'visible' }}>
@@ -297,27 +267,54 @@ export default function GlobalPresence() {
                       <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
                     </filter>
                     <linearGradient id="mapArcLine" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.8" />
-                      <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.4" />
+                      <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.85" />
+                      <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.5" />
                     </linearGradient>
                   </defs>
 
-                  <g fill="#cbd5e1" opacity="0.65">
-                    {dotMatrixMapPoints.map(([cx, cy], i) => (
-                      <circle key={`dot-d-${i}`} cx={cx} cy={cy} r="2.2" />
-                    ))}
+                  {/* ── COMPLETE VECTOR CONTINENTAL WORLD MAP OUTLINES ── */}
+                  <g fill="#cbd5e1" opacity="0.45" stroke="#94a3b8" strokeWidth="0.8" strokeLinejoin="round">
+                    {/* North America */}
+                    <path d="M 90 60 L 140 50 L 190 55 L 220 70 L 250 85 L 230 110 L 210 130 L 190 145 L 170 150 L 160 160 L 150 140 L 130 140 L 110 130 L 90 110 L 75 90 Z" />
+                    {/* Greenland */}
+                    <path d="M 270 45 L 310 40 L 330 55 L 300 70 L 270 60 Z" />
+                    {/* South America */}
+                    <path d="M 195 165 L 235 175 L 265 200 L 255 240 L 235 270 L 225 295 L 215 280 L 210 240 L 195 200 Z" />
+                    {/* Europe */}
+                    <path d="M 410 70 L 450 65 L 490 70 L 510 85 L 480 110 L 450 115 L 420 110 L 400 90 Z" />
+                    {/* UK & Ireland */}
+                    <path d="M 405 85 L 420 80 L 425 95 L 410 100 Z" />
+                    {/* Africa */}
+                    <path d="M 410 120 L 460 118 L 510 135 L 530 165 L 510 205 L 470 245 L 450 240 L 435 210 L 420 170 Z" />
+                    {/* Madagascar */}
+                    <path d="M 540 215 L 550 210 L 545 235 L 538 230 Z" />
+                    {/* Asia & Middle East & India Subcontinent */}
+                    <path d="M 515 65 L 600 55 L 720 50 L 800 65 L 820 100 L 780 135 L 730 140 L 680 175 L 640 185 L 620 155 L 575 160 L 540 150 L 520 115 Z" />
+                    {/* India Subcontinent Projection */}
+                    <path d="M 625 140 Q 660 155 675 190 T 645 220 T 620 175 Z" fill="#93c5fd" opacity="0.3" stroke="#2563eb" strokeWidth="1" />
+                    {/* Japan Archipelago */}
+                    <path d="M 790 105 L 805 95 L 810 115 L 795 125 Z" />
+                    {/* SE Asia & Islands */}
+                    <path d="M 720 170 L 750 180 L 780 195 L 760 210 L 730 195 Z" />
+                    {/* Australia */}
+                    <path d="M 750 245 L 810 240 L 840 265 L 830 300 L 770 305 L 745 275 Z" />
+                    {/* New Zealand */}
+                    <path d="M 865 290 L 878 285 L 872 315 L 860 310 Z" />
                   </g>
 
-                  <path d="M 660 160 Q 560 90 460 100" fill="none" stroke="url(#mapArcLine)" strokeWidth="1.8" strokeDasharray="4 3" />
-                  <path d="M 660 160 Q 590 150 520 175" fill="none" stroke="url(#mapArcLine)" strokeWidth="1.8" strokeDasharray="4 3" />
-                  <path d="M 660 160 Q 730 110 800 110" fill="none" stroke="url(#mapArcLine)" strokeWidth="1.8" strokeDasharray="4 3" />
-                  <path d="M 660 160 Q 780 230 850 275" fill="none" stroke="url(#mapArcLine)" strokeWidth="1.8" strokeDasharray="4 3" />
+                  {/* CURVED ARCS FROM INDIA HUB (660, 160) */}
+                  <path d="M 660 160 Q 560 90 460 100" fill="none" stroke="url(#mapArcLine)" strokeWidth="2" strokeDasharray="5 4" />
+                  <path d="M 660 160 Q 590 150 520 175" fill="none" stroke="url(#mapArcLine)" strokeWidth="2" strokeDasharray="5 4" />
+                  <path d="M 660 160 Q 730 110 800 110" fill="none" stroke="url(#mapArcLine)" strokeWidth="2" strokeDasharray="5 4" />
+                  <path d="M 660 160 Q 780 230 850 275" fill="none" stroke="url(#mapArcLine)" strokeWidth="2" strokeDasharray="5 4" />
 
-                  <circle cx="460" cy="100" r="4.5" fill="#3b82f6" />
-                  <circle cx="520" cy="175" r="4.5" fill="#3b82f6" />
-                  <circle cx="800" cy="110" r="4.5" fill="#3b82f6" />
-                  <circle cx="850" cy="275" r="4.5" fill="#3b82f6" />
+                  {/* OUTER NODE DOTS */}
+                  <circle cx="460" cy="100" r="5" fill="#2563eb" />
+                  <circle cx="520" cy="175" r="5" fill="#2563eb" />
+                  <circle cx="800" cy="110" r="5" fill="#2563eb" />
+                  <circle cx="850" cy="275" r="5" fill="#2563eb" />
 
+                  {/* CENTRAL HUB: INDIA NODE (660, 160) */}
                   <g transform="translate(660, 160)">
                     <circle r="26" fill="rgba(59, 130, 246, 0.12)" filter="url(#indiaHubGlow)" />
                     <circle r="16" fill="rgba(59, 130, 246, 0.25)" />
@@ -334,6 +331,7 @@ export default function GlobalPresence() {
                     </g>
                   </g>
 
+                  {/* CALLOUT BADGE 1: UNITED KINGDOM (460, 100) */}
                   <g transform="translate(460, 100)">
                     <g transform="translate(-115, -42)">
                       <rect x="0" y="0" width="115" height="34" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.06))" />
@@ -344,6 +342,7 @@ export default function GlobalPresence() {
                     </g>
                   </g>
 
+                  {/* CALLOUT BADGE 2: UAE (520, 175) */}
                   <g transform="translate(520, 175)">
                     <g transform="translate(-150, 10)">
                       <rect x="0" y="0" width="145" height="48" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.06))" />
@@ -356,6 +355,7 @@ export default function GlobalPresence() {
                     </g>
                   </g>
 
+                  {/* CALLOUT BADGE 3: JAPAN (800, 110) */}
                   <g transform="translate(800, 110)">
                     <g transform="translate(14, -18)">
                       <rect x="0" y="0" width="90" height="34" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.06))" />
@@ -366,6 +366,7 @@ export default function GlobalPresence() {
                     </g>
                   </g>
 
+                  {/* CALLOUT BADGE 4: NEW ZEALAND (850, 275) */}
                   <g transform="translate(850, 275)">
                     <g transform="translate(12, -18)">
                       <rect x="0" y="0" width="110" height="34" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.06))" />
@@ -488,7 +489,7 @@ export default function GlobalPresence() {
             </div>
           </ScrollReveal>
 
-          {/* Mobile Interactive Central "Q" Node Matrix World Map */}
+          {/* Mobile Central "Q" Node World Map with Complete Vector Continents */}
           <ScrollReveal variant="fade-up" delay={0.1}>
             <div style={{
               position: 'relative',
@@ -509,11 +510,14 @@ export default function GlobalPresence() {
                   </linearGradient>
                 </defs>
 
-                {/* Background Dotted Map Grid */}
-                <g fill="#cbd5e1" opacity="0.65">
-                  {dotMatrixMapPoints.map(([cx, cy], i) => (
-                    <circle key={`dot-mob-${i}`} cx={cx} cy={cy} r="2.2" />
-                  ))}
+                {/* ── COMPLETE VECTOR CONTINENTS (MOBILE) ── */}
+                <g fill="#cbd5e1" opacity="0.45" stroke="#94a3b8" strokeWidth="0.8" strokeLinejoin="round">
+                  <path d="M 120 70 L 170 60 L 220 65 L 250 80 L 280 95 L 260 120 L 240 140 L 220 155 L 190 150 L 145 135 Z" />
+                  <path d="M 230 175 L 270 185 L 300 210 L 290 250 L 270 280 L 250 290 Z" />
+                  <path d="M 390 80 L 430 75 L 470 80 L 490 95 L 460 120 L 410 120 Z" />
+                  <path d="M 390 130 L 440 128 L 490 145 L 510 175 L 490 215 L 450 255 Z" />
+                  <path d="M 495 75 L 580 65 L 700 60 L 780 75 L 760 145 L 660 185 L 590 170 Z" />
+                  <path d="M 680 255 L 740 250 L 770 275 L 760 310 L 700 315 Z" />
                 </g>
 
                 {/* 5 CURVED ARCS RADIATING FROM CENTRAL "Q" NODE (450, 180) */}
@@ -596,7 +600,6 @@ export default function GlobalPresence() {
                   gap: '1rem',
                   textDecoration: 'none'
                 }}>
-                  {/* Circular Flag Circle Icon */}
                   <div style={{
                     width: '48px',
                     height: '48px',
@@ -614,7 +617,6 @@ export default function GlobalPresence() {
                     </div>
                   </div>
 
-                  {/* Middle Content */}
                   <div style={{ flex: 1 }}>
                     <h3 style={{ fontSize: '0.98rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.15rem', lineHeight: 1.2 }}>
                       {country.name}
@@ -627,7 +629,6 @@ export default function GlobalPresence() {
                     </p>
                   </div>
 
-                  {/* Right Chevron Arrow Icon */}
                   <div style={{ color: '#2563eb', fontSize: '1.2rem', fontWeight: 700, opacity: 0.75, flexShrink: 0 }}>
                     ›
                   </div>
@@ -636,7 +637,7 @@ export default function GlobalPresence() {
             ))}
           </div>
 
-          {/* Mobile Bottom Stats Bar (4 Icons in Light Tint Box) */}
+          {/* Mobile Bottom Stats Bar */}
           <ScrollReveal variant="fade-up" delay={0.15}>
             <div style={{
               backgroundColor: '#edf5ff',
