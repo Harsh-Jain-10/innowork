@@ -91,7 +91,7 @@ export default function GlobalPresence() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Empty GlobalMapContainer Placeholder */}
+          {/* RIGHT COLUMN: GlobalMapContainer with centered world-map placeholder */}
           <div 
             id="GlobalMapContainer"
             className="GlobalMapContainer"
@@ -100,9 +100,28 @@ export default function GlobalPresence() {
               height: '100%',
               minHeight: '380px',
               backgroundColor: '#EDF3FB',
-              borderRadius: '16px'
+              borderRadius: '16px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative',
+              overflow: 'hidden'
             }}
-          />
+          >
+            {/* Placeholder container for external SVG map */}
+            <div 
+              className="world-map"
+              style={{
+                width: '100%',
+                height: '100%',
+                aspectRatio: '2 / 1',
+                maxHeight: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            />
+          </div>
 
         </div>
 
