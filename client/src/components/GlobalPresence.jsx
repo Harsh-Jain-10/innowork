@@ -92,7 +92,7 @@ export default function GlobalPresence() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: GlobalMapContainer with rendered external SVG map & India pin overlay */}
+          {/* RIGHT COLUMN: GlobalMapContainer with external SVG map, India pin, & Dubai Bezier arc */}
           <div 
             id="GlobalMapContainer"
             className="GlobalMapContainer"
@@ -134,6 +134,39 @@ export default function GlobalPresence() {
                   display: 'block'
                 }}
               />
+
+              {/* OVERLAY SVG FOR BEZIER CURVE FROM INDIA TO DUBAI */}
+              <svg 
+                viewBox="0 0 1000 500" 
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  pointerEvents: 'none',
+                  overflow: 'visible'
+                }}
+              >
+                <defs>
+                  <linearGradient id="dubaiArcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#2563eb" stopOpacity="0.95" />
+                    <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.8" />
+                  </linearGradient>
+                </defs>
+
+                {/* ONE BEZIER CURVE: START INDIA (675, 235) -> END DUBAI (565, 215) */}
+                <path 
+                  d="M 675 235 Q 620 190 565 215" 
+                  fill="none" 
+                  stroke="url(#dubaiArcGradient)" 
+                  strokeWidth="2.5" 
+                  strokeLinecap="round"
+                  className="bezier-draw-path"
+                />
+
+                {/* Dubai End Node Dot */}
+                <circle cx="565" cy="215" r="4.5" fill="#2563eb" />
+              </svg>
 
               {/* OVERLAY: ONE ANIMATED GLOWING & PULSING LOCATION PIN OVER INDIA */}
               <div 
@@ -185,6 +218,16 @@ export default function GlobalPresence() {
       </div>
 
       <style>{`
+        .bezier-draw-path {
+          stroke-dasharray: 400;
+          stroke-dashoffset: 400;
+          animation: drawDubaiPath 1.5s ease-out forwards;
+        }
+        @keyframes drawDubaiPath {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
         @keyframes indiaPinPulse {
           0% {
             transform: scale(0.6);
