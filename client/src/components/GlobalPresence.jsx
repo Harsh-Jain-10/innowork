@@ -23,56 +23,18 @@ export default function GlobalPresence() {
     }
   ];
 
-  // SaaS Dot-Grid World Map Points Data (x, y)
-  const dotGridPoints = [
-    // North America
-    [100, 90], [120, 90], [140, 80], [160, 80], [180, 90], [200, 90],
-    [80, 110], [100, 110], [120, 110], [140, 110], [160, 110], [180, 110], [200, 110], [220, 110], [240, 110],
-    [100, 130], [120, 130], [140, 130], [160, 130], [180, 130], [200, 130], [220, 130], [240, 130],
-    [120, 150], [140, 150], [160, 150], [180, 150], [200, 150], [220, 150],
-    [160, 170], [180, 170], [200, 170],
-    // South America
-    [220, 210], [240, 210], [260, 210],
-    [220, 230], [240, 230], [260, 230], [280, 230],
-    [240, 250], [260, 250], [280, 250], [300, 250],
-    [240, 270], [260, 270], [280, 270],
-    [260, 290], [280, 290], [260, 310],
-    // Europe
-    [420, 90], [440, 80], [460, 80], [480, 80], [500, 90],
-    [400, 110], [420, 110], [440, 110], [460, 110], [480, 110], [500, 110], [520, 110],
-    [420, 130], [440, 130], [460, 130], [480, 130], [500, 130],
-    // Africa
-    [400, 170], [420, 170], [440, 170], [460, 170], [480, 170], [500, 170],
-    [420, 190], [440, 190], [460, 190], [480, 190], [500, 190], [520, 190],
-    [440, 210], [460, 210], [480, 210], [500, 210], [520, 210],
-    [440, 230], [460, 230], [480, 230], [500, 230],
-    [460, 250], [480, 250], [500, 250],
-    [460, 270], [480, 270], [480, 290],
-    // Middle East (UAE / Dubai Region)
-    [540, 150], [560, 150], [580, 150],
-    [540, 170], [560, 170], [580, 170], [600, 170],
-    [560, 190], [580, 190],
-    // Asia & India Region
-    [620, 110], [640, 110], [660, 100], [680, 100], [700, 100], [720, 100], [740, 110], [760, 110],
-    [620, 130], [640, 130], [660, 130], [680, 130], [700, 130], [720, 130], [740, 130], [760, 130], [780, 130],
-    [620, 150], [640, 150], [660, 150], [680, 150], [700, 150], [720, 150], [740, 150], [760, 150],
-    [640, 170], [660, 170], [680, 170], [700, 170], [720, 170], [740, 170],
-    [640, 190], [660, 190], [680, 190], [700, 190], [720, 190],
-    [660, 210], [680, 210], [700, 210],
-    [660, 230], [680, 230], [680, 250],
-    // Southeast Asia & East Asia
-    [760, 170], [780, 170], [800, 170],
-    [740, 190], [760, 190], [780, 190], [800, 190], [820, 190],
-    [760, 210], [780, 210], [800, 210],
-    [780, 230], [800, 230],
-    // Australia
-    [780, 280], [800, 280], [820, 280],
-    [760, 300], [780, 300], [800, 300], [820, 300], [840, 300],
-    [780, 320], [800, 320], [820, 320]
+  // Generic building-bar skylines (x, width, height) — anchored to baseline y=340
+  const indiaSkyline = [
+    [40, 18, 60], [62, 14, 90], [80, 20, 70], [104, 16, 110], [124, 22, 85],
+    [150, 18, 130], [172, 14, 95], [190, 24, 75], [218, 16, 105], [238, 18, 65]
+  ];
+  const dubaiSkyline = [
+    [850, 16, 70], [870, 20, 100], [894, 14, 80], [912, 18, 120], [934, 22, 90],
+    [1010, 16, 95], [1030, 20, 130], [1054, 14, 75], [1072, 18, 110]
   ];
 
   return (
-    <section 
+    <section
       id="global-presence-section"
       className="global-presence-container"
       style={{
@@ -84,7 +46,7 @@ export default function GlobalPresence() {
         overflow: 'hidden'
       }}
     >
-      {/* Section Header Container */}
+      {/* Section Header */}
       <div className="container" style={{ position: 'relative', zIndex: 1, marginBottom: '2.5rem' }}>
         <ScrollReveal variant="fade-up">
           <div style={{ textAlign: 'center' }}>
@@ -107,49 +69,40 @@ export default function GlobalPresence() {
         </ScrollReveal>
       </div>
 
-      {/* FULL-WIDTH FEATURED MAP STAGE (Scale & Presence) */}
+      {/* FULL-WIDTH ILLUSTRATED SKYLINE STAGE */}
       <div className="full-width-map-stage" style={{
         width: '100%',
-        backgroundColor: '#030712',
         position: 'relative',
-        padding: '2.5rem 0',
-        borderTop: '1px solid #1e293b',
-        borderBottom: '1px solid #1e293b',
+        padding: '3rem 0',
         marginBottom: '3rem',
         overflow: 'hidden'
       }}>
-        {/* Subtle Radial Glow Backdrops behind the Map Hubs */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'radial-gradient(circle at 66% 50%, rgba(9, 97, 159, 0.28) 0%, transparent 45%), radial-gradient(circle at 56% 45%, rgba(56, 189, 248, 0.22) 0%, transparent 40%)',
-          pointerEvents: 'none'
-        }} />
-
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div style={{ position: 'relative', width: '100%', aspectRatio: '2.5 / 1', minHeight: '340px' }} className="global-map-svg-wrapper">
-            <svg 
-              viewBox="50 40 820 330" 
-              style={{ width: '100%', height: '100%', display: 'block' }}
-              aria-label="INNOWORQ SaaS Enterprise Dot-Grid World Map"
+          <div style={{ position: 'relative', width: '100%', aspectRatio: '3 / 1', minHeight: '320px' }} className="global-map-svg-wrapper">
+            <svg
+              viewBox="0 0 1120 400"
+              style={{ width: '100%', height: '100%', display: 'block', borderRadius: '14px' }}
+              aria-label="INNOWORQ Global Presence: India and Dubai skyline map"
             >
               <defs>
-                {/* Route Gradient Line */}
-                <linearGradient id="expansionArc" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#09619f" stopOpacity="0.5" />
-                  <stop offset="50%" stopColor="#38bdf8" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#09619f" stopOpacity="0.8" />
+                {/* Dusk sky gradient — the "color" source, no photography needed */}
+                <linearGradient id="duskSky" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#050b1f" />
+                  <stop offset="55%" stopColor="#0b1a3a" />
+                  <stop offset="82%" stopColor="#3a2a5c" />
+                  <stop offset="100%" stopColor="#a85a3f" />
                 </linearGradient>
-
-                {/* Node Radial Glow Filters */}
-                <filter id="glowBlue" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="6" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-                <filter id="glowCyan" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="6" result="blur" />
+                <radialGradient id="horizonGlow" cx="50%" cy="100%" r="80%">
+                  <stop offset="0%" stopColor="#e08a5a" stopOpacity="0.55" />
+                  <stop offset="100%" stopColor="#e08a5a" stopOpacity="0" />
+                </radialGradient>
+                <linearGradient id="expansionArc" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#09619f" stopOpacity="0.6" />
+                  <stop offset="50%" stopColor="#38bdf8" stopOpacity="1" />
+                  <stop offset="100%" stopColor="#f0a868" stopOpacity="0.9" />
+                </linearGradient>
+                <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
                   <feMerge>
                     <feMergeNode in="blur" />
                     <feMergeNode in="SourceGraphic" />
@@ -157,70 +110,83 @@ export default function GlobalPresence() {
                 </filter>
               </defs>
 
-              {/* Faint Line-Art City Skyline Silhouettes (Subtle background texture ~12% opacity) */}
-              <g stroke="#38bdf8" strokeWidth="1" fill="none" opacity="0.12">
-                {/* Dubai Skyline Outline Silhouette (Burj Khalifa / Highrises hint behind UAE point) */}
-                <path d="M 520,310 L 530,310 L 530,270 L 535,270 L 535,240 L 540,240 L 540,195 L 542,195 L 542,160 L 543,160 L 543,195 L 545,195 L 545,240 L 550,240 L 550,270 L 555,270 L 555,310 L 570,310 L 570,260 L 580,260 L 580,310 Z" />
-                {/* India Monument / Gateway Outline Silhouette (behind India point) */}
-                <path d="M 620,310 L 630,310 L 630,265 L 640,265 L 640,250 L 645,250 L 645,230 L 650,230 L 650,225 L 665,225 L 665,230 L 670,230 L 670,250 L 675,250 L 675,265 L 685,265 L 685,310 L 695,310 Z" />
-              </g>
+              {/* Sky */}
+              <rect x="0" y="0" width="1120" height="400" fill="url(#duskSky)" />
+              <rect x="0" y="0" width="1120" height="400" fill="url(#horizonGlow)" />
 
-              {/* Background Tech Grid Lines */}
-              <g stroke="rgba(255, 255, 255, 0.04)" strokeWidth="0.5" strokeDasharray="3 3">
-                <line x1="50" y1="110" x2="870" y2="110" />
-                <line x1="50" y1="190" x2="870" y2="190" />
-                <line x1="50" y1="270" x2="870" y2="270" />
-                <line x1="200" y1="40" x2="200" y2="360" />
-                <line x1="400" y1="40" x2="400" y2="360" />
-                <line x1="600" y1="40" x2="600" y2="360" />
-                <line x1="800" y1="40" x2="800" y2="360" />
-              </g>
-
-              {/* Base Dot-Matrix Continental Map Grid */}
-              <g fill="rgba(255, 255, 255, 0.18)">
-                {dotGridPoints.map(([cx, cy], i) => (
-                  <circle key={`dot-${i}`} cx={cx} cy={cy} r="2" />
+              {/* Stars (subtle, upper sky only) */}
+              <g fill="#ffffff" opacity="0.5">
+                {[[80, 40], [160, 70], [260, 30], [340, 60], [520, 40], [600, 25], [760, 50], [980, 35], [1040, 65]].map(([x, y], i) => (
+                  <circle key={`star-${i}`} cx={x} cy={y} r="1.2" />
                 ))}
               </g>
 
-              {/* Animated Route Line: India (660, 210) to Dubai (560, 190) */}
-              <path 
-                d="M 660 210 Q 610 135 560 190" 
-                fill="none" 
-                stroke="url(#expansionArc)" 
-                strokeWidth="2.5" 
-                strokeDasharray="6 6"
+              {/* Ground line */}
+              <line x1="0" y1="340" x2="1120" y2="340" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+
+              {/* INDIA skyline (left) — generic towers + Gateway of India arch */}
+              <g opacity="0.9">
+                {indiaSkyline.map(([x, w, h], i) => (
+                  <rect key={`in-b-${i}`} x={x} y={340 - h} width={w} height={h} fill="#13214a" />
+                ))}
+                {/* Gateway of India arch silhouette — identifying landmark */}
+                <path
+                  d="M 270 340 L 270 250 Q 270 220 300 220 Q 330 220 330 250 L 330 340 
+                     L 316 340 L 316 250 Q 316 236 300 236 Q 284 236 284 250 L 284 340 Z"
+                  fill="#13214a"
+                />
+                <rect x="266" y="330" width="68" height="10" fill="#13214a" />
+              </g>
+
+              {/* DUBAI skyline (right) — generic towers + Burj Khalifa spire */}
+              <g opacity="0.9">
+                {dubaiSkyline.map(([x, w, h], i) => (
+                  <rect key={`db-b-${i}`} x={x} y={340 - h} width={w} height={h} fill="#13214a" />
+                ))}
+                {/* Burj Khalifa — tapering, tiered spire silhouette (identifying landmark) */}
+                <path
+                  d="M 962 340 L 962 190 L 968 190 L 968 150 L 972 150 L 972 110 
+                     L 975 110 L 975 70 L 978 70 L 978 40 L 981 40 L 981 70 
+                     L 984 70 L 984 110 L 987 110 L 987 150 L 991 150 
+                     L 991 190 L 997 190 L 997 340 Z"
+                  fill="#13214a"
+                />
+              </g>
+
+              {/* Animated connecting arc between the two hubs */}
+              <path
+                d="M 300 210 Q 640 90 970 190"
+                fill="none"
+                stroke="url(#expansionArc)"
+                strokeWidth="2.5"
+                strokeDasharray="7 7"
                 className="animated-route-line"
-                filter="url(#glowCyan)"
+                filter="url(#glow)"
               />
 
-              {/* ── INDIA HQ NODE (Prominent Callout Box & Glow) ── */}
-              <g transform="translate(660, 210)">
-                <circle r="18" fill="rgba(9, 97, 159, 0.25)" filter="url(#glowBlue)" />
-                <circle r="8" fill="#09619f" />
-                <circle r="3" fill="#ffffff" />
-                
-                {/* Prominent Callout Badge */}
-                <g transform="translate(20, -32)" className="map-callout-box">
-                  <rect x="0" y="0" width="165" height="54" rx="6" fill="rgba(9, 97, 159, 0.85)" stroke="var(--brand-blue)" strokeWidth="1.2" />
-                  <text x="12" y="16" fill="#ffffff" fontSize="11" fontWeight="800" fontFamily="var(--font-heading)">INDIA (HQ)</text>
-                  <text x="12" y="30" fill="#38bdf8" fontSize="9" fontWeight="700" fontFamily="sans-serif">HEADQUARTERS</text>
-                  <text x="12" y="44" fill="#cbd5e1" fontSize="8" fontWeight="500" fontFamily="sans-serif">Operations, 24/7 NOC &amp; Staging</text>
+              {/* India node + callout */}
+              <g transform="translate(300, 210)">
+                <circle r="16" fill="rgba(56,189,248,0.25)" filter="url(#glow)" />
+                <circle r="7" fill="#38bdf8" />
+                <circle r="2.5" fill="#ffffff" />
+                <g transform="translate(-172, -58)">
+                  <rect width="165" height="54" rx="6" fill="rgba(9,26,58,0.88)" stroke="#38bdf8" strokeWidth="1.2" />
+                  <text x="12" y="18" fill="#ffffff" fontSize="12" fontWeight="800">INDIA (HQ)</text>
+                  <text x="12" y="32" fill="#38bdf8" fontSize="9" fontWeight="700">HEADQUARTERS</text>
+                  <text x="12" y="45" fill="#cbd5e1" fontSize="8.5">Operations, 24/7 NOC &amp; Staging</text>
                 </g>
               </g>
 
-              {/* ── DUBAI UAE NODE (Prominent Callout Box & Glow) ── */}
-              <g transform="translate(560, 190)">
-                <circle r="18" fill="rgba(56, 189, 248, 0.25)" filter="url(#glowCyan)" />
-                <circle r="8" fill="#38bdf8" />
-                <circle r="3" fill="#030712" />
-
-                {/* Prominent Callout Badge */}
-                <g transform="translate(-185, -32)" className="map-callout-box">
-                  <rect x="0" y="0" width="165" height="54" rx="6" fill="rgba(3, 105, 161, 0.85)" stroke="#38bdf8" strokeWidth="1.2" />
-                  <text x="12" y="16" fill="#ffffff" fontSize="11" fontWeight="800" fontFamily="var(--font-heading)">UAE — DUBAI</text>
-                  <text x="12" y="30" fill="#38bdf8" fontSize="9" fontWeight="700" fontFamily="sans-serif">REGIONAL OFFICE</text>
-                  <text x="12" y="44" fill="#cbd5e1" fontSize="8" fontWeight="500" fontFamily="sans-serif">SLA Support &amp; Cloud Operations</text>
+              {/* Dubai node + callout */}
+              <g transform="translate(970, 190)">
+                <circle r="16" fill="rgba(240,168,104,0.3)" filter="url(#glow)" />
+                <circle r="7" fill="#f0a868" />
+                <circle r="2.5" fill="#050b1f" />
+                <g transform="translate(-165, -70)">
+                  <rect width="165" height="54" rx="6" fill="rgba(58,32,17,0.88)" stroke="#f0a868" strokeWidth="1.2" />
+                  <text x="12" y="18" fill="#ffffff" fontSize="12" fontWeight="800">UAE — DUBAI</text>
+                  <text x="12" y="32" fill="#f0a868" fontSize="9" fontWeight="700">REGIONAL OFFICE</text>
+                  <text x="12" y="45" fill="#e2d5c8" fontSize="8.5">SLA Support &amp; Cloud Operations</text>
                 </g>
               </g>
             </svg>
@@ -228,7 +194,7 @@ export default function GlobalPresence() {
         </div>
       </div>
 
-      {/* 2 Location Cards: Side-by-side on desktop, stacked on mobile */}
+      {/* Location detail cards — unchanged content */}
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <div className="location-cards-grid" style={{
           display: 'grid',
@@ -287,12 +253,8 @@ export default function GlobalPresence() {
           animation: routeDash 3s linear infinite;
         }
         @keyframes routeDash {
-          from {
-            stroke-dashoffset: 0;
-          }
-          to {
-            stroke-dashoffset: -24;
-          }
+          from { stroke-dashoffset: 0; }
+          to { stroke-dashoffset: -28; }
         }
         @media (max-width: 768px) {
           .global-presence-container {
@@ -307,11 +269,8 @@ export default function GlobalPresence() {
             gap: 1.25rem !important;
           }
           .global-map-svg-wrapper {
-            min-height: 240px !important;
-          }
-          .map-callout-box rect {
-            width: 140px !important;
-            height: 48px !important;
+            aspect-ratio: 3 / 2 !important;
+            min-height: 260px !important;
           }
         }
       `}</style>
