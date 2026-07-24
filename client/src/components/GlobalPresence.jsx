@@ -92,7 +92,7 @@ export default function GlobalPresence() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: GlobalMapContainer with external SVG map, India pin, Bezier arcs, & Glass Cards for UAE, UK, Japan */}
+          {/* RIGHT COLUMN: GlobalMapContainer with SVG map, India pin, Bezier arcs, & Glass Cards for UAE, UK, Japan, New Zealand */}
           <div 
             id="GlobalMapContainer"
             className="GlobalMapContainer"
@@ -135,7 +135,7 @@ export default function GlobalPresence() {
                 }}
               />
 
-              {/* OVERLAY SVG FOR BEZIER CURVES FROM INDIA TO DUBAI, UK, AND JAPAN */}
+              {/* OVERLAY SVG FOR BEZIER CURVES FROM INDIA TO DUBAI, UK, JAPAN, & NEW ZEALAND */}
               <svg 
                 viewBox="0 0 1000 500" 
                 style={{
@@ -186,6 +186,17 @@ export default function GlobalPresence() {
                   className="bezier-draw-path"
                 />
                 <circle cx="850" cy="180" r="4.5" fill="#2563eb" />
+
+                {/* BEZIER CURVE 4: INDIA (675, 235) -> NEW ZEALAND (940, 415) */}
+                <path 
+                  d="M 675 235 Q 840 370 940 415" 
+                  fill="none" 
+                  stroke="url(#arcGradientBlue)" 
+                  strokeWidth="2.5" 
+                  strokeLinecap="round"
+                  className="bezier-draw-path"
+                />
+                <circle cx="940" cy="415" r="4.5" fill="#2563eb" />
               </svg>
 
               {/* OVERLAY: ONE ANIMATED GLOWING & PULSING LOCATION PIN OVER INDIA */}
@@ -323,6 +334,37 @@ export default function GlobalPresence() {
                 </div>
               </div>
 
+              {/* FLOATING GLASS CARD 4: NEW ZEALAND */}
+              <div 
+                className="global-hub-card"
+                style={{
+                  position: 'absolute',
+                  left: '90.5%',
+                  top: '72%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.9)',
+                  boxShadow: '0 10px 25px rgba(15, 23, 42, 0.1), 0 2px 6px rgba(37, 99, 235, 0.08)',
+                  borderRadius: '12px',
+                  padding: '0.65rem 0.9rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.65rem',
+                  zIndex: 10,
+                  pointerEvents: 'none'
+                }}
+              >
+                <span style={{ fontSize: '1.3rem', lineHeight: 1 }}>🇳🇿</span>
+                <div>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.2 }}>
+                    New Zealand
+                  </div>
+                  <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#2563eb', marginTop: '0.15rem' }}>
+                    Oceania Operations
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -332,8 +374,8 @@ export default function GlobalPresence() {
 
       <style>{`
         .bezier-draw-path {
-          stroke-dasharray: 450;
-          stroke-dashoffset: 450;
+          stroke-dasharray: 600;
+          stroke-dashoffset: 600;
           animation: drawHubPaths 1.5s ease-out forwards;
         }
         @keyframes drawHubPaths {
