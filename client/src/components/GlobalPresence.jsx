@@ -348,8 +348,8 @@ export default function GlobalPresence() {
                   {/* PERFECTLY LANDED CURVED CONNECTING ARCS FROM INDIA (660, 175) */}
                   {/* Arc to UK (415, 85) */}
                   <path d="M 660 175 Q 535 70 415 85" fill="none" stroke="url(#mapArcLine)" strokeWidth="2" strokeDasharray="4 3" />
-                  {/* Arc to UAE (540, 155) */}
-                  <path d="M 660 175 Q 600 150 540 155" fill="none" stroke="url(#mapArcLine)" strokeWidth="2" strokeDasharray="4 3" />
+                  {/* Highlighted Arc to UAE (Dubai - Newest Hub) */}
+                  <path d="M 660 175 Q 600 150 540 155" fill="none" stroke="#2563eb" strokeWidth="2.8" strokeDasharray="4 3" opacity="1" filter="url(#indiaHubGlow)" />
                   {/* Arc to Japan (810, 110) */}
                   <path d="M 660 175 Q 735 125 810 110" fill="none" stroke="url(#mapArcLine)" strokeWidth="2" strokeDasharray="4 3" />
                   {/* Arc to New Zealand (865, 295) */}
@@ -357,7 +357,8 @@ export default function GlobalPresence() {
 
                   {/* DESTINATION NODES */}
                   <circle cx="415" cy="85" r="4.5" fill="#3b82f6" />
-                  <circle cx="540" cy="155" r="4.5" fill="#3b82f6" />
+                  {/* Highlighted Dubai Node */}
+                  <circle cx="540" cy="155" r="5.5" fill="#2563eb" filter="url(#indiaHubGlow)" />
                   <circle cx="810" cy="110" r="4.5" fill="#3b82f6" />
                   <circle cx="865" cy="295" r="4.5" fill="#3b82f6" />
 
@@ -389,16 +390,18 @@ export default function GlobalPresence() {
                     </g>
                   </g>
 
-                  {/* BADGE 2: UAE (540, 155) */}
+                  {/* BADGE 2: UAE (540, 155) - HIGHLIGHTED NEWEST HUB */}
                   <g transform="translate(540, 155)">
-                    <g transform="translate(-150, 10)">
-                      <rect x="0" y="0" width="145" height="48" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.08))" />
+                    <g transform="translate(-165, 10)">
+                      <rect x="0" y="0" width="165" height="48" rx="8" fill="#ffffff" stroke="#2563eb" strokeWidth="1.5" filter="drop-shadow(0 4px 14px rgba(37,99,235,0.18))" />
                       <foreignObject x="8" y="8" width="20" height="15">
                         <div style={{ width: '20px', height: '15px', borderRadius: '2px', overflow: 'hidden' }}>{countryCards[1].flag}</div>
                       </foreignObject>
-                      <text x="34" y="19" fill="#0f172a" fontSize="9.5" fontWeight="800">United Arab Emirates (UAE)</text>
-                      <text x="34" y="31" fill="#64748b" fontSize="7.5" fontWeight="600">Including Dubai /</text>
-                      <text x="34" y="40" fill="#64748b" fontSize="7.5" fontWeight="600">MEA Expansion</text>
+                      <text x="34" y="19" fill="#0f172a" fontSize="9.5" fontWeight="800">UAE</text>
+                      {/* Green NEW Pill Badge */}
+                      <rect x="62" y="9" width="34" height="13" rx="6" fill="#dcfce7" stroke="#86efac" strokeWidth="0.8" />
+                      <text x="79" y="18" fill="#15803d" fontSize="7.5" fontWeight="900" textAnchor="middle">NEW</text>
+                      <text x="34" y="31" fill="#15803d" fontSize="7.5" fontWeight="700">Dubai / MEA Expansion</text>
                     </g>
                   </g>
 
@@ -445,12 +448,19 @@ export default function GlobalPresence() {
                   <div style={{ width: '76px', height: '76px', borderRadius: '50%', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                     {country.illustration}
                   </div>
-                  <div style={{ width: '32px', height: '22px', borderRadius: '4px', overflow: 'hidden', marginBottom: '0.75rem', boxShadow: '0 2px 6px rgba(0,0,0,0.12)', border: '1px solid rgba(0,0,0,0.06)' }}>
+                  <div style={{ position: 'relative', width: '32px', height: '22px', borderRadius: '4px', overflow: 'hidden', marginBottom: '0.75rem', boxShadow: '0 2px 6px rgba(0,0,0,0.12)', border: '1px solid rgba(0,0,0,0.06)' }}>
                     {country.flag}
                   </div>
-                  <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0f172a', marginBottom: country.subtitle ? '0.25rem' : '0.85rem', lineHeight: 1.25 }}>
-                    {country.name}
-                  </h3>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem', marginBottom: country.subtitle ? '0.25rem' : '0.85rem' }}>
+                    <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.25, margin: 0 }}>
+                      {country.name}
+                    </h3>
+                    {country.id === 'uae' && (
+                      <span style={{ backgroundColor: '#dcfce7', color: '#15803d', border: '1px solid #86efac', fontSize: '0.62rem', fontWeight: 900, padding: '0.15rem 0.45rem', borderRadius: '50px', letterSpacing: '0.5px' }}>
+                        NEW
+                      </span>
+                    )}
+                  </div>
                   {country.subtitle && (
                     <p style={{ fontSize: '0.78rem', fontWeight: 700, color: country.subtitleColor, marginBottom: '0.85rem', lineHeight: 1.3 }}>
                       {country.subtitle}
