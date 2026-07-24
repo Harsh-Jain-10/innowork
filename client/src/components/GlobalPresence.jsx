@@ -13,7 +13,6 @@ export default function GlobalPresence() {
       subtitleColor: '#1d4ed8',
       desc: 'Our headquarters and nationwide operations delivering trusted IT solutions across India.',
       mobileDesc: 'Serving clients across the length and breadth of India.',
-      accentBg: '#e0f2fe',
       flag: (
         <svg viewBox="0 0 640 480" className="country-flag-icon">
           <path fill="#f97316" d="M0 0h640v160H0z"/>
@@ -44,7 +43,6 @@ export default function GlobalPresence() {
       subtitleColor: '#16a34a',
       desc: 'Expanding across the UAE and MEA region to support enterprises with local presence and global expertise.',
       mobileDesc: 'Expanding across the UAE and MEA region to deliver closer, faster, and smarter support.',
-      accentBg: '#dcfce7',
       flag: (
         <svg viewBox="0 0 640 480" className="country-flag-icon">
           <path fill="#16a34a" d="M0 0h640v160H0z"/>
@@ -70,7 +68,6 @@ export default function GlobalPresence() {
       subtitleColor: '#2563eb',
       desc: 'Delivering advanced technology solutions and support through our operations and trusted partnerships in Japan.',
       mobileDesc: 'Delivering advanced technology solutions with trusted partnerships in Japan.',
-      accentBg: '#f3e8ff',
       flag: (
         <svg viewBox="0 0 640 480" className="country-flag-icon">
           <path fill="#ffffff" d="M0 0h640v480H0z"/>
@@ -95,7 +92,6 @@ export default function GlobalPresence() {
       subtitleColor: '#2563eb',
       desc: 'Supporting businesses across the UK with enterprise-grade solutions and 24×7 managed support.',
       mobileDesc: 'Supporting businesses across the UK with enterprise-grade IT solutions and 24×7 support.',
-      accentBg: '#ede9fe',
       flag: (
         <svg viewBox="0 0 640 480" className="country-flag-icon">
           <path fill="#1e3a8a" d="M0 0h640v480H0z"/>
@@ -122,7 +118,6 @@ export default function GlobalPresence() {
       subtitleColor: '#2563eb',
       desc: 'Extending our reach to New Zealand with reliable IT services and customer-focused support.',
       mobileDesc: 'Extending our reach to New Zealand with reliable IT services and customer-focused support.',
-      accentBg: '#e0f2fe',
       flag: (
         <svg viewBox="0 0 640 480" className="country-flag-icon">
           <path fill="#00247d" d="M0 0h640v480H0z"/>
@@ -149,9 +144,9 @@ export default function GlobalPresence() {
     }
   ];
 
-  // Complete Dotted Matrix World Map Grid Coordinates
+  // High Density Dotted Matrix World Map Grid Coordinates
   const dottedMatrixMapPoints = [
-    // North America
+    // North America & Canada
     [80, 80], [95, 80], [110, 80], [125, 70], [140, 70], [155, 75], [170, 80], [185, 80], [200, 85], [215, 90], [230, 95], [245, 100],
     [65, 95], [80, 95], [95, 95], [110, 95], [125, 95], [140, 95], [155, 95], [170, 95], [185, 95], [200, 100], [215, 105], [230, 110], [245, 115],
     [80, 110], [95, 110], [110, 110], [125, 110], [140, 110], [155, 110], [170, 110], [185, 115], [200, 120], [215, 125], [230, 130],
@@ -177,20 +172,20 @@ export default function GlobalPresence() {
     [395, 95], [410, 95], [425, 95], [440, 95], [455, 95], [470, 95], [485, 95], [500, 100], [515, 105],
     [410, 110], [425, 110], [440, 110], [455, 110], [470, 110], [485, 110], [500, 115],
     [425, 125], [440, 125], [455, 125], [470, 125], [485, 125],
-    // UK & Ireland
-    [405, 80], [420, 80], [415, 90],
+    // UK & Ireland (at 415, 85)
+    [405, 80], [420, 80], [415, 90], [415, 85],
     // Africa
     [410, 140], [425, 140], [440, 140], [455, 140], [470, 140], [485, 140], [500, 145], [515, 150], [530, 155],
     [410, 155], [425, 155], [440, 155], [455, 155], [470, 155], [485, 155], [500, 160], [515, 165], [530, 170],
-    [425, 170], [440, 170], [455, 170], [470, 170], [485, 175], [500, 180], [515, 1855],
+    [425, 170], [440, 170], [455, 170], [470, 170], [485, 175], [500, 180], [515, 185],
     [425, 185], [440, 185], [455, 185], [470, 185], [485, 190], [500, 195],
     [440, 200], [455, 200], [470, 200], [485, 205], [500, 210],
     [440, 215], [455, 215], [470, 215], [485, 220],
     [455, 230], [470, 230], [485, 235],
     [455, 245], [470, 245],
     [460, 260],
-    // Asia & Middle East & India Subcontinent
-    [530, 135], [545, 135], [560, 135], [575, 135],
+    // Asia & Middle East
+    [530, 135], [545, 135], [560, 135], [575, 135], [540, 155],
     [530, 150], [545, 150], [560, 150], [575, 150], [590, 150],
     [545, 165], [560, 165], [575, 165], [590, 165], [605, 165],
     [600, 65], [615, 65], [630, 60], [645, 60], [660, 60], [675, 60], [690, 65], [705, 65], [720, 65], [735, 70], [750, 70], [765, 75], [780, 80], [795, 85], [810, 90],
@@ -199,13 +194,13 @@ export default function GlobalPresence() {
     [600, 110], [615, 110], [630, 110], [645, 110], [660, 110], [675, 110], [690, 110], [705, 110], [720, 110], [735, 110], [750, 115], [765, 120], [780, 125],
     [615, 125], [630, 125], [645, 125], [660, 125], [675, 125], [690, 125], [705, 125], [720, 125], [735, 125], [750, 130],
     [615, 140], [630, 140], [645, 140], [660, 140], [675, 140], [690, 140], [705, 140], [720, 140], [735, 140],
-    // India Subcontinent (center around 660, 160)
+    // India Subcontinent (at 660, 175)
     [630, 155], [645, 155], [660, 155], [675, 155], [690, 155],
-    [645, 170], [660, 170], [675, 170],
+    [645, 170], [660, 170], [675, 170], [660, 175],
     [645, 185], [660, 185], [675, 185],
     [660, 200], [670, 200],
-    // Japan
-    [800, 105], [815, 100], [810, 115], [820, 125],
+    // Japan (at 810, 110)
+    [800, 105], [815, 100], [810, 115], [820, 125], [810, 110],
     // Southeast Asia & Indonesia
     [720, 160], [735, 165], [750, 170], [765, 175],
     [735, 180], [750, 185], [765, 190], [780, 195],
@@ -215,8 +210,8 @@ export default function GlobalPresence() {
     [750, 280], [765, 280], [780, 280], [795, 280], [810, 280], [825, 285],
     [765, 295], [780, 295], [795, 295], [810, 295],
     [780, 310], [795, 310],
-    // New Zealand
-    [860, 290], [875, 285],
+    // New Zealand (at 865, 295)
+    [860, 290], [875, 285], [865, 295],
     [865, 305], [880, 300]
   ];
 
@@ -232,21 +227,21 @@ export default function GlobalPresence() {
         overflow: 'hidden'
       }}
     >
-      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+      <div className="container" style={{ position: 'relative', zIndex: 2, paddingLeft: '1.5rem', paddingRight: '1.5rem' }}>
 
-        {/* ── DESKTOP ONLY TOP HEADER & MAP STAGE (Matching Desktop Image) ── */}
+        {/* ── DESKTOP ONLY TOP HEADER & MAP STAGE (Matching Reference Desktop Image) ── */}
         <div className="desktop-global-top-stage">
           <div style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1.3fr',
-            gap: '2.5rem',
+            gridTemplateColumns: '0.9fr 1.4fr',
+            gap: '2rem',
             alignItems: 'center',
             marginBottom: '3.5rem'
           }}>
             
             {/* LEFT SIDE: Desktop Header & Capabilities */}
             <ScrollReveal variant="fade-up">
-              <div>
+              <div style={{ paddingRight: '1rem' }}>
                 <span style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -263,7 +258,7 @@ export default function GlobalPresence() {
                 </span>
 
                 <h2 style={{
-                  fontSize: '2.75rem',
+                  fontSize: '2.65rem',
                   fontWeight: 900,
                   lineHeight: 1.15,
                   color: '#0f172a',
@@ -275,10 +270,10 @@ export default function GlobalPresence() {
                 </h2>
 
                 <p style={{
-                  fontSize: '1rem',
+                  fontSize: '0.98rem',
                   lineHeight: 1.6,
                   color: '#475569',
-                  maxWidth: '460px',
+                  maxWidth: '420px',
                   marginBottom: '2rem'
                 }}>
                   Delivering enterprise IT infrastructure, cloud, and managed services with 24×7 support across key international markets.
@@ -288,7 +283,7 @@ export default function GlobalPresence() {
                   display: 'flex',
                   alignItems: 'center',
                   flexWrap: 'wrap',
-                  gap: '1.25rem',
+                  gap: '1.1rem',
                   marginBottom: '2.25rem'
                 }}>
                   {[
@@ -300,9 +295,9 @@ export default function GlobalPresence() {
                   ].map((cap, i) => (
                     <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.35rem', textAlign: 'center' }}>
                       <div style={{
-                        width: '42px', height: '42px', borderRadius: '50%',
+                        width: '40px', height: '40px', borderRadius: '50%',
                         backgroundColor: '#ffffff', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
-                        border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem'
+                        border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.05rem'
                       }}>
                         {cap.icon}
                       </div>
@@ -330,16 +325,16 @@ export default function GlobalPresence() {
 
             {/* RIGHT SIDE: Desktop Dotted Matrix Connected World Map Stage */}
             <ScrollReveal variant="fade-up" delay={0.15}>
-              <div style={{ position: 'relative', width: '100%', aspectRatio: '2.1 / 1', minHeight: '320px' }}>
-                <svg viewBox="50 40 860 320" style={{ width: '100%', height: '100%', display: 'block', overflow: 'visible' }}>
+              <div style={{ position: 'relative', width: '100%', aspectRatio: '2.1 / 1', minHeight: '340px' }}>
+                <svg viewBox="40 30 880 330" style={{ width: '100%', height: '100%', display: 'block', overflow: 'visible' }}>
                   <defs>
                     <filter id="indiaHubGlow" x="-50%" y="-50%" width="200%" height="200%">
                       <feGaussianBlur stdDeviation="8" result="blur" />
                       <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
                     </filter>
                     <linearGradient id="mapArcLine" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.85" />
-                      <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.5" />
+                      <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.9" />
+                      <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.6" />
                     </linearGradient>
                   </defs>
 
@@ -350,21 +345,25 @@ export default function GlobalPresence() {
                     ))}
                   </g>
 
-                  {/* CURVED CONNECTING ARCS FROM INDIA (660, 160) TO OTHER NODES */}
-                  <path d="M 660 160 Q 560 90 460 100" fill="none" stroke="url(#mapArcLine)" strokeWidth="1.8" strokeDasharray="4 3" />
-                  <path d="M 660 160 Q 590 150 520 175" fill="none" stroke="url(#mapArcLine)" strokeWidth="1.8" strokeDasharray="4 3" />
-                  <path d="M 660 160 Q 730 110 800 110" fill="none" stroke="url(#mapArcLine)" strokeWidth="1.8" strokeDasharray="4 3" />
-                  <path d="M 660 160 Q 780 230 850 275" fill="none" stroke="url(#mapArcLine)" strokeWidth="1.8" strokeDasharray="4 3" />
+                  {/* PERFECTLY LANDED CURVED CONNECTING ARCS FROM INDIA (660, 175) */}
+                  {/* Arc to UK (415, 85) */}
+                  <path d="M 660 175 Q 535 70 415 85" fill="none" stroke="url(#mapArcLine)" strokeWidth="2" strokeDasharray="4 3" />
+                  {/* Arc to UAE (540, 155) */}
+                  <path d="M 660 175 Q 600 150 540 155" fill="none" stroke="url(#mapArcLine)" strokeWidth="2" strokeDasharray="4 3" />
+                  {/* Arc to Japan (810, 110) */}
+                  <path d="M 660 175 Q 735 125 810 110" fill="none" stroke="url(#mapArcLine)" strokeWidth="2" strokeDasharray="4 3" />
+                  {/* Arc to New Zealand (865, 295) */}
+                  <path d="M 660 175 Q 785 245 865 295" fill="none" stroke="url(#mapArcLine)" strokeWidth="2" strokeDasharray="4 3" />
 
                   {/* DESTINATION NODES */}
-                  <circle cx="460" cy="100" r="4.5" fill="#3b82f6" />
-                  <circle cx="520" cy="175" r="4.5" fill="#3b82f6" />
-                  <circle cx="800" cy="110" r="4.5" fill="#3b82f6" />
-                  <circle cx="850" cy="275" r="4.5" fill="#3b82f6" />
+                  <circle cx="415" cy="85" r="4.5" fill="#3b82f6" />
+                  <circle cx="540" cy="155" r="4.5" fill="#3b82f6" />
+                  <circle cx="810" cy="110" r="4.5" fill="#3b82f6" />
+                  <circle cx="865" cy="295" r="4.5" fill="#3b82f6" />
 
-                  {/* CENTRAL INDIA HUB (660, 160) */}
-                  <g transform="translate(660, 160)">
-                    <circle r="26" fill="rgba(59, 130, 246, 0.12)" filter="url(#indiaHubGlow)" />
+                  {/* CENTRAL INDIA HUB (660, 175) */}
+                  <g transform="translate(660, 175)">
+                    <circle r="26" fill="rgba(59, 130, 246, 0.14)" filter="url(#indiaHubGlow)" />
                     <circle r="16" fill="rgba(59, 130, 246, 0.25)" />
                     <circle r="8" fill="#1d4ed8" />
                     <foreignObject x="-14" y="-14" width="28" height="28">
@@ -373,16 +372,16 @@ export default function GlobalPresence() {
                       </div>
                     </foreignObject>
                     <g transform="translate(-65, 24)">
-                      <rect x="0" y="0" width="130" height="42" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.06))" />
+                      <rect x="0" y="0" width="130" height="42" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.08))" />
                       <text x="65" y="18" fill="#0f172a" fontSize="11" fontWeight="800" textAnchor="middle">India</text>
                       <text x="65" y="31" fill="#2563eb" fontSize="8.5" fontWeight="700" textAnchor="middle">Pan-India Operations</text>
                     </g>
                   </g>
 
-                  {/* BADGE 1: UK */}
-                  <g transform="translate(460, 100)">
+                  {/* BADGE 1: UK (415, 85) */}
+                  <g transform="translate(415, 85)">
                     <g transform="translate(-115, -42)">
-                      <rect x="0" y="0" width="115" height="34" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.06))" />
+                      <rect x="0" y="0" width="115" height="34" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.08))" />
                       <foreignObject x="8" y="7" width="20" height="20">
                         <div style={{ width: '20px', height: '20px', borderRadius: '3px', overflow: 'hidden' }}>{countryCards[3].flag}</div>
                       </foreignObject>
@@ -390,10 +389,10 @@ export default function GlobalPresence() {
                     </g>
                   </g>
 
-                  {/* BADGE 2: UAE */}
-                  <g transform="translate(520, 175)">
+                  {/* BADGE 2: UAE (540, 155) */}
+                  <g transform="translate(540, 155)">
                     <g transform="translate(-150, 10)">
-                      <rect x="0" y="0" width="145" height="48" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.06))" />
+                      <rect x="0" y="0" width="145" height="48" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.08))" />
                       <foreignObject x="8" y="8" width="20" height="15">
                         <div style={{ width: '20px', height: '15px', borderRadius: '2px', overflow: 'hidden' }}>{countryCards[1].flag}</div>
                       </foreignObject>
@@ -403,10 +402,10 @@ export default function GlobalPresence() {
                     </g>
                   </g>
 
-                  {/* BADGE 3: JAPAN */}
-                  <g transform="translate(800, 110)">
+                  {/* BADGE 3: JAPAN (810, 110) */}
+                  <g transform="translate(810, 110)">
                     <g transform="translate(14, -18)">
-                      <rect x="0" y="0" width="90" height="34" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.06))" />
+                      <rect x="0" y="0" width="90" height="34" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.08))" />
                       <foreignObject x="8" y="7" width="20" height="20">
                         <div style={{ width: '20px', height: '20px', borderRadius: '50%', overflow: 'hidden', border: '1px solid #e2e8f0' }}>{countryCards[2].flag}</div>
                       </foreignObject>
@@ -414,10 +413,10 @@ export default function GlobalPresence() {
                     </g>
                   </g>
 
-                  {/* BADGE 4: NEW ZEALAND */}
-                  <g transform="translate(850, 275)">
+                  {/* BADGE 4: NEW ZEALAND (865, 295) */}
+                  <g transform="translate(865, 295)">
                     <g transform="translate(12, -18)">
-                      <rect x="0" y="0" width="110" height="34" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.06))" />
+                      <rect x="0" y="0" width="110" height="34" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.08))" />
                       <foreignObject x="8" y="7" width="20" height="20">
                         <div style={{ width: '20px', height: '20px', borderRadius: '3px', overflow: 'hidden' }}>{countryCards[4].flag}</div>
                       </foreignObject>
@@ -497,7 +496,7 @@ export default function GlobalPresence() {
         </div>
 
 
-        {/* ── MOBILE ONLY DESIGN (Matching Mobile Image) ── */}
+        {/* ── MOBILE ONLY DESIGN ── */}
         <div className="mobile-global-presence-wrapper">
           {/* Mobile Centered Header */}
           <ScrollReveal variant="fade-up">
