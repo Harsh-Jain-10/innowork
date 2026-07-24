@@ -92,7 +92,7 @@ export default function GlobalPresence() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: GlobalMapContainer with external SVG map, India pin, & Dubai Bezier arc */}
+          {/* RIGHT COLUMN: GlobalMapContainer with external SVG map, India pin, Bezier arc, & Dubai Glass Card */}
           <div 
             id="GlobalMapContainer"
             className="GlobalMapContainer"
@@ -210,6 +210,37 @@ export default function GlobalPresence() {
                 />
               </div>
 
+              {/* OVERLAY: SINGLE FLOATING GLASS CARD BESIDE DUBAI (FADES UPWARD AFTER 1.5s LINE ANIMATION) */}
+              <div 
+                className="dubai-glass-card"
+                style={{
+                  position: 'absolute',
+                  left: '45.5%',
+                  top: '24%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.9)',
+                  boxShadow: '0 10px 25px rgba(15, 23, 42, 0.1), 0 2px 6px rgba(37, 99, 235, 0.08)',
+                  borderRadius: '12px',
+                  padding: '0.75rem 1rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  zIndex: 10,
+                  pointerEvents: 'none'
+                }}
+              >
+                <span style={{ fontSize: '1.4rem', lineHeight: 1 }}>🇦🇪</span>
+                <div>
+                  <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.2 }}>
+                    Dubai, UAE
+                  </div>
+                  <div style={{ fontSize: '0.72rem', fontWeight: 600, color: '#2563eb', marginTop: '0.15rem' }}>
+                    New Regional Hub
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -226,6 +257,20 @@ export default function GlobalPresence() {
         @keyframes drawDubaiPath {
           to {
             stroke-dashoffset: 0;
+          }
+        }
+        .dubai-glass-card {
+          opacity: 0;
+          animation: dubaiCardFadeUp 0.6s ease-out 1.5s forwards;
+        }
+        @keyframes dubaiCardFadeUp {
+          from {
+            opacity: 0;
+            transform: translate(-50%, calc(-50% + 14px));
+          }
+          to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
           }
         }
         @keyframes indiaPinPulse {
@@ -250,6 +295,9 @@ export default function GlobalPresence() {
           }
           .GlobalMapContainer {
             min-height: 300px !important;
+          }
+          .dubai-glass-card {
+            padding: 0.5rem 0.75rem !important;
           }
         }
       `}</style>
