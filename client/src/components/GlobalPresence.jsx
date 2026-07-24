@@ -630,18 +630,18 @@ export default function GlobalPresence() {
           </ScrollReveal>
 
           {/* Mobile Stacked List Cards */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
             {countryCards.map((country, idx) => (
               <ScrollReveal key={`mob-${country.id}`} variant="fade-up" delay={idx * 0.06}>
                 <div style={{
                   backgroundColor: '#ffffff',
-                  borderRadius: '16px',
-                  padding: '1.15rem 1.1rem',
+                  borderRadius: '14px',
+                  padding: '0.95rem 0.9rem',
                   border: '1px solid #e2e8f0',
-                  boxShadow: '0 2px 12px rgba(0, 0, 0, 0.03)',
+                  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.025)',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '1rem',
+                  gap: '0.85rem',
                   textDecoration: 'none'
                 }}>
                   <div style={{
