@@ -109,7 +109,7 @@ export default function Blogs() {
         {/* Soft atmospheric gradient lighting */}
         <div style={{
           position: 'absolute', bottom: '-20%', left: '30%',
-          width: '500px', height: '300px',
+          width: '500px', maxWidth: '100vw', height: '300px',
           background: 'radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, rgba(14, 165, 233, 0) 70%)',
           pointerEvents: 'none'
         }} />

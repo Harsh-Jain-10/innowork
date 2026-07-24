@@ -733,7 +733,7 @@ export default function Solutions() {
         }
         @media (max-width: 768px) {
           .solution-showcase-section {
-            padding: 5.5rem 0 !important; /* Increase vertical spacing on mobile */
+            padding: 3rem 0 !important;
           }
           .solutions-image-container {
             aspect-ratio: 1.618 !important;
@@ -751,7 +751,7 @@ export default function Solutions() {
         }
         @media (max-width: 480px) {
           .solution-showcase-section {
-            padding: 5.5rem 0 !important;
+            padding: 2.75rem 0 !important;
           }
           .solutions-image-container {
             aspect-ratio: 1.618 !important;

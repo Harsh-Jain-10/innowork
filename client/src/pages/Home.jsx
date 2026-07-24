@@ -654,6 +654,7 @@ export default function Home() {
           left: '50%',
           transform: 'translate(-50%, -50%)',
           width: '600px',
+          maxWidth: '100vw',
           height: '600px',
           background: 'radial-gradient(circle, rgba(9,97,159,0.04) 0%, rgba(255,255,255,0) 70%)',
           pointerEvents: 'none',

@@ -587,7 +587,7 @@ export default function Services() {
         }
         @media (max-width: 768px) {
           .service-showcase-section {
-            padding: 5.5rem 0 !important; /* Increase vertical spacing on mobile */
+            padding: 3rem 0 !important;
           }
           .services-image-container {
             aspect-ratio: 1.618 !important;
@@ -605,7 +605,7 @@ export default function Services() {
         }
         @media (max-width: 480px) {
           .service-showcase-section {
-            padding: 5.5rem 0 !important;
+            padding: 2.75rem 0 !important;
           }
           .services-image-container {
             aspect-ratio: 1.618 !important;

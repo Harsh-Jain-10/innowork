@@ -28,12 +28,18 @@
 
 html, body {
   width: 100%;
+  max-width: 100vw;
   overflow-x: hidden;
   font-family: var(--font-body);
   background-color: var(--bg-light);
   color: var(--text-light-primary);
   scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, a, div {
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* Scrollbar Styling */
@@ -482,8 +488,8 @@ img, svg {
   }
 
   section {
-    padding-top: 4rem !important;
-    padding-bottom: 4rem !important;
+    padding-top: 2.75rem !important;
+    padding-bottom: 2.75rem !important;
   }
   
   h1 { 
