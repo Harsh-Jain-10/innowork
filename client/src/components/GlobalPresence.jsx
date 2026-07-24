@@ -27,7 +27,7 @@ export default function GlobalPresence() {
           }}
         >
           
-          {/* LEFT COLUMN: Text Content & CTA with generous whitespace */}
+          {/* LEFT COLUMN: Text Content & CTA */}
           <div 
             className="global-presence-left-col"
             style={{
@@ -85,8 +85,7 @@ export default function GlobalPresence() {
                   fontWeight: 700,
                   fontSize: '0.98rem',
                   boxShadow: '0 4px 16px rgba(37, 99, 235, 0.28)',
-                  textDecoration: 'none',
-                  transition: 'all 0.25s ease'
+                  textDecoration: 'none'
                 }}
               >
                 <span>Explore Our Services</span>
@@ -95,7 +94,7 @@ export default function GlobalPresence() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: GlobalMapContainer with increased scale (98% width) & spacious layout */}
+          {/* RIGHT COLUMN: GlobalMapContainer with external SVG map & finite animations */}
           <div 
             id="GlobalMapContainer"
             className="GlobalMapContainer"
@@ -138,7 +137,7 @@ export default function GlobalPresence() {
                 }}
               />
 
-              {/* OVERLAY SVG FOR BEZIER CURVES FROM INDIA TO DUBAI, UK, JAPAN, & NEW ZEALAND */}
+              {/* OVERLAY SVG FOR BEZIER CURVES: DRAWS ONCE */}
               <svg 
                 viewBox="0 0 1000 500" 
                 style={{
@@ -202,7 +201,7 @@ export default function GlobalPresence() {
                 <circle cx="940" cy="415" r="4.5" fill="#2563eb" />
               </svg>
 
-              {/* OVERLAY: ONE ANIMATED GLOWING & PULSING LOCATION PIN OVER INDIA */}
+              {/* OVERLAY: INDIA LOCATION PIN WITH ONE-TIME PULSE ANIMATION */}
               <div 
                 className="india-pin-overlay"
                 style={{
@@ -216,18 +215,8 @@ export default function GlobalPresence() {
                   justifyContent: 'center'
                 }}
               >
-                {/* 3-Second Gently Pulsing Glow Ring */}
-                <div 
-                  style={{
-                    position: 'absolute',
-                    width: '34px',
-                    height: '34px',
-                    borderRadius: '50%',
-                    backgroundColor: 'rgba(37, 99, 235, 0.35)',
-                    boxShadow: '0 0 16px rgba(37, 99, 235, 0.65)',
-                    animation: 'indiaPinPulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite'
-                  }}
-                />
+                {/* Single-Pulse Glow Ring (No Infinite Loop) */}
+                <div className="india-pin-pulse-ring" />
 
                 {/* Inner Glowing Blue Pin Dot */}
                 <div 
@@ -244,7 +233,7 @@ export default function GlobalPresence() {
                 />
               </div>
 
-              {/* FLOATING GLASS CARD 1: DUBAI, UAE */}
+              {/* FLOATING GLASS CARD 1: DUBAI, UAE (FADES UPWARD ONCE) */}
               <div 
                 className="global-hub-card"
                 style={{
@@ -276,7 +265,7 @@ export default function GlobalPresence() {
                 </div>
               </div>
 
-              {/* FLOATING GLASS CARD 2: UNITED KINGDOM */}
+              {/* FLOATING GLASS CARD 2: UNITED KINGDOM (FADES UPWARD ONCE) */}
               <div 
                 className="global-hub-card"
                 style={{
@@ -308,7 +297,7 @@ export default function GlobalPresence() {
                 </div>
               </div>
 
-              {/* FLOATING GLASS CARD 3: JAPAN */}
+              {/* FLOATING GLASS CARD 3: JAPAN (FADES UPWARD ONCE) */}
               <div 
                 className="global-hub-card"
                 style={{
@@ -340,7 +329,7 @@ export default function GlobalPresence() {
                 </div>
               </div>
 
-              {/* FLOATING GLASS CARD 4: NEW ZEALAND */}
+              {/* FLOATING GLASS CARD 4: NEW ZEALAND (FADES UPWARD ONCE) */}
               <div 
                 className="global-hub-card"
                 style={{
@@ -380,20 +369,51 @@ export default function GlobalPresence() {
       </div>
 
       <style>{`
+        /* India Pin Pulse: Runs once on load, stays clean */
+        .india-pin-pulse-ring {
+          position: absolute;
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          background-color: rgba(37, 99, 235, 0.35);
+          box-shadow: 0 0 16px rgba(37, 99, 235, 0.65);
+          animation: indiaPinPulse 1.2s ease-out forwards;
+        }
+
+        @keyframes indiaPinPulse {
+          0% {
+            transform: scale(0.5);
+            opacity: 0;
+          }
+          50% {
+            transform: scale(1.8);
+            opacity: 0.8;
+          }
+          100% {
+            transform: scale(2.2);
+            opacity: 0.15;
+          }
+        }
+
+        /* Connection Lines: Draws ONCE */
         .bezier-draw-path {
           stroke-dasharray: 600;
           stroke-dashoffset: 600;
           animation: drawHubPaths 1.5s ease-out forwards;
         }
+
         @keyframes drawHubPaths {
           to {
             stroke-dashoffset: 0;
           }
         }
+
+        /* Hub Cards: Fade Upward ONCE after 1.5s */
         .global-hub-card {
           opacity: 0;
           animation: hubCardFadeUp 0.6s ease-out 1.5s forwards;
         }
+
         @keyframes hubCardFadeUp {
           from {
             opacity: 0;
@@ -404,20 +424,7 @@ export default function GlobalPresence() {
             transform: translate(-50%, -50%);
           }
         }
-        @keyframes indiaPinPulse {
-          0% {
-            transform: scale(0.6);
-            opacity: 0.9;
-          }
-          60% {
-            transform: scale(2.2);
-            opacity: 0;
-          }
-          100% {
-            transform: scale(0.6);
-            opacity: 0;
-          }
-        }
+
         @media (max-width: 1024px) {
           .global-presence-section-wrapper {
             padding: 4rem 0 !important;
