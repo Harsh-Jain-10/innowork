@@ -8,7 +8,7 @@ export default function GlobalPresence() {
       id="global-presence-section"
       className="global-presence-section-wrapper"
       style={{
-        padding: '5rem 0',
+        padding: '6rem 0',
         backgroundColor: '#ffffff',
         position: 'relative'
       }}
@@ -21,50 +21,52 @@ export default function GlobalPresence() {
           style={{
             display: 'grid',
             gridTemplateColumns: '42% 58%',
-            gap: '3rem',
-            alignItems: 'stretch',
-            minHeight: '450px'
+            gap: '3.5rem',
+            alignItems: 'center',
+            minHeight: '480px'
           }}
         >
           
-          {/* LEFT COLUMN: Text Content & CTA */}
+          {/* LEFT COLUMN: Text Content & CTA with generous whitespace */}
           <div 
             className="global-presence-left-col"
             style={{
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              paddingRight: '1rem'
             }}
           >
             <span style={{
               display: 'inline-block',
               color: '#2563eb',
-              fontSize: '0.75rem',
+              fontSize: '0.78rem',
               fontWeight: 800,
-              letterSpacing: '1.5px',
+              letterSpacing: '1.75px',
               textTransform: 'uppercase',
-              marginBottom: '1rem'
+              marginBottom: '1.25rem'
             }}>
               OUR GLOBAL PRESENCE
             </span>
 
             <h2 style={{
-              fontSize: '2.85rem',
+              fontSize: '3rem',
               fontWeight: 900,
               lineHeight: 1.15,
               color: '#0f172a',
-              letterSpacing: '-0.025em',
-              marginBottom: '1.25rem'
+              letterSpacing: '-0.03em',
+              marginBottom: '1.5rem'
             }}>
               Expanding Beyond <br />
               <span style={{ color: '#2563eb' }}>Borders</span>
             </h2>
 
             <p style={{
-              fontSize: '1.05rem',
-              lineHeight: 1.65,
+              fontSize: '1.08rem',
+              lineHeight: 1.7,
               color: '#475569',
-              marginBottom: '2.25rem'
+              marginBottom: '2.5rem',
+              maxWidth: '480px'
             }}>
               Delivering enterprise IT infrastructure, cloud operations, and managed services with 24×7 support across key international markets.
             </p>
@@ -75,15 +77,16 @@ export default function GlobalPresence() {
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.6rem',
+                  gap: '0.65rem',
                   backgroundColor: '#2563eb',
                   color: '#ffffff',
-                  padding: '0.9rem 2rem',
+                  padding: '0.95rem 2.2rem',
                   borderRadius: '50px',
                   fontWeight: 700,
-                  fontSize: '0.95rem',
-                  boxShadow: '0 4px 14px rgba(37, 99, 235, 0.25)',
-                  textDecoration: 'none'
+                  fontSize: '0.98rem',
+                  boxShadow: '0 4px 16px rgba(37, 99, 235, 0.28)',
+                  textDecoration: 'none',
+                  transition: 'all 0.25s ease'
                 }}
               >
                 <span>Explore Our Services</span>
@@ -92,16 +95,16 @@ export default function GlobalPresence() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: GlobalMapContainer with SVG map, India pin, Bezier arcs, & Glass Cards for UAE, UK, Japan, New Zealand */}
+          {/* RIGHT COLUMN: GlobalMapContainer with increased scale (98% width) & spacious layout */}
           <div 
             id="GlobalMapContainer"
             className="GlobalMapContainer"
             style={{
               width: '100%',
               height: '100%',
-              minHeight: '380px',
+              minHeight: '440px',
               backgroundColor: '#EDF3FB',
-              borderRadius: '16px',
+              borderRadius: '20px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -117,19 +120,19 @@ export default function GlobalPresence() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: '1.5rem',
+                padding: '2rem 1.25rem',
                 position: 'relative'
               }}
             >
-              {/* Map SVG Image occupying ~90% container width */}
+              {/* Map SVG Image scaled up to ~98% container width */}
               <img 
                 src={worldMapSvg} 
                 alt="World Map" 
                 style={{
-                  width: '90%',
-                  maxWidth: '90%',
+                  width: '98%',
+                  maxWidth: '98%',
                   height: 'auto',
-                  maxHeight: '90%',
+                  maxHeight: '95%',
                   objectFit: 'contain',
                   display: 'block'
                 }}
@@ -217,11 +220,11 @@ export default function GlobalPresence() {
                 <div 
                   style={{
                     position: 'absolute',
-                    width: '32px',
-                    height: '32px',
+                    width: '34px',
+                    height: '34px',
                     borderRadius: '50%',
                     backgroundColor: 'rgba(37, 99, 235, 0.35)',
-                    boxShadow: '0 0 15px rgba(37, 99, 235, 0.6)',
+                    boxShadow: '0 0 16px rgba(37, 99, 235, 0.65)',
                     animation: 'indiaPinPulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite'
                   }}
                 />
@@ -229,12 +232,12 @@ export default function GlobalPresence() {
                 {/* Inner Glowing Blue Pin Dot */}
                 <div 
                   style={{
-                    width: '12px',
-                    height: '12px',
+                    width: '13px',
+                    height: '13px',
                     borderRadius: '50%',
                     backgroundColor: '#2563eb',
                     border: '2.5px solid #ffffff',
-                    boxShadow: '0 0 10px rgba(37, 99, 235, 0.9), 0 2px 6px rgba(0, 0, 0, 0.25)',
+                    boxShadow: '0 0 12px rgba(37, 99, 235, 0.95), 0 2px 6px rgba(0, 0, 0, 0.25)',
                     position: 'relative',
                     zIndex: 2
                   }}
@@ -246,22 +249,23 @@ export default function GlobalPresence() {
                 className="global-hub-card"
                 style={{
                   position: 'absolute',
-                  left: '45.5%',
-                  top: '24%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.9)',
-                  boxShadow: '0 10px 25px rgba(15, 23, 42, 0.1), 0 2px 6px rgba(37, 99, 235, 0.08)',
+                  left: '44%',
+                  top: '28%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                  backdropFilter: 'blur(12px)',
+                  border: '1px solid rgba(255, 255, 255, 0.95)',
+                  boxShadow: '0 12px 28px rgba(15, 23, 42, 0.1), 0 2px 8px rgba(37, 99, 235, 0.08)',
                   borderRadius: '12px',
-                  padding: '0.65rem 0.9rem',
+                  padding: '0.65rem 0.95rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.65rem',
                   zIndex: 10,
-                  pointerEvents: 'none'
+                  pointerEvents: 'none',
+                  whiteSpace: 'nowrap'
                 }}
               >
-                <span style={{ fontSize: '1.3rem', lineHeight: 1 }}>🇦🇪</span>
+                <span style={{ fontSize: '1.35rem', lineHeight: 1 }}>🇦🇪</span>
                 <div>
                   <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.2 }}>
                     Dubai, UAE
@@ -277,22 +281,23 @@ export default function GlobalPresence() {
                 className="global-hub-card"
                 style={{
                   position: 'absolute',
-                  left: '34.5%',
-                  top: '12%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.9)',
-                  boxShadow: '0 10px 25px rgba(15, 23, 42, 0.1), 0 2px 6px rgba(37, 99, 235, 0.08)',
+                  left: '31%',
+                  top: '10%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                  backdropFilter: 'blur(12px)',
+                  border: '1px solid rgba(255, 255, 255, 0.95)',
+                  boxShadow: '0 12px 28px rgba(15, 23, 42, 0.1), 0 2px 8px rgba(37, 99, 235, 0.08)',
                   borderRadius: '12px',
-                  padding: '0.65rem 0.9rem',
+                  padding: '0.65rem 0.95rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.65rem',
                   zIndex: 10,
-                  pointerEvents: 'none'
+                  pointerEvents: 'none',
+                  whiteSpace: 'nowrap'
                 }}
               >
-                <span style={{ fontSize: '1.3rem', lineHeight: 1 }}>🇬🇧</span>
+                <span style={{ fontSize: '1.35rem', lineHeight: 1 }}>🇬🇧</span>
                 <div>
                   <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.2 }}>
                     United Kingdom
@@ -308,22 +313,23 @@ export default function GlobalPresence() {
                 className="global-hub-card"
                 style={{
                   position: 'absolute',
-                  left: '81.5%',
-                  top: '16%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.9)',
-                  boxShadow: '0 10px 25px rgba(15, 23, 42, 0.1), 0 2px 6px rgba(37, 99, 235, 0.08)',
+                  left: '84%',
+                  top: '15%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                  backdropFilter: 'blur(12px)',
+                  border: '1px solid rgba(255, 255, 255, 0.95)',
+                  boxShadow: '0 12px 28px rgba(15, 23, 42, 0.1), 0 2px 8px rgba(37, 99, 235, 0.08)',
                   borderRadius: '12px',
-                  padding: '0.65rem 0.9rem',
+                  padding: '0.65rem 0.95rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.65rem',
                   zIndex: 10,
-                  pointerEvents: 'none'
+                  pointerEvents: 'none',
+                  whiteSpace: 'nowrap'
                 }}
               >
-                <span style={{ fontSize: '1.3rem', lineHeight: 1 }}>🇯🇵</span>
+                <span style={{ fontSize: '1.35rem', lineHeight: 1 }}>🇯🇵</span>
                 <div>
                   <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.2 }}>
                     Japan
@@ -339,22 +345,23 @@ export default function GlobalPresence() {
                 className="global-hub-card"
                 style={{
                   position: 'absolute',
-                  left: '90.5%',
-                  top: '72%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.9)',
-                  boxShadow: '0 10px 25px rgba(15, 23, 42, 0.1), 0 2px 6px rgba(37, 99, 235, 0.08)',
+                  left: '88%',
+                  top: '76%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                  backdropFilter: 'blur(12px)',
+                  border: '1px solid rgba(255, 255, 255, 0.95)',
+                  boxShadow: '0 12px 28px rgba(15, 23, 42, 0.1), 0 2px 8px rgba(37, 99, 235, 0.08)',
                   borderRadius: '12px',
-                  padding: '0.65rem 0.9rem',
+                  padding: '0.65rem 0.95rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.65rem',
                   zIndex: 10,
-                  pointerEvents: 'none'
+                  pointerEvents: 'none',
+                  whiteSpace: 'nowrap'
                 }}
               >
-                <span style={{ fontSize: '1.3rem', lineHeight: 1 }}>🇳🇿</span>
+                <span style={{ fontSize: '1.35rem', lineHeight: 1 }}>🇳🇿</span>
                 <div>
                   <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.2 }}>
                     New Zealand
@@ -412,13 +419,21 @@ export default function GlobalPresence() {
           }
         }
         @media (max-width: 1024px) {
+          .global-presence-section-wrapper {
+            padding: 4rem 0 !important;
+          }
           .global-presence-grid {
             grid-template-columns: 1fr !important;
             gap: 2.5rem !important;
             min-height: auto !important;
           }
+          .global-presence-left-col {
+            padding-right: 0 !important;
+            text-align: center !important;
+            align-items: center !important;
+          }
           .GlobalMapContainer {
-            min-height: 300px !important;
+            min-height: 320px !important;
           }
           .global-hub-card {
             padding: 0.45rem 0.65rem !important;
