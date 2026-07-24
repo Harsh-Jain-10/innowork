@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import worldMapSvg from '../assets/maps/world-map.svg.svg';
 
 export default function GlobalPresence() {
   return (
@@ -91,7 +92,7 @@ export default function GlobalPresence() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: GlobalMapContainer with centered world-map placeholder */}
+          {/* RIGHT COLUMN: GlobalMapContainer with rendered external SVG map & India pin overlay */}
           <div 
             id="GlobalMapContainer"
             className="GlobalMapContainer"
@@ -108,19 +109,75 @@ export default function GlobalPresence() {
               overflow: 'hidden'
             }}
           >
-            {/* Placeholder container for external SVG map */}
             <div 
               className="world-map"
               style={{
                 width: '100%',
                 height: '100%',
-                aspectRatio: '2 / 1',
-                maxHeight: '100%',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                padding: '1.5rem',
+                position: 'relative'
               }}
-            />
+            >
+              {/* Map SVG Image occupying ~90% container width */}
+              <img 
+                src={worldMapSvg} 
+                alt="World Map" 
+                style={{
+                  width: '90%',
+                  maxWidth: '90%',
+                  height: 'auto',
+                  maxHeight: '90%',
+                  objectFit: 'contain',
+                  display: 'block'
+                }}
+              />
+
+              {/* OVERLAY: ONE ANIMATED GLOWING & PULSING LOCATION PIN OVER INDIA */}
+              <div 
+                className="india-pin-overlay"
+                style={{
+                  position: 'absolute',
+                  left: '67.5%',
+                  top: '47%',
+                  transform: 'translate(-50%, -50%)',
+                  pointerEvents: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                {/* 3-Second Gently Pulsing Glow Ring */}
+                <div 
+                  style={{
+                    position: 'absolute',
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    backgroundColor: 'rgba(37, 99, 235, 0.35)',
+                    boxShadow: '0 0 15px rgba(37, 99, 235, 0.6)',
+                    animation: 'indiaPinPulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite'
+                  }}
+                />
+
+                {/* Inner Glowing Blue Pin Dot */}
+                <div 
+                  style={{
+                    width: '12px',
+                    height: '12px',
+                    borderRadius: '50%',
+                    backgroundColor: '#2563eb',
+                    border: '2.5px solid #ffffff',
+                    boxShadow: '0 0 10px rgba(37, 99, 235, 0.9), 0 2px 6px rgba(0, 0, 0, 0.25)',
+                    position: 'relative',
+                    zIndex: 2
+                  }}
+                />
+              </div>
+
+            </div>
           </div>
 
         </div>
@@ -128,6 +185,20 @@ export default function GlobalPresence() {
       </div>
 
       <style>{`
+        @keyframes indiaPinPulse {
+          0% {
+            transform: scale(0.6);
+            opacity: 0.9;
+          }
+          60% {
+            transform: scale(2.2);
+            opacity: 0;
+          }
+          100% {
+            transform: scale(0.6);
+            opacity: 0;
+          }
+        }
         @media (max-width: 1024px) {
           .global-presence-grid {
             grid-template-columns: 1fr !important;
