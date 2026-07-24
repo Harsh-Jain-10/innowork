@@ -92,7 +92,7 @@ export default function GlobalPresence() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: GlobalMapContainer with external SVG map, India pin, Bezier arc, & Dubai Glass Card */}
+          {/* RIGHT COLUMN: GlobalMapContainer with external SVG map, India pin, Bezier arcs, & Glass Cards for UAE, UK, Japan */}
           <div 
             id="GlobalMapContainer"
             className="GlobalMapContainer"
@@ -135,7 +135,7 @@ export default function GlobalPresence() {
                 }}
               />
 
-              {/* OVERLAY SVG FOR BEZIER CURVE FROM INDIA TO DUBAI */}
+              {/* OVERLAY SVG FOR BEZIER CURVES FROM INDIA TO DUBAI, UK, AND JAPAN */}
               <svg 
                 viewBox="0 0 1000 500" 
                 style={{
@@ -148,24 +148,44 @@ export default function GlobalPresence() {
                 }}
               >
                 <defs>
-                  <linearGradient id="dubaiArcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <linearGradient id="arcGradientBlue" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#2563eb" stopOpacity="0.95" />
                     <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.8" />
                   </linearGradient>
                 </defs>
 
-                {/* ONE BEZIER CURVE: START INDIA (675, 235) -> END DUBAI (565, 215) */}
+                {/* BEZIER CURVE 1: INDIA (675, 235) -> DUBAI (565, 215) */}
                 <path 
                   d="M 675 235 Q 620 190 565 215" 
                   fill="none" 
-                  stroke="url(#dubaiArcGradient)" 
+                  stroke="url(#arcGradientBlue)" 
                   strokeWidth="2.5" 
                   strokeLinecap="round"
                   className="bezier-draw-path"
                 />
-
-                {/* Dubai End Node Dot */}
                 <circle cx="565" cy="215" r="4.5" fill="#2563eb" />
+
+                {/* BEZIER CURVE 2: INDIA (675, 235) -> UK (480, 135) */}
+                <path 
+                  d="M 675 235 Q 560 140 480 135" 
+                  fill="none" 
+                  stroke="url(#arcGradientBlue)" 
+                  strokeWidth="2.5" 
+                  strokeLinecap="round"
+                  className="bezier-draw-path"
+                />
+                <circle cx="480" cy="135" r="4.5" fill="#2563eb" />
+
+                {/* BEZIER CURVE 3: INDIA (675, 235) -> JAPAN (850, 180) */}
+                <path 
+                  d="M 675 235 Q 770 170 850 180" 
+                  fill="none" 
+                  stroke="url(#arcGradientBlue)" 
+                  strokeWidth="2.5" 
+                  strokeLinecap="round"
+                  className="bezier-draw-path"
+                />
+                <circle cx="850" cy="180" r="4.5" fill="#2563eb" />
               </svg>
 
               {/* OVERLAY: ONE ANIMATED GLOWING & PULSING LOCATION PIN OVER INDIA */}
@@ -210,9 +230,9 @@ export default function GlobalPresence() {
                 />
               </div>
 
-              {/* OVERLAY: SINGLE FLOATING GLASS CARD BESIDE DUBAI (FADES UPWARD AFTER 1.5s LINE ANIMATION) */}
+              {/* FLOATING GLASS CARD 1: DUBAI, UAE */}
               <div 
-                className="dubai-glass-card"
+                className="global-hub-card"
                 style={{
                   position: 'absolute',
                   left: '45.5%',
@@ -222,21 +242,83 @@ export default function GlobalPresence() {
                   border: '1px solid rgba(255, 255, 255, 0.9)',
                   boxShadow: '0 10px 25px rgba(15, 23, 42, 0.1), 0 2px 6px rgba(37, 99, 235, 0.08)',
                   borderRadius: '12px',
-                  padding: '0.75rem 1rem',
+                  padding: '0.65rem 0.9rem',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.75rem',
+                  gap: '0.65rem',
                   zIndex: 10,
                   pointerEvents: 'none'
                 }}
               >
-                <span style={{ fontSize: '1.4rem', lineHeight: 1 }}>🇦🇪</span>
+                <span style={{ fontSize: '1.3rem', lineHeight: 1 }}>🇦🇪</span>
                 <div>
-                  <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.2 }}>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.2 }}>
                     Dubai, UAE
                   </div>
-                  <div style={{ fontSize: '0.72rem', fontWeight: 600, color: '#2563eb', marginTop: '0.15rem' }}>
+                  <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#2563eb', marginTop: '0.15rem' }}>
                     New Regional Hub
+                  </div>
+                </div>
+              </div>
+
+              {/* FLOATING GLASS CARD 2: UNITED KINGDOM */}
+              <div 
+                className="global-hub-card"
+                style={{
+                  position: 'absolute',
+                  left: '34.5%',
+                  top: '12%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.9)',
+                  boxShadow: '0 10px 25px rgba(15, 23, 42, 0.1), 0 2px 6px rgba(37, 99, 235, 0.08)',
+                  borderRadius: '12px',
+                  padding: '0.65rem 0.9rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.65rem',
+                  zIndex: 10,
+                  pointerEvents: 'none'
+                }}
+              >
+                <span style={{ fontSize: '1.3rem', lineHeight: 1 }}>🇬🇧</span>
+                <div>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.2 }}>
+                    United Kingdom
+                  </div>
+                  <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#2563eb', marginTop: '0.15rem' }}>
+                    Enterprise Support
+                  </div>
+                </div>
+              </div>
+
+              {/* FLOATING GLASS CARD 3: JAPAN */}
+              <div 
+                className="global-hub-card"
+                style={{
+                  position: 'absolute',
+                  left: '81.5%',
+                  top: '16%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.9)',
+                  boxShadow: '0 10px 25px rgba(15, 23, 42, 0.1), 0 2px 6px rgba(37, 99, 235, 0.08)',
+                  borderRadius: '12px',
+                  padding: '0.65rem 0.9rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.65rem',
+                  zIndex: 10,
+                  pointerEvents: 'none'
+                }}
+              >
+                <span style={{ fontSize: '1.3rem', lineHeight: 1 }}>🇯🇵</span>
+                <div>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.2 }}>
+                    Japan
+                  </div>
+                  <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#2563eb', marginTop: '0.15rem' }}>
+                    Asia-Pacific Hub
                   </div>
                 </div>
               </div>
@@ -250,20 +332,20 @@ export default function GlobalPresence() {
 
       <style>{`
         .bezier-draw-path {
-          stroke-dasharray: 400;
-          stroke-dashoffset: 400;
-          animation: drawDubaiPath 1.5s ease-out forwards;
+          stroke-dasharray: 450;
+          stroke-dashoffset: 450;
+          animation: drawHubPaths 1.5s ease-out forwards;
         }
-        @keyframes drawDubaiPath {
+        @keyframes drawHubPaths {
           to {
             stroke-dashoffset: 0;
           }
         }
-        .dubai-glass-card {
+        .global-hub-card {
           opacity: 0;
-          animation: dubaiCardFadeUp 0.6s ease-out 1.5s forwards;
+          animation: hubCardFadeUp 0.6s ease-out 1.5s forwards;
         }
-        @keyframes dubaiCardFadeUp {
+        @keyframes hubCardFadeUp {
           from {
             opacity: 0;
             transform: translate(-50%, calc(-50% + 14px));
@@ -296,8 +378,8 @@ export default function GlobalPresence() {
           .GlobalMapContainer {
             min-height: 300px !important;
           }
-          .dubai-glass-card {
-            padding: 0.5rem 0.75rem !important;
+          .global-hub-card {
+            padding: 0.45rem 0.65rem !important;
           }
         }
       `}</style>
