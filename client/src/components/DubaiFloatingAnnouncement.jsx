@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { createPortal } from 'react-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import dubaiAnnouncementImg from '../assets/images/dubai-announcement.webp';
 
 export default function DubaiFloatingAnnouncement() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     // Check if user previously dismissed the announcement
     const dismissed = localStorage.getItem('dismissDubaiAnnouncement') === 'true';
     if (dismissed) {
@@ -16,15 +20,16 @@ export default function DubaiFloatingAnnouncement() {
       return;
     }
 
-    // Delay 1.2s after mount/load before triggering entrance animation
+    // Delay before triggering entrance animation (800ms for smooth prompt load)
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 1200);
+    }, 800);
 
     return () => clearTimeout(timer);
   }, []);
 
-  if (isDismissed) {
+  // Only render on Home page ("/")
+  if (!mounted || location.pathname !== '/' || isDismissed) {
     return null;
   }
 
@@ -43,7 +48,7 @@ export default function DubaiFloatingAnnouncement() {
     navigate('/about#global-presence-section');
   };
 
-  return (
+  const widgetJSX = (
     <div
       onClick={handleCardClick}
       className={`dubai-floating-widget ${isVisible ? 'is-visible' : ''} ${isClosing ? 'is-closing' : ''}`}
@@ -92,43 +97,44 @@ export default function DubaiFloatingAnnouncement() {
 
       <style>{`
         .dubai-floating-widget {
-          position: fixed;
-          right: 32px;
-          bottom: 32px;
-          width: 380px;
-          height: auto;
-          z-index: 9999;
-          border-radius: 24px;
-          overflow: hidden;
-          background: rgba(15, 23, 42, 0.85);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border: 1px solid rgba(255, 255, 255, 0.18);
+          position: fixed !important;
+          right: 32px !important;
+          bottom: 32px !important;
+          width: 380px !important;
+          max-width: calc(100vw - 32px) !important;
+          height: auto !important;
+          z-index: 999999 !important;
+          border-radius: 24px !important;
+          overflow: hidden !important;
+          background: rgba(15, 23, 42, 0.92) !important;
+          backdrop-filter: blur(16px) !important;
+          -webkit-backdrop-filter: blur(16px) !important;
+          border: 1px solid rgba(255, 255, 255, 0.2) !important;
           box-shadow: 
-            0 20px 45px -10px rgba(15, 23, 42, 0.35),
-            0 8px 20px rgba(0, 0, 0, 0.15),
-            0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-          cursor: pointer;
+            0 20px 45px -10px rgba(15, 23, 42, 0.4),
+            0 8px 24px rgba(0, 0, 0, 0.2),
+            0 0 0 1px rgba(255, 255, 255, 0.15) inset !important;
+          cursor: pointer !important;
           opacity: 0;
           transform: translateX(40px) scale(0.95);
           transition: 
             opacity 700ms ease-out,
             transform 700ms ease-out,
-            box-shadow 300ms ease;
+            box-shadow 300ms ease !important;
           will-change: transform, opacity;
         }
 
         .dubai-floating-widget.is-visible {
-          opacity: 1;
-          transform: translateX(0) scale(1);
+          opacity: 1 !important;
+          transform: translateX(0) scale(1) !important;
         }
 
         .dubai-floating-widget.is-visible:hover {
-          transform: translateY(-6px) scale(1.01);
+          transform: translateY(-6px) scale(1.01) !important;
           box-shadow: 
-            0 28px 60px -12px rgba(15, 23, 42, 0.45),
-            0 12px 28px rgba(0, 0, 0, 0.2),
-            0 0 0 1px rgba(255, 255, 255, 0.25) inset;
+            0 28px 60px -12px rgba(15, 23, 42, 0.5),
+            0 12px 28px rgba(0, 0, 0, 0.25),
+            0 0 0 1px rgba(255, 255, 255, 0.3) inset !important;
         }
 
         .dubai-floating-widget.is-closing {
@@ -141,6 +147,7 @@ export default function DubaiFloatingAnnouncement() {
           width: 100%;
           display: block;
           line-height: 0;
+          background: #0f172a;
         }
 
         .dubai-widget-img {
@@ -152,32 +159,32 @@ export default function DubaiFloatingAnnouncement() {
         }
 
         .dubai-widget-close-btn {
-          position: absolute;
-          top: 12px;
-          right: 12px;
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          background: rgba(15, 23, 42, 0.65);
-          backdrop-filter: blur(8px);
-          -webkit-backdrop-filter: blur(8px);
-          border: 1px solid rgba(255, 255, 255, 0.25);
-          color: #ffffff;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          z-index: 10;
-          transition: all 0.2s ease;
-          padding: 0;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+          position: absolute !important;
+          top: 12px !important;
+          right: 12px !important;
+          width: 32px !important;
+          height: 32px !important;
+          border-radius: 50% !important;
+          background: rgba(15, 23, 42, 0.75) !important;
+          backdrop-filter: blur(8px) !important;
+          -webkit-backdrop-filter: blur(8px) !important;
+          border: 1px solid rgba(255, 255, 255, 0.3) !important;
+          color: #ffffff !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          cursor: pointer !important;
+          z-index: 1000000 !important;
+          transition: all 0.2s ease !important;
+          padding: 0 !important;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
         }
 
         .dubai-widget-close-btn:hover {
-          background: rgba(15, 23, 42, 0.95);
-          color: #38bdf8;
-          transform: scale(1.1);
-          border-color: rgba(255, 255, 255, 0.4);
+          background: rgba(15, 23, 42, 0.95) !important;
+          color: #38bdf8 !important;
+          transform: scale(1.1) !important;
+          border-color: rgba(255, 255, 255, 0.5) !important;
         }
 
         /* Mobile Bottom Sheet conversion */
@@ -188,18 +195,20 @@ export default function DubaiFloatingAnnouncement() {
             bottom: 16px !important;
             width: 92% !important;
             max-width: 380px !important;
-            transform: translateX(-50%) translateY(40px) scale(0.95);
+            transform: translateX(-50%) translateY(40px) scale(0.95) !important;
           }
 
           .dubai-floating-widget.is-visible {
-            transform: translateX(-50%) translateY(0) scale(1);
+            transform: translateX(-50%) translateY(0) scale(1) !important;
           }
 
           .dubai-floating-widget.is-visible:hover {
-            transform: translateX(-50%) translateY(-3px) scale(1.005);
+            transform: translateX(-50%) translateY(-3px) scale(1.005) !important;
           }
         }
       `}</style>
     </div>
   );
+
+  return createPortal(widgetJSX, document.body);
 }
