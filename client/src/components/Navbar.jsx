@@ -216,13 +216,13 @@ export default function Navbar() {
         {/* Right Nav Action Items (Announcement Bell & Support Desk CTA) */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }} className="nav-right-actions">
           
-          {/* Top-Right Announcement Bell Icon */}
+          {/* Top-Right Announcement Branded "I" Icon */}
           <button
             type="button"
             onClick={() => setIsAnnouncementOpen(true)}
             id="nav-announcement-btn"
             aria-label="View Announcements"
-            title="Announcement Center"
+            title="INNOWORQ Announcement Center"
             style={{
               position: 'relative',
               width: '38px',
@@ -234,16 +234,28 @@ export default function Navbar() {
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              color: '#334155',
+              color: '#2563eb',
               transition: 'all 0.2s ease',
               padding: 0
             }}
             className="nav-announcement-bell"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-            </svg>
+            {/* Custom Branded INNOWORQ "I" Symbol */}
+            <span 
+              style={{
+                fontFamily: 'var(--font-heading), system-ui, -apple-system, sans-serif',
+                fontSize: '1.25rem',
+                fontWeight: 900,
+                fontStyle: 'italic',
+                color: '#2563eb',
+                lineHeight: 1,
+                display: 'inline-block',
+                transform: 'skewX(-4deg)',
+                userSelect: 'none'
+              }}
+            >
+              I
+            </span>
 
             {/* Unread Red Notification Badge */}
             {hasUnreadAnnouncements && (
@@ -390,7 +402,19 @@ export default function Navbar() {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                <span style={{ fontSize: '1.1rem' }}>🔔</span>
+                <span 
+                  style={{
+                    fontFamily: 'var(--font-heading), system-ui, -apple-system, sans-serif',
+                    fontSize: '1.15rem',
+                    fontWeight: 900,
+                    fontStyle: 'italic',
+                    color: '#2563eb',
+                    lineHeight: 1,
+                    display: 'inline-block'
+                  }}
+                >
+                  I
+                </span>
                 <span>Announcement Center</span>
               </div>
               {hasUnreadAnnouncements && (
