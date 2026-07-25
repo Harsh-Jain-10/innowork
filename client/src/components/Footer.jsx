@@ -30,7 +30,7 @@ export default function Footer() {
         <ScrollReveal variant="fade-up" threshold={0.05}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '3rem', marginBottom: '4rem' }} className="footer-main-grid">
 
-            {/* Logo, Certifications & Socials */}
+            {/* Logo & Certifications */}
             <div style={{ gridColumn: 'span 5' }} className="footer-col-1">
               <img src={logo} alt="INNOWORQ logo" style={{ height: '36px', marginBottom: '1.5rem', display: 'block' }} />
               <p style={{ lineHeight: '1.7', marginBottom: '1.5rem', color: 'var(--text-light-secondary)' }}>
@@ -40,10 +40,6 @@ export default function Footer() {
                 {configData.certifications.map((cert) => (
                   <span key={cert}>🛡️ {cert}</span>
                 ))}
-              </div>
-              {/* Social Icons */}
-              <div style={{ display: 'flex', gap: '1rem' }}>
-                <span style={{ color: '#0077b5', fontSize: '0.88rem', fontWeight: 600, cursor: 'default' }}>LinkedIn</span>
               </div>
             </div>
 
