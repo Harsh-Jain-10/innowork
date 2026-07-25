@@ -12,15 +12,15 @@ export default function InnoworqIcon({ size = 24, className = '' }) {
       style={{ display: 'block', flexShrink: 0 }}
       aria-hidden="true"
     >
-      {/* Top Blue Accent Triangle */}
+      {/* Top Blue Accent Triangle (Narrower & Taller Proportions) */}
       <path 
-        d="M 9 4 H 23 L 9 16 Z" 
+        d="M 11 2 H 21 L 11 14 Z" 
         fill="#0963ff" 
       />
 
-      {/* Main Black Body Pillar with Angled Top Cut */}
+      {/* Main Black Body Pillar with Angled Top Cut (Sleek & Elongated) */}
       <path 
-        d="M 9 18.5 L 23 6.5 V 28 H 9 Z" 
+        d="M 11 16.5 L 21 4.5 V 30 H 11 Z" 
         fill="#0f172a" 
       />
     </svg>
