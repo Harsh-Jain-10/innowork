@@ -8,7 +8,7 @@ export default function GlobalPresence() {
       id="global-presence-section"
       className="global-presence-section-wrapper"
       style={{
-        padding: '76px 0',
+        padding: '3rem 0 1rem 0',
         backgroundColor: '#ffffff',
         position: 'relative'
       }}

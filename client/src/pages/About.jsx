@@ -210,7 +210,7 @@ export default function About() {
       <GlobalPresence />
 
       {/* Facts & Figures Band */}
-      <div className="container" style={{ margin: '4rem auto' }}>
+      <div className="container" style={{ margin: '1rem auto 3rem auto' }}>
         <div className="facts-figures-band">
           <div className="facts-figures-split">
             <ScrollReveal variant="fade-up">
