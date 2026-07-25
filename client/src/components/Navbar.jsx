@@ -1,33 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo.png';
 import configData from '../data/companyConfig.json';
 import AnnouncementCenter from './AnnouncementCenter';
-import InnoworqMonogram from './InnoworqMonogram';
+import InnoworqIcon from './InnoworqIcon';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [isAnnouncementOpen, setIsAnnouncementOpen] = useState(false);
-  const [hasUnreadAnnouncements, setHasUnreadAnnouncements] = useState(() => {
-    return sessionStorage.getItem('announcementsViewed') !== 'true';
-  });
+  const [hasUnreadAnnouncements, setHasUnreadAnnouncements] = useState(true);
   const location = useLocation();
 
-  React.useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+  useEffect(() => {
+    const isViewed = sessionStorage.getItem('announcementsViewed') === 'true';
+    if (isViewed) {
+      setHasUnreadAnnouncements(false);
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
-
-  const services = configData.services;
+  }, []);
 
   return (
     <nav 
@@ -37,27 +28,19 @@ export default function Navbar() {
         zIndex: 100,
         backgroundColor: '#ffffff',
         borderBottom: '1px solid #e2e8f0',
-        height: '76px',
-        display: 'flex',
-        alignItems: 'center',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.03)'
+        padding: '0.85rem 0'
       }}
-      id="main-navigation"
+      id="main-navbar"
     >
-      <div className="container" style={{ display: 'flex', justifyBetween: 'space-between', alignItems: 'center', width: '100%', justifyContent: 'space-between' }}>
+      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         
-        {/* Brand Logo Anchor to Home */}
-        <Link to="/" style={{ display: 'flex', alignItems: 'center' }} id="nav-brand-logo">
-          <img 
-            src={logo} 
-            alt="INNOWORQ logo" 
-            style={{ height: '36px', display: 'block' }} 
-          />
+        {/* Brand Logo */}
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }} id="nav-brand-logo">
+          <img src={logo} alt="INNOWORQ Logo" style={{ height: '36px', display: 'block' }} />
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }} className="desktop-nav-links">
-          
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="desktop-nav-links">
           <Link
             to="/about"
             id="nav-link-about"
@@ -65,14 +48,13 @@ export default function Navbar() {
               fontFamily: 'var(--font-heading)',
               fontSize: '0.92rem',
               fontWeight: 600,
-              color: location.pathname === '/about' ? 'var(--brand-blue)' : '#334155',
-              transition: 'var(--transition-smooth)'
+              color: location.pathname === '/about' ? 'var(--brand-blue)' : '#334155'
             }}
           >
             About Us
           </Link>
 
-          {/* Mega Menu Dropdown Trigger */}
+          {/* Dropdown Menu for Services */}
           <div 
             style={{ position: 'relative' }}
             onMouseEnter={() => setIsServicesOpen(true)}
@@ -88,12 +70,10 @@ export default function Navbar() {
                 color: location.pathname === '/services' ? 'var(--brand-blue)' : '#334155',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.25rem',
-                padding: '1.5rem 0'
+                gap: '0.25rem'
               }}
             >
-              Services 
-              <span style={{ fontSize: '0.75rem', transform: isServicesOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>▼</span>
+              Services <span style={{ fontSize: '0.7rem' }}>▼</span>
             </Link>
 
             <AnimatePresence>
@@ -105,42 +85,38 @@ export default function Navbar() {
                   transition={{ duration: 0.2 }}
                   style={{
                     position: 'absolute',
-                    top: '60px',
-                    left: '-200px',
-                    width: '680px',
+                    top: '100%',
+                    left: 0,
                     backgroundColor: '#ffffff',
-                    border: '1px solid #e2e8f0',
+                    boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
                     borderRadius: '8px',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
-                    padding: '1.5rem',
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(2, 1fr)',
-                    gap: '1rem',
-                    zIndex: 200
+                    padding: '0.75rem 0',
+                    minWidth: '260px',
+                    border: '1px solid #e2e8f0',
+                    zIndex: 110
                   }}
                 >
-                  {services.map((srv) => (
+                  {configData.services.map((srv) => (
                     <Link
                       key={srv.id}
                       to={`/services#${srv.id}`}
                       style={{
-                        padding: '0.5rem 0.75rem',
-                        borderRadius: '6px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '0.2rem',
+                        display: 'block',
+                        padding: '0.5rem 1.25rem',
+                        fontSize: '0.88rem',
+                        color: '#334155',
                         transition: 'var(--transition-smooth)'
                       }}
-                      className="mega-menu-item"
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = '#f8fafc';
+                        e.target.style.backgroundColor = '#f1f5f9';
+                        e.target.style.color = 'var(--brand-blue)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'transparent';
+                        e.target.style.backgroundColor = 'transparent';
+                        e.target.style.color = '#334155';
                       }}
                     >
-                      <span style={{ fontWeight: 700, color: 'var(--text-light-primary)', fontSize: '0.88rem' }}>{srv.name}</span>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text-light-secondary)', lineHeight: '1.3' }}>{srv.desc.substring(0, 70)}...</span>
+                      {srv.name}
                     </Link>
                   ))}
                 </motion.div>
@@ -189,10 +165,10 @@ export default function Navbar() {
 
         </div>
 
-        {/* Right Nav Action Items (Announcement Bell & Support Desk CTA) */}
+        {/* Right Nav Action Items (Announcement Center Icon) */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }} className="nav-right-actions">
           
-          {/* Top-Right Announcement Branded "IW" Monogram Icon */}
+          {/* Top-Right Announcement Branded INNOWORQ Logo Mark Icon */}
           <button
             type="button"
             onClick={() => setIsAnnouncementOpen(true)}
@@ -216,8 +192,8 @@ export default function Navbar() {
             }}
             className="nav-announcement-btn"
           >
-            {/* Custom Branded INNOWORQ "IW" Monogram Symbol */}
-            <InnoworqMonogram size={24} />
+            {/* Custom Exact INNOWORQ Logo Mark Icon */}
+            <InnoworqIcon size={24} />
 
             {/* Unread Blue Notification Badge Dot */}
             {hasUnreadAnnouncements && (
@@ -229,9 +205,9 @@ export default function Navbar() {
                   width: '10px',
                   height: '10px',
                   borderRadius: '50%',
-                  backgroundColor: '#2563eb',
+                  backgroundColor: '#0963ff',
                   border: '2px solid #ffffff',
-                  boxShadow: '0 0 10px rgba(37, 99, 235, 0.75)'
+                  boxShadow: '0 0 10px rgba(9, 99, 255, 0.75)'
                 }}
                 title="New Announcement Available"
               />
@@ -271,52 +247,35 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
             style={{
-              position: 'fixed',
-              top: '76px',
+              position: 'absolute',
+              top: '100%',
               left: 0,
               right: 0,
-              bottom: 0,
               backgroundColor: '#ffffff',
               borderBottom: '1px solid #e2e8f0',
-              padding: '2rem 1.5rem',
+              padding: '1.25rem 1.5rem',
+              boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
               display: 'flex',
               flexDirection: 'column',
-              gap: '1.25rem',
-              zIndex: 99,
-              height: 'calc(100vh - 76px)',
-              overflowY: 'auto',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.05)'
+              gap: '0.75rem',
+              zIndex: 99
             }}
-            className="mobile-nav-drawer"
           >
             <Link to="/about" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.75rem 0', minHeight: '48px', display: 'flex', alignItems: 'center' }}>About Us</Link>
-
-            {/* Mobile Touch-Friendly Services Expandable */}
+            
+            {/* Services Mobile Submenu */}
             <div>
-              <button 
-                onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  width: '100%',
-                  fontWeight: 600,
-                  color: '#334155',
-                  background: 'none',
-                  border: 'none',
-                  fontSize: '1rem',
-                  padding: '0.75rem 0',
-                  minHeight: '48px',
-                  textAlign: 'left',
-                  cursor: 'pointer'
-                }}
+              <div 
+                onClick={() => setIsServicesOpen(!isServicesOpen)}
+                style={{ fontWeight: 600, color: '#334155', padding: '0.75rem 0', minHeight: '48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer' }}
               >
-                Services
-                <span style={{ fontSize: '0.8rem' }}>{isMobileServicesOpen ? '▲' : '▼'}</span>
-              </button>
-              {isMobileServicesOpen && (
-                <div style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.25rem', marginTop: '0.25rem' }}>
-                  {services.map((srv) => (
+                <span>Services</span>
+                <span>{isServicesOpen ? '▲' : '▼'}</span>
+              </div>
+
+              {isServicesOpen && (
+                <div style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  {configData.services.map((srv) => (
                     <Link
                       key={srv.id}
                       to={`/services#${srv.id}`}
@@ -356,12 +315,12 @@ export default function Navbar() {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <InnoworqMonogram size={22} />
+                <InnoworqIcon size={22} />
                 <span>Announcement Center</span>
               </div>
               {hasUnreadAnnouncements && (
                 <span style={{
-                  backgroundColor: '#2563eb',
+                  backgroundColor: '#0963ff',
                   color: '#ffffff',
                   fontSize: '0.7rem',
                   fontWeight: 800,
