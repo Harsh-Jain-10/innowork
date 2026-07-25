@@ -215,7 +215,7 @@ export default function About() {
           <div className="facts-figures-split">
             <ScrollReveal variant="fade-up">
               <div style={{ padding: '0 0.5rem' }}>
-                <h2 style={{ fontSize: 'clamp(1.75rem, 4.5vw, 2.25rem)', fontWeight: 800, color: 'var(--brand-blue)', marginBottom: '0.85rem' }}>
+                <h2 style={{ fontSize: 'clamp(1.75rem, 4.5vw, 2.25rem)', fontWeight: 800, color: 'var(--brand-blue)', marginTop: 0, marginBottom: '0.6rem' }}>
                   FACTS &amp; FIGURES
                 </h2>
                 <p style={{ color: 'var(--text-light-secondary)', fontSize: '1.02rem', lineHeight: '1.65', fontWeight: 500 }}>
