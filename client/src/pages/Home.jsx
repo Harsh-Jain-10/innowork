@@ -56,26 +56,26 @@ const logoMapping = {
 
 // Optical alignment configuration (proportional heights - enlarged for prominence)
 const logoDetails = {
-  Dell: { height: 38 },
-  Microsoft: { height: 38 },
-  IBM: { height: 34 },
-  Cisco: { height: 46 },
-  HP: { height: 38 },
-  Checkpoint: { height: 38 },
-  Fortinet: { height: 38 },
-  F5: { height: 38 },
-  Juniper: { height: 38 },
-  Microfocus: { height: 34 },
-  NetApp: { height: 34 },
-  OpenText: { height: 34 },
-  RedHat: { height: 38 },
-  Veeam: { height: 36 },
-  "D-Link": { height: 34 },
-  Veritas: { height: 36 },
-  Vinchin: { height: 36 },
-  Acer: { height: 34 },
-  Zerto: { height: 36 },
-  Oracle: { height: 34 }
+  Dell: { height: 32 },
+  Microsoft: { height: 26 },
+  IBM: { height: 28 },
+  Cisco: { height: 36 },
+  HP: { height: 30 },
+  Checkpoint: { height: 30 },
+  Fortinet: { height: 28 },
+  F5: { height: 28 },
+  Juniper: { height: 28 },
+  Microfocus: { height: 25 },
+  NetApp: { height: 25 },
+  OpenText: { height: 25 },
+  RedHat: { height: 28 },
+  Veeam: { height: 26 },
+  "D-Link": { height: 25 },
+  Veritas: { height: 26 },
+  Vinchin: { height: 24 },
+  Acer: { height: 25 },
+  Zerto: { height: 26 },
+  Oracle: { height: 25 }
 };
 
 export default function Home() {
@@ -489,8 +489,8 @@ export default function Home() {
               <span style={{ color: 'var(--brand-blue)', fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
                 Why INNOWORQ
               </span>
-              <h2 style={{ fontSize: '2.4rem', fontWeight: 800, color: 'var(--text-light-primary)', marginTop: '0.75rem', marginBottom: '1.25rem', lineHeight: '1.2' }}>
-                Delivering Excellence in<br />Infrastructure Support
+              <h2 style={{ fontSize: 'clamp(1.75rem, 5vw, 2.4rem)', fontWeight: 800, color: 'var(--text-light-primary)', marginTop: '0.75rem', marginBottom: '1.25rem', lineHeight: '1.2' }}>
+                Delivering Excellence in Infrastructure Support
               </h2>
               <p style={{ lineHeight: '1.7', color: 'var(--text-light-secondary)', marginBottom: '1.5rem' }}>
                 Our corporate structure is organized around reliable service execution. With pan-India presence and global support delivery channels, INNOWORQ is trusted by Fortune 500 companies and growing enterprises alike.
@@ -577,10 +577,10 @@ export default function Home() {
       </section>
 
       {/* 4. Quick Services Catalog */}
-      <section style={{ padding: '7rem 0', backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
+      <section style={{ padding: '3.5rem 0 4rem 0', backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
         <div className="container">
           <ScrollReveal variant="fade-up">
-            <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
               <span style={{ color: 'var(--brand-blue)', fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
                 What We Do
               </span>

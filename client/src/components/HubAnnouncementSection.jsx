@@ -7,7 +7,7 @@ export default function HubAnnouncementSection() {
     <section 
       id="hub-announcement-section"
       style={{
-        padding: '5.5rem 0 2rem 0',
+        padding: '3rem 0 1.5rem 0',
         backgroundColor: '#f8fafc',
         backgroundImage: 'radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.04) 0%, transparent 60%)',
         position: 'relative',
