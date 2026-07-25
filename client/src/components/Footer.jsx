@@ -34,7 +34,7 @@ export default function Footer() {
     >
       <div className="container">
         <ScrollReveal variant="fade-up" threshold={0.05}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '3rem', marginBottom: '4rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '3rem', marginBottom: '4rem' }} className="footer-main-grid">
 
             {/* Logo, Certifications & Socials */}
             <div style={{ gridColumn: 'span 4' }} className="footer-col-1">
@@ -145,24 +145,44 @@ export default function Footer() {
 
       <style>{`
         @media (max-width: 900px) {
+          #site-footer {
+            padding: 2.5rem 0 1.5rem 0 !important;
+          }
+          .footer-main-grid {
+            gap: 1.5rem !important;
+            margin-bottom: 2rem !important;
+          }
           .footer-col-1 {
             grid-column: span 12 !important;
+            margin-bottom: 0.5rem !important;
+          }
+          .footer-col-1 p {
+            margin-bottom: 0.85rem !important;
+            font-size: 0.85rem !important;
+            line-height: 1.5 !important;
+          }
+          .footer-col-1 img {
+            margin-bottom: 0.85rem !important;
           }
           .footer-col-2, .footer-col-3 {
             grid-column: span 6 !important;
           }
+          .footer-col-2 h4, .footer-col-3 h4, .footer-col-4 h4 {
+            margin-bottom: 0.65rem !important;
+            font-size: 1rem !important;
+          }
+          .footer-col-2 ul, .footer-col-3 ul {
+            gap: 0.4rem !important;
+          }
           .footer-col-4 {
             grid-column: span 12 !important;
-          }
-        }
-        @media (max-width: 640px) {
-          .footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4 {
-            grid-column: span 12 !important;
+            margin-top: 0.5rem !important;
           }
           .footer-bottom-bar {
+            padding-top: 1.25rem !important;
             flex-direction: column !important;
             align-items: flex-start !important;
-            gap: 1.25rem !important;
+            gap: 1rem !important;
           }
         }
       `}</style>

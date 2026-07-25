@@ -480,12 +480,12 @@ export default function Home() {
       <HubAnnouncementSection />
 
       {/* 3. Core Strengths & Certifications */}
-      <section style={{ padding: '7rem 0' }}>
+      <section style={{ padding: '3.5rem 0' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }} className="about-split">
 
             {/* Mission & Vision info */}
-            <ScrollReveal variant="fade-left" duration={0.8}>
+            <ScrollReveal variant="fade-up" duration={0.8}>
               <span style={{ color: 'var(--brand-blue)', fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
                 Why INNOWORQ
               </span>
@@ -524,7 +524,7 @@ export default function Home() {
             </ScrollReveal>
 
             {/* Certifications & Strengths list */}
-            <ScrollReveal variant="fade-right" delay={0.2} duration={0.8}>
+            <ScrollReveal variant="fade-up" delay={0.2} duration={0.8}>
               <motion.div
                 whileHover={{ y: -3 }}
                 transition={{ duration: 0.3 }}

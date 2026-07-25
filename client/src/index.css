@@ -625,7 +625,8 @@ img, svg {
   .solutions-grid-layout,
   .facts-figures-split,
   .home-cards-subgrid,
-  .global-presence-grid {
+  .global-presence-grid,
+  .hub-announcement-grid {
     grid-template-columns: 1fr !important;
     gap: 2rem !important;
   }

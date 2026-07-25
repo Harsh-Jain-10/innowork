@@ -106,7 +106,7 @@ export default function HubAnnouncementSection() {
             <div 
               style={{
                 position: 'relative',
-                marginBottom: '-3.5rem', // Slightly overlaps next section while scrolling
+                marginBottom: 0,
                 zIndex: 10
               }}
             >
