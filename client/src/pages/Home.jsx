@@ -6,7 +6,6 @@ import configData from '../data/companyConfig.json';
 import { Canvas } from '@react-three/fiber';
 import { EffectComposer, Bloom, DepthOfField, Vignette } from '@react-three/postprocessing';
 import MotherboardScene from '../components/WebGLMotherboard/MotherboardScene';
-import DubaiFloatingAnnouncement from '../components/DubaiFloatingAnnouncement';
 
 
 
@@ -927,8 +926,6 @@ export default function Home() {
         }
       `}</style>
 
-      {/* Floating Dubai Announcement Widget (Home Page Only) */}
-      <DubaiFloatingAnnouncement />
     </div>
   );
 }

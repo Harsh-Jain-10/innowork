@@ -3,11 +3,16 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo.png';
 import configData from '../data/companyConfig.json';
+import AnnouncementCenter from './AnnouncementCenter';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isAnnouncementOpen, setIsAnnouncementOpen] = useState(false);
+  const [hasUnreadAnnouncements, setHasUnreadAnnouncements] = useState(() => {
+    return sessionStorage.getItem('announcementsViewed') !== 'true';
+  });
   const location = useLocation();
 
   React.useEffect(() => {
@@ -208,11 +213,63 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Support Desk Action CTA */}
-        <div className="desktop-cta">
-          <Link to="/support-desk" className="btn btn-primary" id="nav-cta-support" style={{ padding: '0.55rem 1.25rem', fontSize: '0.88rem' }}>
-            Support Desk
-          </Link>
+        {/* Right Nav Action Items (Announcement Bell & Support Desk CTA) */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }} className="nav-right-actions">
+          
+          {/* Top-Right Announcement Bell Icon */}
+          <button
+            type="button"
+            onClick={() => setIsAnnouncementOpen(true)}
+            id="nav-announcement-btn"
+            aria-label="View Announcements"
+            title="Announcement Center"
+            style={{
+              position: 'relative',
+              width: '38px',
+              height: '38px',
+              borderRadius: '50%',
+              backgroundColor: '#f1f5f9',
+              border: '1px solid #cbd5e1',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              color: '#334155',
+              transition: 'all 0.2s ease',
+              padding: 0
+            }}
+            className="nav-announcement-bell"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+
+            {/* Unread Red Notification Badge */}
+            {hasUnreadAnnouncements && (
+              <span
+                style={{
+                  position: 'absolute',
+                  top: '1px',
+                  right: '1px',
+                  width: '9px',
+                  height: '9px',
+                  borderRadius: '50%',
+                  backgroundColor: '#ef4444',
+                  border: '2px solid #ffffff',
+                  boxShadow: '0 0 8px rgba(239, 68, 68, 0.85)'
+                }}
+                title="New Announcement Available"
+              />
+            )}
+          </button>
+
+          {/* Support Desk Action CTA */}
+          <div className="desktop-cta">
+            <Link to="/support-desk" className="btn btn-primary" id="nav-cta-support" style={{ padding: '0.55rem 1.25rem', fontSize: '0.88rem' }}>
+              Support Desk
+            </Link>
+          </div>
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -311,12 +368,53 @@ export default function Navbar() {
             <Link to="/career" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.75rem 0', minHeight: '48px', display: 'flex', alignItems: 'center' }}>Career</Link>
             <Link to="/partner-registration" onClick={() => setIsOpen(false)} style={{ fontWeight: 600, color: '#334155', padding: '0.75rem 0', minHeight: '48px', display: 'flex', alignItems: 'center' }}>Partner Registration</Link>
 
+            <button
+              type="button"
+              onClick={() => {
+                setIsOpen(false);
+                setIsAnnouncementOpen(true);
+              }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '100%',
+                padding: '0.85rem 1.25rem',
+                borderRadius: '8px',
+                backgroundColor: '#f8fafc',
+                border: '1px solid #e2e8f0',
+                fontWeight: 600,
+                color: '#1e293b',
+                cursor: 'pointer',
+                marginTop: '0.5rem'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <span style={{ fontSize: '1.1rem' }}>🔔</span>
+                <span>Announcement Center</span>
+              </div>
+              {hasUnreadAnnouncements && (
+                <span style={{
+                  backgroundColor: '#ef4444',
+                  color: '#ffffff',
+                  fontSize: '0.7rem',
+                  fontWeight: 800,
+                  padding: '0.15rem 0.5rem',
+                  borderRadius: '50px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
+                }}>
+                  NEW
+                </span>
+              )}
+            </button>
+
             <Link
               to="/support-desk"
               onClick={() => setIsOpen(false)}
               className="btn btn-primary"
               id="nav-cta-support-mobile"
-              style={{ width: '100%', marginTop: '0.75rem', minHeight: '48px' }}
+              style={{ width: '100%', marginTop: '0.5rem', minHeight: '48px' }}
             >
               Support Desk
             </Link>
@@ -325,6 +423,11 @@ export default function Navbar() {
       </AnimatePresence>
 
       <style>{`
+        .nav-announcement-bell:hover {
+          background-color: #e2e8f0 !important;
+          color: #0284c7 !important;
+          transform: scale(1.05);
+        }
         @media (max-width: 1024px) {
           .desktop-nav-links, .desktop-cta {
             display: none !important;
@@ -339,6 +442,13 @@ export default function Navbar() {
           }
         }
       `}</style>
+
+      {/* Premium Announcement Center Modal Viewer */}
+      <AnnouncementCenter 
+        isOpen={isAnnouncementOpen}
+        onClose={() => setIsAnnouncementOpen(false)}
+        onAllViewed={() => setHasUnreadAnnouncements(false)}
+      />
     </nav>
   );
 }
