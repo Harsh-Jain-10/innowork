@@ -172,6 +172,7 @@ export default function GlobalPresence() {
 
         {/* BOTTOM: Enterprise Capabilities Trust Strip */}
         <motion.div
+          className="global-presence-capabilities-strip"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -190,6 +191,7 @@ export default function GlobalPresence() {
           {GLOBAL_CAPABILITIES.map((capability, i) => (
             <div
               key={i}
+              className="global-presence-capability-pill"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -226,18 +228,55 @@ export default function GlobalPresence() {
         @media (max-width: 1024px) {
           .global-presence-grid {
             grid-template-columns: 1fr !important;
-            gap: 3rem !important;
+            gap: 2.5rem !important;
+            width: 100% !important;
           }
           .global-presence-left-col {
-            grid-column: span 12 !important;
+            grid-column: 1 / -1 !important;
             position: relative !important;
             top: 0 !important;
-            text-align: center;
-            align-items: center;
+            text-align: center !important;
+            align-items: center !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          .global-presence-left-col p {
+            max-width: 100% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
           }
           .global-presence-right-col {
-            grid-column: span 12 !important;
-            padding-left: 0.5rem !important;
+            grid-column: 1 / -1 !important;
+            padding-left: 0.25rem !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .global-presence-section-wrapper {
+            padding: 3.5rem 0 3rem 0 !important;
+          }
+          .global-presence-left-col h2 {
+            font-size: clamp(1.65rem, 6vw, 2.2rem) !important;
+            line-height: 1.2 !important;
+            margin-bottom: 0.85rem !important;
+          }
+          .global-presence-left-col p {
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+            margin-bottom: 1.5rem !important;
+          }
+          .global-presence-capabilities-strip {
+            margin-top: 3rem !important;
+            padding-top: 2rem !important;
+            gap: 0.5rem !important;
+          }
+          .global-presence-capability-pill {
+            padding: 0.45rem 0.85rem !important;
+            font-size: 0.8rem !important;
           }
         }
       `}</style>

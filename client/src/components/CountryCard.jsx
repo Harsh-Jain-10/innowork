@@ -15,7 +15,7 @@ export default function CountryCard({ location, index = 0 }) {
         paddingLeft: '2.5rem',
         marginBottom: '1.75rem'
       }}
-      className="timeline-item"
+      className="timeline-item country-timeline-item"
     >
       {/* Node Dot on Vertical Line */}
       <div 
@@ -103,6 +103,7 @@ export default function CountryCard({ location, index = 0 }) {
           overflow: 'hidden',
           transition: 'all 0.25s ease'
         }}
+        className="country-card-container"
       >
         {/* Top Accent Stripe for HQ */}
         {isHQ && (
@@ -116,11 +117,11 @@ export default function CountryCard({ location, index = 0 }) {
           }} />
         )}
 
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <span style={{ fontSize: '1.75rem', lineHeight: 1 }}>{flag}</span>
-            <div>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0f172a', margin: 0, lineHeight: 1.2 }}>
+        <div className="country-card-header" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.75rem' }}>
+          <div className="country-card-title-group" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0 }}>
+            <span className="country-card-flag" style={{ fontSize: '1.65rem', lineHeight: 1, flexShrink: 0 }}>{flag}</span>
+            <div className="country-card-info" style={{ minWidth: 0 }}>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0f172a', margin: 0, lineHeight: 1.25, overflowWrap: 'break-word' }}>
                 {country}
               </h3>
               <span style={{ 
@@ -136,7 +137,7 @@ export default function CountryCard({ location, index = 0 }) {
           </div>
 
           {isHQ && (
-            <span style={{
+            <span className="country-card-hq-tag" style={{
               backgroundColor: '#2563eb',
               color: '#ffffff',
               fontSize: '0.65rem',
@@ -145,14 +146,17 @@ export default function CountryCard({ location, index = 0 }) {
               borderRadius: '50px',
               textTransform: 'uppercase',
               letterSpacing: '1px',
-              boxShadow: '0 2px 8px rgba(37, 99, 235, 0.3)'
+              boxShadow: '0 2px 8px rgba(37, 99, 235, 0.3)',
+              flexShrink: 0,
+              alignSelf: 'flex-start',
+              marginTop: '0.1rem'
             }}>
               HQ
             </span>
           )}
         </div>
 
-        <p style={{
+        <p className="country-card-desc" style={{
           fontSize: '0.86rem',
           color: '#475569',
           margin: '0.75rem 0 0 0',
@@ -162,6 +166,33 @@ export default function CountryCard({ location, index = 0 }) {
           {description}
         </p>
       </motion.div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .country-timeline-item {
+            padding-left: 1.75rem !important;
+            margin-bottom: 1.25rem !important;
+          }
+          .country-card-container {
+            padding: 1rem 1.15rem !important;
+            border-radius: 12px !important;
+          }
+          .country-card-flag {
+            font-size: 1.4rem !important;
+          }
+          .country-card-info h3 {
+            font-size: 0.98rem !important;
+          }
+          .country-card-info span {
+            font-size: 0.76rem !important;
+          }
+          .country-card-desc {
+            font-size: 0.82rem !important;
+            line-height: 1.45 !important;
+            margin-top: 0.6rem !important;
+          }
+        }
+      `}</style>
     </motion.div>
   );
 }

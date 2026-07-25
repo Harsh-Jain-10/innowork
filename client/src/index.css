@@ -670,14 +670,6 @@ img, svg {
     box-sizing: border-box !important;
   }
 
-  .services-grid-layout,
-  .solutions-grid-layout {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 1.5rem !important;
-    width: 100% !important;
-  }
-
   /* Ensure text heading appears FIRST, visual image SECOND below text consistently on mobile */
   .services-text-col,
   .solutions-text-col {
@@ -734,8 +726,9 @@ img, svg {
 
   /* Facts figures band mobile padding */
   .facts-figures-band {
-    padding: 0.5rem 1rem 1.25rem 1rem !important;
+    padding: 1.25rem 1rem !important;
     margin: 0 !important;
+    border-radius: 12px !important;
   }
 
   /* Welcome card mobile padding */
@@ -768,6 +761,51 @@ img, svg {
   }
 }
 
+/* Specific Mobile Fixes for About & Global Sections */
+@media (max-width: 640px) {
+  .stats-full-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .stats-full-grid > div > div {
+    padding: 1.25rem 0.75rem !important;
+  }
+
+  .stats-full-grid .fact-number {
+    font-size: 1.65rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .stats-full-grid h4 {
+    font-size: 0.95rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .stats-full-grid p {
+    font-size: 0.78rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .facts-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .facts-grid .fact-card {
+    padding: 1.15rem 0.75rem !important;
+  }
+
+  .facts-grid .fact-number {
+    font-size: 1.6rem !important;
+  }
+
+  .facts-grid .fact-label {
+    font-size: 0.75rem !important;
+    line-height: 1.25 !important;
+  }
+}
+
 /* Category Filter Bar Horizontal Touch Scroll on Mobile */
 @media (max-width: 768px) {
   .categories-filter-bar {
@@ -783,6 +821,4 @@ img, svg {
     display: none !important;
   }
 }
-
-
 
