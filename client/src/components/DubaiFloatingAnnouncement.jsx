@@ -13,17 +13,17 @@ export default function DubaiFloatingAnnouncement() {
 
   useEffect(() => {
     setMounted(true);
-    // Check if user previously dismissed the announcement
-    const dismissed = localStorage.getItem('dismissDubaiAnnouncement') === 'true';
+    // Check if user previously dismissed the announcement in this session
+    const dismissed = sessionStorage.getItem('announcementDismissed') === 'true';
     if (dismissed) {
       setIsDismissed(true);
       return;
     }
 
-    // Delay before triggering entrance animation (800ms for smooth prompt load)
+    // Delay 1s after load before triggering entrance animation
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 800);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -36,8 +36,8 @@ export default function DubaiFloatingAnnouncement() {
   const handleClose = (e) => {
     e.stopPropagation();
     setIsClosing(true);
-    // Store dismissal in localStorage
-    localStorage.setItem('dismissDubaiAnnouncement', 'true');
+    // Store dismissal in sessionStorage
+    sessionStorage.setItem('announcementDismissed', 'true');
     // Hide component after exit transition (250ms)
     setTimeout(() => {
       setIsDismissed(true);
