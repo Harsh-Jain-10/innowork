@@ -615,17 +615,17 @@ export default function Career() {
       </section>
 
       {/* ══ 2. CULTURE — two-column split (matches Home "Why INNOWORQ" layout) ══ */}
-      <section style={{ padding: '7rem 0' }}>
+      <section style={{ padding: '3.5rem 0' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'start' }} className="career-split">
 
             {/* Left: culture copy */}
-            <ScrollReveal variant="fade-left" duration={0.8}>
+            <ScrollReveal variant="fade-up" duration={0.8}>
               <span style={{ color: 'var(--brand-blue)', fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
                 Why Work With Us
               </span>
-              <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--text-light-primary)', marginTop: '0.75rem', marginBottom: '1.25rem', lineHeight: 1.2, letterSpacing: '-0.5px', fontFamily: 'var(--font-heading)' }}>
-                Build a Future with<br />Limitless Possibilities
+              <h2 style={{ fontSize: 'clamp(1.75rem, 5vw, 2.2rem)', fontWeight: 800, color: 'var(--text-light-primary)', marginTop: '0.75rem', marginBottom: '1.25rem', lineHeight: 1.2, letterSpacing: '-0.5px', fontFamily: 'var(--font-heading)' }}>
+                Build a Future with Limitless Possibilities
               </h2>
 
               {[
@@ -660,7 +660,7 @@ export default function Career() {
             </ScrollReveal>
 
             {/* Right: Why Work Here cards (matches Home compliance-check layout) */}
-            <ScrollReveal variant="fade-right" delay={0.2} duration={0.8}>
+            <ScrollReveal variant="fade-up" delay={0.2} duration={0.8}>
               <motion.div
                 whileHover={{ y: -3 }}
                 transition={{ duration: 0.3 }}
@@ -712,7 +712,7 @@ export default function Career() {
       </section>
 
       {/* ══ 3. STATS BAND — solid brand-blue (identical to Home stats band) ══ */}
-      <section style={{ padding: '5rem 0', backgroundColor: 'var(--brand-blue)', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ padding: '3rem 0', backgroundColor: 'var(--brand-blue)', position: 'relative', overflow: 'hidden' }}>
         <div style={{
           position: 'absolute', inset: 0, opacity: 0.04,
           backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
@@ -762,7 +762,7 @@ export default function Career() {
       </section>
 
       {/* ══ 4. JOB OPENINGS ══ */}
-      <section ref={jobsRef} id="job-openings" style={{ padding: '7rem 0', backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
+      <section ref={jobsRef} id="job-openings" style={{ padding: '3.5rem 0', backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
         <div className="container">
 
           {/* Section header */}
@@ -866,11 +866,11 @@ export default function Career() {
       </section>
 
       {/* ══ 5. GENERAL APPLICATION CTA — matches Home CTA band style ══ */}
-      <section style={{ padding: '7rem 0', borderTop: '1px solid #e2e8f0' }}>
+      <section style={{ padding: '3.5rem 0', borderTop: '1px solid #e2e8f0' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }} className="career-cta-split">
 
-            <ScrollReveal variant="fade-left">
+            <ScrollReveal variant="fade-up">
               <span style={{ color: 'var(--brand-blue)', fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
                 Open Application
               </span>
@@ -900,7 +900,7 @@ export default function Career() {
             </ScrollReveal>
 
             {/* Right: visual checklist (matches Home's info panel) */}
-            <ScrollReveal variant="fade-right" delay={0.2}>
+            <ScrollReveal variant="fade-up" delay={0.2}>
               <motion.div
                 whileHover={{ y: -3 }}
                 transition={{ duration: 0.3 }}

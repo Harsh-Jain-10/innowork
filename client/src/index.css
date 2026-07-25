@@ -621,6 +621,7 @@ img, svg {
   .about-split,
   .about-split-row,
   .career-split,
+  .career-cta-split,
   .services-grid-layout,
   .solutions-grid-layout,
   .facts-figures-split,
@@ -632,7 +633,8 @@ img, svg {
     width: 100% !important;
   }
 
-  .stats-full-grid {
+  .stats-full-grid,
+  .career-stats-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 0.85rem !important;
   }
@@ -642,7 +644,9 @@ img, svg {
     gap: 1.25rem !important;
   }
 
-  .about-split > * {
+  .about-split > *,
+  .career-split > *,
+  .career-cta-split > * {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
