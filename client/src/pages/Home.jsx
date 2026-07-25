@@ -250,46 +250,7 @@ export default function Home() {
                 so you can scale your business.
               </motion.p>
 
-              {/* CTA Buttons */}
-              <motion.div
-                variants={itemVariants}
-                className="hero-buttons-flex"
-                style={{ marginTop: '2rem' }}
-              >
-                <Link 
-                  to="/support-desk" 
-                  className="btn" 
-                  style={{ 
-                    padding: '0.9rem 2.2rem', 
-                    fontSize: '1rem',
-                    backgroundColor: '#00f0ff',
-                    color: '#020617',
-                    border: '1px solid #00f0ff',
-                    fontWeight: 700,
-                    borderRadius: '6px',
-                    boxShadow: '0 4px 20px rgba(0, 240, 255, 0.35)',
-                    transition: 'all 0.3s ease'
-                  }}
-                >
-                  Open Support Ticket
-                </Link>
-                <Link 
-                  to="/services" 
-                  className="btn" 
-                  style={{ 
-                    padding: '0.9rem 2.2rem', 
-                    fontSize: '1rem',
-                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                    color: '#ffffff',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    fontWeight: 600,
-                    borderRadius: '6px',
-                    transition: 'all 0.3s ease'
-                  }}
-                >
-                  Explore Services Catalog
-                </Link>
-              </motion.div>
+
             </motion.div>
           </div>
 
@@ -621,21 +582,10 @@ export default function Home() {
                   }}>⚙️</div>
                   <h4 style={{ color: 'var(--text-light-primary)', fontSize: '1.1rem', fontWeight: 700 }}>{srv.name}</h4>
                   <p style={{ fontSize: '0.87rem', color: 'var(--text-light-secondary)', lineHeight: '1.65', flexGrow: 1 }}>{srv.desc}</p>
-                  <Link to={`/services#${srv.id}`} style={{ fontSize: '0.85rem', color: 'var(--brand-blue)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
-                    Learn more →
-                  </Link>
                 </motion.div>
               </StaggerItem>
             ))}
           </StaggerContainer>
-
-          <ScrollReveal variant="fade-up" delay={0.3}>
-            <div style={{ textAlign: 'center', marginTop: '3.5rem' }}>
-              <Link to="/services" className="btn btn-primary" style={{ padding: '0.85rem 2.5rem' }}>
-                View All 11 Services →
-              </Link>
-            </div>
-          </ScrollReveal>
         </div>
       </section>
 
@@ -746,90 +696,7 @@ export default function Home() {
         `}</style>
       </section>
 
-      {/* 6. CTA Band */}
-      <ScrollReveal variant="fade-up">
-        <section
-          style={{
-            padding: '7rem 0',
-            background: 'linear-gradient(135deg, var(--brand-blue) 0%, #052f5c 100%)',
-            textAlign: 'center',
-            color: '#ffffff',
-            position: 'relative',
-            overflow: 'hidden'
-          }}
-        >
-          {/* Subtle animated circles */}
-          <motion.div
-            animate={{ scale: [1, 1.15, 1], opacity: [0.07, 0.12, 0.07] }}
-            transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-            style={{ position: 'absolute', top: '-80px', right: '-80px', width: 400, height: 400, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.15)', pointerEvents: 'none' }}
-          />
-          <motion.div
-            animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
-            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-            style={{ position: 'absolute', bottom: '-60px', left: '-60px', width: 320, height: 320, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.12)', pointerEvents: 'none' }}
-          />
 
-          <div className="container" style={{ maxWidth: '740px', position: 'relative', zIndex: 1 }}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{
-                display: 'inline-block',
-                backgroundColor: 'rgba(255,255,255,0.1)',
-                padding: '0.4rem 1rem',
-                borderRadius: '50px',
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                letterSpacing: '1.5px',
-                textTransform: 'uppercase',
-                marginBottom: '1.5rem',
-                border: '1px solid rgba(255,255,255,0.2)'
-              }}
-            >
-              Get In Touch
-            </motion.div>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              style={{ fontSize: '2.5rem', fontWeight: 800, color: '#ffffff', marginBottom: '1.25rem', lineHeight: '1.2' }}
-            >
-              Establish Contact with<br />Noida Channel Desk
-            </motion.h2>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.25 }}
-              style={{ color: 'rgba(255,255,255,0.75)', lineHeight: '1.7', marginBottom: '3rem', fontSize: '1.05rem' }}
-            >
-              Whether you want to partner with us, enroll in our tech training programs,
-              or request active SLA-backed support desk coverage — we have structured channels to review your request.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap' }}
-            >
-              <Link to="/support-desk" className="btn" style={{ padding: '0.9rem 2rem', backgroundColor: '#ffffff', color: 'var(--brand-blue)', fontWeight: 700, borderRadius: '6px' }}>
-                🎫 Open Support Ticket
-              </Link>
-              <Link to="/partner-registration" className="btn" style={{ padding: '0.9rem 2rem', backgroundColor: 'transparent', color: '#ffffff', fontWeight: 700, borderRadius: '6px', border: '1px solid rgba(255,255,255,0.4)' }}>
-                🤝 Become a Partner
-              </Link>
-            </motion.div>
-          </div>
-        </section>
-      </ScrollReveal>
 
       <style>{`
         .responsive-hero-title { font-size: 3.75rem; }

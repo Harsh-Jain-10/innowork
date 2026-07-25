@@ -562,45 +562,7 @@ function SectorDetailDrawer({ sector, onClose }) {
           </div>
         </div>
 
-        {/* Drawer Sticky Footer */}
-        <div style={{
-          padding: '1.25rem 2rem',
-          borderTop: '1px solid #e2e8f0',
-          backgroundColor: '#f8fafc',
-          display: 'flex'
-        }}>
-          <Link
-            to={`/support-desk?sector=${sector.id}`}
-            onClick={onClose}
-            style={{
-              flex: 1,
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.5rem',
-              padding: '0.8rem 1.8rem',
-              background: 'rgba(9, 97, 159, 1)',
-              color: '#ffffff',
-              borderRadius: '8px',
-              fontSize: '0.9rem',
-              fontWeight: 700,
-              textDecoration: 'none',
-              textAlign: 'center',
-              boxShadow: '0 4px 14px rgba(9, 97, 159, 0.25)',
-              transition: 'all 0.2s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--brand-blue-hover)';
-              e.currentTarget.style.boxShadow = '0 6px 18px rgba(9, 97, 159, 0.35)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(9, 97, 159, 1)';
-              e.currentTarget.style.boxShadow = '0 4px 14px rgba(9, 97, 159, 0.25)';
-            }}
-          >
-            Discuss {sector.name} Architecture ➔
-          </Link>
-        </div>
+
       </motion.div>
     </div>
   );
@@ -775,61 +737,7 @@ export default function Industries() {
         )}
       </AnimatePresence>
 
-      {/* ── CTA Banner ── */}
-      <section style={{
-        background: 'linear-gradient(135deg, rgba(9,97,159,0.06) 0%, rgba(9,97,159,0.02) 100%)',
-        borderTop: '1px solid rgba(9,97,159,0.1)',
-        padding: '5rem 0',
-      }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <ScrollReveal variant="fade-up">
-            <h2 style={{
-              fontSize: '2.25rem', fontWeight: 800, color: 'rgba(12,20,35,0.9)',
-              letterSpacing: '-1px', marginBottom: '0.75rem',
-            }}>
-              Ready to Architect for Your Sector?
-            </h2>
-            <p style={{
-              fontSize: '1rem', color: 'rgba(30,40,60,0.6)',
-              maxWidth: '520px', margin: '0 auto 2.25rem', lineHeight: 1.7,
-            }}>
-              Our sector specialists will assess your IT infrastructure demands and
-              deliver a tailored SLA architecture roadmap.
-            </p>
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link
-                to="/support-desk"
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                  padding: '0.8rem 1.8rem',
-                  background: 'rgba(9,97,159,1)',
-                  color: '#fff', borderRadius: '8px',
-                  fontSize: '0.9rem', fontWeight: 700, textDecoration: 'none',
-                  boxShadow: '0 4px 16px rgba(9,97,159,0.2)',
-                }}
-              >
-                Request a Sector Assessment
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M2 7h10M7.5 2.5L12 7l-4.5 4.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-              <Link
-                to="/services"
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                  padding: '0.8rem 1.8rem',
-                  background: '#ffffff',
-                  color: 'rgba(9,97,159,0.85)', borderRadius: '8px',
-                  fontSize: '0.9rem', fontWeight: 700, textDecoration: 'none',
-                  border: '1px solid rgba(9,97,159,0.25)',
-                }}
-              >
-                Explore Services
-              </Link>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+
       
       {/* Responsive Styles Injection */}
       <style>{`

@@ -10,9 +10,6 @@ import Services from './pages/Services';
 import Industries from './pages/Industries';
 import Solutions from './pages/Solutions';
 import Blogs from './pages/Blogs';
-import Career from './pages/Career';
-import PartnerRegistration from './pages/PartnerRegistration';
-import SupportDesk from './pages/SupportDesk';
 
 // Scroll restoration helper
 function ScrollToTop() {
@@ -66,9 +63,6 @@ export default function App() {
             <Route path="/industries" element={<AnimatedPage><Industries /></AnimatedPage>} />
             <Route path="/solutions" element={<AnimatedPage><Solutions /></AnimatedPage>} />
             <Route path="/blogs" element={<AnimatedPage><Blogs /></AnimatedPage>} />
-            <Route path="/career" element={<AnimatedPage><Career /></AnimatedPage>} />
-            <Route path="/partner-registration" element={<AnimatedPage><PartnerRegistration /></AnimatedPage>} />
-            <Route path="/support-desk" element={<AnimatedPage><SupportDesk /></AnimatedPage>} />
           </Routes>
         </main>
         
