@@ -607,6 +607,18 @@ img, svg {
    MOBILE OPTIMIZATION ENGINE & TEXT ALIGNMENT FIXES
 ────────────────────────────────────────────────────────────── */
 
+/* Services & Solutions Desktop Alternating Layout */
+@media (min-width: 901px) {
+  .service-showcase-section:nth-child(even) .services-text-col,
+  .solution-showcase-section:nth-child(even) .solutions-text-col {
+    order: 2;
+  }
+  .service-showcase-section:nth-child(even) .services-visual-col,
+  .solution-showcase-section:nth-child(even) .solutions-visual-col {
+    order: 1;
+  }
+}
+
 /* Force containers to enforce safe horizontal padding on all screen sizes */
 @media (max-width: 900px) {
   .container {
@@ -658,11 +670,20 @@ img, svg {
     box-sizing: border-box !important;
   }
 
+  .services-grid-layout,
+  .solutions-grid-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+
   /* Ensure text heading appears FIRST, visual image SECOND below text consistently on mobile */
   .services-text-col,
   .solutions-text-col {
     order: 1 !important;
     width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .services-visual-col,
@@ -670,6 +691,30 @@ img, svg {
     order: 2 !important;
     width: 100% !important;
     margin-top: 1rem !important;
+    box-sizing: border-box !important;
+  }
+
+  .service-actions-flex,
+  .solution-actions-flex {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  .service-actions-flex a,
+  .solution-actions-flex a {
+    width: 100% !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .service-details-subgrid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .service-showcase-section,
+  .solution-showcase-section {
+    padding: 2.5rem 0 !important;
   }
 
   .services-visual-col img,

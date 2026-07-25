@@ -167,10 +167,9 @@ function ServiceSection({ srv, index }) {
           <div className="services-text-col" style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '1.25rem',
-            order: isEven ? 1 : 2
+            gap: '1.25rem'
           }}>
-            <ScrollReveal variant={isEven ? 'fade-left' : 'fade-right'}>
+            <ScrollReveal variant="fade-up">
               {/* Large Aesthetic Section Number */}
               <div style={{
                 fontSize: '4.5rem',
@@ -188,7 +187,7 @@ function ServiceSection({ srv, index }) {
 
               {/* Title */}
               <h2 style={{
-                fontSize: '2.1rem',
+                fontSize: 'clamp(1.6rem, 4.5vw, 2.1rem)',
                 fontWeight: 800,
                 color: 'rgba(12,20,35,0.92)',
                 letterSpacing: '-0.8px',
@@ -287,10 +286,9 @@ function ServiceSection({ srv, index }) {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            position: 'relative',
-            order: isEven ? 2 : 1
+            position: 'relative'
           }}>
-            <ScrollReveal variant={isEven ? 'fade-right' : 'fade-left'} style={{ width: '100%' }}>
+            <ScrollReveal variant="fade-up" style={{ width: '100%' }}>
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
