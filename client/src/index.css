@@ -314,8 +314,8 @@ html {
 /* Facts & Figures Band */
 .facts-figures-band {
   background: #e0f2fe; /* Light blue accent background */
-  padding: 3.5rem 2rem;
-  margin: 1.5rem 0;
+  padding: 1.5rem 1.75rem;
+  margin: 0;
   border-radius: 12px;
   box-shadow: inset 0 2px 8px rgba(9, 97, 159, 0.02);
 }
@@ -661,8 +661,8 @@ img, svg {
 
   /* Facts figures band mobile padding */
   .facts-figures-band {
-    padding: 2rem 1.5rem !important;
-    margin: 0.5rem 0 !important;
+    padding: 1.25rem 1.25rem !important;
+    margin: 0 !important;
   }
 
   /* Welcome card mobile padding */
