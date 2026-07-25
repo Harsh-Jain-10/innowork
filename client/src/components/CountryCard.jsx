@@ -1,162 +1,166 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function CountryCard({ location, index = 0, isMobile = false }) {
-  const { title, subtitle, flag, position, isHQ } = location;
+export default function CountryCard({ location, index = 0 }) {
+  const { country, role, description, flag, isHQ } = location;
 
-  if (isMobile) {
-    // Mobile list variant (rendered below the illustration)
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4, delay: index * 0.08 }}
-        whileHover={{ y: -3, boxShadow: '0 8px 20px rgba(37, 99, 235, 0.12)' }}
-        style={{
-          backgroundColor: '#ffffff',
-          borderRadius: '12px',
-          padding: '1rem 1.25rem',
-          border: isHQ ? '1.5px solid rgba(37, 99, 235, 0.4)' : '1px solid #e2e8f0',
-          boxShadow: '0 4px 12px rgba(15, 23, 42, 0.04)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '1rem',
-          position: 'relative'
-        }}
-      >
-        <span style={{ fontSize: '1.6rem', lineHeight: 1 }}>{flag}</span>
-        <div style={{ flexGrow: 1 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-            <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#0f172a', margin: 0 }}>
-              {title}
-            </h4>
-            {isHQ && (
-              <span style={{
-                backgroundColor: 'rgba(37, 99, 235, 0.1)',
-                color: '#2563eb',
-                fontSize: '0.65rem',
-                fontWeight: 800,
-                padding: '0.15rem 0.45rem',
-                borderRadius: '4px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px'
-              }}>
-                HQ
-              </span>
-            )}
-          </div>
-          <p style={{ fontSize: '0.78rem', color: '#64748b', margin: '0.15rem 0 0 0', fontWeight: 500 }}>
-            {subtitle}
-          </p>
-        </div>
-        <div style={{
-          width: '8px',
-          height: '8px',
-          borderRadius: '50%',
-          backgroundColor: isHQ ? '#2563eb' : '#0ea5e9',
-          boxShadow: `0 0 8px ${isHQ ? '#2563eb' : '#0ea5e9'}`
-        }} />
-      </motion.div>
-    );
-  }
-
-  // Desktop overlay card variant (positioned absolutely around illustration)
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.3 + index * 0.12, ease: 'easeOut' }}
+      initial={{ opacity: 0, x: 25, y: 15 }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.5, delay: index * 0.12, ease: 'easeOut' }}
       style={{
-        position: 'absolute',
-        top: position.top,
-        left: position.left,
-        transform: 'translate(-50%, -100%)',
-        zIndex: 10
+        position: 'relative',
+        paddingLeft: '2.5rem',
+        marginBottom: '1.75rem'
       }}
+      className="timeline-item"
     >
-      {/* Node pulse dot at position location */}
-      <div style={{
-        position: 'absolute',
-        bottom: '-12px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        pointerEvents: 'none'
-      }}>
-        {/* Pulsing Outer Glow Ring */}
-        <motion.div
-          animate={{ scale: [1, 1.8, 1], opacity: [0.6, 0.1, 0.6] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: index * 0.3 }}
-          style={{
-            position: 'absolute',
-            width: isHQ ? '28px' : '22px',
-            height: isHQ ? '28px' : '22px',
-            borderRadius: '50%',
-            backgroundColor: isHQ ? 'rgba(37, 99, 235, 0.4)' : 'rgba(14, 165, 233, 0.4)',
-            boxShadow: `0 0 16px ${isHQ ? '#2563eb' : '#0ea5e9'}`
-          }}
-        />
-        {/* Solid Center Node */}
-        <div style={{
-          width: isHQ ? '14px' : '10px',
-          height: isHQ ? '14px' : '10px',
-          borderRadius: '50%',
-          backgroundColor: isHQ ? '#3b82f6' : '#38bdf8',
-          border: '2px solid #ffffff',
-          boxShadow: `0 0 12px ${isHQ ? '#2563eb' : '#38bdf8'}`,
-          zIndex: 2
-        }} />
-      </div>
-
-      {/* Floating Card Body with Gentle Floating Animation */}
-      <motion.div
-        animate={{ y: [0, -4, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: index * 0.5 }}
-        whileHover={{ y: -6, scale: 1.04, boxShadow: '0 14px 28px rgba(15, 23, 42, 0.28), 0 0 15px rgba(37, 99, 235, 0.3)' }}
+      {/* Node Dot on Vertical Line */}
+      <div 
         style={{
-          backgroundColor: 'rgba(15, 23, 42, 0.88)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          border: isHQ ? '1.5px solid rgba(59, 130, 246, 0.6)' : '1px solid rgba(255, 255, 255, 0.15)',
-          borderRadius: '10px',
-          padding: '0.55rem 0.85rem',
-          color: '#ffffff',
-          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+          position: 'absolute',
+          left: 0,
+          top: '1.25rem',
+          transform: 'translateX(-50%)',
+          zIndex: 5,
           display: 'flex',
           alignItems: 'center',
-          gap: '0.6rem',
-          whiteSpace: 'nowrap',
-          cursor: 'default',
-          transition: 'border-color 0.3s ease'
+          justifyContent: 'center'
         }}
       >
-        <span style={{ fontSize: '1.25rem', lineHeight: 1 }}>{flag}</span>
-        <div>
-          <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#f8fafc', lineHeight: 1.15, display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-            <span>{title}</span>
-            {isHQ && (
-              <span style={{
-                backgroundColor: '#2563eb',
-                color: '#ffffff',
-                fontSize: '0.58rem',
-                fontWeight: 900,
-                padding: '0.1rem 0.35rem',
-                borderRadius: '4px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px'
+        {isHQ ? (
+          <>
+            <motion.div
+              animate={{ scale: [1, 1.8, 1], opacity: [0.6, 0.1, 0.6] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+              style={{
+                position: 'absolute',
+                width: '26px',
+                height: '26px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(37, 99, 235, 0.35)',
+                boxShadow: '0 0 16px rgba(37, 99, 235, 0.6)'
+              }}
+            />
+            <div style={{
+              width: '14px',
+              height: '14px',
+              borderRadius: '50%',
+              backgroundColor: '#2563eb',
+              border: '3px solid #ffffff',
+              boxShadow: '0 0 10px rgba(37, 99, 235, 0.8)'
+            }} />
+          </>
+        ) : (
+          <>
+            <motion.div
+              animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0.1, 0.5] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: index * 0.4 }}
+              style={{
+                position: 'absolute',
+                width: '18px',
+                height: '18px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(14, 165, 233, 0.3)',
+                boxShadow: '0 0 10px rgba(14, 165, 233, 0.4)'
+              }}
+            />
+            <div style={{
+              width: '10px',
+              height: '10px',
+              borderRadius: '50%',
+              backgroundColor: '#0ea5e9',
+              border: '2px solid #ffffff',
+              boxShadow: '0 0 8px rgba(14, 165, 233, 0.6)'
+            }} />
+          </>
+        )}
+      </div>
+
+      {/* Glassmorphic Card Container */}
+      <motion.div
+        whileHover={{ 
+          y: -4, 
+          boxShadow: isHQ 
+            ? '0 14px 30px rgba(37, 99, 235, 0.16), 0 2px 8px rgba(0, 0, 0, 0.04)' 
+            : '0 12px 28px rgba(15, 23, 42, 0.09), 0 2px 6px rgba(37, 99, 235, 0.08)',
+          borderColor: isHQ ? '#1d4ed8' : '#2563eb'
+        }}
+        transition={{ duration: 0.25, ease: 'easeOut' }}
+        style={{
+          backgroundColor: '#ffffff',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          borderRadius: '14px',
+          padding: '1.25rem 1.5rem',
+          border: isHQ ? '2px solid #2563eb' : '1px solid #e2e8f0',
+          boxShadow: isHQ 
+            ? '0 8px 24px rgba(37, 99, 235, 0.1), 0 2px 6px rgba(0, 0, 0, 0.02)'
+            : '0 6px 20px rgba(15, 23, 42, 0.04)',
+          position: 'relative',
+          overflow: 'hidden',
+          transition: 'all 0.25s ease'
+        }}
+      >
+        {/* Top Accent Stripe for HQ */}
+        {isHQ && (
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '3px',
+            background: 'linear-gradient(90deg, #2563eb 0%, #60a5fa 100%)'
+          }} />
+        )}
+
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <span style={{ fontSize: '1.75rem', lineHeight: 1 }}>{flag}</span>
+            <div>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0f172a', margin: 0, lineHeight: 1.2 }}>
+                {country}
+              </h3>
+              <span style={{ 
+                fontSize: '0.8rem', 
+                fontWeight: 700, 
+                color: isHQ ? '#2563eb' : '#0284c7', 
+                marginTop: '0.2rem', 
+                display: 'inline-block' 
               }}>
-                HQ
+                {role}
               </span>
-            )}
+            </div>
           </div>
-          <div style={{ fontSize: '0.68rem', fontWeight: 600, color: isHQ ? '#60a5fa' : '#94a3b8', marginTop: '0.12rem' }}>
-            {subtitle}
-          </div>
+
+          {isHQ && (
+            <span style={{
+              backgroundColor: '#2563eb',
+              color: '#ffffff',
+              fontSize: '0.65rem',
+              fontWeight: 900,
+              padding: '0.2rem 0.55rem',
+              borderRadius: '50px',
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
+              boxShadow: '0 2px 8px rgba(37, 99, 235, 0.3)'
+            }}>
+              HQ
+            </span>
+          )}
         </div>
+
+        <p style={{
+          fontSize: '0.86rem',
+          color: '#475569',
+          margin: '0.75rem 0 0 0',
+          lineHeight: 1.55,
+          fontWeight: 500
+        }}>
+          {description}
+        </p>
       </motion.div>
     </motion.div>
   );

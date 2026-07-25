@@ -1,38 +1,46 @@
 export const GLOBAL_PRESENCE_LOCATIONS = [
   {
     id: 'india',
-    title: 'India',
-    subtitle: 'Headquarters',
+    country: 'India',
+    role: 'Headquarters',
+    description: 'Pan-India Operations & Global Command Center',
     flag: '🇮🇳',
-    position: { top: '52%', left: '67.5%' },
     isHQ: true
   },
   {
-    id: 'dubai',
-    title: 'Dubai, UAE',
-    subtitle: 'Regional Hub',
-    flag: '🇦🇪',
-    position: { top: '43%', left: '55%' }
+    id: 'uae',
+    country: 'United Arab Emirates',
+    role: 'Regional Hub',
+    description: 'Dubai Operations & Middle East Channel Desk',
+    flag: '🇦🇪'
   },
   {
     id: 'uk',
-    title: 'United Kingdom',
-    subtitle: 'Operations',
-    flag: '🇬🇧',
-    position: { top: '26%', left: '45%' }
+    country: 'United Kingdom',
+    role: 'Enterprise Operations',
+    description: 'EMEA Enterprise Support & Managed Operations',
+    flag: '🇬🇧'
   },
   {
     id: 'japan',
-    title: 'Japan',
-    subtitle: 'Technology Delivery',
-    flag: '🇯🇵',
-    position: { top: '34%', left: '78%' }
+    country: 'Japan',
+    role: 'Technology Delivery',
+    description: 'East Asia Technology & Engineering Center',
+    flag: '🇯🇵'
   },
   {
     id: 'nz',
-    title: 'New Zealand',
-    subtitle: 'Regional Delivery',
-    flag: '🇳🇿',
-    position: { top: '68%', left: '85%' }
+    country: 'New Zealand',
+    role: 'Regional Delivery',
+    description: 'APAC Regional Delivery & SLA Operations',
+    flag: '🇳🇿'
   }
+];
+
+export const GLOBAL_CAPABILITIES = [
+  '24×7 Support',
+  'Global Delivery',
+  'Multi-Vendor Infrastructure Support',
+  'Cloud & Hybrid IT',
+  'Cybersecurity'
 ];
