@@ -217,7 +217,7 @@ export default function Home() {
               <motion.h1
                 variants={itemVariants}
                 style={{
-                  fontSize: '3.75rem',
+                  fontSize: 'clamp(1.85rem, 5.5vw, 3.75rem)',
                   lineHeight: '1.12',
                   fontWeight: 800,
                   color: '#ffffff',
@@ -528,6 +528,7 @@ export default function Home() {
               <motion.div
                 whileHover={{ y: -3 }}
                 transition={{ duration: 0.3 }}
+                className="compliance-card-padding"
                 style={{
                   backgroundColor: '#ffffff',
                   padding: '3rem 2.5rem',

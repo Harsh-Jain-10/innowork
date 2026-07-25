@@ -545,7 +545,7 @@ export default function Career() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.65, delay: 0.12, ease: [0.25, 0.8, 0.25, 1] }}
             style={{
-              fontSize: 'clamp(2.4rem, 5vw, 3.8rem)',
+              fontSize: 'clamp(1.85rem, 5.5vw, 3.2rem)',
               fontWeight: 800,
               color: 'var(--text-light-primary)',
               fontFamily: 'var(--font-heading)',
@@ -782,7 +782,7 @@ export default function Career() {
 
           {/* Filters — clean inline row */}
           <ScrollReveal variant="fade-up" delay={0.1}>
-            <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
+            <div className="career-filters-flex" style={{ display: 'flex', gap: '0.75rem', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
               {[
                 { value: categoryFilter, setter: setCategoryFilter, options: CATEGORIES, id: 'cat-filter' },
                 { value: typeFilter,     setter: setTypeFilter,     options: TYPES,       id: 'type-filter' },

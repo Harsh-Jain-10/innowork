@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import worldMapSvg from '../assets/maps/world-map.svg.svg';
+import WorldMapVector from './WorldMapVector';
 
 export default function GlobalPresence() {
   return (
@@ -15,7 +15,7 @@ export default function GlobalPresence() {
     >
       <div className="container">
         
-        {/* Responsive Grid: Tightened horizontal gap (~1.5rem / ~24px, saving ~100px) */}
+        {/* Responsive Grid: Tightened horizontal gap (~1.5rem / ~24px) */}
         <div 
           className="global-presence-grid"
           style={{
@@ -94,7 +94,7 @@ export default function GlobalPresence() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: GlobalMapContainer without boxed panel look, featuring soft blue radial glow behind India */}
+          {/* RIGHT COLUMN: GlobalMapContainer with inline WorldMapVector and soft blue radial glow behind India */}
           <div 
             id="GlobalMapContainer"
             className="GlobalMapContainer"
@@ -120,17 +120,15 @@ export default function GlobalPresence() {
                 overflow: 'visible'
               }}
             >
-              {/* Uncropped SVG World Map occupying 95% visualization width */}
-              <img 
-                src={worldMapSvg} 
-                alt="World Map" 
+              {/* Native Vector SVG World Map with monochrome professional styling */}
+              <WorldMapVector 
                 style={{
                   width: '95%',
                   maxWidth: '95%',
                   height: 'auto',
                   objectFit: 'contain',
                   display: 'block'
-                }}
+                }} 
               />
 
               {/* OVERLAY SVG FOR ELEGANT NON-OVERLAPPING BEZIER LINES (2.5px STROKE) */}
@@ -212,10 +210,10 @@ export default function GlobalPresence() {
                   zIndex: 20
                 }}
               >
-                {/* Single Pulse Ring +40% larger (54px) */}
+                {/* Single Pulse Ring */}
                 <div className="india-pin-pulse-ring" />
 
-                {/* Inner Glowing Blue Pin Dot +40% larger (20px) */}
+                {/* Inner Glowing Blue Pin Dot */}
                 <div 
                   style={{
                     width: '20px',
@@ -277,7 +275,7 @@ export default function GlobalPresence() {
                 </div>
               </div>
 
-              {/* FLOATING GLASS CARD 2: UNITED KINGDOM (REPOSITIONED AWAY FROM TOP EDGE) */}
+              {/* FLOATING GLASS CARD 2: UNITED KINGDOM */}
               <div 
                 className="global-hub-card"
                 style={{
@@ -384,7 +382,7 @@ export default function GlobalPresence() {
       </div>
 
       <style>{`
-        /* India Pin Pulse: Single pulse ring (+40% size: 54px) */
+        /* India Pin Pulse: Single pulse ring */
         .india-pin-pulse-ring {
           position: absolute;
           width: 54px;
@@ -410,7 +408,7 @@ export default function GlobalPresence() {
           }
         }
 
-        /* Connection Lines: Draws ONCE (2.5px stroke gradient) */
+        /* Connection Lines: Draws ONCE */
         .bezier-draw-path {
           stroke-dasharray: 600;
           stroke-dashoffset: 600;

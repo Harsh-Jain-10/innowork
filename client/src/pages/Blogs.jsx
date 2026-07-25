@@ -131,7 +131,7 @@ export default function Blogs() {
                 ENGINEERING JOURNAL &amp; INSIGHTS
               </span>
               <h1 style={{ 
-                fontSize: '3.5rem', 
+                fontSize: 'clamp(1.85rem, 5.5vw, 3.5rem)', 
                 fontWeight: 800, 
                 marginTop: '0.5rem', 
                 marginBottom: '1.25rem', 
@@ -143,7 +143,7 @@ export default function Blogs() {
               </h1>
               <p style={{ 
                 color: 'rgba(255,255,255,0.75)', 
-                fontSize: '1.15rem', 
+                fontSize: 'clamp(0.95rem, 2.5vw, 1.15rem)', 
                 lineHeight: '1.7', 
                 fontWeight: 400 
               }}>
@@ -166,7 +166,7 @@ export default function Blogs() {
         boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)'
       }}>
         <div className="container">
-          <div className="category-bar-flex" style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div className="category-bar-flex categories-filter-bar" style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
             {CATEGORIES.map((cat) => {
               const isActive = activeCategory === cat;
               return (

@@ -4,8 +4,6 @@ import ScrollReveal, { StaggerContainer, StaggerItem, CountUp } from '../compone
 import configData from '../data/companyConfig.json';
 import DigitalWaveBackground from '../components/DigitalWaveBackground';
 
-// Import GlobalConnectivitySphere component
-import GlobalConnectivitySphere from '../components/GlobalConnectivitySphere';
 import GlobalPresence from '../components/GlobalPresence';
 
 // Import certifications
@@ -103,7 +101,7 @@ export default function About() {
         <div className="container" style={{ position: 'relative', zIndex: 3 }}>
           <ScrollReveal variant="fade-down" duration={0.6}>
             <div style={{ textAlign: 'center' }}>
-              <h1 style={{ fontSize: '3rem', fontWeight: 800, color: '#ffffff', marginTop: '0', marginBottom: '1rem', letterSpacing: '-0.03em' }}>
+              <h1 style={{ fontSize: 'clamp(1.85rem, 5.5vw, 3rem)', fontWeight: 800, color: '#ffffff', marginTop: '0', marginBottom: '1rem', letterSpacing: '-0.03em' }}>
                 About INNOWORQ
               </h1>
               <p style={{ color: 'rgba(255, 255, 255, 0.7)', maxWidth: '700px', margin: '0 auto', fontSize: '1.15rem', lineHeight: '1.6', fontWeight: 500 }}>
@@ -115,40 +113,47 @@ export default function About() {
       </div>
 
       {/* Welcome Section */}
-      <div className="container" style={{ padding: '6rem 0' }}>
-        <div className="about-split-row" style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '4rem', alignItems: 'center' }}>
-          <ScrollReveal variant="fade-left" duration={0.8}>
-            <GlobalConnectivitySphere />
-          </ScrollReveal>
-
-          <ScrollReveal variant="fade-right" duration={0.8} delay={0.2}>
-            <div>
-              <span style={{ color: 'var(--brand-blue)', fontWeight: 700, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', display: 'block', marginBottom: '0.5rem' }}>
-                Who We Are
-              </span>
-              <h2 style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--text-light-primary)', marginBottom: '1.5rem', lineHeight: '1.2' }}>
-                Welcome To INNOWORQ
-              </h2>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', color: 'var(--text-light-secondary)', lineHeight: '1.7', fontSize: '1.02rem' }}>
-                <p>
-                  INNOWORQ is an IT Infrastructure and Solutions Company that enables enterprises across industries with a Pan India presence and providing services in many countries outside India.
-                </p>
-                <p>
-                  As an IT services and transformation partner, INNOWORQ brings extensive domain and technology expertise to drive competitive differentiation with measurable business outcomes.
-                </p>
-                <p>
-                  Since our inception 2019 INNOWORQ has lead a customer-centric approach and utilizes all delivery models, be it in supporting the infrastructure or their integration or deployment.
-                </p>
-                <p>
-                  Working with over a 100 clients and supported by over 300 engineers, spread across India and across 5 countries, INNOWORQ's innovative approach and client focus led to INR 20 Cr revenue in FY2023-24, with 20-25% YoY growth.
-                </p>
-                <p style={{ fontWeight: 700, color: 'var(--text-light-primary)', borderLeft: '3px solid var(--brand-blue)', paddingLeft: '1rem', marginTop: '0.5rem' }}>
-                  INNOWORQ is ISO 9001:2015 and ISO/IEC 27001:2022 Certified.
-                </p>
+      <div className="container" style={{ padding: '4.5rem 1rem' }}>
+        <ScrollReveal variant="fade-up" duration={0.8}>
+          <div style={{
+            backgroundColor: '#ffffff',
+            borderRadius: '16px',
+            padding: '3rem 2.5rem',
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 10px 30px rgba(9, 97, 159, 0.04)',
+            maxWidth: '960px',
+            margin: '0 auto'
+          }} className="welcome-card-padding">
+            <h2 style={{ fontSize: 'clamp(1.75rem, 4.5vw, 2.35rem)', fontWeight: 800, color: 'var(--text-light-primary)', marginTop: 0, marginBottom: '1.25rem', lineHeight: '1.25' }}>
+              Welcome To INNOWORQ
+            </h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', color: 'var(--text-light-secondary)', lineHeight: '1.75', fontSize: '1.02rem' }}>
+              <p>
+                INNOWORQ is an IT Infrastructure and Solutions Company that enables enterprises across industries with a Pan-India presence and providing services in many countries outside India.
+              </p>
+              <p>
+                As an IT services and transformation partner, INNOWORQ brings extensive domain and technology expertise to drive competitive differentiation with measurable business outcomes.
+              </p>
+              <p>
+                Since our inception in 2019, INNOWORQ has led a customer-centric approach and utilizes all delivery models, be it in supporting infrastructure, integration, or global deployment.
+              </p>
+              <p>
+                Working with over 100 clients and supported by over 300 engineers across India and 5 countries, INNOWORQ's innovative approach led to INR 20 Cr revenue in FY2023-24, with 20-25% YoY growth.
+              </p>
+              <div style={{
+                fontWeight: 700,
+                color: 'var(--brand-blue)',
+                backgroundColor: 'rgba(9, 97, 159, 0.06)',
+                borderLeft: '4px solid var(--brand-blue)',
+                padding: '1rem 1.25rem',
+                borderRadius: '0 8px 8px 0',
+                marginTop: '0.75rem'
+              }}>
+                🛡️ INNOWORQ is ISO 9001:2015 and ISO/IEC 27001:2022 Certified.
               </div>
             </div>
-          </ScrollReveal>
-        </div>
+          </div>
+        </ScrollReveal>
       </div>
 
       {/* Core Stats Band */}
@@ -160,7 +165,7 @@ export default function About() {
                 Performance Metrics
               </span>
               <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-light-primary)', marginTop: '0.5rem' }}>
-                Our Growth, Your Trust—Numbers That Matters
+                Our Growth, Your Trust—Numbers That Matter
               </h2>
             </div>
           </ScrollReveal>
@@ -205,16 +210,16 @@ export default function About() {
       <GlobalPresence />
 
       {/* Facts & Figures Band */}
-      <div className="container" style={{ margin: '6rem auto' }}>
+      <div className="container" style={{ margin: '4rem auto' }}>
         <div className="facts-figures-band">
           <div className="facts-figures-split">
-            <ScrollReveal variant="fade-left">
-              <div>
-                <h2 style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--brand-blue)', marginBottom: '1.25rem', letterSpacing: '-0.02em' }}>
-                  FACTS & FIGURES
+            <ScrollReveal variant="fade-up">
+              <div style={{ padding: '0 0.5rem' }}>
+                <h2 style={{ fontSize: 'clamp(1.75rem, 4.5vw, 2.25rem)', fontWeight: 800, color: 'var(--brand-blue)', marginBottom: '1.25rem' }}>
+                  FACTS &amp; FIGURES
                 </h2>
-                <p style={{ color: 'var(--text-light-secondary)', fontSize: '1.05rem', lineHeight: '1.6', fontWeight: 500 }}>
-                  We envisage to build better products and offer high-end services, inventing disruptive business models to provide strategic business advantage. Check our important facts & figures.
+                <p style={{ color: 'var(--text-light-secondary)', fontSize: '1.02rem', lineHeight: '1.65', fontWeight: 500 }}>
+                  We envisage to build better products and offer high-end services, inventing disruptive business models to provide strategic business advantage. Check our important facts &amp; figures.
                 </p>
               </div>
             </ScrollReveal>

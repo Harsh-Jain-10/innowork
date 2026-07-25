@@ -11,11 +11,11 @@ const presets = {
     visible: { opacity: 1, y: 0 }
   },
   'fade-left': {
-    hidden: { opacity: 0, x: -60 },
+    hidden: { opacity: 0, x: -24 },
     visible: { opacity: 1, x: 0 }
   },
   'fade-right': {
-    hidden: { opacity: 0, x: 60 },
+    hidden: { opacity: 0, x: 24 },
     visible: { opacity: 1, x: 0 }
   },
   'scale': {

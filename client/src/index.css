@@ -26,10 +26,10 @@
   padding: 0;
 }
 
-html, body {
+html, body, #root {
   width: 100%;
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   font-family: var(--font-body);
   background-color: var(--bg-light);
   color: var(--text-light-primary);
@@ -37,9 +37,14 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
+.GlobalMapContainer,
+.global-presence-section-wrapper {
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
 h1, h2, h3, h4, h5, h6, p, span, a, div {
   overflow-wrap: break-word;
-  word-break: break-word;
 }
 
 /* Scrollbar Styling */
@@ -597,5 +602,114 @@ img, svg {
     display: inline-block !important;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   MOBILE OPTIMIZATION ENGINE & TEXT ALIGNMENT FIXES
+────────────────────────────────────────────────────────────── */
+
+/* Force containers to enforce safe horizontal padding on all screen sizes */
+@media (max-width: 900px) {
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Grid Layouts to Single Column Stack */
+  .about-split,
+  .about-split-row,
+  .career-split,
+  .services-grid-layout,
+  .solutions-grid-layout,
+  .facts-figures-split,
+  .home-cards-subgrid,
+  .global-presence-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Ensure text heading appears FIRST, visual image SECOND below text consistently on mobile */
+  .services-text-col,
+  .solutions-text-col {
+    order: 1 !important;
+    width: 100% !important;
+  }
+
+  .services-visual-col,
+  .solutions-visual-col {
+    order: 2 !important;
+    width: 100% !important;
+    margin-top: 1rem !important;
+  }
+
+  .services-visual-col img,
+  .solutions-visual-col img {
+    width: 100% !important;
+    max-height: 260px !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+  }
+
+  /* Hero glass card mobile adjustments */
+  .hero-glass-card {
+    padding: 1.5rem 1.25rem !important;
+    max-width: 100% !important;
+    border-radius: 12px !important;
+  }
+
+  /* Facts figures band mobile padding */
+  .facts-figures-band {
+    padding: 2rem 1.5rem !important;
+    margin: 2rem 0 !important;
+  }
+
+  /* Welcome card mobile padding */
+  .welcome-card-padding {
+    padding: 1.5rem 1.25rem !important;
+  }
+
+  /* Title & Heading mobile font size clamps */
+  .responsive-hero-title {
+    font-size: clamp(1.85rem, 6vw, 2.5rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Action Buttons on Mobile */
+  .hero-buttons-flex,
+  .service-actions-flex,
+  .solution-actions-flex {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.75rem !important;
+  }
+
+  .hero-buttons-flex .btn,
+  .service-actions-flex a,
+  .solution-actions-flex a,
+  .hero-buttons-flex a {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* Category Filter Bar Horizontal Touch Scroll on Mobile */
+@media (max-width: 768px) {
+  .categories-filter-bar {
+    display: flex !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    padding-bottom: 0.5rem !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 0.5rem !important;
+    scrollbar-width: none !important;
+  }
+  .categories-filter-bar::-webkit-scrollbar {
+    display: none !important;
+  }
+}
+
 
 
