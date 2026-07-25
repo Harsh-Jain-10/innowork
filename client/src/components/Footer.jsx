@@ -75,10 +75,6 @@ export default function Footer() {
                   <span style={{ color: 'var(--text-light-primary)', fontSize: '0.9rem', lineHeight: '1.5', display: 'block', fontWeight: 500 }}>{configData.contact.address}</span>
                 </div>
                 <div>
-                  <span style={{ display: 'block', fontSize: '0.8rem', color: '#64748b', textTransform: 'uppercase' }}>Toll Free</span>
-                  <span style={{ color: 'var(--text-light-primary)', fontWeight: 700 }}>{configData.contact.phone}</span>
-                </div>
-                <div>
                   <span style={{ display: 'block', fontSize: '0.8rem', color: '#64748b', textTransform: 'uppercase' }}>Sales &amp; Queries</span>
                   <span style={{ color: 'var(--brand-blue)', fontWeight: 700 }}>{configData.contact.email}</span>
                 </div>
