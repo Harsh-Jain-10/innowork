@@ -1,47 +1,79 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import WorldMapVector from './WorldMapVector';
+import { motion } from 'framer-motion';
+import CountryCard from './CountryCard';
+import { GLOBAL_PRESENCE_LOCATIONS } from '../data/globalPresenceData';
+import globalPresenceHero from '../assets/illustrations/global-presence-hero.webp';
 
 export default function GlobalPresence() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <section 
       id="global-presence-section"
       className="global-presence-section-wrapper"
       style={{
-        padding: '3rem 0 0 0',
+        padding: '5rem 0',
         backgroundColor: '#ffffff',
-        position: 'relative'
+        position: 'relative',
+        overflow: 'hidden'
       }}
     >
+      {/* Subtle Enterprise Blueprint Background Grid */}
+      <div 
+        style={{
+          position: 'absolute',
+          inset: 0,
+          opacity: 0.02,
+          pointerEvents: 'none',
+          backgroundImage: `radial-gradient(circle, rgba(37, 99, 235, 0.6) 1px, transparent 1px)`,
+          backgroundSize: '32px 32px'
+        }}
+      />
+
       <div className="container">
         
-        {/* Responsive Grid: Tightened horizontal gap (~1.5rem / ~24px) */}
+        {/* Two-Column Enterprise Grid Layout */}
         <div 
           className="global-presence-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: '44% 56%',
-            gap: '1.5rem',
+            gridTemplateColumns: isMobile ? '1fr' : '42% 58%',
+            gap: '2.5rem',
             alignItems: 'center'
           }}
         >
           
-          {/* LEFT COLUMN: Text Content & CTA */}
-          <div 
+          {/* LEFT COLUMN: Enterprise Copy & Action CTA */}
+          <motion.div 
             className="global-presence-left-col"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
             style={{
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
-              paddingRight: '0.5rem'
+              paddingRight: isMobile ? 0 : '1rem'
             }}
           >
             <span style={{
               display: 'inline-block',
               color: '#2563eb',
-              fontSize: '0.75rem',
+              fontSize: '0.78rem',
               fontWeight: 800,
-              letterSpacing: '1.5px',
+              letterSpacing: '2px',
               textTransform: 'uppercase',
               marginBottom: '0.85rem'
             }}>
@@ -49,411 +81,162 @@ export default function GlobalPresence() {
             </span>
 
             <h2 style={{
-              fontSize: '2.85rem',
+              fontSize: 'clamp(2.2rem, 4vw, 3rem)',
               fontWeight: 900,
               lineHeight: 1.15,
               color: '#0f172a',
-              letterSpacing: '-0.025em',
-              marginBottom: '1.15rem'
+              letterSpacing: '-0.03em',
+              marginBottom: '1.25rem'
             }}>
-              Expanding Beyond <br />
-              <span style={{ color: '#2563eb' }}>Borders</span>
+              Global IT Infrastructure &amp; Delivery Footprint
             </h2>
 
             <p style={{
               fontSize: '1.02rem',
-              lineHeight: 1.6,
+              lineHeight: 1.65,
               color: '#475569',
-              marginBottom: '1.5rem',
-              maxWidth: '460px'
+              marginBottom: '2rem',
+              maxWidth: '480px'
             }}>
-              Delivering enterprise IT infrastructure, cloud operations, and managed services with 24×7 support across key international markets.
+              Delivering SLA-backed IT infrastructure management, multi-cloud operations, 
+              and 24×7 NOC/SOC support across critical technology hubs worldwide.
             </p>
 
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <Link 
                 to="/services" 
+                className="global-presence-cta-btn"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.6rem',
+                  gap: '0.65rem',
                   backgroundColor: '#2563eb',
                   color: '#ffffff',
-                  padding: '0.85rem 1.85rem',
+                  padding: '0.9rem 2rem',
                   borderRadius: '50px',
                   fontWeight: 700,
-                  fontSize: '0.92rem',
-                  boxShadow: '0 4px 14px rgba(37, 99, 235, 0.25)',
+                  fontSize: '0.94rem',
+                  boxShadow: '0 4px 16px rgba(37, 99, 235, 0.3)',
                   textDecoration: 'none',
-                  transition: 'all 0.25s ease'
+                  transition: 'all 0.3s ease'
                 }}
               >
                 <span>Explore Our Services</span>
-                <span>→</span>
+                <span style={{ transition: 'transform 0.2s ease' }}>→</span>
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* RIGHT COLUMN: GlobalMapContainer with inline WorldMapVector and soft blue radial glow behind India */}
-          <div 
+          {/* RIGHT COLUMN: World Map Illustration & React Overlay Components */}
+          <motion.div 
             id="GlobalMapContainer"
             className="GlobalMapContainer"
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
             style={{
               width: '100%',
               position: 'relative',
               display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              background: 'radial-gradient(circle at 67.5% 47%, rgba(37, 99, 235, 0.16) 0%, rgba(37, 99, 235, 0.03) 42%, transparent 72%)',
+              backgroundColor: '#0b1329',
               borderRadius: '24px',
-              padding: '0.5rem 0'
+              padding: '1.5rem',
+              boxShadow: '0 20px 45px rgba(11, 19, 41, 0.25), 0 0 30px rgba(37, 99, 235, 0.1)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              overflow: 'hidden'
             }}
           >
+            {/* Illustration Frame Container */}
             <div 
-              className="world-map"
               style={{
+                position: 'relative',
                 width: '100%',
+                aspectRatio: '1.33',
+                maxHeight: '520px',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-                overflow: 'visible'
+                justifyContent: 'center'
               }}
             >
-              {/* Native Vector SVG World Map with monochrome professional styling */}
-              <WorldMapVector 
+              {/* Pure Local WebP Illustration (No embedded text, badges, or labels) */}
+              <img
+                src={globalPresenceHero}
+                alt="INNOWORQ Global Presence Enterprise Map"
+                loading="lazy"
                 style={{
-                  width: '95%',
-                  maxWidth: '95%',
-                  height: 'auto',
-                  objectFit: 'contain',
-                  display: 'block'
-                }} 
-              />
-
-              {/* OVERLAY SVG FOR ELEGANT NON-OVERLAPPING BEZIER LINES (2.5px STROKE) */}
-              <svg 
-                viewBox="0 0 1000 500" 
-                style={{
-                  position: 'absolute',
-                  inset: 0,
                   width: '100%',
                   height: '100%',
-                  pointerEvents: 'none',
-                  overflow: 'visible'
+                  objectFit: 'contain',
+                  display: 'block',
+                  userSelect: 'none',
+                  pointerEvents: 'none'
                 }}
-              >
-                <defs>
-                  <linearGradient id="arcGradientBlue" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#2563eb" stopOpacity="0.95" />
-                    <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.85" />
-                  </linearGradient>
-                </defs>
+              />
 
-                {/* SMOOTH BEZIER 1: INDIA (675, 235) -> DUBAI (565, 215) */}
-                <path 
-                  d="M 675 235 Q 610 165 565 215" 
-                  fill="none" 
-                  stroke="url(#arcGradientBlue)" 
-                  strokeWidth="2.5" 
-                  strokeLinecap="round"
-                  className="bezier-draw-path"
+              {/* DESKTOP: Independent React Country Cards Overlaid Above Map */}
+              {!isMobile && GLOBAL_PRESENCE_LOCATIONS.map((location, index) => (
+                <CountryCard 
+                  key={location.id} 
+                  location={location} 
+                  index={index} 
+                  isMobile={false} 
                 />
-                <circle cx="565" cy="215" r="4.5" fill="#2563eb" />
-
-                {/* SMOOTH BEZIER 2: INDIA (675, 235) -> UK (480, 135) */}
-                <path 
-                  d="M 675 235 Q 520 75 480 135" 
-                  fill="none" 
-                  stroke="url(#arcGradientBlue)" 
-                  strokeWidth="2.5" 
-                  strokeLinecap="round"
-                  className="bezier-draw-path"
-                />
-                <circle cx="480" cy="135" r="4.5" fill="#2563eb" />
-
-                {/* SMOOTH BEZIER 3: INDIA (675, 235) -> JAPAN (850, 180) */}
-                <path 
-                  d="M 675 235 Q 790 100 850 180" 
-                  fill="none" 
-                  stroke="url(#arcGradientBlue)" 
-                  strokeWidth="2.5" 
-                  strokeLinecap="round"
-                  className="bezier-draw-path"
-                />
-                <circle cx="850" cy="180" r="4.5" fill="#2563eb" />
-
-                {/* SMOOTH BEZIER 4: INDIA (675, 235) -> NEW ZEALAND (940, 415) */}
-                <path 
-                  d="M 675 235 Q 910 290 940 415" 
-                  fill="none" 
-                  stroke="url(#arcGradientBlue)" 
-                  strokeWidth="2.5" 
-                  strokeLinecap="round"
-                  className="bezier-draw-path"
-                />
-                <circle cx="940" cy="415" r="4.5" fill="#2563eb" />
-              </svg>
-
-              {/* OVERLAY: INDIA HQ MARKER (+40% SIZE: 20px DOT, 54px RING) */}
-              <div 
-                className="india-pin-overlay"
-                style={{
-                  position: 'absolute',
-                  left: '67.5%',
-                  top: '47%',
-                  transform: 'translate(-50%, -50%)',
-                  pointerEvents: 'none',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  zIndex: 20
-                }}
-              >
-                {/* Single Pulse Ring */}
-                <div className="india-pin-pulse-ring" />
-
-                {/* Inner Glowing Blue Pin Dot */}
-                <div 
-                  style={{
-                    width: '20px',
-                    height: '20px',
-                    borderRadius: '50%',
-                    backgroundColor: '#2563eb',
-                    border: '3.5px solid #ffffff',
-                    boxShadow: '0 0 20px rgba(37, 99, 235, 0.95), 0 2px 10px rgba(0, 0, 0, 0.3)',
-                    position: 'relative',
-                    zIndex: 2
-                  }}
-                />
-              </div>
-
-              {/* FLOATING GLASS CARD 1: DUBAI (NEW REGIONAL HUB + GREEN NEW PILL) */}
-              <div 
-                className="global-hub-card"
-                style={{
-                  position: 'absolute',
-                  left: '36%',
-                  top: '36%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.96)',
-                  backdropFilter: 'blur(12px)',
-                  border: '1px solid rgba(255, 255, 255, 0.95)',
-                  boxShadow: '0 10px 24px rgba(15, 23, 42, 0.09), 0 2px 6px rgba(37, 99, 235, 0.08)',
-                  borderRadius: '10px',
-                  padding: '0.5rem 0.75rem',
-                  maxWidth: '155px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  zIndex: 10,
-                  pointerEvents: 'none',
-                  whiteSpace: 'nowrap'
-                }}
-              >
-                <span style={{ fontSize: '1.25rem', lineHeight: 1 }}>🇦🇪</span>
-                <div>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.15, display: 'flex', alignItems: 'center' }}>
-                    <span>Dubai</span>
-                    <span style={{
-                      backgroundColor: '#10b981',
-                      color: '#ffffff',
-                      fontSize: '0.55rem',
-                      fontWeight: 800,
-                      padding: '0.1rem 0.35rem',
-                      borderRadius: '4px',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px',
-                      marginLeft: '0.35rem',
-                      display: 'inline-block'
-                    }}>
-                      NEW
-                    </span>
-                  </div>
-                  <div style={{ fontSize: '0.67rem', fontWeight: 600, color: '#2563eb', marginTop: '0.1rem' }}>
-                    New Regional Hub
-                  </div>
-                </div>
-              </div>
-
-              {/* FLOATING GLASS CARD 2: UNITED KINGDOM */}
-              <div 
-                className="global-hub-card"
-                style={{
-                  position: 'absolute',
-                  left: '24%',
-                  top: '14%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.96)',
-                  backdropFilter: 'blur(12px)',
-                  border: '1px solid rgba(255, 255, 255, 0.95)',
-                  boxShadow: '0 10px 24px rgba(15, 23, 42, 0.09), 0 2px 6px rgba(37, 99, 235, 0.08)',
-                  borderRadius: '10px',
-                  padding: '0.5rem 0.75rem',
-                  maxWidth: '150px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  zIndex: 10,
-                  pointerEvents: 'none',
-                  whiteSpace: 'nowrap'
-                }}
-              >
-                <span style={{ fontSize: '1.25rem', lineHeight: 1 }}>🇬🇧</span>
-                <div>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.15 }}>
-                    United Kingdom
-                  </div>
-                  <div style={{ fontSize: '0.67rem', fontWeight: 600, color: '#2563eb', marginTop: '0.1rem' }}>
-                    Enterprise Support
-                  </div>
-                </div>
-              </div>
-
-              {/* FLOATING GLASS CARD 3: JAPAN */}
-              <div 
-                className="global-hub-card"
-                style={{
-                  position: 'absolute',
-                  left: '86%',
-                  top: '18%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.96)',
-                  backdropFilter: 'blur(12px)',
-                  border: '1px solid rgba(255, 255, 255, 0.95)',
-                  boxShadow: '0 10px 24px rgba(15, 23, 42, 0.09), 0 2px 6px rgba(37, 99, 235, 0.08)',
-                  borderRadius: '10px',
-                  padding: '0.5rem 0.75rem',
-                  maxWidth: '145px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  zIndex: 10,
-                  pointerEvents: 'none',
-                  whiteSpace: 'nowrap'
-                }}
-              >
-                <span style={{ fontSize: '1.25rem', lineHeight: 1 }}>🇯🇵</span>
-                <div>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.15 }}>
-                    Japan
-                  </div>
-                  <div style={{ fontSize: '0.67rem', fontWeight: 600, color: '#2563eb', marginTop: '0.1rem' }}>
-                    Technology Hub
-                  </div>
-                </div>
-              </div>
-
-              {/* FLOATING GLASS CARD 4: NEW ZEALAND */}
-              <div 
-                className="global-hub-card"
-                style={{
-                  position: 'absolute',
-                  left: '88%',
-                  top: '78%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.96)',
-                  backdropFilter: 'blur(12px)',
-                  border: '1px solid rgba(255, 255, 255, 0.95)',
-                  boxShadow: '0 10px 24px rgba(15, 23, 42, 0.09), 0 2px 6px rgba(37, 99, 235, 0.08)',
-                  borderRadius: '10px',
-                  padding: '0.5rem 0.75rem',
-                  maxWidth: '145px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  zIndex: 10,
-                  pointerEvents: 'none',
-                  whiteSpace: 'nowrap'
-                }}
-              >
-                <span style={{ fontSize: '1.25rem', lineHeight: 1 }}>🇳🇿</span>
-                <div>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.15 }}>
-                    New Zealand
-                  </div>
-                  <div style={{ fontSize: '0.67rem', fontWeight: 600, color: '#2563eb', marginTop: '0.1rem' }}>
-                    Regional Delivery
-                  </div>
-                </div>
-              </div>
-
+              ))}
             </div>
-          </div>
+          </motion.div>
 
         </div>
+
+        {/* MOBILE: Country Cards Vertical Grid Below Illustration */}
+        {isMobile && (
+          <div 
+            style={{
+              marginTop: '2rem',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '1rem'
+            }}
+          >
+            {GLOBAL_PRESENCE_LOCATIONS.map((location, index) => (
+              <CountryCard 
+                key={location.id} 
+                location={location} 
+                index={index} 
+                isMobile={true} 
+              />
+            ))}
+          </div>
+        )}
 
       </div>
 
       <style>{`
-        /* India Pin Pulse: Single pulse ring */
-        .india-pin-pulse-ring {
-          position: absolute;
-          width: 54px;
-          height: 54px;
-          border-radius: 50%;
-          background-color: rgba(37, 99, 235, 0.35);
-          box-shadow: 0 0 22px rgba(37, 99, 235, 0.75);
-          animation: indiaPinPulse 1.2s ease-out forwards;
+        .global-presence-cta-btn:hover {
+          background-color: #1d4ed8 !important;
+          transform: translateY(-2px);
+          boxShadow: 0 8px 22px rgba(37, 99, 235, 0.4) !important;
         }
-
-        @keyframes indiaPinPulse {
-          0% {
-            transform: scale(0.4);
-            opacity: 0;
-          }
-          50% {
-            transform: scale(1.5);
-            opacity: 0.85;
-          }
-          100% {
-            transform: scale(2.1);
-            opacity: 0.15;
-          }
+        .global-presence-cta-btn:hover span:last-child {
+          transform: translateX(4px);
         }
-
-        /* Connection Lines: Draws ONCE */
-        .bezier-draw-path {
-          stroke-dasharray: 600;
-          stroke-dashoffset: 600;
-          animation: drawHubPaths 1.5s ease-out forwards;
-        }
-
-        @keyframes drawHubPaths {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
-
-        /* Hub Cards: Fade Upward ONCE after 1.5s */
-        .global-hub-card {
-          opacity: 0;
-          animation: hubCardFadeUp 0.6s ease-out 1.5s forwards;
-        }
-
-        @keyframes hubCardFadeUp {
-          from {
-            opacity: 0;
-            transform: translate(-50%, calc(-50% + 12px));
-          }
-          to {
-            opacity: 1;
-            transform: translate(-50%, -50%);
-          }
-        }
-
         @media (max-width: 1024px) {
-          .global-presence-section-wrapper {
-            padding: 56px 0 !important;
-          }
           .global-presence-grid {
             grid-template-columns: 1fr !important;
-            gap: 2.25rem !important;
+            gap: 2rem !important;
           }
           .global-presence-left-col {
             padding-right: 0 !important;
-            text-align: center !important;
-            align-items: center !important;
-          }
-          .global-hub-card {
-            padding: 0.4rem 0.6rem !important;
-            max-width: 130px !important;
+            text-align: center;
+            align-items: center;
           }
         }
       `}</style>
