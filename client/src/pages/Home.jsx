@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ScrollReveal, { StaggerContainer, StaggerItem, CountUp } from '../components/ScrollReveal';
 import configData from '../data/companyConfig.json';
-import { Canvas } from '@react-three/fiber';
-import { EffectComposer, Bloom, DepthOfField, Vignette } from '@react-three/postprocessing';
 import MotherboardScene from '../components/WebGLMotherboard/MotherboardScene';
 
 
