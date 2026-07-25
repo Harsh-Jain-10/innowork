@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo.png';
 import configData from '../data/companyConfig.json';
 import AnnouncementCenter from './AnnouncementCenter';
+import InnoworqMonogram from './InnoworqMonogram';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -191,7 +192,7 @@ export default function Navbar() {
         {/* Right Nav Action Items (Announcement Bell & Support Desk CTA) */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }} className="nav-right-actions">
           
-          {/* Top-Right Announcement Branded "I" Icon */}
+          {/* Top-Right Announcement Branded "IW" Monogram Icon */}
           <button
             type="button"
             onClick={() => setIsAnnouncementOpen(true)}
@@ -200,51 +201,37 @@ export default function Navbar() {
             title="INNOWORQ Announcement Center"
             style={{
               position: 'relative',
-              width: '38px',
-              height: '38px',
+              width: '48px',
+              height: '48px',
               borderRadius: '50%',
-              backgroundColor: '#f1f5f9',
-              border: '1px solid #cbd5e1',
+              backgroundColor: '#ffffff',
+              border: '1px solid #e2e8f0',
+              boxShadow: '0 2px 8px rgba(15, 23, 42, 0.05)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              color: '#2563eb',
-              transition: 'all 0.2s ease',
+              transition: 'all 250ms ease',
               padding: 0
             }}
-            className="nav-announcement-bell"
+            className="nav-announcement-btn"
           >
-            {/* Custom Branded INNOWORQ "I" Symbol */}
-            <span 
-              style={{
-                fontFamily: 'var(--font-heading), system-ui, -apple-system, sans-serif',
-                fontSize: '1.25rem',
-                fontWeight: 900,
-                fontStyle: 'italic',
-                color: '#2563eb',
-                lineHeight: 1,
-                display: 'inline-block',
-                transform: 'skewX(-4deg)',
-                userSelect: 'none'
-              }}
-            >
-              I
-            </span>
+            {/* Custom Branded INNOWORQ "IW" Monogram Symbol */}
+            <InnoworqMonogram size={24} />
 
-            {/* Unread Red Notification Badge */}
+            {/* Unread Blue Notification Badge Dot */}
             {hasUnreadAnnouncements && (
               <span
                 style={{
                   position: 'absolute',
-                  top: '1px',
-                  right: '1px',
-                  width: '9px',
-                  height: '9px',
+                  top: '2px',
+                  right: '2px',
+                  width: '10px',
+                  height: '10px',
                   borderRadius: '50%',
-                  backgroundColor: '#ef4444',
+                  backgroundColor: '#2563eb',
                   border: '2px solid #ffffff',
-                  boxShadow: '0 0 8px rgba(239, 68, 68, 0.85)'
+                  boxShadow: '0 0 10px rgba(37, 99, 235, 0.75)'
                 }}
                 title="New Announcement Available"
               />
@@ -368,25 +355,13 @@ export default function Navbar() {
                 marginTop: '0.5rem'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                <span 
-                  style={{
-                    fontFamily: 'var(--font-heading), system-ui, -apple-system, sans-serif',
-                    fontSize: '1.15rem',
-                    fontWeight: 900,
-                    fontStyle: 'italic',
-                    color: '#2563eb',
-                    lineHeight: 1,
-                    display: 'inline-block'
-                  }}
-                >
-                  I
-                </span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <InnoworqMonogram size={22} />
                 <span>Announcement Center</span>
               </div>
               {hasUnreadAnnouncements && (
                 <span style={{
-                  backgroundColor: '#ef4444',
+                  backgroundColor: '#2563eb',
                   color: '#ffffff',
                   fontSize: '0.7rem',
                   fontWeight: 800,
@@ -405,10 +380,13 @@ export default function Navbar() {
       </AnimatePresence>
 
       <style>{`
-        .nav-announcement-bell:hover {
-          background-color: #e2e8f0 !important;
-          color: #0284c7 !important;
-          transform: scale(1.05);
+        .nav-announcement-btn {
+          transition: all 250ms ease !important;
+        }
+        .nav-announcement-btn:hover {
+          transform: translateY(-2px);
+          border-color: #2563eb !important;
+          box-shadow: 0 6px 20px rgba(37, 99, 235, 0.2) !important;
         }
         @media (max-width: 1024px) {
           .desktop-nav-links, .desktop-cta {
