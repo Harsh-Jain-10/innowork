@@ -3,6 +3,38 @@ import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ScrollReveal from '../components/ScrollReveal';
 
+const SERVICES_LIST = [
+  'General / All Services',
+  'IT Infrastructure Support',
+  'HCS & Cloud Services',
+  'Virtualization & OS Solutions',
+  'Database Solutions',
+  'Network & Security Solutions',
+  'Data Security & Backup Solutions',
+  'Custom Application & Software Support',
+  'SAP Technical & Functional Support',
+  'Managed IT Services & SLAs',
+  'IT Consulting & Advisory Services',
+  'Corporate IT Trainings'
+];
+
+const SOLUTIONS_LIST = [
+  'General / All Solutions',
+  'Cloud & Hybrid IT Solutions',
+  'IT Infrastructure Management & Operations',
+  'Cybersecurity & Secure Perimeter Hardening',
+  'Data Backup & Disaster Recovery (DR) Readiness',
+  'SAP & Enterprise Application Lifecycle Support',
+  'Database High Availability & Performance Optimization',
+  'Enterprise Network Architecture & SD-WAN',
+  'Virtualization, VDI & Desktop Modernization',
+  'Managed IT SLA Support & 24/7 Operations',
+  'IT Consulting, Advisory & Compliance Governance',
+  'Corporate IT Training & Capability Enablement',
+  'Data Center Migration & Relocation Services',
+  'Hardware Break-Fix & Multi-Vendor Maintenance'
+];
+
 export default function SupportDesk() {
   const [searchParams] = useSearchParams();
   const querySolution = searchParams.get('solution');
@@ -14,6 +46,8 @@ export default function SupportDesk() {
     contactEmail: '',
     contactNumber: '',
     companyName: '',
+    requestedService: 'General / All Services',
+    requestedSolution: 'General / All Solutions',
     systemModel: '',
     serialNumber: '',
     problemDesc: '',
@@ -26,16 +60,27 @@ export default function SupportDesk() {
 
   useEffect(() => {
     let initialDesc = '';
-    if (querySolution) {
-      initialDesc = `Inquiry regarding Solution: ${querySolution.toUpperCase().replace(/-/g, ' ')}`;
-    } else if (queryService) {
+    let foundService = 'General / All Services';
+    let foundSolution = 'General / All Solutions';
+
+    if (queryService) {
+      const match = SERVICES_LIST.find(s => s.toLowerCase().includes(queryService.toLowerCase().replace(/-/g, ' ')));
+      if (match) foundService = match;
       initialDesc = `Inquiry regarding Service: ${queryService.toUpperCase().replace(/-/g, ' ')}`;
+    } else if (querySolution) {
+      const match = SOLUTIONS_LIST.find(s => s.toLowerCase().includes(querySolution.toLowerCase().replace(/-/g, ' ')));
+      if (match) foundSolution = match;
+      initialDesc = `Inquiry regarding Solution: ${querySolution.toUpperCase().replace(/-/g, ' ')}`;
     } else if (querySector) {
       initialDesc = `Inquiry regarding Industry Sector: ${querySector.toUpperCase().replace(/-/g, ' ')}`;
     }
-    if (initialDesc) {
-      setFormData(prev => ({ ...prev, problemDesc: initialDesc }));
-    }
+
+    setFormData(prev => ({
+      ...prev,
+      requestedService: foundService,
+      requestedSolution: foundSolution,
+      problemDesc: initialDesc || prev.problemDesc
+    }));
   }, [querySolution, queryService, querySector]);
 
   const [status, setStatus] = useState({
@@ -189,10 +234,51 @@ export default function SupportDesk() {
               </div>
             </div>
 
-            {/* Section 2: Asset details */}
+            {/* Section 2: Service & Solution Selection */}
             <div>
               <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-light-primary)', marginBottom: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem' }}>
-                2. System &amp; Asset Profile
+                2. Target Service &amp; Solution Request
+              </h3>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }} className="form-grid">
+                <div>
+                  <label style={{ display: 'block', fontWeight: 600, fontSize: '0.88rem', marginBottom: '0.4rem', color: 'var(--text-light-primary)' }}>
+                    Select Service Domain
+                  </label>
+                  <select
+                    name="requestedService"
+                    value={formData.requestedService}
+                    onChange={handleChange}
+                    style={{ width: '100%', padding: '0.65rem', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '0.88rem', background: '#ffffff' }}
+                  >
+                    {SERVICES_LIST.map((srv, idx) => (
+                      <option key={idx} value={srv}>{srv}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label style={{ display: 'block', fontWeight: 600, fontSize: '0.88rem', marginBottom: '0.4rem', color: 'var(--text-light-primary)' }}>
+                    Select Solution Architecture
+                  </label>
+                  <select
+                    name="requestedSolution"
+                    value={formData.requestedSolution}
+                    onChange={handleChange}
+                    style={{ width: '100%', padding: '0.65rem', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '0.88rem', background: '#ffffff' }}
+                  >
+                    {SOLUTIONS_LIST.map((sol, idx) => (
+                      <option key={idx} value={sol}>{sol}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* Section 3: Asset details */}
+            <div>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-light-primary)', marginBottom: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem' }}>
+                3. System &amp; Asset Profile
               </h3>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.5rem' }} className="form-grid-3">
@@ -226,10 +312,10 @@ export default function SupportDesk() {
               </div>
             </div>
 
-            {/* Section 3: Location details */}
+            {/* Section 4: Location details */}
             <div>
               <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-light-primary)', marginBottom: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem' }}>
-                3. Dispatch Facility Location
+                4. Dispatch Facility Location
               </h3>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '1.5rem' }} className="form-grid">
@@ -244,10 +330,10 @@ export default function SupportDesk() {
               </div>
             </div>
 
-            {/* Section 4: Fault description */}
+            {/* Section 5: Fault description */}
             <div>
               <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-light-primary)', marginBottom: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem' }}>
-                4. Issue Summary
+                5. Issue Summary
               </h3>
 
               <div>

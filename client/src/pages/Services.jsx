@@ -469,33 +469,17 @@ export default function Services() {
                 to="/support-desk"
                 className="btn"
                 style={{
-                  padding: '0.85rem 2rem',
+                  padding: '0.85rem 2.25rem',
                   background: 'rgba(9,97,159,1)',
                   color: '#ffffff',
                   borderRadius: '8px',
                   fontWeight: 700,
-                  fontSize: '0.9rem',
+                  fontSize: '0.92rem',
                   textDecoration: 'none',
                   boxShadow: '0 4px 16px rgba(9,97,159,0.2)'
                 }}
               >
-                Discuss Operations Audit
-              </Link>
-              <Link
-                to="/support-desk"
-                className="btn"
-                style={{
-                  padding: '0.85rem 2rem',
-                  background: '#ffffff',
-                  color: 'rgba(9,97,159,0.85)',
-                  border: '1px solid rgba(9,97,159,0.25)',
-                  borderRadius: '8px',
-                  fontWeight: 700,
-                  fontSize: '0.9rem',
-                  textDecoration: 'none'
-                }}
-              >
-                Contact Operations Team
+                Request Service Consultation
               </Link>
             </div>
           </ScrollReveal>

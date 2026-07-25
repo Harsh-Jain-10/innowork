@@ -588,45 +588,29 @@ export default function Solutions() {
                 to="/support-desk"
                 className="btn"
                 style={{
-                  padding: '0.85rem 2rem',
+                  padding: '0.85rem 2.25rem',
                   background: 'rgba(9,97,159,1)',
                   color: '#ffffff',
                   borderRadius: '8px',
                   fontWeight: 700,
-                  fontSize: '0.9rem',
+                  fontSize: '0.92rem',
                   textDecoration: 'none',
                   boxShadow: '0 4px 16px rgba(9,97,159,0.2)'
                 }}
               >
-                Schedule Technical Consultation
-              </Link>
-              <Link
-                to="/support-desk"
-                className="btn"
-                style={{
-                  padding: '0.85rem 2rem',
-                  background: '#ffffff',
-                  color: 'rgba(9,97,159,0.85)',
-                  border: '1px solid rgba(9,97,159,0.25)',
-                  borderRadius: '8px',
-                  fontWeight: 700,
-                  fontSize: '0.9rem',
-                  textDecoration: 'none'
-                }}
-              >
-                Contact Solutions Team
+                Request Technical Consultation
               </Link>
               <Link
                 to="/partner-registration"
                 className="btn"
                 style={{
                   padding: '0.85rem 2rem',
-                  background: 'transparent',
-                  color: 'rgba(9,97,159,0.9)',
-                  border: '1px solid rgba(9,97,159,0.4)',
+                  background: '#ffffff',
+                  color: 'rgba(9,97,159,0.85)',
+                  border: '1px solid rgba(9,97,159,0.3)',
                   borderRadius: '8px',
                   fontWeight: 700,
-                  fontSize: '0.9rem',
+                  fontSize: '0.92rem',
                   textDecoration: 'none'
                 }}
               >
