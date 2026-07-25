@@ -216,7 +216,7 @@ function ServiceSection({ srv, index }) {
                 background: '#ffffff',
                 border: '1px solid rgba(9,97,159,0.1)',
                 boxShadow: '0 4px 12px rgba(9,97,159,0.02)',
-                marginBottom: '1.5rem'
+                marginBottom: 0
               }}>
                 <div>
                   <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', display: 'block', marginBottom: '0.4rem', letterSpacing: '0.5px' }}>Service Standards</span>
@@ -234,49 +234,6 @@ function ServiceSection({ srv, index }) {
                     ))}
                   </ul>
                 </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="service-actions-flex" style={{ display: 'flex', gap: '1rem' }}>
-                <Link
-                  to={`/support-desk?service=${srv.id}`}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0.7rem 1.4rem',
-                    background: 'rgba(9,97,159,1)',
-                    color: '#ffffff',
-                    borderRadius: '6px',
-                    fontSize: '0.85rem',
-                    fontWeight: 700,
-                    textDecoration: 'none',
-                    boxShadow: '0 4px 14px rgba(9,97,159,0.18)'
-                  }}
-                >
-                  Discuss this Service
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M2.5 6H9.5M6 2.5L9.5 6L6 9.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </Link>
-                <Link
-                  to="/support-desk"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0.7rem 1.4rem',
-                    background: '#ffffff',
-                    color: 'rgba(9,97,159,0.85)',
-                    border: '1px solid rgba(9,97,159,0.2)',
-                    borderRadius: '6px',
-                    fontSize: '0.85rem',
-                    fontWeight: 700,
-                    textDecoration: 'none'
-                  }}
-                >
-                  Request Audit
-                </Link>
               </div>
             </ScrollReveal>
           </div>

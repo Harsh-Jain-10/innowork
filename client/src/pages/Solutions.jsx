@@ -350,7 +350,7 @@ function SolutionSection({ sol, index }) {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '0.8rem',
-                marginBottom: '1.5rem'
+                marginBottom: 0
               }}>
                 <div>
                   <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', display: 'block', marginBottom: '0.3rem', letterSpacing: '0.5px' }}>Technology Scope</span>
@@ -366,49 +366,6 @@ function SolutionSection({ sol, index }) {
                   <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', display: 'block', marginBottom: '0.2rem', letterSpacing: '0.5px' }}>Expected Outcomes</span>
                   <span style={{ fontSize: '0.82rem', color: 'rgba(30,40,60,0.75)', lineHeight: 1.4, display: 'block' }}>{sol.benefits}</span>
                 </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="solution-actions-flex" style={{ display: 'flex', gap: '1rem' }}>
-                <Link
-                  to={`/support-desk?solution=${sol.id}`}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0.7rem 1.4rem',
-                    background: 'rgba(9,97,159,1)',
-                    color: '#ffffff',
-                    borderRadius: '6px',
-                    fontSize: '0.85rem',
-                    fontWeight: 700,
-                    textDecoration: 'none',
-                    boxShadow: '0 4px 14px rgba(9,97,159,0.18)'
-                  }}
-                >
-                  Discuss this Solution
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M2.5 6H9.5M6 2.5L9.5 6L6 9.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </Link>
-                <Link
-                  to="/support-desk"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0.7rem 1.4rem',
-                    background: '#ffffff',
-                    color: 'rgba(9,97,159,0.85)',
-                    border: '1px solid rgba(9,97,159,0.2)',
-                    borderRadius: '6px',
-                    fontSize: '0.85rem',
-                    fontWeight: 700,
-                    textDecoration: 'none'
-                  }}
-                >
-                  Technical Inquiry
-                </Link>
               </div>
             </ScrollReveal>
           </div>
