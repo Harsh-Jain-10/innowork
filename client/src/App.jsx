@@ -16,15 +16,25 @@ import SupportDesk from './pages/SupportDesk';
 
 // Scroll restoration helper
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'auto'
-    });
-  }, [pathname]);
+    if (hash) {
+      const timer = setTimeout(() => {
+        const targetElement = document.querySelector(hash);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'auto'
+      });
+    }
+  }, [pathname, hash]);
 
   return null;
 }

@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ScrollReveal, { StaggerContainer, StaggerItem, CountUp } from '../components/ScrollReveal';
 import configData from '../data/companyConfig.json';
-import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { EffectComposer, Bloom, DepthOfField, Vignette } from '@react-three/postprocessing';
 import MotherboardScene from '../components/WebGLMotherboard/MotherboardScene';
-import HubAnnouncementSection from '../components/HubAnnouncementSection';
+import DubaiFloatingAnnouncement from '../components/DubaiFloatingAnnouncement';
 
-// Import OEM partner logos
+
+
+
+
 import dellLogo from '../assets/logos/dell.svg';
 import microsoftLogo from '../assets/logos/microsoft.svg';
 import ibmLogo from '../assets/logos/ibm.svg';
@@ -476,8 +478,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Newest Regional Hub Announcement Section (Teaser) */}
-      <HubAnnouncementSection />
 
       {/* 3. Core Strengths & Certifications */}
       <section style={{ padding: '3.5rem 0' }}>
@@ -926,6 +926,9 @@ export default function Home() {
           .stats-full-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
+
+      {/* Floating Dubai Announcement Widget (Home Page Only) */}
+      <DubaiFloatingAnnouncement />
     </div>
   );
 }
