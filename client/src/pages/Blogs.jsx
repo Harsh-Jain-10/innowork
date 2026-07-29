@@ -2,7 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '../components/ScrollReveal';
 import { blogArticles } from '../data/blogData';
-import { DatacenterIllustration, SecurityIllustration } from '../components/BlogIllustrations';
+import { 
+  DatacenterIllustration, 
+  SecurityIllustration, 
+  CloudIllustration, 
+  MVISIllustration, 
+  ERPIllustration, 
+  AIIllustration 
+} from '../components/BlogIllustrations';
 
 // Helper to calculate reading time based on word count
 const calculateReadingTime = (text) => {
@@ -24,12 +31,13 @@ const renderBlogImage = (article, style) => {
     );
   }
   const id = article.id;
-  if (id === 'datacenter-transformation') {
-    return <DatacenterIllustration style={style} />;
-  }
-  if (id === 'securing-multicloud-frameworks') {
-    return <SecurityIllustration style={style} />;
-  }
+  if (id === 'future-of-enterprise-it-infrastructure') return <DatacenterIllustration style={style} />;
+  if (id === 'cybersecurity-best-practices-modern-businesses') return <SecurityIllustration style={style} />;
+  if (id === 'cloud-transformation-building-scalable-digital-enterprise') return <CloudIllustration style={style} />;
+  if (id === 'multi-vendor-infrastructure-support-benefits') return <MVISIllustration style={style} />;
+  if (id === 'erp-modernization-strategies-growing-organizations') return <ERPIllustration style={style} />;
+  if (id === 'ai-automation-digital-transformation-enterprise-it') return <AIIllustration style={style} />;
+
   return <DatacenterIllustration style={style} />;
 };
 
@@ -413,10 +421,22 @@ export default function Blogs() {
                         .trim()
                         .split('\n\n')
                         .map(p => {
-                          if (p.trim().startsWith('###')) {
-                            return `<h3 style="font-size: 1.45rem; font-weight: 700; color: #0f172a; margin-top: 2rem; margin-bottom: 1rem; font-family: var(--font-heading);">${p.replace('###', '').trim()}</h3>`;
+                          const block = p.trim();
+                          if (block.startsWith('## ')) {
+                            return `<h2 style="font-size: 1.75rem; font-weight: 800; color: #0f172a; margin-top: 2.25rem; margin-bottom: 1rem; font-family: var(--font-heading);">${block.replace(/^## /, '')}</h2>`;
                           }
-                          return `<p style="font-size: 1.05rem; color: #334155; line-height: 1.75; margin-bottom: 1.5rem; font-family: var(--font-body);">${p.trim()}</p>`;
+                          if (block.startsWith('### ')) {
+                            return `<h3 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-top: 1.75rem; margin-bottom: 0.75rem; font-family: var(--font-heading);">${block.replace(/^### /, '')}</h3>`;
+                          }
+                          if (block.startsWith('- ')) {
+                            const items = block.split('\n').map(item => `<li style="margin-bottom: 0.5rem;">${item.replace(/^- /, '').trim()}</li>`).join('');
+                            return `<ul style="font-size: 1.02rem; color: #334155; line-height: 1.7; margin-bottom: 1.5rem; padding-left: 1.5rem; list-style-type: disc;">${items}</ul>`;
+                          }
+                          if (block.startsWith('> ')) {
+                            return `<blockquote style="border-left: 4px solid #2563eb; background-color: #f8fafc; padding: 1.25rem 1.5rem; margin: 1.75rem 0; border-radius: 0 8px 8px 0; font-size: 1.02rem; font-weight: 600; color: #1e293b;">${block.replace(/^> /, '')}</blockquote>`;
+                          }
+                          const formattedText = block.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                          return `<p style="font-size: 1.05rem; color: #334155; line-height: 1.75; margin-bottom: 1.5rem; font-family: var(--font-body);">${formattedText}</p>`;
                         })
                         .join('') 
                     }}

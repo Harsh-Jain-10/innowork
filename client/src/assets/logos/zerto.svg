@@ -1,4 +1,4 @@
-<svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg" role="img">
-    <title>Zerto</title>
-    <text x="0" y="22" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="24" fill="#df2027" letter-spacing="0.2">Zerto</text>
-  </svg>
+<svg fill="#EB0029" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <title>Zerto</title>
+  <path d="M2 4h20v3.6L8.4 16.4H22V20H2v-3.6l13.6-8.8H2V4z"/>
+</svg>

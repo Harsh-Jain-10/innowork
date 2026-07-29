@@ -1,6 +1,4 @@
-<svg viewBox="0 0 80 30" xmlns="http://www.w3.org/2000/svg" role="img">
-    <title>F5</title>
-    <circle cx="15" cy="15" r="14" fill="#e41937" />
-    <text x="8" y="22" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="20" fill="#ffffff" font-style="italic">f5</text>
-    <text x="38" y="22" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="22" fill="#e41937">F5</text>
-  </svg>
+<svg fill="#E41937" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <title>F5</title>
+  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-2.4 6.6h5.4v2.4h-3v2.1h2.7v2.4h-2.7V17.4H9.6V6.6zm7.2 4.5c0-.9-.7-1.5-1.6-1.5h-3.2V17.4h3.2c.9 0 1.6-.7 1.6-1.5v-4.8z"/>
+</svg>

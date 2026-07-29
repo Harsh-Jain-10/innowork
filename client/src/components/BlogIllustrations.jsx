@@ -150,3 +150,67 @@ export function SecurityIllustration({ style }) {
     </svg>
   );
 }
+
+export function CloudIllustration({ style }) {
+  return (
+    <svg viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', display: 'block', borderRadius: '8px', ...style }}>
+      <rect width="800" height="500" fill="#030712" />
+      <circle cx="400" cy="250" r="220" fill="#0284c7" opacity="0.15" filter="blur(30px)" />
+      <g transform="translate(240, 140)">
+        <path d="M 80 180 C 30 180 0 140 0 95 C 0 50 35 15 85 15 C 115 15 140 30 155 50 C 175 25 210 10 245 10 C 300 10 345 45 355 95 C 390 95 415 120 415 150 C 415 180 390 200 355 200 L 80 200 Z" fill="#0284c7" opacity="0.2" stroke="#38bdf8" strokeWidth="3" />
+        <circle cx="160" cy="110" r="20" fill="#38bdf8" />
+        <circle cx="260" cy="110" r="20" fill="#0284c7" />
+        <line x1="160" y1="110" x2="260" y2="110" stroke="#7dd3fc" strokeWidth="3" strokeDasharray="4 4" />
+      </g>
+      <text x="300" y="420" fill="#38bdf8" fontFamily="monospace" fontSize="12" opacity="0.8">MULTI-CLOUD ORCHESTRATION: READY</text>
+    </svg>
+  );
+}
+
+export function MVISIllustration({ style }) {
+  return (
+    <svg viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', display: 'block', borderRadius: '8px', ...style }}>
+      <rect width="800" height="500" fill="#091e3a" />
+      <g transform="translate(250, 120)">
+        <rect x="20" y="20" width="260" height="180" rx="12" fill="#0f172a" stroke="#2563eb" strokeWidth="3" />
+        <rect x="40" y="40" width="220" height="30" rx="6" fill="#1e293b" />
+        <rect x="40" y="85" width="220" height="30" rx="6" fill="#1e293b" />
+        <rect x="40" y="130" width="220" height="30" rx="6" fill="#1e293b" />
+        <circle cx="60" cy="55" r="5" fill="#22c55e" />
+        <circle cx="60" cy="100" r="5" fill="#22c55e" />
+        <circle cx="60" cy="145" r="5" fill="#22c55e" />
+      </g>
+      <text x="290" y="410" fill="#60a5fa" fontFamily="monospace" fontSize="12" opacity="0.85">MULTI-VENDOR SLA: 99.999% UPTIME</text>
+    </svg>
+  );
+}
+
+export function ERPIllustration({ style }) {
+  return (
+    <svg viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', display: 'block', borderRadius: '8px', ...style }}>
+      <rect width="800" height="500" fill="#0f172a" />
+      <g transform="translate(260, 130)">
+        <polygon points="140,20 260,80 260,200 140,260 20,200 20,80" fill="#1e293b" stroke="#0284c7" strokeWidth="3" />
+        <line x1="140" y1="20" x2="140" y2="260" stroke="#38bdf8" strokeWidth="2" />
+        <line x1="260" y1="80" x2="20" y2="200" stroke="#0284c7" strokeWidth="1.5" />
+        <line x1="20" y1="80" x2="260" y2="200" stroke="#0284c7" strokeWidth="1.5" />
+      </g>
+      <text x="310" y="420" fill="#38bdf8" fontFamily="monospace" fontSize="12" opacity="0.8">SAP BASIS &amp; ERP CORE: ACTIVE</text>
+    </svg>
+  );
+}
+
+export function AIIllustration({ style }) {
+  return (
+    <svg viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', display: 'block', borderRadius: '8px', ...style }}>
+      <rect width="800" height="500" fill="#050b14" />
+      <g transform="translate(280, 110)">
+        <circle cx="120" cy="120" r="90" stroke="#a855f7" strokeWidth="3" fill="none" strokeDasharray="8 8" />
+        <circle cx="120" cy="120" r="50" fill="#7e22ce" opacity="0.3" />
+        <circle cx="120" cy="120" r="20" fill="#c084fc" />
+      </g>
+      <text x="290" y="410" fill="#c084fc" fontFamily="monospace" fontSize="12" opacity="0.85">AIOPS &amp; AUTOMATION ENGINE: ONLINE</text>
+    </svg>
+  );
+}
+

@@ -1,5 +1,4 @@
-<svg viewBox="0 0 110 30" xmlns="http://www.w3.org/2000/svg" role="img">
-    <title>Juniper</title>
-    <path d="M5 5h15v5H10v15H5Z" fill="#007a87" />
-    <text x="28" y="22" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="20" fill="#007a87" letter-spacing="0.2">Juniper</text>
-  </svg>
+<svg fill="#248679" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <title>Juniper Networks</title>
+  <path d="M12 0L1.5 6v12L12 24l10.5-6V6L12 0zm6 15.5l-6 3.5-6-3.5V8.5l6-3.5 6 3.5v7.5z"/>
+</svg>
