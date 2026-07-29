@@ -424,85 +424,90 @@ export default function Home() {
 
           {/* OEM Moving Marquee Card Container */}
           <ScrollReveal variant="fade-up">
-            <div className="oem-marquee-card">
+            <div className="oem-marquee-container">
               <style>{`
-                .oem-marquee-card {
+                .oem-marquee-container {
+                  position: relative;
+                  width: 100%;
+                  overflow: hidden;
                   background-color: #ffffff;
                   border-radius: 16px;
                   border: 1px solid #e2e8f0;
                   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
-                  padding: 2rem 0;
-                  overflow: hidden;
-                  position: relative;
-                  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-                  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+                  padding: 1.75rem 0;
+                }
+
+                .oem-marquee-container::before,
+                .oem-marquee-container::after {
+                  content: "";
+                  position: absolute;
+                  top: 0;
+                  bottom: 0;
+                  width: 80px;
+                  z-index: 3;
+                  pointer-events: none;
+                }
+                .oem-marquee-container::before {
+                  left: 0;
+                  background: linear-gradient(to right, #ffffff 10%, rgba(255, 255, 255, 0));
+                }
+                .oem-marquee-container::after {
+                  right: 0;
+                  background: linear-gradient(to left, #ffffff 10%, rgba(255, 255, 255, 0));
                 }
 
                 .oem-marquee-row {
                   display: flex;
-                  overflow: hidden;
-                  user-select: none;
-                  gap: 2rem;
-                  padding: 0.5rem 0;
+                  width: max-content;
+                  gap: 1.5rem;
                 }
 
-                .oem-marquee-track {
-                  display: flex;
-                  flex-shrink: 0;
-                  align-items: center;
-                  justify-content: space-around;
-                  gap: 2rem;
-                  min-width: 100%;
+                .oem-marquee-row-left {
                   animation: scrollMarqueeLeft 40s linear infinite;
                 }
 
-                .oem-marquee-track-reverse {
-                  display: flex;
-                  flex-shrink: 0;
-                  align-items: center;
-                  justify-content: space-around;
-                  gap: 2rem;
-                  min-width: 100%;
+                .oem-marquee-row-right {
                   animation: scrollMarqueeRight 40s linear infinite;
                 }
 
-                .oem-marquee-card:hover .oem-marquee-track,
-                .oem-marquee-card:hover .oem-marquee-track-reverse {
+                .oem-marquee-container:hover .oem-marquee-row-left,
+                .oem-marquee-container:hover .oem-marquee-row-right {
                   animation-play-state: paused;
                 }
 
                 @keyframes scrollMarqueeLeft {
                   0% {
-                    transform: translateX(0%);
+                    transform: translateX(0);
                   }
                   100% {
-                    transform: translateX(-100%);
+                    transform: translateX(-50%);
                   }
                 }
 
                 @keyframes scrollMarqueeRight {
                   0% {
-                    transform: translateX(-100%);
+                    transform: translateX(-50%);
                   }
                   100% {
-                    transform: translateX(0%);
+                    transform: translateX(0);
                   }
                 }
 
-                .oem-marquee-item {
+                .oem-logo-card {
+                  flex-shrink: 0;
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  padding: 0.75rem 1.5rem;
                   height: 65px;
-                  min-width: 140px;
+                  width: 155px;
+                  padding: 0.75rem 1.25rem;
                   background: #ffffff;
-                  border-radius: 10px;
                   border: 1px solid #f1f5f9;
+                  border-radius: 10px;
                   transition: all 0.25s ease;
                 }
 
-                .oem-marquee-item:hover {
+                .oem-logo-card:hover {
                   background-color: #f8fafc;
                   border-color: #cbd5e1;
                   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -510,8 +515,8 @@ export default function Home() {
                 }
 
                 .oem-logo-image {
-                  max-width: 120px;
-                  max-height: 40px;
+                  max-width: 125px;
+                  max-height: 42px;
                   width: auto;
                   height: auto;
                   object-fit: contain;
@@ -519,65 +524,37 @@ export default function Home() {
                   transition: filter 0.25s ease;
                 }
 
-                .oem-marquee-item:hover .oem-logo-image {
+                .oem-logo-card:hover .oem-logo-image {
                   filter: grayscale(0%);
                 }
               `}</style>
               
-              {/* Row 1: Continuous Marquee Moving Left */}
-              <div className="oem-marquee-row">
-                <div className="oem-marquee-track">
-                  {configData.oemPartners.slice(0, 16).map((oem, idx) => (
-                    <div key={`row1-1-${oem}-${idx}`} className="oem-marquee-item">
-                      <img 
-                        src={logoMapping[oem]} 
-                        alt={`${oem} Logo`} 
-                        className="oem-logo-image" 
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div className="oem-marquee-track" aria-hidden="true">
-                  {configData.oemPartners.slice(0, 16).map((oem, idx) => (
-                    <div key={`row1-2-${oem}-${idx}`} className="oem-marquee-item">
-                      <img 
-                        src={logoMapping[oem]} 
-                        alt={`${oem} Logo`} 
-                        className="oem-logo-image" 
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </div>
+              {/* Row 1: First 16 Partners - Moving Left */}
+              <div className="oem-marquee-row oem-marquee-row-left">
+                {[...configData.oemPartners.slice(0, 16), ...configData.oemPartners.slice(0, 16)].map((oem, idx) => (
+                  <div key={`row1-${oem}-${idx}`} className="oem-logo-card">
+                    <img 
+                      src={logoMapping[oem]} 
+                      alt={`${oem} Official Logo`} 
+                      className="oem-logo-image" 
+                      loading="eager"
+                    />
+                  </div>
+                ))}
               </div>
 
-              {/* Row 2: Continuous Marquee Moving Right */}
-              <div className="oem-marquee-row" style={{ marginTop: '0.75rem' }}>
-                <div className="oem-marquee-track-reverse">
-                  {configData.oemPartners.slice(16, 32).map((oem, idx) => (
-                    <div key={`row2-1-${oem}-${idx}`} className="oem-marquee-item">
-                      <img 
-                        src={logoMapping[oem]} 
-                        alt={`${oem} Logo`} 
-                        className="oem-logo-image" 
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div className="oem-marquee-track-reverse" aria-hidden="true">
-                  {configData.oemPartners.slice(16, 32).map((oem, idx) => (
-                    <div key={`row2-2-${oem}-${idx}`} className="oem-marquee-item">
-                      <img 
-                        src={logoMapping[oem]} 
-                        alt={`${oem} Logo`} 
-                        className="oem-logo-image" 
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </div>
+              {/* Row 2: Second 16 Partners - Moving Right */}
+              <div className="oem-marquee-row oem-marquee-row-right" style={{ marginTop: '1rem' }}>
+                {[...configData.oemPartners.slice(16, 32), ...configData.oemPartners.slice(16, 32)].map((oem, idx) => (
+                  <div key={`row2-${oem}-${idx}`} className="oem-logo-card">
+                    <img 
+                      src={logoMapping[oem]} 
+                      alt={`${oem} Official Logo`} 
+                      className="oem-logo-image" 
+                      loading="eager"
+                    />
+                  </div>
+                ))}
               </div>
 
             </div>
