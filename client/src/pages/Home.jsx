@@ -13,72 +13,111 @@ import { EffectComposer, DepthOfField, Bloom, Vignette } from '@react-three/post
 
 
 
+import hpeLogo from '../assets/logos/hpe.svg';
 import dellLogo from '../assets/logos/dell.svg';
-import microsoftLogo from '../assets/logos/microsoft.svg';
-import ibmLogo from '../assets/logos/ibm.svg';
-import ciscoLogo from '../assets/logos/cisco.svg';
 import hpLogo from '../assets/logos/hp.svg';
+import lenovoLogo from '../assets/logos/lenovo.svg';
+import ciscoLogo from '../assets/logos/cisco.svg';
+import arubaLogo from '../assets/logos/aruba.svg';
 import fortinetLogo from '../assets/logos/fortinet.svg';
-import checkpointLogo from '../assets/logos/checkpoint.svg';
-import f5Logo from '../assets/logos/f5.svg';
-import juniperLogo from '../assets/logos/juniper.svg';
-import microfocusLogo from '../assets/logos/microfocus.svg';
-import netappLogo from '../assets/logos/netapp.svg';
-import opentextLogo from '../assets/logos/opentext.svg';
-import redhatLogo from '../assets/logos/redhat.svg';
-import veeamLogo from '../assets/logos/veeam.svg';
-import dlinkLogo from '../assets/logos/dlink.svg';
-import veritasLogo from '../assets/logos/veritas.svg';
-import vinchinLogo from '../assets/logos/vinchin.svg';
+import paloaltoLogo from '../assets/logos/paloalto.svg';
+
+import ibmLogo from '../assets/logos/ibm.svg';
 import oracleLogo from '../assets/logos/oracle.svg';
-import acerLogo from '../assets/logos/acer.svg';
-import zertoLogo from '../assets/logos/zerto.svg';
+import netappLogo from '../assets/logos/netapp.svg';
+import nutanixLogo from '../assets/logos/nutanix.svg';
+import vmwareLogo from '../assets/logos/vmware.svg';
+import microsoftLogo from '../assets/logos/microsoft.svg';
+import redhatLogo from '../assets/logos/redhat.svg';
+import suseLogo from '../assets/logos/suse.svg';
+
+import veeamLogo from '../assets/logos/veeam.svg';
+import veritasLogo from '../assets/logos/veritas.svg';
+import rubrikLogo from '../assets/logos/rubrik.svg';
+import commvaultLogo from '../assets/logos/commvault.svg';
+import acronisLogo from '../assets/logos/acronis.svg';
+import zscalerLogo from '../assets/logos/zscaler.svg';
+import checkpointLogo from '../assets/logos/checkpoint.svg';
+import kasperskyLogo from '../assets/logos/kaspersky.svg';
+
+import trendmicroLogo from '../assets/logos/trendmicro.svg';
+import sophosLogo from '../assets/logos/sophos.svg';
+import bitdefenderLogo from '../assets/logos/bitdefender.svg';
+import symantecLogo from '../assets/logos/symantec.svg';
+import sonicwallLogo from '../assets/logos/sonicwall.svg';
+import citrixLogo from '../assets/logos/citrix.svg';
+import adobeLogo from '../assets/logos/adobe.svg';
+import sapLogo from '../assets/logos/sap.svg';
 
 const logoMapping = {
+  "HPE": hpeLogo,
   "Dell": dellLogo,
-  "Microsoft": microsoftLogo,
-  "IBM": ibmLogo,
-  "Cisco": ciscoLogo,
   "HP": hpLogo,
-  "Checkpoint": checkpointLogo,
+  "Lenovo": lenovoLogo,
+  "Cisco": ciscoLogo,
+  "Aruba": arubaLogo,
   "Fortinet": fortinetLogo,
-  "F5": f5Logo,
-  "Juniper": juniperLogo,
-  "Microfocus": microfocusLogo,
+  "PaloAlto": paloaltoLogo,
+  "IBM": ibmLogo,
+  "Oracle": oracleLogo,
   "NetApp": netappLogo,
-  "OpenText": opentextLogo,
+  "Nutanix": nutanixLogo,
+  "VMware": vmwareLogo,
+  "Microsoft": microsoftLogo,
   "RedHat": redhatLogo,
+  "SUSE": suseLogo,
   "Veeam": veeamLogo,
-  "D-Link": dlinkLogo,
   "Veritas": veritasLogo,
-  "Vinchin": vinchinLogo,
-  "Acer": acerLogo,
-  "Zerto": zertoLogo,
-  "Oracle": oracleLogo
+  "Rubrik": rubrikLogo,
+  "Commvault": commvaultLogo,
+  "Acronis": acronisLogo,
+  "Zscaler": zscalerLogo,
+  "Checkpoint": checkpointLogo,
+  "Kaspersky": kasperskyLogo,
+  "TrendMicro": trendmicroLogo,
+  "Sophos": sophosLogo,
+  "Bitdefender": bitdefenderLogo,
+  "Symantec": symantecLogo,
+  "SonicWall": sonicwallLogo,
+  "Citrix": citrixLogo,
+  "Adobe": adobeLogo,
+  "SAP": sapLogo
 };
 
-// Optical alignment configuration (proportional heights - enlarged for prominence)
+// Optical alignment configuration (proportional heights)
 const logoDetails = {
-  Dell: { height: 32 },
-  Microsoft: { height: 26 },
+  HPE: { height: 28 },
+  Dell: { height: 30 },
+  HP: { height: 28 },
+  Lenovo: { height: 26 },
+  Cisco: { height: 32 },
+  Aruba: { height: 28 },
+  Fortinet: { height: 26 },
+  PaloAlto: { height: 28 },
   IBM: { height: 28 },
-  Cisco: { height: 36 },
-  HP: { height: 30 },
-  Checkpoint: { height: 30 },
-  Fortinet: { height: 28 },
-  F5: { height: 28 },
-  Juniper: { height: 28 },
-  Microfocus: { height: 25 },
+  Oracle: { height: 25 },
   NetApp: { height: 25 },
-  OpenText: { height: 25 },
+  Nutanix: { height: 28 },
+  VMware: { height: 26 },
+  Microsoft: { height: 26 },
   RedHat: { height: 28 },
+  SUSE: { height: 28 },
   Veeam: { height: 26 },
-  "D-Link": { height: 25 },
   Veritas: { height: 26 },
-  Vinchin: { height: 24 },
-  Acer: { height: 25 },
-  Zerto: { height: 26 },
-  Oracle: { height: 25 }
+  Rubrik: { height: 28 },
+  Commvault: { height: 28 },
+  Acronis: { height: 28 },
+  Zscaler: { height: 28 },
+  Checkpoint: { height: 28 },
+  Kaspersky: { height: 28 },
+  TrendMicro: { height: 28 },
+  Sophos: { height: 26 },
+  Bitdefender: { height: 26 },
+  Symantec: { height: 28 },
+  SonicWall: { height: 26 },
+  Citrix: { height: 25 },
+  Adobe: { height: 26 },
+  SAP: { height: 26 }
 };
 
 export default function Home() {
