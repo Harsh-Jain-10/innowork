@@ -65,8 +65,7 @@ export default function GlobalPresence() {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
-              position: 'sticky',
-              top: '100px'
+              position: 'relative'
             }}
           >
             <span style={{

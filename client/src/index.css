@@ -314,10 +314,11 @@ html {
 /* Facts & Figures Band */
 .facts-figures-band {
   background: #e0f2fe; /* Light blue accent background */
-  padding: 0.6rem 1.75rem 1.5rem 1.75rem;
+  padding: 1.5rem 1.75rem 1.75rem 1.75rem;
   margin: 0;
   border-radius: 12px;
   box-shadow: inset 0 2px 8px rgba(9, 97, 159, 0.02);
+  contain: layout style;
 }
 
 .facts-figures-split {
@@ -345,10 +346,12 @@ html {
   border: 1px solid rgba(9, 97, 159, 0.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .fact-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) translateZ(0);
   box-shadow: 0 8px 24px rgba(9, 97, 159, 0.08);
 }
 
@@ -359,6 +362,8 @@ html {
   color: var(--brand-blue);
   white-space: nowrap !important;
   display: inline-block;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }
 
 .fact-label {

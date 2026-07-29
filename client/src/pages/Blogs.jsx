@@ -41,11 +41,14 @@ export default function Blogs() {
   useEffect(() => {
     if (selectedArticle) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
     return () => {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     };
   }, [selectedArticle]);
 
@@ -394,21 +397,25 @@ export default function Blogs() {
                         .split('\n\n')
                         .map(p => {
                           const block = p.trim();
+                          const formatBold = (str) => str.replace(/\*\*(.*?)\*\*/g, '<strong style="color: #0f172a; font-weight: 700;">$1</strong>').replace(/\*\*/g, '');
+
                           if (block.startsWith('## ')) {
-                            return `<h2 style="font-size: 1.75rem; font-weight: 700; color: #0d1117; margin-top: 2.75rem; margin-bottom: 1rem; letter-spacing: -0.4px; line-height: 1.25; font-family: var(--font-heading); border-bottom: 1px solid #f1f5f9; padding-bottom: 0.6rem;">${block.replace(/^## /, '')}</h2>`;
+                            return `<h2 style="font-size: 1.75rem; font-weight: 700; color: #0d1117; margin-top: 2.75rem; margin-bottom: 1rem; letter-spacing: -0.4px; line-height: 1.25; font-family: var(--font-heading); border-bottom: 1px solid #f1f5f9; padding-bottom: 0.6rem;">${formatBold(block.replace(/^## /, ''))}</h2>`;
                           }
                           if (block.startsWith('### ')) {
-                            return `<h3 style="font-size: 1.35rem; font-weight: 700; color: #0d1117; margin-top: 2rem; margin-bottom: 0.6rem; letter-spacing: -0.2px; line-height: 1.3; font-family: var(--font-heading);">${block.replace(/^### /, '')}</h3>`;
+                            return `<h3 style="font-size: 1.35rem; font-weight: 700; color: #0d1117; margin-top: 2rem; margin-bottom: 0.6rem; letter-spacing: -0.2px; line-height: 1.3; font-family: var(--font-heading);">${formatBold(block.replace(/^### /, ''))}</h3>`;
                           }
                           if (block.startsWith('- ')) {
-                            const items = block.split('\n').map(item => `<li style="margin-bottom: 0.65rem; color: #334155; font-size: 1.1rem; line-height: 1.75;">${item.replace(/^- /, '').trim()}</li>`).join('');
+                            const items = block.split('\n').map(item => {
+                              const cleanItem = formatBold(item.replace(/^- /, '').trim());
+                              return `<li style="margin-bottom: 0.65rem; color: #334155; font-size: 1.1rem; line-height: 1.75;">${cleanItem}</li>`;
+                            }).join('');
                             return `<ul style="color: #334155; line-height: 1.75; margin: 0 0 1.75rem 0; padding-left: 1.65rem; list-style-type: disc;">${items}</ul>`;
                           }
                           if (block.startsWith('> ')) {
-                            return `<blockquote style="border-left: 4px solid #2563eb; background-color: #f0f6ff; padding: 1.4rem 1.75rem; margin: 2.25rem 0; border-radius: 0 8px 8px 0; font-size: 1.18rem; font-weight: 600; color: #1e293b; line-height: 1.65; font-style: italic;">${block.replace(/^> /, '')}</blockquote>`;
+                            return `<blockquote style="border-left: 4px solid #2563eb; background-color: #f0f6ff; padding: 1.4rem 1.75rem; margin: 2.25rem 0; border-radius: 0 8px 8px 0; font-size: 1.18rem; font-weight: 600; color: #1e293b; line-height: 1.65; font-style: italic;">${formatBold(block.replace(/^> /, ''))}</blockquote>`;
                           }
-                          const formattedText = block.replace(/\*\*(.*?)\*\*/g, '<strong style="color: #0f172a; font-weight: 700;">$1</strong>');
-                          return `<p style="font-size: 1.15rem; color: #374151; line-height: 1.9; margin-bottom: 1.65rem; font-family: var(--font-body); font-weight: 400;">${formattedText}</p>`;
+                          return `<p style="font-size: 1.15rem; color: #374151; line-height: 1.9; margin-bottom: 1.65rem; font-family: var(--font-body); font-weight: 400;">${formatBold(block)}</p>`;
                         })
                         .join('') 
                     }}
@@ -535,6 +542,7 @@ export default function Blogs() {
           justify-content: center;
           z-index: 100;
           padding: 2rem;
+          overscroll-behavior: contain;
         }
         .modal-container {
           background-color: #ffffff;
@@ -577,6 +585,8 @@ export default function Blogs() {
           overflow-y: auto;
           padding: 2.5rem 3.5rem;
           background-color: #ffffff;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
         }
 
         /* UTILITY BADGE */
