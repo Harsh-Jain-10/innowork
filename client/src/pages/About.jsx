@@ -16,13 +16,11 @@ import cmmiLevel3 from '../assets/certificates/cmmi_level3.png';
 // Import team members
 import naveenGroverImg from '../assets/team/naveen_grover.jpg';
 import anujGuptaImg from '../assets/team/anuj_gupta.png';
-import nitinKumarImg from '../assets/team/nitin_kumar.png';
 import manishGuptaImg from '../assets/team/manish_gupta.png';
 
 const TEAM_IMAGES = {
   "Naveen Grover": naveenGroverImg,
   "Anuj Gupta": anujGuptaImg,
-  "Nitin Kumar": nitinKumarImg,
   "Manish Gupta": manishGuptaImg
 };
 
@@ -256,7 +254,7 @@ export default function About() {
           </div>
         </ScrollReveal>
 
-        <StaggerContainer stagger={0.12} style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }} className="leadership-grid">
+        <StaggerContainer stagger={0.12} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', maxWidth: '1050px', margin: '0 auto' }} className="leadership-grid">
           {leadership.map((leader) => (
             <StaggerItem key={leader.name} variant="fade-up">
               <motion.div

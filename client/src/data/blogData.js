@@ -6,7 +6,7 @@ export const blogArticles = [
     id: "datacenter-transformation",
     title: "Modernizing IT Datacentres for the Virtualized Future",
     date: "May 10, 2025",
-    author: "Nitin Kumar, CTO",
+    author: "Anuj Gupta, Global Service Head",
     category: "Datacenter",
     summary: "Exploring the paradigm shift from traditional server racks to software-defined hypervisors and hybrid-cloud integrated platforms.",
     image: null,

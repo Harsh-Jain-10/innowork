@@ -465,7 +465,7 @@ export default function Home() {
                   { icon: '🚀', title: 'Our Vision', text: 'To be the global benchmark for seamless, multi-vendor IT infrastructure and cloud managed services.' },
                   { icon: '🎯', title: 'Our Mission', text: 'Providing SLA-bound proactive support, minimizing system downtime, and ensuring absolute compliance standards.' },
                   { icon: '🛡️', title: 'Quality First', text: 'ISO-certified processes guaranteeing continuous quality management and enterprise-grade security controls.' },
-                  { icon: '⚡', title: 'Always On', text: '24×7×365 NOC monitoring and incident response across India, APAC, Europe, and Middle East regions.' },
+                  { icon: '⚡', title: 'Always On', text: '24×7×365 NOC monitoring and incident response across India, UAE, and Africa regions.' },
                 ].map((card, i) => (
                   <motion.div
                     key={i}

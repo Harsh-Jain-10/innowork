@@ -3,7 +3,7 @@
     "address": "H-49, 4th Floor, Sector-63, Noida, Uttar Pradesh-201309",
     "email": "sales@innoworq.com",
     "phone": "1800 123 5671",
-    "presence": "India | UAE",
+    "presence": "India | UAE | Africa",
     "linkedin": "https://www.linkedin.com/company/innoworq-infotech-pvt/",
     "linkedinHandle": "INNOWORQ Infotech"
   },
@@ -14,7 +14,7 @@
     "professionals": "350+",
     "clients": "100+",
     "projects": "100+",
-    "countries": "5+",
+    "countries": "3",
     "industries": "9",
     "devices": "50K+",
     "alliances": "100+"
@@ -186,11 +186,6 @@
       "desc": "Technology certified IT Architect with over 21 years of experience in systems integrations and service delivery frameworks."
     },
     {
-      "name": "Nitin Kumar",
-      "title": "Chief Technology Officer",
-      "desc": "BTech, MTech, PhD, certified technology architect with 22 years of hands-on expertise in IT infrastructure design."
-    },
-    {
       "name": "Manish Gupta",
       "title": "Global Software Head",
       "desc": "IIT & IIM alumnus, software development architect with over 15 years of experience delivering robust digital applications."
@@ -321,7 +316,7 @@
       "title": "Modernizing IT Datacentres for the Virtualized Future",
       "date": "May 10, 2025",
       "summary": "Exploring the paradigm shift from traditional server racks to software-defined hypervisors and hybrid-cloud integrated platforms.",
-      "author": "Nitin Kumar, CTO"
+      "author": "Anuj Gupta, Global Service Head"
     },
     {
       "id": "securing-multicloud-frameworks",
