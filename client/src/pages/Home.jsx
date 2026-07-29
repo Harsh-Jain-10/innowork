@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import ScrollReveal, { StaggerContainer, StaggerItem, CountUp } from '../components/ScrollReveal';
 import configData from '../data/companyConfig.json';
 import MotherboardScene from '../components/WebGLMotherboard/MotherboardScene';
+import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
 import { EffectComposer, DepthOfField, Bloom, Vignette } from '@react-three/postprocessing';
+
 
 
 
@@ -131,7 +133,7 @@ export default function Home() {
         {/* Background WebGL Motherboard Animation */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }}>
           <Canvas
-            shadows
+            shadows={{ type: THREE.PCFShadowMap }}
             camera={{ fov: 45, near: 0.1, far: 20, position: [-2.2, 0.6, 1.2] }}
             gl={{ 
               antialias: true, 
