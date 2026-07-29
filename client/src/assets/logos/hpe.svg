@@ -1,1 +1,9 @@
-<svg viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg" role="img"><title>HPE</title><text x="10" y="30" font-family="sans-serif" font-weight="bold" font-size="20" fill="#01A781">HPE</text></svg>
+<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="HPE">
+  <title>HPE</title>
+  <!-- HPE Green Rectangle Icon -->
+  <rect x="8" y="10" width="14" height="40" rx="1" fill="#01A982"/>
+  <rect x="26" y="10" width="14" height="40" rx="1" fill="#01A982"/>
+  <rect x="8" y="27" width="32" height="6" fill="#01A982"/>
+  <!-- HPE Text -->
+  <text x="50" y="39" font-family="'Arial',sans-serif" font-weight="700" font-size="22" fill="#01A982" letter-spacing="1">HPE</text>
+</svg>

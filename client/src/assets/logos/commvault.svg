@@ -1,1 +1,7 @@
-<svg viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg" role="img"><title>Commvault</title><text x="10" y="30" font-family="sans-serif" font-weight="bold" font-size="20" fill="#663399">Commvault</text></svg>
+<svg viewBox="0 0 270 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Commvault">
+  <title>Commvault</title>
+  <!-- Commvault C arc icon -->
+  <path d="M30 10 A18 18 0 1 0 30 50 A18 18 0 0 0 42 44" stroke="#CC0000" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <!-- Commvault text -->
+  <text x="55" y="39" font-family="'Arial',sans-serif" font-weight="700" font-size="18" fill="#CC0000" letter-spacing="0.3">Commvault</text>
+</svg>

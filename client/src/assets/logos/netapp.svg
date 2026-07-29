@@ -1,1 +1,7 @@
-<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>NetApp</title><path fill="#0067B8" d="M0 2v20h9.33V10h5.34v12H24V2Z"/></svg>
+<svg viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NetApp">
+  <title>NetApp</title>
+  <!-- NetApp N-chevron icon -->
+  <polygon points="8,48 8,12 22,35 36,12 36,48" fill="none" stroke="#0067B8" stroke-width="5" stroke-linejoin="round"/>
+  <!-- NetApp text -->
+  <text x="44" y="39" font-family="'Arial',sans-serif" font-weight="700" font-size="21" fill="#0067B8" letter-spacing="0.3">NetApp</text>
+</svg>

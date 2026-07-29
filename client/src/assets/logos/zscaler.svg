@@ -1,1 +1,8 @@
-<svg viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg" role="img"><title>Zscaler</title><text x="10" y="30" font-family="sans-serif" font-weight="bold" font-size="20" fill="#0072C6">Zscaler</text></svg>
+<svg viewBox="0 0 230 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Zscaler">
+  <title>Zscaler</title>
+  <!-- Zscaler Z icon in blue gradient shape -->
+  <rect x="8" y="10" width="36" height="40" rx="8" fill="#0072C6"/>
+  <text x="14" y="41" font-family="'Arial',sans-serif" font-weight="800" font-size="28" fill="#ffffff">Z</text>
+  <!-- Zscaler text -->
+  <text x="52" y="39" font-family="'Arial',sans-serif" font-weight="600" font-size="20" fill="#0072C6" letter-spacing="0.3">Zscaler</text>
+</svg>

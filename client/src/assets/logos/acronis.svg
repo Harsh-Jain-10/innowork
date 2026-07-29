@@ -1,1 +1,9 @@
-<svg viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg" role="img"><title>Acronis</title><text x="10" y="30" font-family="sans-serif" font-weight="bold" font-size="20" fill="#002D62">Acronis</text></svg>
+<svg viewBox="0 0 240 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Acronis">
+  <title>Acronis</title>
+  <!-- Acronis shield icon -->
+  <path d="M28 8 L48 16 L48 36 Q48 48 28 54 Q8 48 8 36 L8 16 Z" fill="#002D62"/>
+  <path d="M28 14 L44 20 L44 36 Q44 46 28 51 Q12 46 12 36 L12 20 Z" fill="#4B9BE8"/>
+  <text x="12" y="36" font-family="'Arial',sans-serif" font-weight="800" font-size="13" fill="#ffffff">A</text>
+  <!-- Acronis text -->
+  <text x="56" y="39" font-family="'Arial',sans-serif" font-weight="700" font-size="20" fill="#002D62" letter-spacing="0.3">Acronis</text>
+</svg>

@@ -1,1 +1,8 @@
-<svg viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg" role="img"><title>Rubrik</title><text x="10" y="30" font-family="sans-serif" font-weight="bold" font-size="20" fill="#00A3E0">Rubrik</text></svg>
+<svg viewBox="0 0 240 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rubrik">
+  <title>Rubrik</title>
+  <!-- Rubrik forward-slash icon mark -->
+  <polygon points="10,48 24,12 34,12 20,48" fill="#FF2D21"/>
+  <polygon points="26,48 40,12 50,12 36,48" fill="#FF2D21"/>
+  <!-- Rubrik text -->
+  <text x="58" y="39" font-family="'Arial',sans-serif" font-weight="700" font-size="21" fill="#1D1D1B" letter-spacing="0.5">Rubrik</text>
+</svg>
