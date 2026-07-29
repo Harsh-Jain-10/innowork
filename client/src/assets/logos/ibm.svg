@@ -1,24 +1,39 @@
-<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IBM">
+<svg viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IBM">
   <title>IBM</title>
-  <!-- IBM classic blue block letters with stripe pattern approximation -->
-  <g fill="#0530AD">
-    <!-- I -->
-    <rect x="8"  y="14" width="20" height="4.5"/>
-    <rect x="13" y="21" width="10" height="4.5"/>
-    <rect x="13" y="28" width="10" height="4.5"/>
-    <rect x="8"  y="35" width="20" height="4.5"/>
-    <!-- B -->
-    <rect x="36" y="14" width="4"  height="26"/>
-    <rect x="40" y="14" width="12" height="4.5"/>
-    <rect x="52" y="18.5" width="4" height="8"/>
-    <rect x="40" y="23.5" width="12" height="4.5"/>
-    <rect x="52" y="28" width="4" height="7.5"/>
-    <rect x="40" y="35" width="12" height="4.5"/>
-    <!-- M -->
-    <rect x="64" y="14" width="4"  height="26"/>
-    <rect x="88" y="14" width="4"  height="26"/>
-    <polygon points="68,14 74,30 78,14" fill="#0530AD"/>
-    <polygon points="92,14 86,14 82,30" fill="#0530AD"/>
-    <rect x="64" y="35" width="28" height="4.5"/>
+  <!--
+    IBM 8-bar horizontal-stripe wordmark.
+    Strategy: draw solid letter shapes, then punch 2 white horizontal gaps
+    through each letter to create the classic stripe effect.
+  -->
+  <defs>
+    <!-- Two white stripe gaps that run across the full width -->
+    <mask id="ibm-stripes">
+      <rect width="160" height="50" fill="white"/>
+      <!-- upper gap -->
+      <rect x="0" y="20" width="160" height="4" fill="black"/>
+      <!-- lower gap -->
+      <rect x="0" y="30" width="160" height="4" fill="black"/>
+    </mask>
+  </defs>
+
+  <g fill="#0530AD" mask="url(#ibm-stripes)">
+    <!-- I  (x 4..22) -->
+    <!-- top serif bar -->
+    <rect x="4"  y="9"  width="18" height="32"/>
+
+    <!-- B  (x 28..56) -->
+    <rect x="28" y="9"  width="5"  height="32"/>
+    <rect x="33" y="9"  width="14" height="14" rx="7"/>
+    <rect x="33" y="23" width="15" height="15" rx="7.5"/>
+    <!-- fill between the bumps -->
+    <rect x="33" y="9"  width="7"  height="32"/>
+
+    <!-- M  (x 62..110) -->
+    <rect x="62" y="9"  width="5"  height="32"/>
+    <rect x="105" y="9" width="5"  height="32"/>
+    <!-- left diagonal arm -->
+    <polygon points="67,9 76,9 89,36 80,36"/>
+    <!-- right diagonal arm -->
+    <polygon points="100,9 110,9 96,36 86,36"/>
   </g>
 </svg>
