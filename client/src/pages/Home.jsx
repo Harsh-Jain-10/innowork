@@ -394,7 +394,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* OEM Partners Section - Enterprise Wall Grid Matching Official Branding */}
+      {/* OEM Partners Section - Animated Enterprise Moving Marquee */}
       <section style={{ padding: '4.5rem 0', backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }} id="oem-partners-section">
         <div className="container">
           
@@ -422,130 +422,164 @@ export default function Home() {
             </h2>
           </div>
 
-          {/* OEM Wall Container Card */}
+          {/* OEM Moving Marquee Card Container */}
           <ScrollReveal variant="fade-up">
-            <div className="oem-wall-card">
+            <div className="oem-marquee-card">
               <style>{`
-                .oem-wall-card {
+                .oem-marquee-card {
                   background-color: #ffffff;
                   border-radius: 16px;
                   border: 1px solid #e2e8f0;
                   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
-                  padding: 1.5rem 1rem;
+                  padding: 2rem 0;
                   overflow: hidden;
+                  position: relative;
+                  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+                  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
                 }
 
-                .oem-grid-wall {
-                  display: grid;
-                  grid-template-columns: repeat(8, 1fr);
+                .oem-marquee-row {
+                  display: flex;
+                  overflow: hidden;
+                  user-select: none;
+                  gap: 2rem;
+                  padding: 0.5rem 0;
+                }
+
+                .oem-marquee-track {
+                  display: flex;
+                  flex-shrink: 0;
                   align-items: center;
+                  justify-content: space-around;
+                  gap: 2rem;
+                  min-width: 100%;
+                  animation: scrollMarqueeLeft 40s linear infinite;
                 }
 
-                .oem-grid-cell {
+                .oem-marquee-track-reverse {
+                  display: flex;
+                  flex-shrink: 0;
+                  align-items: center;
+                  justify-content: space-around;
+                  gap: 2rem;
+                  min-width: 100%;
+                  animation: scrollMarqueeRight 40s linear infinite;
+                }
+
+                .oem-marquee-card:hover .oem-marquee-track,
+                .oem-marquee-card:hover .oem-marquee-track-reverse {
+                  animation-play-state: paused;
+                }
+
+                @keyframes scrollMarqueeLeft {
+                  0% {
+                    transform: translateX(0%);
+                  }
+                  100% {
+                    transform: translateX(-100%);
+                  }
+                }
+
+                @keyframes scrollMarqueeRight {
+                  0% {
+                    transform: translateX(-100%);
+                  }
+                  100% {
+                    transform: translateX(0%);
+                  }
+                }
+
+                .oem-marquee-item {
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  padding: 1rem 0.5rem;
-                  height: 75px;
-                  border-right: 1px solid #f1f5f9;
-                  border-bottom: 1px solid #f1f5f9;
+                  padding: 0.75rem 1.5rem;
+                  height: 65px;
+                  min-width: 140px;
+                  background: #ffffff;
+                  border-radius: 10px;
+                  border: 1px solid #f1f5f9;
                   transition: all 0.25s ease;
                 }
 
-                /* Grid border rules for 8 columns */
-                .oem-grid-cell:nth-child(8n) {
-                  border-right: none;
-                }
-                .oem-grid-cell:nth-child(n+25) {
-                  border-bottom: none;
-                }
-
-                .oem-grid-cell:hover {
+                .oem-marquee-item:hover {
                   background-color: #f8fafc;
+                  border-color: #cbd5e1;
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                  transform: translateY(-2px);
                 }
 
                 .oem-logo-image {
-                  max-width: 82%;
-                  max-height: 42px;
+                  max-width: 120px;
+                  max-height: 40px;
                   width: auto;
                   height: auto;
                   object-fit: contain;
                   filter: grayscale(10%);
-                  transition: all 0.25s ease;
+                  transition: filter 0.25s ease;
                 }
 
-                .oem-grid-cell:hover .oem-logo-image {
+                .oem-marquee-item:hover .oem-logo-image {
                   filter: grayscale(0%);
-                  transform: translateY(-2px);
-                }
-
-                @media (max-width: 1200px) {
-                  .oem-grid-wall {
-                    grid-template-columns: repeat(4, 1fr);
-                  }
-                  .oem-grid-cell:nth-child(8n) {
-                    border-right: 1px solid #f1f5f9;
-                  }
-                  .oem-grid-cell:nth-child(4n) {
-                    border-right: none;
-                  }
-                  .oem-grid-cell:nth-child(n+25) {
-                    border-bottom: 1px solid #f1f5f9;
-                  }
-                  .oem-grid-cell:nth-child(n+29) {
-                    border-bottom: none;
-                  }
-                }
-
-                @media (max-width: 768px) {
-                  .oem-grid-wall {
-                    grid-template-columns: repeat(3, 1fr);
-                  }
-                  .oem-grid-cell:nth-child(4n) {
-                    border-right: 1px solid #f1f5f9;
-                  }
-                  .oem-grid-cell:nth-child(3n) {
-                    border-right: none;
-                  }
-                  .oem-grid-cell:nth-child(n+29) {
-                    border-bottom: 1px solid #f1f5f9;
-                  }
-                  .oem-grid-cell:nth-child(n+31) {
-                    border-bottom: none;
-                  }
-                }
-
-                @media (max-width: 480px) {
-                  .oem-grid-wall {
-                    grid-template-columns: repeat(2, 1fr);
-                  }
-                  .oem-grid-cell:nth-child(3n) {
-                    border-right: 1px solid #f1f5f9;
-                  }
-                  .oem-grid-cell:nth-child(2n) {
-                    border-right: none;
-                  }
-                  .oem-grid-cell:nth-child(n+31) {
-                    border-bottom: 1px solid #f1f5f9;
-                  }
                 }
               `}</style>
               
-              <div className="oem-grid-wall">
-                {configData.oemPartners.map((oem) => {
-                  const logoSrc = logoMapping[oem];
-                  return (
-                    <div key={oem} className="oem-grid-cell">
+              {/* Row 1: Continuous Marquee Moving Left */}
+              <div className="oem-marquee-row">
+                <div className="oem-marquee-track">
+                  {configData.oemPartners.slice(0, 16).map((oem, idx) => (
+                    <div key={`row1-1-${oem}-${idx}`} className="oem-marquee-item">
                       <img 
-                        src={logoSrc} 
-                        alt={`${oem} Official Logo`} 
+                        src={logoMapping[oem]} 
+                        alt={`${oem} Logo`} 
                         className="oem-logo-image" 
                         loading="lazy"
                       />
                     </div>
-                  );
-                })}
+                  ))}
+                </div>
+                <div className="oem-marquee-track" aria-hidden="true">
+                  {configData.oemPartners.slice(0, 16).map((oem, idx) => (
+                    <div key={`row1-2-${oem}-${idx}`} className="oem-marquee-item">
+                      <img 
+                        src={logoMapping[oem]} 
+                        alt={`${oem} Logo`} 
+                        className="oem-logo-image" 
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
+
+              {/* Row 2: Continuous Marquee Moving Right */}
+              <div className="oem-marquee-row" style={{ marginTop: '0.75rem' }}>
+                <div className="oem-marquee-track-reverse">
+                  {configData.oemPartners.slice(16, 32).map((oem, idx) => (
+                    <div key={`row2-1-${oem}-${idx}`} className="oem-marquee-item">
+                      <img 
+                        src={logoMapping[oem]} 
+                        alt={`${oem} Logo`} 
+                        className="oem-logo-image" 
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="oem-marquee-track-reverse" aria-hidden="true">
+                  {configData.oemPartners.slice(16, 32).map((oem, idx) => (
+                    <div key={`row2-2-${oem}-${idx}`} className="oem-marquee-item">
+                      <img 
+                        src={logoMapping[oem]} 
+                        alt={`${oem} Logo`} 
+                        className="oem-logo-image" 
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
             </div>
           </ScrollReveal>
 
