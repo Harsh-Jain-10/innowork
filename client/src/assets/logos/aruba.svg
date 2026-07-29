@@ -1,4 +1,5 @@
-<svg fill="#FF8200" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 160 45" xmlns="http://www.w3.org/2000/svg" role="img">
   <title>Aruba</title>
-  <path d="M12 0L2 20h4.5l2-4h7l2 4H22L12 0zm0 5.5l2.2 4.5h-4.4L12 5.5z"/>
+  <text x="0" y="26" font-family="'Outfit', 'Inter', sans-serif" font-weight="800" font-size="26" fill="#FF8200" letter-spacing="-0.5">aruba</text>
+  <text x="0" y="38" font-family="'Outfit', 'Inter', sans-serif" font-weight="500" font-size="8" fill="#64748b">a Hewlett Packard Enterprise company</text>
 </svg>

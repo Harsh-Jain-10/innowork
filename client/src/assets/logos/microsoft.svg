@@ -1,7 +1,8 @@
-<svg viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg" role="img">
+<svg viewBox="0 0 145 45" xmlns="http://www.w3.org/2000/svg" role="img">
   <title>Microsoft</title>
-  <rect x="0" y="0" width="11" height="11" fill="#f25022" />
-  <rect x="12" y="0" width="11" height="11" fill="#7fba00" />
-  <rect x="0" y="12" width="11" height="11" fill="#00a4ef" />
-  <rect x="12" y="12" width="11" height="11" fill="#ffb900" />
+  <rect x="0" y="11" width="10" height="10" fill="#f25022" />
+  <rect x="12" y="11" width="10" height="10" fill="#7fba00" />
+  <rect x="0" y="23" width="10" height="10" fill="#00a4ef" />
+  <rect x="12" y="23" width="10" height="10" fill="#ffb900" />
+  <text x="30" y="28" font-family="'Inter', 'Segoe UI', sans-serif" font-weight="600" font-size="19" fill="#5e5e5e">Microsoft</text>
 </svg>

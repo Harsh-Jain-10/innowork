@@ -1,4 +1,5 @@
-<svg fill="#0067B8" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 120 45" xmlns="http://www.w3.org/2000/svg" role="img">
   <title>NetApp</title>
-  <path d="M0 2v20h9.333V12h5.334v10H24V2H0z"/>
+  <path d="M40 4v20h10V14h8v10h10V4H40z" fill="#0067B8" />
+  <text x="32" y="38" font-family="'Inter', sans-serif" font-weight="800" font-size="16" fill="#000000">NetApp</text>
 </svg>

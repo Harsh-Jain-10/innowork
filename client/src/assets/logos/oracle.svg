@@ -1,4 +1,4 @@
-<svg fill="#F80000" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 150 40" xmlns="http://www.w3.org/2000/svg" role="img">
   <title>Oracle</title>
-  <path d="M16.29 4.303H7.71C3.452 4.303 0 7.755 0 12.013c0 4.258 3.452 7.71 7.71 7.71h8.58c4.258 0 7.71-3.452 7.71-7.71 0-4.258-3.452-7.71-7.71-7.71zm-.243 11.666H7.953c-2.348 0-4.251-1.903-4.251-4.251 0-2.348 1.903-4.251 4.251-4.251h8.094c2.348 0 4.251 1.903 4.251 4.251 0 2.348-1.903 4.251-4.251 4.251z"/>
+  <text x="0" y="28" font-family="'Outfit', 'Inter', sans-serif" font-weight="700" font-size="24" fill="#F80000" letter-spacing="1">ORACLE</text>
 </svg>

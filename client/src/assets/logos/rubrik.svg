@@ -1,4 +1,5 @@
-<svg fill="#00A3E0" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 140 45" xmlns="http://www.w3.org/2000/svg" role="img">
   <title>Rubrik</title>
-  <path d="M12 0L2 6v12l10 6 10-6V6L12 0zm0 4.2l6.8 4.1v7.4L12 19.8l-6.8-4.1V8.3L12 4.2z"/>
+  <circle cx="12" cy="22" r="8" fill="none" stroke="#00A3E0" stroke-width="3" stroke-dasharray="3,2" />
+  <text x="26" y="28" font-family="'Inter', sans-serif" font-weight="700" font-size="20" fill="#555555">rubrik</text>
 </svg>

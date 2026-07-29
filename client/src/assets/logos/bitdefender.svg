@@ -1,4 +1,5 @@
-<svg fill="#E31B23" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 160 45" xmlns="http://www.w3.org/2000/svg" role="img">
   <title>Bitdefender</title>
-  <path d="M0 4h18c3.3 0 6 2.7 6 6s-2.7 6-6 6H0V4zm6 4v4h12c1.1 0 2-.9 2-2s-.9-2-2-2H6z"/>
+  <path d="M0 12c15-8 35-8 50 0" stroke="#E31B23" stroke-width="3" fill="none" />
+  <text x="0" y="32" font-family="'Inter', sans-serif" font-weight="700" font-size="19" fill="#000000">Bitdefender</text>
 </svg>

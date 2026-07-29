@@ -1,4 +1,9 @@
-<svg fill="#FA582D" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg" role="img">
   <title>Palo Alto Networks</title>
-  <path d="M12 0L2.4 5.6v12.8L12 24l9.6-5.6V5.6L12 0zm0 3.2l6.4 3.7v7.5L12 18.1l-6.4-3.7V6.9L12 3.2z"/>
+  <g fill="#FA582D">
+    <path d="M0 12l8-8 8 8-8 8z" />
+    <path d="M12 12l8-8 8 8-8 8z" />
+  </g>
+  <text x="32" y="20" font-family="'Outfit', 'Inter', sans-serif" font-weight="700" font-size="15" fill="#0f172a">paloalto</text>
+  <text x="32" y="32" font-family="'Outfit', 'Inter', sans-serif" font-weight="600" font-size="10" fill="#64748b" letter-spacing="1.5">NETWORKS</text>
 </svg>

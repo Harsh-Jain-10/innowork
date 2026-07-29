@@ -1,32 +1,8 @@
-<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg" role="img">
+<svg viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg" role="img">
   <title>IBM</title>
-  <!-- I -->
-  <rect x="0" y="0" width="22" height="3.5" fill="#052FAD"/>
-  <rect x="0" y="5.2" width="22" height="3.5" fill="#052FAD"/>
-  <rect x="0" y="10.4" width="22" height="3.5" fill="#052FAD"/>
-  <rect x="0" y="15.6" width="22" height="3.5" fill="#052FAD"/>
-  <rect x="0" y="20.8" width="22" height="3.5" fill="#052FAD"/>
-  <rect x="0" y="26.0" width="22" height="3.5" fill="#052FAD"/>
-  <rect x="0" y="31.2" width="22" height="3.5" fill="#052FAD"/>
-  <rect x="0" y="36.4" width="22" height="3.5" fill="#052FAD"/>
-
-  <!-- B -->
-  <rect x="27" y="0" width="36" height="3.5" fill="#052FAD"/>
-  <rect x="27" y="5.2" width="36" height="3.5" fill="#052FAD"/>
-  <rect x="27" y="10.4" width="13" height="3.5" fill="#052FAD"/><rect x="50" y="10.4" width="13" height="3.5" fill="#052FAD"/>
-  <rect x="27" y="15.6" width="13" height="3.5" fill="#052FAD"/><rect x="50" y="15.6" width="13" height="3.5" fill="#052FAD"/>
-  <rect x="27" y="20.8" width="36" height="3.5" fill="#052FAD"/>
-  <rect x="27" y="26.0" width="13" height="3.5" fill="#052FAD"/><rect x="50" y="26.0" width="13" height="3.5" fill="#052FAD"/>
-  <rect x="27" y="31.2" width="13" height="3.5" fill="#052FAD"/><rect x="50" y="31.2" width="13" height="3.5" fill="#052FAD"/>
-  <rect x="27" y="36.4" width="36" height="3.5" fill="#052FAD"/>
-
-  <!-- M -->
-  <rect x="68" y="0" width="32" height="3.5" fill="#052FAD"/>
-  <rect x="68" y="5.2" width="32" height="3.5" fill="#052FAD"/>
-  <rect x="68" y="10.4" width="10" height="3.5" fill="#052FAD"/><rect x="79" y="10.4" width="10" height="3.5" fill="#052FAD"/><rect x="90" y="10.4" width="10" height="3.5" fill="#052FAD"/>
-  <rect x="68" y="15.6" width="10" height="3.5" fill="#052FAD"/><rect x="79" y="15.6" width="10" height="3.5" fill="#052FAD"/><rect x="90" y="15.6" width="10" height="3.5" fill="#052FAD"/>
-  <rect x="68" y="20.8" width="8" height="3.5" fill="#052FAD"/><rect x="78" y="20.8" width="12" height="3.5" fill="#052FAD"/><rect x="92" y="20.8" width="8" height="3.5" fill="#052FAD"/>
-  <rect x="68" y="26.0" width="8" height="3.5" fill="#052FAD"/><rect x="92" y="26.0" width="8" height="3.5" fill="#052FAD"/>
-  <rect x="68" y="31.2" width="8" height="3.5" fill="#052FAD"/><rect x="92" y="31.2" width="8" height="3.5" fill="#052FAD"/>
-  <rect x="68" y="36.4" width="8" height="3.5" fill="#052FAD"/><rect x="92" y="36.4" width="8" height="3.5" fill="#052FAD"/>
+  <g fill="#052FAD">
+    <path d="M0 0h24v4H0zm0 6h24v4H0zm0 6h9v4H0zm0 6h9v4H0zm0 6h9v4H0zm0 6h9v4H0zm0 6h24v4H0zm0 6h24v4H0zM15 12h9v4h-9zm0 6h9v4h-9zm0 6h9v4h-9zm0 6h9v4h-9z"/>
+    <path d="M28 0h36v4H28zm0 6h36v4H28zm0 6h11v4H28zm0 6h11v4H28zm0 6h11v4H28zm0 6h11v4H28zm0 6h36v4H28zm0 6h36v4H28zM43 12h21v4H43zm0 6h21v4H43zm0 6h21v4H43zm0 6h21v4H43z"/>
+    <path d="M68 0h33v4H68zm0 6h33v4H68zm0 6h10v4H68zm0 6h10v4H68zm0 6h10v4H68zm0 6h10v4H68zm0 6h33v4H68zm0 6h33v4H68zM82 12h19v4H82zm0 6h19v4H82zm0 6h19v4H82zm0 6h19v4H82z"/>
+  </g>
 </svg>

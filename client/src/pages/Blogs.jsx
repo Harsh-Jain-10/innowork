@@ -2,53 +2,22 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '../components/ScrollReveal';
 import { blogArticles } from '../data/blogData';
-import { 
-  DatacenterIllustration, 
-  SecurityIllustration, 
-  CloudIllustration, 
-  MVISIllustration, 
-  ERPIllustration, 
-  AIIllustration 
-} from '../components/BlogIllustrations';
 
 // Helper to calculate reading time based on word count
 const calculateReadingTime = (text) => {
   if (!text) return null;
-  const wordsPerMinute = 225; // average adult reading speed
+  const wordsPerMinute = 225;
   const words = text.trim().split(/\s+/).length;
   return Math.ceil(words / wordsPerMinute);
 };
 
-// Map category to illustration or official image
-const renderBlogImage = (article, style) => {
-  if (article.image) {
-    return (
-      <img 
-        src={article.image} 
-        alt={article.title} 
-        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', ...style }} 
-      />
-    );
-  }
-  const id = article.id;
-  if (id === 'future-of-enterprise-it-infrastructure') return <DatacenterIllustration style={style} />;
-  if (id === 'cybersecurity-best-practices-modern-businesses') return <SecurityIllustration style={style} />;
-  if (id === 'cloud-transformation-building-scalable-digital-enterprise') return <CloudIllustration style={style} />;
-  if (id === 'multi-vendor-infrastructure-support-benefits') return <MVISIllustration style={style} />;
-  if (id === 'erp-modernization-strategies-growing-organizations') return <ERPIllustration style={style} />;
-  if (id === 'ai-automation-digital-transformation-enterprise-it') return <AIIllustration style={style} />;
-
-  return <DatacenterIllustration style={style} />;
-};
-
 const CATEGORIES = [
   'All',
-  'Datacenter',
-  'Cloud',
+  'Enterprise IT',
   'Cybersecurity',
+  'Cloud',
   'Hybrid Infrastructure',
-  'DevOps',
-  'Enterprise IT'
+  'DevOps'
 ];
 
 export default function Blogs() {
@@ -97,84 +66,82 @@ export default function Blogs() {
     activeCategory.toLowerCase().includes(featuredArticle.category.toLowerCase());
 
   return (
-    <div style={{ backgroundColor: '#fafbfd', color: '#0f172a', minHeight: '100vh', paddingBottom: '7rem' }} id="blogs-page-view">
+    <div style={{ backgroundColor: '#f8fafc', color: '#0f172a', minHeight: '100vh', paddingBottom: '7rem' }} id="blogs-page-view">
       
-      {/* 1. HERO SECTION */}
+      {/* 1. ENTERPRISE PUBLICATION HERO HEADER */}
       <section style={{
-        background: 'linear-gradient(135deg, #091e3a 0%, #051026 100%)',
-        padding: '9rem 0 7rem 0',
+        backgroundColor: '#0b1329',
+        backgroundImage: 'linear-gradient(180deg, #091e3a 0%, #0b1329 100%)',
+        padding: '8.5rem 0 6rem 0',
         color: '#ffffff',
         position: 'relative',
         overflow: 'hidden',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+        borderBottom: '1px solid #1e293b'
       }}>
-        {/* Animated Background Grid lines */}
+        {/* Subtle architectural background grid */}
         <div style={{
-          position: 'absolute', inset: 0, opacity: 0.12,
-          backgroundImage: 'radial-gradient(circle, #38bdf8 1px, transparent 1px)',
-          backgroundSize: '30px 30px', pointerEvents: 'none'
-        }} />
-        {/* Soft atmospheric gradient lighting */}
-        <div style={{
-          position: 'absolute', bottom: '-20%', left: '30%',
-          width: '500px', maxWidth: '100vw', height: '300px',
-          background: 'radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, rgba(14, 165, 233, 0) 70%)',
-          pointerEvents: 'none'
+          position: 'absolute', inset: 0, opacity: 0.05,
+          backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+          backgroundSize: '32px 32px', pointerEvents: 'none'
         }} />
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <ScrollReveal variant="fade-up">
-            <div style={{ maxWidth: '750px' }}>
-              <span style={{ 
-                color: '#38bdf8', 
+            <div style={{ maxWidth: '820px' }}>
+              <div style={{ 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                gap: '0.6rem',
+                fontSize: '0.78rem', 
                 fontWeight: 700, 
-                fontSize: '0.8rem', 
-                textTransform: 'uppercase', 
-                letterSpacing: '2.5px',
-                display: 'inline-block',
-                marginBottom: '1rem',
-                borderBottom: '2px solid #38bdf8',
-                paddingBottom: '0.25rem'
+                letterSpacing: '2px', 
+                color: '#38bdf8', 
+                textTransform: 'uppercase',
+                marginBottom: '1.25rem'
               }}>
-                ENGINEERING JOURNAL &amp; INSIGHTS
-              </span>
+                <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#38bdf8' }} />
+                INNOWORQ Enterprise Insights
+              </div>
+
               <h1 style={{ 
-                fontSize: 'clamp(1.85rem, 5.5vw, 3.5rem)', 
-                fontWeight: 800, 
-                marginTop: '0.5rem', 
+                fontSize: 'clamp(2.1rem, 5vw, 3.6rem)', 
+                fontWeight: 700, 
+                marginTop: 0, 
                 marginBottom: '1.25rem', 
-                letterSpacing: '-1.5px',
+                letterSpacing: '-1px',
                 lineHeight: 1.15,
+                color: '#ffffff',
                 fontFamily: 'var(--font-heading)'
               }}>
-                INNOWORQ Technology Publication
+                Technology Research &amp; Architectural Briefings
               </h1>
+
               <p style={{ 
-                color: 'rgba(255,255,255,0.75)', 
-                fontSize: 'clamp(0.95rem, 2.5vw, 1.15rem)', 
-                lineHeight: '1.7', 
-                fontWeight: 400 
+                color: '#94a3b8', 
+                fontSize: 'clamp(1rem, 2vw, 1.18rem)', 
+                lineHeight: '1.75', 
+                fontWeight: 400,
+                maxWidth: '720px'
               }}>
-                Deep-dive systems engineering, hybrid-cloud security frameworks, and datacenter operations 
-                briefings authored by our senior architects and technology leadership.
+                Strategic insights, technical analysis, and operational frameworks for enterprise IT leaders, cloud architects, and security officers.
               </p>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* 2. CATEGORY NAVIGATION BAR */}
+      {/* 2. CATEGORY FILTER NAVIGATION BAR */}
       <section style={{ 
-        padding: '1.5rem 0', 
+        padding: '1.25rem 0', 
         backgroundColor: '#ffffff', 
         borderBottom: '1px solid #e2e8f0', 
         position: 'sticky', 
         top: 70, 
         zIndex: 50,
-        boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)'
+        boxShadow: '0 4px 12px rgba(0,0,0,0.03)'
       }}>
         <div className="container">
-          <div className="category-bar-flex categories-filter-bar" style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div className="category-bar-flex" style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', justifyContent: 'flex-start' }}>
             {CATEGORIES.map((cat) => {
               const isActive = activeCategory === cat;
               return (
@@ -182,15 +149,16 @@ export default function Blogs() {
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
                   style={{
-                    padding: '0.5rem 1.25rem',
-                    borderRadius: '30px',
-                    border: 'none',
-                    backgroundColor: isActive ? '#0f172a' : 'transparent',
+                    padding: '0.45rem 1.15rem',
+                    borderRadius: '6px',
+                    border: '1px solid',
+                    borderColor: isActive ? '#0f172a' : '#cbd5e1',
+                    backgroundColor: isActive ? '#0f172a' : '#ffffff',
                     color: isActive ? '#ffffff' : '#475569',
                     fontSize: '0.85rem',
-                    fontWeight: isActive ? 700 : 500,
+                    fontWeight: isActive ? 600 : 500,
                     cursor: 'pointer',
-                    transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                    transition: 'all 0.2s ease',
                   }}
                   className="cat-btn"
                 >
@@ -202,40 +170,40 @@ export default function Blogs() {
         </div>
       </section>
 
-      <div className="container" style={{ marginTop: '5rem' }}>
+      <div className="container" style={{ marginTop: '4rem' }}>
         
-        {/* 3. FEATURED ARTICLE SECTION */}
+        {/* 3. FEATURED ARTICLE EDITORIAL HERO */}
         {showFeatured && (
           <ScrollReveal variant="fade-up">
-            <section style={{ marginBottom: '6rem' }}>
-              <div className="featured-grid">
-                <div className="featured-illustration-wrapper">
-                  {renderBlogImage(featuredArticle, { height: '100%', objectFit: 'cover' })}
+            <section style={{ marginBottom: '5rem' }}>
+              <div 
+                className="featured-editorial-card"
+                onClick={() => setSelectedArticle(featuredArticle)}
+              >
+                <div className="featured-image-container">
+                  <img 
+                    src={featuredArticle.image} 
+                    alt={featuredArticle.title} 
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
                 </div>
                 
-                <div className="featured-content">
-                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1.25rem' }}>
+                <div className="featured-content-container">
+                  <div style={{ display: 'flex', gap: '0.85rem', alignItems: 'center', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
                     <span className="badge-tag">{featuredArticle.category}</span>
-                    <span style={{ fontSize: '0.82rem', color: '#64748b', fontWeight: 600 }}>{featuredArticle.date}</span>
-                    <span style={{ fontSize: '0.82rem', color: '#64748b' }}>•</span>
-                    <span style={{ fontSize: '0.82rem', color: '#64748b', fontWeight: 600 }}>
+                    <span style={{ fontSize: '0.82rem', color: '#64748b', fontWeight: 500 }}>{featuredArticle.date}</span>
+                    <span style={{ fontSize: '0.82rem', color: '#94a3b8' }}>•</span>
+                    <span style={{ fontSize: '0.82rem', color: '#64748b', fontWeight: 500 }}>
                       {calculateReadingTime(featuredArticle.content)} min read
                     </span>
                   </div>
                   
-                  <h2 style={{ 
-                    fontSize: '2.25rem', 
-                    fontWeight: 800, 
-                    color: '#0f172a', 
-                    marginBottom: '1rem',
-                    lineHeight: '1.25',
-                    fontFamily: 'var(--font-heading)'
-                  }}>
+                  <h2 className="featured-editorial-title">
                     {featuredArticle.title}
                   </h2>
                   
                   <p style={{ 
-                    fontSize: '1.05rem', 
+                    fontSize: '1.02rem', 
                     color: '#475569', 
                     lineHeight: '1.7', 
                     marginBottom: '2rem' 
@@ -243,67 +211,61 @@ export default function Blogs() {
                     {featuredArticle.summary}
                   </p>
 
-                  <div className="author-meta-row" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2.5rem' }}>
-                    <div style={{ 
-                      width: '38px', height: '38px', 
-                      borderRadius: '50%', backgroundColor: '#09619f', 
-                      color: '#ffffff', display: 'flex', 
-                      alignItems: 'center', justifyContent: 'center',
-                      fontWeight: 700, fontSize: '0.9rem'
-                    }}>
-                      {featuredArticle.author.split(' ')[0][0]}
-                    </div>
-                    <div>
-                      <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#0f172a' }}>{featuredArticle.author}</div>
-                      <div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 500 }}>Technical Leadership</div>
-                    </div>
+                  <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
+                      INNOWORQ Editorial Team
+                    </span>
+                    <span className="editorial-link">
+                      Read Article <span style={{ transition: 'transform 0.2s ease', display: 'inline-block' }}>→</span>
+                    </span>
                   </div>
-
-                  <button 
-                    onClick={() => setSelectedArticle(featuredArticle)}
-                    className="btn btn-primary"
-                    style={{ padding: '0.85rem 2rem', width: 'fit-content' }}
-                  >
-                    Read Featured Insight →
-                  </button>
                 </div>
               </div>
             </section>
           </ScrollReveal>
         )}
 
-        {/* 4. OTHER ARTICLES GRID */}
+        {/* 4. OTHER ARTICLES EDITORIAL GRID */}
         {filteredArticles.length > 0 ? (
-          <section style={{ marginBottom: '6rem' }}>
-            <h3 style={{ 
-              fontSize: '1.65rem', 
-              fontWeight: 800, 
-              color: '#0f172a', 
-              marginBottom: '2.5rem',
-              borderBottom: '1px solid #e2e8f0',
-              paddingBottom: '1rem',
-              fontFamily: 'var(--font-heading)'
-            }}>
-              Latest Technical Briefings
-            </h3>
+          <section style={{ marginBottom: '5rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2.5rem', borderBottom: '2px solid #e2e8f0', paddingBottom: '0.85rem' }}>
+              <h3 style={{ 
+                fontSize: '1.45rem', 
+                fontWeight: 700, 
+                color: '#0f172a', 
+                margin: 0,
+                letterSpacing: '-0.3px',
+                fontFamily: 'var(--font-heading)'
+              }}>
+                Latest Industry Insights
+              </h3>
+              <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 500 }}>
+                Showing {filteredArticles.length} briefing{filteredArticles.length > 1 ? 's' : ''}
+              </span>
+            </div>
             
-            <StaggerContainer stagger={0.12} className="blog-posts-grid">
+            <StaggerContainer stagger={0.1} className="blog-posts-grid">
               {filteredArticles.map((post) => (
                 <StaggerItem key={post.id} variant="fade-up">
                   <article 
                     onClick={() => setSelectedArticle(post)}
                     className="editorial-card"
                   >
-                    <div className="card-illustration-wrapper">
-                      {renderBlogImage(post, { height: '100%', objectFit: 'cover' })}
+                    <div className="card-image-wrapper">
+                      <img 
+                        src={post.image} 
+                        alt={post.title} 
+                        loading="lazy"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                      />
                     </div>
                     
-                    <div style={{ padding: '2rem 1.75rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                      <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', marginBottom: '1rem' }}>
+                    <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                      <div style={{ display: 'flex', gap: '0.65rem', alignItems: 'center', marginBottom: '0.85rem' }}>
                         <span className="badge-tag">{post.category}</span>
-                        <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 600 }}>{post.date}</span>
-                        <span style={{ fontSize: '0.8rem', color: '#64748b' }}>•</span>
-                        <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 600 }}>
+                        <span style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 500 }}>{post.date}</span>
+                        <span style={{ fontSize: '0.78rem', color: '#94a3b8' }}>•</span>
+                        <span style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 500 }}>
                           {calculateReadingTime(post.content)} min read
                         </span>
                       </div>
@@ -316,9 +278,9 @@ export default function Blogs() {
                         {post.summary}
                       </p>
 
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #f1f5f9', paddingTop: '1rem', marginTop: 'auto' }}>
-                        <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#0f172a' }}>{post.author}</span>
-                        <span className="card-cta">Read Article →</span>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #f1f5f9', paddingTop: '0.85rem', marginTop: 'auto' }}>
+                        <span style={{ fontSize: '0.8rem', fontWeight: 500, color: '#64748b' }}>INNOWORQ Editorial</span>
+                        <span className="card-cta">Continue Reading →</span>
                       </div>
                     </div>
                   </article>
@@ -328,17 +290,15 @@ export default function Blogs() {
           </section>
         ) : (
           !showFeatured && (
-            <div style={{ textAlign: 'center', padding: '5rem 0', color: '#64748b' }}>
-              No published articles found in this category.
+            <div style={{ textAlign: 'center', padding: '6rem 0', color: '#64748b', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+              No research briefings found for this category.
             </div>
           )
         )}
 
-
-
       </div>
 
-      {/* 6. DETAILED ARTICLE READER MODAL */}
+      {/* 5. DETAILED ARTICLE READER MODAL */}
       <AnimatePresence>
         {selectedArticle && (
           <motion.div 
@@ -353,22 +313,28 @@ export default function Blogs() {
               style={{ 
                 position: 'fixed', top: 0, left: 0, 
                 width: `${scrollProgress}%`, height: '4px', 
-                backgroundColor: 'var(--brand-blue)', zIndex: 101,
+                backgroundColor: '#2563eb', zIndex: 101,
                 transition: 'width 0.1s ease-out'
               }} 
             />
 
             <motion.div 
-              initial={{ y: 50, scale: 0.98 }}
-              animate={{ y: 0, scale: 1 }}
-              exit={{ y: 50, scale: 0.98 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 40, opacity: 0 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
               className="modal-container"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close bar */}
+              {/* Modal header bar */}
               <div className="modal-header">
-                <span className="badge-tag">{selectedArticle.category}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  <span className="badge-tag">{selectedArticle.category}</span>
+                  <span style={{ fontSize: '0.82rem', color: '#64748b', fontWeight: 500 }}>
+                    {selectedArticle.date}
+                  </span>
+                </div>
+                
                 <button 
                   onClick={() => setSelectedArticle(null)}
                   className="modal-close-btn"
@@ -378,42 +344,46 @@ export default function Blogs() {
                 </button>
               </div>
 
-              {/* Scrollable content container */}
+              {/* Scrollable article reader body */}
               <div 
                 className="modal-scroll-body"
                 ref={modalContentRef}
                 onScroll={handleModalScroll}
               >
-                <div style={{ maxWidth: '680px', margin: '0 auto', padding: '1rem 0' }}>
+                <div style={{ maxWidth: '720px', margin: '0 auto', padding: '1rem 0' }}>
+                  
                   {/* Article Title */}
                   <h1 style={{ 
-                    fontSize: '2.5rem', 
-                    fontWeight: 800, 
+                    fontSize: 'clamp(1.75rem, 4vw, 2.35rem)', 
+                    fontWeight: 700, 
                     color: '#0f172a', 
                     marginBottom: '1.25rem', 
-                    lineHeight: '1.2',
+                    lineHeight: '1.25',
+                    letterSpacing: '-0.5px',
                     fontFamily: 'var(--font-heading)'
                   }}>
                     {selectedArticle.title}
                   </h1>
 
-                  {/* Article Meta */}
-                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap', marginBottom: '2.5rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '1.5rem' }}>
-                    <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>Published on {selectedArticle.date}</span>
-                    <span style={{ fontSize: '0.85rem', color: '#64748b' }}>•</span>
-                    <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>By {selectedArticle.author}</span>
-                    <span style={{ fontSize: '0.85rem', color: '#64748b' }}>•</span>
-                    <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
+                  {/* Editorial Attribution */}
+                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap', marginBottom: '2rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '1.25rem' }}>
+                    <span style={{ fontSize: '0.85rem', color: '#1e293b', fontWeight: 600 }}>By INNOWORQ Editorial Team</span>
+                    <span style={{ fontSize: '0.85rem', color: '#cbd5e1' }}>•</span>
+                    <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 500 }}>
                       {calculateReadingTime(selectedArticle.content)} min read
                     </span>
                   </div>
 
-                  {/* Editorial Illustration Inside Article */}
-                  <div style={{ width: '100%', height: '300px', backgroundColor: '#0f172a', borderRadius: '8px', overflow: 'hidden', marginBottom: '2.5rem' }}>
-                    {renderBlogImage(selectedArticle, { height: '100%' })}
+                  {/* Hero Photography Banner */}
+                  <div style={{ width: '100%', height: '360px', borderRadius: '10px', overflow: 'hidden', marginBottom: '2.5rem', border: '1px solid #e2e8f0' }}>
+                    <img 
+                      src={selectedArticle.image} 
+                      alt={selectedArticle.title} 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
+                    />
                   </div>
 
-                  {/* Article body */}
+                  {/* Article Body */}
                   <div 
                     className="article-text-content"
                     dangerouslySetInnerHTML={{ 
@@ -423,20 +393,20 @@ export default function Blogs() {
                         .map(p => {
                           const block = p.trim();
                           if (block.startsWith('## ')) {
-                            return `<h2 style="font-size: 1.75rem; font-weight: 800; color: #0f172a; margin-top: 2.25rem; margin-bottom: 1rem; font-family: var(--font-heading);">${block.replace(/^## /, '')}</h2>`;
+                            return `<h2 style="font-size: 1.6rem; font-weight: 700; color: #0f172a; margin-top: 2.25rem; margin-bottom: 1rem; letter-spacing: -0.3px; font-family: var(--font-heading);">${block.replace(/^## /, '')}</h2>`;
                           }
                           if (block.startsWith('### ')) {
-                            return `<h3 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-top: 1.75rem; margin-bottom: 0.75rem; font-family: var(--font-heading);">${block.replace(/^### /, '')}</h3>`;
+                            return `<h3 style="font-size: 1.25rem; font-weight: 600; color: #0f172a; margin-top: 1.75rem; margin-bottom: 0.75rem; font-family: var(--font-heading);">${block.replace(/^### /, '')}</h3>`;
                           }
                           if (block.startsWith('- ')) {
-                            const items = block.split('\n').map(item => `<li style="margin-bottom: 0.5rem;">${item.replace(/^- /, '').trim()}</li>`).join('');
-                            return `<ul style="font-size: 1.02rem; color: #334155; line-height: 1.7; margin-bottom: 1.5rem; padding-left: 1.5rem; list-style-type: disc;">${items}</ul>`;
+                            const items = block.split('\n').map(item => `<li style="margin-bottom: 0.5rem; color: #334155;">${item.replace(/^- /, '').trim()}</li>`).join('');
+                            return `<ul style="font-size: 1.02rem; color: #334155; line-height: 1.75; margin-bottom: 1.5rem; padding-left: 1.5rem; list-style-type: disc;">${items}</ul>`;
                           }
                           if (block.startsWith('> ')) {
-                            return `<blockquote style="border-left: 4px solid #2563eb; background-color: #f8fafc; padding: 1.25rem 1.5rem; margin: 1.75rem 0; border-radius: 0 8px 8px 0; font-size: 1.02rem; font-weight: 600; color: #1e293b;">${block.replace(/^> /, '')}</blockquote>`;
+                            return `<blockquote style="border-left: 3px solid #2563eb; background-color: #f8fafc; padding: 1.25rem 1.5rem; margin: 1.75rem 0; border-radius: 0 6px 6px 0; font-size: 1.02rem; font-weight: 600; color: #1e293b; line-height: 1.6;">${block.replace(/^> /, '')}</blockquote>`;
                           }
                           const formattedText = block.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                          return `<p style="font-size: 1.05rem; color: #334155; line-height: 1.75; margin-bottom: 1.5rem; font-family: var(--font-body);">${formattedText}</p>`;
+                          return `<p style="font-size: 1.05rem; color: #334155; line-height: 1.8; margin-bottom: 1.5rem; font-family: var(--font-body);">${formattedText}</p>`;
                         })
                         .join('') 
                     }}
@@ -449,32 +419,57 @@ export default function Blogs() {
       </AnimatePresence>
 
       <style>{`
-        /* 1. FEATURED ARTICLE STYLING */
-        .featured-grid {
+        /* 1. FEATURED EDITORIAL CARD */
+        .featured-editorial-card {
           display: grid;
-          grid-template-columns: 1.1fr 0.9fr;
-          gap: 4rem;
-          align-items: center;
+          grid-template-columns: 1.15fr 0.85fr;
           background: #ffffff;
-          padding: 2.5rem;
-          border-radius: 20px;
-          border: 1px solid #e2e8f0;
-          box-shadow: 0 10px 40px -12px rgba(0,0,0,0.03);
-        }
-        .featured-illustration-wrapper {
-          width: 100%;
-          height: 380px;
           border-radius: 12px;
+          border: 1px solid #e2e8f0;
+          overflow: hidden;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .featured-editorial-card:hover {
+          border-color: #cbd5e1;
+          box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+        }
+        .featured-editorial-card:hover .editorial-link span {
+          transform: translateX(4px);
+        }
+        .featured-image-container {
+          width: 100%;
+          height: 420px;
           overflow: hidden;
           background-color: #0b1329;
-          display: flex;
-          align-items: center;
-          justify-content: center;
         }
-        .featured-content {
+        .featured-content-container {
+          padding: 3rem;
           display: flex;
           flex-direction: column;
           justify-content: center;
+        }
+        .featured-editorial-title {
+          font-size: 1.95rem;
+          font-weight: 700;
+          color: #0f172a;
+          margin-bottom: 1rem;
+          line-height: 1.25;
+          letter-spacing: -0.4px;
+          font-family: var(--font-heading);
+          transition: color 0.2s ease;
+        }
+        .featured-editorial-card:hover .featured-editorial-title {
+          color: #2563eb;
+        }
+        .editorial-link {
+          font-size: 0.9rem;
+          font-weight: 700;
+          color: #2563eb;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
         }
 
         /* 2. CARD GRID STYLING */
@@ -485,61 +480,52 @@ export default function Blogs() {
         }
         .editorial-card {
           background-color: #ffffff;
-          border-radius: 14px;
+          border-radius: 10px;
           border: 1px solid #e2e8f0;
           overflow: hidden;
           display: flex;
           flex-direction: column;
           height: 100%;
           cursor: pointer;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          box-shadow: 0 4px 6px -1px rgba(0,0,0,0.01);
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
         .editorial-card:hover {
-          transform: translateY(-6px);
+          transform: translateY(-4px);
           border-color: #cbd5e1;
-          box-shadow: 0 16px 40px -12px rgba(9,97,159,0.1);
+          box-shadow: 0 12px 28px rgba(0,0,0,0.06);
         }
         .editorial-card:hover .card-headline {
-          color: var(--brand-blue);
+          color: #2563eb;
         }
-        .editorial-card:hover .card-cta {
-          color: var(--brand-blue-hover);
-          transform: translateX(4px);
-        }
-        .card-illustration-wrapper {
+        .card-image-wrapper {
           width: 100%;
-          height: 200px;
+          height: 210px;
           background-color: #0b1329;
           overflow: hidden;
         }
         .card-headline {
-          font-size: 1.28rem;
-          fontWeight: 800;
+          font-size: 1.2rem;
+          font-weight: 700;
           color: #0f172a;
           margin-bottom: 0.75rem;
-          line-height: 1.35;
+          line-height: 1.38;
+          letter-spacing: -0.2px;
           font-family: var(--font-heading);
-          transition: color 0.3s ease;
+          transition: color 0.2s ease;
         }
         .card-cta {
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           font-weight: 700;
-          color: #64748b;
-          display: inline-flex;
-          align-items: center;
-          gap: 0.25rem;
-          transition: all 0.3s ease;
+          color: #2563eb;
         }
 
-
-
-        /* 4. MODAL READER STYLING */
+        /* 3. MODAL READER STYLING */
         .modal-overlay {
           position: fixed;
           inset: 0;
-          background-color: rgba(15, 23, 42, 0.7);
-          backdrop-filter: blur(8px);
+          background-color: rgba(15, 23, 42, 0.75);
+          backdrop-filter: blur(6px);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -549,18 +535,18 @@ export default function Blogs() {
         .modal-container {
           background-color: #ffffff;
           width: 100%;
-          max-width: 800px;
+          max-width: 860px;
           height: 100%;
-          max-height: 85vh;
-          border-radius: 16px;
+          max-height: 88vh;
+          border-radius: 12px;
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
         }
         .modal-header {
-          padding: 1.25rem 2rem;
-          border-bottom: 1px solid #f1f5f9;
+          padding: 1.15rem 2rem;
+          border-bottom: 1px solid #e2e8f0;
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -569,31 +555,35 @@ export default function Blogs() {
         }
         .modal-close-btn {
           border: none;
-          background: transparent;
-          color: #475569;
-          font-weight: 700;
-          font-size: 0.88rem;
+          background: #f1f5f9;
+          color: #334155;
+          font-weight: 600;
+          font-size: 0.85rem;
+          padding: 0.35rem 0.85rem;
+          border-radius: 6px;
           cursor: pointer;
-          transition: color 0.2s ease;
+          transition: all 0.2s ease;
         }
         .modal-close-btn:hover {
+          background-color: #e2e8f0;
           color: #0f172a;
         }
         .modal-scroll-body {
           flex-grow: 1;
           overflow-y: auto;
-          padding: 2rem 3rem;
+          padding: 2.5rem 3.5rem;
           background-color: #ffffff;
         }
 
         /* UTILITY BADGE */
         .badge-tag {
           font-size: 0.72rem;
-          font-weight: 800;
-          color: var(--brand-blue);
-          background-color: rgba(9, 97, 159, 0.07);
-          padding: 0.2rem 0.6rem;
-          border-radius: 20px;
+          font-weight: 700;
+          color: #1e293b;
+          background-color: #f1f5f9;
+          border: 1px solid #e2e8f0;
+          padding: 0.2rem 0.65rem;
+          border-radius: 4px;
           text-transform: uppercase;
           letter-spacing: 0.5px;
         }
@@ -603,13 +593,14 @@ export default function Blogs() {
           .blog-posts-grid {
             grid-template-columns: repeat(2, 1fr);
           }
-          .featured-grid {
+          .featured-editorial-card {
             grid-template-columns: 1fr;
-            gap: 2rem;
-            padding: 2rem;
           }
-          .featured-illustration-wrapper {
-            height: 300px;
+          .featured-image-container {
+            height: 320px;
+          }
+          .featured-content-container {
+            padding: 2rem;
           }
         }
         @media (max-width: 768px) {
@@ -638,13 +629,9 @@ export default function Blogs() {
             padding: 1.5rem 1.25rem;
           }
         }
-        @media (max-width: 480px) {
-          .featured-grid {
-            padding: 1.25rem !important;
-          }
-        }
       `}</style>
 
     </div>
   );
 }
+

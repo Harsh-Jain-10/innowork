@@ -1,4 +1,6 @@
-<svg fill="#DC2626" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 170 45" xmlns="http://www.w3.org/2000/svg" role="img">
   <title>Check Point</title>
-  <path d="M12 0L1.5 4.5v7.5c0 6.5 4.5 11 10.5 12 6-1 10.5-5.5 10.5-12V4.5L12 0zm0 4.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm0 15a7.5 7.5 0 0 1-7.5-7.5c0-2.3.9-4.4 2.4-6 1.4 1.2 3.1 2 5.1 2s3.7-.8 5.1-2c1.5 1.6 2.4 3.7 2.4 6a7.5 7.5 0 0 1-7.5 7.5z"/>
+  <circle cx="10" cy="22" r="7" fill="#DC2626" />
+  <circle cx="5" cy="18" r="3" fill="#FF4D4D" />
+  <text x="24" y="27" font-family="'Arial Black', sans-serif" font-weight="900" font-size="16" fill="#000000" letter-spacing="0.5">CHECK POINT</text>
 </svg>

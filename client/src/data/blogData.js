@@ -5,13 +5,13 @@ export const blogArticles = [
     id: "future-of-enterprise-it-infrastructure",
     title: "The Future of Enterprise IT Infrastructure: Trends, Challenges, and SLA Strategies",
     date: "June 12, 2025",
-    author: "Anuj Gupta, Global Service Head",
+    author: "INNOWORQ Editorial Team",
     category: "Enterprise IT",
     summary: "Discover key trends shaping modern enterprise IT infrastructure—from software-defined datacenters (SDDC) and edge computing to SLA-bound multi-vendor maintenance.",
     metaTitle: "The Future of Enterprise IT Infrastructure | INNOWORQ Insights",
     metaDescription: "Explore top trends shaping enterprise IT infrastructure, from hybrid cloud & edge computing to automated SLA management and software-defined datacenters.",
     keywords: ["Enterprise IT Infrastructure", "Hybrid Cloud", "SDDC", "SLA Management", "IT Modernization"],
-    image: null,
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1400&q=80",
     content: `
 The modern enterprise datacenter is undergoing a fundamental transformation. For decades, IT infrastructure capability was measured by physical floor space, server rack density, and thermal dissipation metrics. Today, enterprise competitiveness is defined by architectural agility, software-defined resilience, and SLA-bound operational performance.
 
@@ -46,13 +46,13 @@ Implementing a unified Multi-Vendor Infrastructure Support (MVIS) framework enab
     id: "cybersecurity-best-practices-modern-businesses",
     title: "Cybersecurity Best Practices for Modern Enterprises: A Zero Trust Approach",
     date: "May 28, 2025",
-    author: "INNOWORQ Security Architecture Team",
+    author: "INNOWORQ Editorial Team",
     category: "Cybersecurity",
     summary: "A practical guide to securing hybrid and multi-cloud enterprise environments using Zero Trust Architecture, NOC/SOC monitoring, and proactive threat isolation.",
     metaTitle: "Cybersecurity Best Practices for Modern Enterprises | INNOWORQ",
     metaDescription: "Comprehensive guide to enterprise cybersecurity best practices, Zero Trust architecture, NOC/SOC active monitoring, and multi-cloud perimeter defense.",
     keywords: ["Cybersecurity", "Zero Trust", "SOC Monitoring", "Enterprise Security", "Threat Mitigation"],
-    image: null,
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1400&q=80",
     content: `
 In an era of distributed enterprise networks, remote workforces, and multi-cloud infrastructure, traditional network perimeter defenses are no longer sufficient. Enterprise cybersecurity demands a continuous, proactive posture built around explicit verification and active threat isolation.
 
@@ -86,13 +86,13 @@ Securing complex IT ecosystems requires continuous, real-time visibility across 
     id: "cloud-transformation-building-scalable-digital-enterprise",
     title: "Cloud Transformation: Building a Scalable, Resilient Digital Enterprise",
     date: "May 14, 2025",
-    author: "INNOWORQ Cloud Operations Team",
+    author: "INNOWORQ Editorial Team",
     category: "Cloud",
     summary: "How enterprises navigate cloud migration, hybrid cloud orchestration, containerized workloads, and continuous cost optimization.",
     metaTitle: "Cloud Transformation Strategy for Enterprises | INNOWORQ",
     metaDescription: "A strategic guide to enterprise cloud transformation: multi-cloud orchestration, workload migration, containerization, and cost optimization.",
     keywords: ["Cloud Transformation", "Multi-Cloud", "Kubernetes", "Workload Migration", "AWS Azure GCP"],
-    image: null,
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=80",
     content: `
 Cloud transformation has evolved from a simple technology migration into a core business imperative. Organizations that successfully modernize their workloads achieve greater elasticity, faster feature velocity, and enhanced operational resilience.
 
@@ -125,13 +125,13 @@ While public cloud infrastructure provides immediate scalability, unmanaged clou
     id: "multi-vendor-infrastructure-support-benefits",
     title: "Multi-Vendor Infrastructure Support (MVIS): Maximizing Hardware ROI & SLA Efficiency",
     date: "April 29, 2025",
-    author: "Naveen Grover, Global Sales Head",
+    author: "INNOWORQ Editorial Team",
     category: "Hybrid Infrastructure",
     summary: "Unpacking how Multi-Vendor Infrastructure Support simplifies OEM management, extends hardware lifecycles, and lowers enterprise TCO.",
     metaTitle: "Multi-Vendor Infrastructure Support (MVIS) Guide | INNOWORQ",
     metaDescription: "Discover how Multi-Vendor Infrastructure Support (MVIS) simplifies SLA coverage, lowers hardware TCO, and eliminates vendor lock-in.",
     keywords: ["Multi-Vendor Support", "MVIS", "Third Party Maintenance", "IT SLA", "Hardware Support"],
-    image: null,
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1400&q=80",
     content: `
 Enterprise IT datacenters typically house hardware assets from multiple Original Equipment Manufacturers (OEMs), including Dell EMC, IBM, Cisco, HPE, NetApp, and Fujitsu. Managing individual support contracts across each vendor creates logistical complexities, escalating operational costs, and dangerous gaps in service coverage.
 
@@ -164,13 +164,13 @@ Multi-Vendor Infrastructure Support (MVIS) consolidates hardware maintenance und
     id: "erp-modernization-strategies-growing-organizations",
     title: "ERP Modernization Strategies: Cloud SAP Basis & Database Architecture",
     date: "April 15, 2025",
-    author: "Manish Gupta, Global Software Head",
+    author: "INNOWORQ Editorial Team",
     category: "Enterprise IT",
     summary: "Strategies for transforming legacy ERP systems into agile, high-availability platforms through SAP Basis management and cloud database optimization.",
     metaTitle: "ERP Modernization Strategies & Cloud SAP Basis | INNOWORQ",
     metaDescription: "Key strategies for modernizing legacy ERP systems, cloud migration, SAP Basis administration, and high-availability database architectures.",
     keywords: ["ERP Modernization", "SAP Basis", "Cloud ERP", "SAP HANA", "Enterprise Applications"],
-    image: null,
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
     content: `
 Enterprise Resource Planning (ERP) systems represent the digital core of modern organization operations—managing finance, supply chains, human resources, and customer relationships. As business models evolve, legacy ERP architectures must be modernized to deliver real-time data insights and cloud scalability.
 
@@ -203,13 +203,13 @@ Maintaining high availability and security across complex ERP ecosystems require
     id: "ai-automation-digital-transformation-enterprise-it",
     title: "AI, Automation & Digital Transformation: Streamlining Enterprise IT Operations",
     date: "March 30, 2025",
-    author: "INNOWORQ Enterprise Solutions Team",
+    author: "INNOWORQ Editorial Team",
     category: "DevOps",
     summary: "Exploring how AI-driven observability, Infrastructure as Code (IaC), Ansible playbooks, and AIOps eliminate manual operational overhead.",
     metaTitle: "AI, Automation & Digital Transformation in IT | INNOWORQ",
     metaDescription: "How AI-driven observability, DevOps automation, Ansible scripting, and AIOps streamline IT operations and eliminate manual downtime.",
     keywords: ["AI in IT", "DevOps Automation", "Ansible", "Infrastructure as Code", "AIOps"],
-    image: null,
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80",
     content: `
 As enterprise IT environments increase in scale and complexity, manual operational management becomes untenable. Digital transformation requires integrating artificial intelligence and automation into routine IT workflows—a shift known as AIOps.
 
@@ -239,4 +239,5 @@ Integrating automated CI/CD pipelines and IaC tooling enables technology teams t
 `
   }
 ];
+
 

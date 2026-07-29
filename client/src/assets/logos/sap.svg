@@ -1,4 +1,5 @@
-<svg fill="#008FD3" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 100 45" xmlns="http://www.w3.org/2000/svg" role="img">
   <title>SAP</title>
-  <path d="M0 0h24v24H0V0zm3.6 4.8v14.4h16.8V4.8H3.6zm3.6 3.6h9.6v7.2H7.2V8.4z"/>
+  <polygon points="0,7 95,7 65,37 0,37" fill="#008FD3" />
+  <text x="18" y="29" font-family="'Arial Black', sans-serif" font-weight="900" font-size="20" fill="#ffffff" letter-spacing="1">SAP</text>
 </svg>

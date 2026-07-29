@@ -1,4 +1,6 @@
-<svg fill="#01A781" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 170 45" xmlns="http://www.w3.org/2000/svg" role="img">
   <title>Hewlett Packard Enterprise</title>
-  <path d="M22.56 18.24H1.44V5.76h21.12v12.48zM0 4.32v15.36h24V4.32H0z"/>
+  <rect x="2" y="6" width="30" height="15" fill="none" stroke="#01A781" stroke-width="3.5" />
+  <text x="40" y="20" font-family="'Inter', 'Helvetica', 'Arial', sans-serif" font-weight="700" font-size="13" fill="#000000">Hewlett Packard</text>
+  <text x="40" y="34" font-family="'Inter', 'Helvetica', 'Arial', sans-serif" font-weight="400" font-size="12" fill="#000000">Enterprise</text>
 </svg>

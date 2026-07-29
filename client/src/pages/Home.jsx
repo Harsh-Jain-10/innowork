@@ -394,92 +394,163 @@ export default function Home() {
         </div>
       </section>
 
-      {/* OEM Partner Marquee */}
-      <div className="premium-marquee-container" role="region" aria-label="Technology Partners Marquee">
-        <style>{`
-          .premium-marquee-container {
-            overflow: hidden;
-            width: 100%;
-            display: flex;
-            background: #f8fafc;
-            border-top: 1px solid #e2e8f0;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 1.75rem 0;
-            position: relative;
-          }
-          .premium-marquee-track {
-            display: flex;
-            flex-shrink: 0;
-            gap: 5.5rem;
-            padding-right: 5.5rem;
-            animation: marquee-scroll 45s linear infinite;
-            align-items: center;
-          }
-          .premium-marquee-container:hover .premium-marquee-track,
-          .premium-marquee-container:focus-within .premium-marquee-track {
-            animation-play-state: paused;
-          }
-          .premium-logo-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.9;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-          }
-          .premium-logo-item:hover {
-            opacity: 1;
-            transform: scale(1.08);
-          }
-          @keyframes marquee-scroll {
-            0% {
-              transform: translate3d(0, 0, 0);
-            }
-            100% {
-              transform: translate3d(-100%, 0, 0);
-            }
-          }
-        `}</style>
-        <div className="premium-marquee-track">
-          {configData.oemPartners.map((oem) => {
-            const logoSrc = logoMapping[oem];
-            const details = logoDetails[oem] || { height: 28 };
-            return (
-              <div 
-                key={`m1-${oem}`} 
-                className="premium-logo-item"
-                style={{ height: `${details.height}px` }}
-              >
-                <img 
-                  src={logoSrc} 
-                  alt={`${oem} Logo`} 
-                  loading="lazy" 
-                  style={{ height: '100%', width: 'auto', display: 'block', objectFit: 'contain' }}
-                />
+      {/* OEM Partners Section - Enterprise Wall Grid Matching Official Branding */}
+      <section style={{ padding: '4.5rem 0', backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }} id="oem-partners-section">
+        <div className="container">
+          
+          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <span style={{ 
+              color: 'var(--brand-blue)', 
+              fontWeight: 700, 
+              fontSize: '0.8rem', 
+              textTransform: 'uppercase', 
+              letterSpacing: '2px',
+              display: 'inline-block',
+              marginBottom: '0.5rem'
+            }}>
+              AUTHORIZED ENTERPRISE ECOSYSTEM
+            </span>
+            <h2 style={{ 
+              fontSize: 'clamp(1.75rem, 4vw, 2.35rem)', 
+              fontWeight: 800, 
+              color: '#0f172a', 
+              margin: 0,
+              letterSpacing: '-0.5px',
+              fontFamily: 'var(--font-heading)'
+            }}>
+              Our OEM Technology Partners
+            </h2>
+          </div>
+
+          {/* OEM Wall Container Card */}
+          <ScrollReveal variant="fade-up">
+            <div className="oem-wall-card">
+              <style>{`
+                .oem-wall-card {
+                  background-color: #ffffff;
+                  border-radius: 16px;
+                  border: 1px solid #e2e8f0;
+                  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
+                  padding: 1.5rem 1rem;
+                  overflow: hidden;
+                }
+
+                .oem-grid-wall {
+                  display: grid;
+                  grid-template-columns: repeat(8, 1fr);
+                  align-items: center;
+                }
+
+                .oem-grid-cell {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 1rem 0.5rem;
+                  height: 75px;
+                  border-right: 1px solid #f1f5f9;
+                  border-bottom: 1px solid #f1f5f9;
+                  transition: all 0.25s ease;
+                }
+
+                /* Grid border rules for 8 columns */
+                .oem-grid-cell:nth-child(8n) {
+                  border-right: none;
+                }
+                .oem-grid-cell:nth-child(n+25) {
+                  border-bottom: none;
+                }
+
+                .oem-grid-cell:hover {
+                  background-color: #f8fafc;
+                }
+
+                .oem-logo-image {
+                  max-width: 82%;
+                  max-height: 42px;
+                  width: auto;
+                  height: auto;
+                  object-fit: contain;
+                  filter: grayscale(10%);
+                  transition: all 0.25s ease;
+                }
+
+                .oem-grid-cell:hover .oem-logo-image {
+                  filter: grayscale(0%);
+                  transform: translateY(-2px);
+                }
+
+                @media (max-width: 1200px) {
+                  .oem-grid-wall {
+                    grid-template-columns: repeat(4, 1fr);
+                  }
+                  .oem-grid-cell:nth-child(8n) {
+                    border-right: 1px solid #f1f5f9;
+                  }
+                  .oem-grid-cell:nth-child(4n) {
+                    border-right: none;
+                  }
+                  .oem-grid-cell:nth-child(n+25) {
+                    border-bottom: 1px solid #f1f5f9;
+                  }
+                  .oem-grid-cell:nth-child(n+29) {
+                    border-bottom: none;
+                  }
+                }
+
+                @media (max-width: 768px) {
+                  .oem-grid-wall {
+                    grid-template-columns: repeat(3, 1fr);
+                  }
+                  .oem-grid-cell:nth-child(4n) {
+                    border-right: 1px solid #f1f5f9;
+                  }
+                  .oem-grid-cell:nth-child(3n) {
+                    border-right: none;
+                  }
+                  .oem-grid-cell:nth-child(n+29) {
+                    border-bottom: 1px solid #f1f5f9;
+                  }
+                  .oem-grid-cell:nth-child(n+31) {
+                    border-bottom: none;
+                  }
+                }
+
+                @media (max-width: 480px) {
+                  .oem-grid-wall {
+                    grid-template-columns: repeat(2, 1fr);
+                  }
+                  .oem-grid-cell:nth-child(3n) {
+                    border-right: 1px solid #f1f5f9;
+                  }
+                  .oem-grid-cell:nth-child(2n) {
+                    border-right: none;
+                  }
+                  .oem-grid-cell:nth-child(n+31) {
+                    border-bottom: 1px solid #f1f5f9;
+                  }
+                }
+              `}</style>
+              
+              <div className="oem-grid-wall">
+                {configData.oemPartners.map((oem) => {
+                  const logoSrc = logoMapping[oem];
+                  return (
+                    <div key={oem} className="oem-grid-cell">
+                      <img 
+                        src={logoSrc} 
+                        alt={`${oem} Official Logo`} 
+                        className="oem-logo-image" 
+                        loading="lazy"
+                      />
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
+            </div>
+          </ScrollReveal>
+
         </div>
-        <div className="premium-marquee-track" aria-hidden="true">
-          {configData.oemPartners.map((oem) => {
-            const logoSrc = logoMapping[oem];
-            const details = logoDetails[oem] || { height: 28 };
-            return (
-              <div 
-                key={`m2-${oem}`} 
-                className="premium-logo-item"
-                style={{ height: `${details.height}px` }}
-              >
-                <img 
-                  src={logoSrc} 
-                  alt={`${oem} Logo`} 
-                  loading="lazy" 
-                  style={{ height: '100%', width: 'auto', display: 'block', objectFit: 'contain' }}
-                />
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      </section>
 
 
       {/* 3. Core Strengths & Certifications */}
