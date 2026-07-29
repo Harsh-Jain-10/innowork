@@ -434,7 +434,7 @@ export default function Home() {
                   border-radius: 16px;
                   border: 1px solid #e2e8f0;
                   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
-                  padding: 1.75rem 0;
+                  padding: 1.5rem 0.5rem;
                 }
 
                 .oem-marquee-container::before,
@@ -443,31 +443,32 @@ export default function Home() {
                   position: absolute;
                   top: 0;
                   bottom: 0;
-                  width: 80px;
+                  width: 35px;
                   z-index: 3;
                   pointer-events: none;
                 }
                 .oem-marquee-container::before {
                   left: 0;
-                  background: linear-gradient(to right, #ffffff 10%, rgba(255, 255, 255, 0));
+                  background: linear-gradient(to right, #ffffff 20%, rgba(255, 255, 255, 0));
                 }
                 .oem-marquee-container::after {
                   right: 0;
-                  background: linear-gradient(to left, #ffffff 10%, rgba(255, 255, 255, 0));
+                  background: linear-gradient(to left, #ffffff 20%, rgba(255, 255, 255, 0));
                 }
 
                 .oem-marquee-row {
                   display: flex;
                   width: max-content;
-                  gap: 1.5rem;
+                  gap: 1.25rem;
+                  padding: 0.25rem 0;
                 }
 
                 .oem-marquee-row-left {
-                  animation: scrollMarqueeLeft 40s linear infinite;
+                  animation: scrollMarqueeLeft 35s linear infinite;
                 }
 
                 .oem-marquee-row-right {
-                  animation: scrollMarqueeRight 40s linear infinite;
+                  animation: scrollMarqueeRight 35s linear infinite;
                 }
 
                 .oem-marquee-container:hover .oem-marquee-row-left,
@@ -498,9 +499,9 @@ export default function Home() {
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  height: 65px;
-                  width: 155px;
-                  padding: 0.75rem 1.25rem;
+                  height: 68px;
+                  width: 160px;
+                  padding: 0.75rem 1rem;
                   background: #ffffff;
                   border: 1px solid #f1f5f9;
                   border-radius: 10px;
@@ -515,17 +516,33 @@ export default function Home() {
                 }
 
                 .oem-logo-image {
-                  max-width: 125px;
-                  max-height: 42px;
+                  max-width: 135px;
+                  max-height: 44px;
                   width: auto;
                   height: auto;
                   object-fit: contain;
-                  filter: grayscale(10%);
-                  transition: filter 0.25s ease;
+                  filter: grayscale(0%);
+                  transition: transform 0.25s ease;
                 }
 
                 .oem-logo-card:hover .oem-logo-image {
-                  filter: grayscale(0%);
+                  transform: scale(1.04);
+                }
+
+                @media (max-width: 768px) {
+                  .oem-marquee-container::before,
+                  .oem-marquee-container::after {
+                    width: 20px;
+                  }
+                  .oem-logo-card {
+                    width: 130px;
+                    height: 58px;
+                    padding: 0.5rem 0.75rem;
+                  }
+                  .oem-logo-image {
+                    max-width: 105px;
+                    max-height: 36px;
+                  }
                 }
               `}</style>
               
@@ -544,7 +561,7 @@ export default function Home() {
               </div>
 
               {/* Row 2: Second 16 Partners - Moving Right */}
-              <div className="oem-marquee-row oem-marquee-row-right" style={{ marginTop: '1rem' }}>
+              <div className="oem-marquee-row oem-marquee-row-right" style={{ marginTop: '0.85rem' }}>
                 {[...configData.oemPartners.slice(16, 32), ...configData.oemPartners.slice(16, 32)].map((oem, idx) => (
                   <div key={`row2-${oem}-${idx}`} className="oem-logo-card">
                     <img 
@@ -583,10 +600,42 @@ export default function Home() {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginTop: '2rem' }} className="home-cards-subgrid">
                 {[
-                  { icon: '🚀', title: 'Our Vision', text: 'To be the global benchmark for seamless, multi-vendor IT infrastructure and cloud managed services.' },
-                  { icon: '🎯', title: 'Our Mission', text: 'Providing SLA-bound proactive support, minimizing system downtime, and ensuring absolute compliance standards.' },
-                  { icon: '🛡️', title: 'Quality First', text: 'ISO-certified processes guaranteeing continuous quality management and enterprise-grade security controls.' },
-                  { icon: '⚡', title: 'Always On', text: '24×7×365 NOC monitoring and incident response across India, UAE, and Africa regions.' },
+                  {
+                    icon: (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                      </svg>
+                    ),
+                    title: 'Our Vision',
+                    text: 'To be the global benchmark for seamless, multi-vendor IT infrastructure and cloud managed services.'
+                  },
+                  {
+                    icon: (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                      </svg>
+                    ),
+                    title: 'Our Mission',
+                    text: 'Providing SLA-bound proactive support, minimizing system downtime, and ensuring absolute compliance standards.'
+                  },
+                  {
+                    icon: (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      </svg>
+                    ),
+                    title: 'Quality First',
+                    text: 'ISO-certified processes guaranteeing continuous quality management and enterprise-grade security controls.'
+                  },
+                  {
+                    icon: (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12"/><circle cx="12" cy="16" r="1" fill="var(--brand-blue)"/>
+                      </svg>
+                    ),
+                    title: 'Always On',
+                    text: '24×7×365 NOC monitoring and incident response across India, UAE, and Africa regions.'
+                  },
                 ].map((card, i) => (
                   <motion.div
                     key={i}
@@ -600,7 +649,13 @@ export default function Home() {
                       boxShadow: '0 4px 6px rgba(0,0,0,0.02)'
                     }}
                   >
-                    <div style={{ fontSize: '1.4rem', marginBottom: '0.5rem' }}>{card.icon}</div>
+                    <div style={{
+                      width: '38px', height: '38px',
+                      backgroundColor: 'rgba(9,97,159,0.07)',
+                      borderRadius: '8px',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      marginBottom: '0.75rem'
+                    }}>{card.icon}</div>
                     <h4 style={{ color: 'var(--text-light-primary)', marginBottom: '0.4rem', fontWeight: 700, fontSize: '0.95rem' }}>{card.title}</h4>
                     <p style={{ fontSize: '0.82rem', color: 'var(--text-light-secondary)', lineHeight: '1.55', margin: 0 }}>{card.text}</p>
                   </motion.div>
@@ -627,12 +682,36 @@ export default function Home() {
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                   {[
-                    { icon: '🛡️', title: configData.certifications[0], text: 'Demonstrated processes and systems committed to continuous quality management.' },
-                    { icon: '🔐', title: configData.certifications[1], text: 'Verified information security controls keeping client operational logs and networks secure.' },
-                    { icon: '⚙️', title: configData.certifications[2], text: 'Certified IT service management framework delivering structured, high-availability IT services.' },
-                    { icon: '🏥', title: configData.certifications[3], text: 'Occupational health and safety management system ensuring safe workplace and operational environments.' },
-                    { icon: '🌐', title: 'Global Service Delivery Channels', text: 'Operating support centers covering India, APAC, Europe, and Middle East locations.' },
-                    { icon: '📊', title: 'SLA-Backed Accountability', text: 'P1/P2/P3 tiered response model with legal binding SLA commitments on all active support engagements.' },
+                    {
+                      icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>,
+                      title: configData.certifications[0],
+                      text: 'Demonstrated processes and systems committed to continuous quality management.'
+                    },
+                    {
+                      icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>,
+                      title: configData.certifications[1],
+                      text: 'Verified information security controls keeping client operational logs and networks secure.'
+                    },
+                    {
+                      icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>,
+                      title: configData.certifications[2],
+                      text: 'Certified IT service management framework delivering structured, high-availability IT services.'
+                    },
+                    {
+                      icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>,
+                      title: configData.certifications[3],
+                      text: 'Occupational health and safety management system ensuring safe workplace and operational environments.'
+                    },
+                    {
+                      icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,
+                      title: 'Global Service Delivery Channels',
+                      text: 'Operating support centers covering India, APAC, Europe, and Middle East locations.'
+                    },
+                    {
+                      icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>,
+                      title: 'SLA-Backed Accountability',
+                      text: 'P1/P2/P3 tiered response model with legal binding SLA commitments on all active support engagements.'
+                    },
                   ].map((item, i) => (
                     <motion.div
                       key={i}
@@ -643,12 +722,12 @@ export default function Home() {
                       style={{ display: 'flex', gap: '1.1rem', alignItems: 'flex-start' }}
                     >
                       <span style={{
-                        fontSize: '1.4rem',
                         width: '42px', height: '42px',
                         minWidth: '42px',
                         backgroundColor: 'rgba(9,97,159,0.07)',
                         borderRadius: '8px',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center'
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        flexShrink: 0
                       }}>{item.icon}</span>
                       <div>
                         <h5 style={{ color: 'var(--text-light-primary)', marginBottom: '0.2rem', fontWeight: 700, fontSize: '0.95rem' }}>{item.title}</h5>
@@ -704,9 +783,13 @@ export default function Home() {
                     width: '40px', height: '40px',
                     backgroundColor: 'rgba(9,97,159,0.07)',
                     borderRadius: '8px',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '1.2rem'
-                  }}>⚙️</div>
+                    display: 'flex', alignItems: 'center', justifyContent: 'center'
+                  }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="3"/>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+                    </svg>
+                  </div>
                   <h4 style={{ color: 'var(--text-light-primary)', fontSize: '1.1rem', fontWeight: 700 }}>{srv.name}</h4>
                   <p style={{ fontSize: '0.87rem', color: 'var(--text-light-secondary)', lineHeight: '1.65', flexGrow: 1 }}>{srv.desc}</p>
                 </motion.div>
