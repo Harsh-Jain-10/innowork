@@ -267,6 +267,8 @@ export default function Home() {
             {[
               '🛡️ ISO 9001:2015 Certified',
               '🔐 ISO/IEC 27001:2022 Certified',
+              '⚙️ ISO 20000-1:2018 Certified',
+              '🏥 ISO 45001:2018 Certified',
               '⚡ 24×7×365 SLA Support',
               '🌐 Pan-India Coverage',
             ].map((item, i) => (
@@ -504,6 +506,8 @@ export default function Home() {
                   {[
                     { icon: '🛡️', title: configData.certifications[0], text: 'Demonstrated processes and systems committed to continuous quality management.' },
                     { icon: '🔐', title: configData.certifications[1], text: 'Verified information security controls keeping client operational logs and networks secure.' },
+                    { icon: '⚙️', title: configData.certifications[2], text: 'Certified IT service management framework delivering structured, high-availability IT services.' },
+                    { icon: '🏥', title: configData.certifications[3], text: 'Occupational health and safety management system ensuring safe workplace and operational environments.' },
                     { icon: '🌐', title: 'Global Service Delivery Channels', text: 'Operating support centers covering India, APAC, Europe, and Middle East locations.' },
                     { icon: '📊', title: 'SLA-Backed Accountability', text: 'P1/P2/P3 tiered response model with legal binding SLA commitments on all active support engagements.' },
                   ].map((item, i) => (

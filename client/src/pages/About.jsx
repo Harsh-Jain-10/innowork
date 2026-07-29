@@ -149,7 +149,7 @@ export default function About() {
                 borderRadius: '0 8px 8px 0',
                 marginTop: '0.75rem'
               }}>
-                🛡️ INNOWORQ is ISO 9001:2015 and ISO/IEC 27001:2022 Certified.
+                🛡️ INNOWORQ is ISO 9001:2015, ISO/IEC 27001:2022, ISO 20000-1:2018, and ISO 45001:2018 Certified.
               </div>
             </div>
           </div>

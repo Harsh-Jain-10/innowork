@@ -502,7 +502,7 @@ export default function Solutions() {
                 { value: 13, suffix: '', label: 'Solutions Engineered' },
                 { value: 9, suffix: '', label: 'Industry Sectors' },
                 { value: 20, suffix: '+', label: 'OEM Tech Coverage' },
-                { value: 2, suffix: '', label: 'ISO Certifications' }
+                { value: 4, suffix: '', label: 'ISO Certifications' }
               ].map((stat, i) => (
                 <div
                   key={i}
