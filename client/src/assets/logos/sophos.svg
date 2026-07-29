@@ -1,4 +1,1 @@
-<svg fill="#0066CC" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <title>Sophos</title>
-  <path d="M12 0L2 6v12l10 6 10-6V6L12 0zm6 13.5H6v-3h12v3z"/>
-</svg>
+<svg viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg" role="img"><title>Sophos</title><text x="10" y="30" font-family="sans-serif" font-weight="bold" font-size="20" fill="#0066CC">Sophos</text></svg>

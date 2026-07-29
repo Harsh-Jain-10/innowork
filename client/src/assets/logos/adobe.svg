@@ -1,7 +1,1 @@
-<svg viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg" role="img">
-  <title>Adobe</title>
-  <g fill="#FF0000">
-    <path d="M5 8h10l8 32h-6l-2.5-10H8.5L6 40H0L5 8zm4.5 17h8L10 13.5 9.5 25z" />
-  </g>
-  <text x="32" y="32" font-family="'Arial Black', 'Helvetica Black', sans-serif" font-weight="900" font-size="24" fill="#000000">Adobe</text>
-</svg>
+<svg viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg" role="img"><title>Adobe</title><text x="10" y="30" font-family="sans-serif" font-weight="bold" font-size="20" fill="#FF0000">Adobe</text></svg>

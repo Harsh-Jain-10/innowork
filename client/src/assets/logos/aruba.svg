@@ -1,5 +1,1 @@
-<svg viewBox="0 0 160 45" xmlns="http://www.w3.org/2000/svg" role="img">
-  <title>Aruba</title>
-  <text x="0" y="26" font-family="'Outfit', 'Inter', sans-serif" font-weight="800" font-size="26" fill="#FF8200" letter-spacing="-0.5">aruba</text>
-  <text x="0" y="38" font-family="'Outfit', 'Inter', sans-serif" font-weight="500" font-size="8" fill="#64748b">a Hewlett Packard Enterprise company</text>
-</svg>
+<svg viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg" role="img"><title>Aruba</title><text x="10" y="30" font-family="sans-serif" font-weight="bold" font-size="20" fill="#FF8200">Aruba</text></svg>
