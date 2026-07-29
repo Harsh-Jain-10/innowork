@@ -1,8 +1,13 @@
-<svg viewBox="0 0 210 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Veeam">
+<svg viewBox="0 0 280 70" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Veeam">
   <title>Veeam</title>
-  <!-- Veeam green V-check icon -->
-  <circle cx="28" cy="30" r="20" fill="#00B336"/>
-  <polyline points="16,30 24,40 42,18" stroke="white" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Veeam text -->
-  <text x="55" y="39" font-family="'Arial',sans-serif" font-weight="700" font-size="20" fill="#00B336" letter-spacing="0.3">Veeam</text>
+  <!-- Standalone Veeam Green Wordmark with Rounded Terminals -->
+  <text
+    x="6"
+    y="52"
+    font-family="'Quicksand', 'Comfortaa', 'Arial Rounded MT Bold', 'Fredoka', 'Helvetica Neue', sans-serif"
+    font-weight="700"
+    font-size="52"
+    letter-spacing="-0.5"
+    fill="#00AB44"
+  >veeAM</text>
 </svg>

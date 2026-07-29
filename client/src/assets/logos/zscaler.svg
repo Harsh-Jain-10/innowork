@@ -1,8 +1,27 @@
-<svg viewBox="0 0 230 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Zscaler">
+<svg viewBox="0 0 280 75" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Zscaler">
   <title>Zscaler</title>
-  <!-- Zscaler Z icon in blue gradient shape -->
-  <rect x="8" y="10" width="36" height="40" rx="8" fill="#0072C6"/>
-  <text x="14" y="41" font-family="'Arial',sans-serif" font-weight="800" font-size="28" fill="#ffffff">Z</text>
-  <!-- Zscaler text -->
-  <text x="52" y="39" font-family="'Arial',sans-serif" font-weight="600" font-size="20" fill="#0072C6" letter-spacing="0.3">Zscaler</text>
+  <g transform="translate(6, 6)">
+    <!-- Blue Cloud Icon -->
+    <path
+      d="M 28 52 C 14 52 4 42 4 28 C 4 16 14 6 26 6 C 32 6 38 9 42 14 C 47 9 54 6 62 6 C 75 6 86 16 86 28 C 86 30 85 32 85 34 C 89 36 92 41 92 46 C 92 52 87 56 80 56 C 76 56 70 52 64 52 Z"
+      fill="#1868EC"
+    />
+    <!-- Cloud Swoosh Cutout -->
+    <path
+      d="M 18 36 C 28 26 44 20 66 22 C 54 30 40 38 24 44 Z"
+      fill="#FFFFFF"
+    />
+    
+    <!-- Italicized zscaler Wordmark -->
+    <text
+      x="102"
+      y="48"
+      font-family="'Montserrat', 'Helvetica Neue', 'Arial', sans-serif"
+      font-style="italic"
+      font-weight="800"
+      font-size="38"
+      letter-spacing="-0.5"
+      fill="#1868EC"
+    >zscaler</text>
+  </g>
 </svg>

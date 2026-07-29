@@ -1,9 +1,19 @@
-<svg viewBox="0 0 240 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Acronis">
+<svg viewBox="0 0 280 75" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Acronis">
   <title>Acronis</title>
-  <!-- Acronis shield icon -->
-  <path d="M28 8 L48 16 L48 36 Q48 48 28 54 Q8 48 8 36 L8 16 Z" fill="#002D62"/>
-  <path d="M28 14 L44 20 L44 36 Q44 46 28 51 Q12 46 12 36 L12 20 Z" fill="#4B9BE8"/>
-  <text x="12" y="36" font-family="'Arial',sans-serif" font-weight="800" font-size="13" fill="#ffffff">A</text>
-  <!-- Acronis text -->
-  <text x="56" y="39" font-family="'Arial',sans-serif" font-weight="700" font-size="20" fill="#002D62" letter-spacing="0.3">Acronis</text>
+  <g fill="#0F1F47">
+    <!-- Capital 'A' with double crossbar -->
+    <!-- Outer slant A legs -->
+    <path d="M 6 62 L 32 10 H 42 L 68 62 H 55 L 48 48 H 26 L 19 62 Z M 30 18 L 22 35 H 52 L 44 18 Z M 24 39 H 50 V 44 H 24 Z" />
+    
+    <!-- Wordmark text "cronis" -->
+    <text
+      x="74"
+      y="62"
+      font-family="'Montserrat', 'Helvetica Neue', 'Arial', sans-serif"
+      font-weight="700"
+      font-size="52"
+      letter-spacing="-0.5"
+      fill="#0F1F47"
+    >cronis</text>
+  </g>
 </svg>

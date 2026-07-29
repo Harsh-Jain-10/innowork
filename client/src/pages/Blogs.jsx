@@ -104,12 +104,12 @@ export default function Blogs() {
               </div>
 
               <h1 style={{ 
-                fontSize: 'clamp(2.1rem, 5vw, 3.6rem)', 
-                fontWeight: 700, 
+                fontSize: 'clamp(2.4rem, 5.5vw, 4.1rem)', 
+                fontWeight: 800, 
                 marginTop: 0, 
-                marginBottom: '1.25rem', 
-                letterSpacing: '-1px',
-                lineHeight: 1.15,
+                marginBottom: '1.35rem', 
+                letterSpacing: '-1.5px',
+                lineHeight: 1.1,
                 color: '#ffffff',
                 fontFamily: 'var(--font-heading)'
               }}>
@@ -118,10 +118,11 @@ export default function Blogs() {
 
               <p style={{ 
                 color: '#94a3b8', 
-                fontSize: 'clamp(1rem, 2vw, 1.18rem)', 
-                lineHeight: '1.75', 
+                fontSize: 'clamp(1.05rem, 2vw, 1.25rem)', 
+                lineHeight: '1.8', 
                 fontWeight: 400,
-                maxWidth: '720px'
+                maxWidth: '680px',
+                marginTop: 0
               }}>
                 Strategic insights, technical analysis, and operational frameworks for enterprise IT leaders, cloud architects, and security officers.
               </p>
@@ -189,11 +190,11 @@ export default function Blogs() {
                 </div>
                 
                 <div className="featured-content-container">
-                  <div style={{ display: 'flex', gap: '0.85rem', alignItems: 'center', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
                     <span className="badge-tag">{featuredArticle.category}</span>
-                    <span style={{ fontSize: '0.82rem', color: '#64748b', fontWeight: 500 }}>{featuredArticle.date}</span>
-                    <span style={{ fontSize: '0.82rem', color: '#94a3b8' }}>•</span>
-                    <span style={{ fontSize: '0.82rem', color: '#64748b', fontWeight: 500 }}>
+                    <span style={{ fontSize: '0.875rem', color: '#64748b', fontWeight: 500 }}>{featuredArticle.date}</span>
+                    <span style={{ fontSize: '0.875rem', color: '#94a3b8' }}>•</span>
+                    <span style={{ fontSize: '0.875rem', color: '#64748b', fontWeight: 500 }}>
                       {calculateReadingTime(featuredArticle.content)} min read
                     </span>
                   </div>
@@ -203,16 +204,17 @@ export default function Blogs() {
                   </h2>
                   
                   <p style={{ 
-                    fontSize: '1.02rem', 
+                    fontSize: '1.08rem', 
                     color: '#475569', 
-                    lineHeight: '1.7', 
-                    marginBottom: '2rem' 
+                    lineHeight: '1.8', 
+                    marginBottom: '2.25rem',
+                    fontWeight: 400
                   }}>
                     {featuredArticle.summary}
                   </p>
 
                   <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
+                    <span style={{ fontSize: '0.875rem', color: '#64748b', fontWeight: 500 }}>
                       INNOWORQ Editorial Team
                     </span>
                     <span className="editorial-link">
@@ -244,7 +246,7 @@ export default function Blogs() {
               </span>
             </div>
             
-            <StaggerContainer stagger={0.1} className="blog-posts-grid">
+            <StaggerContainer key={activeCategory} stagger={0.1} className="blog-posts-grid">
               {filteredArticles.map((post) => (
                 <StaggerItem key={post.id} variant="fade-up">
                   <article 
@@ -261,11 +263,11 @@ export default function Blogs() {
                     </div>
                     
                     <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                      <div style={{ display: 'flex', gap: '0.65rem', alignItems: 'center', marginBottom: '0.85rem' }}>
+                      <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'center', marginBottom: '1rem' }}>
                         <span className="badge-tag">{post.category}</span>
-                        <span style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 500 }}>{post.date}</span>
-                        <span style={{ fontSize: '0.78rem', color: '#94a3b8' }}>•</span>
-                        <span style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 500 }}>
+                        <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 500 }}>{post.date}</span>
+                        <span style={{ fontSize: '0.8rem', color: '#cbd5e1' }}>•</span>
+                        <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 500 }}>
                           {calculateReadingTime(post.content)} min read
                         </span>
                       </div>
@@ -274,13 +276,13 @@ export default function Blogs() {
                         {post.title}
                       </h4>
                       
-                      <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: '1.65', marginBottom: '1.75rem', flexGrow: 1 }}>
+                      <p style={{ fontSize: '0.975rem', color: '#475569', lineHeight: '1.72', marginBottom: '1.75rem', flexGrow: 1, fontWeight: 400 }}>
                         {post.summary}
                       </p>
 
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #f1f5f9', paddingTop: '0.85rem', marginTop: 'auto' }}>
-                        <span style={{ fontSize: '0.8rem', fontWeight: 500, color: '#64748b' }}>INNOWORQ Editorial</span>
-                        <span className="card-cta">Continue Reading →</span>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #f1f5f9', paddingTop: '0.9rem', marginTop: 'auto' }}>
+                        <span style={{ fontSize: '0.82rem', fontWeight: 500, color: '#94a3b8' }}>INNOWORQ Editorial</span>
+                        <span className="card-cta">Read more →</span>
                       </div>
                     </div>
                   </article>
@@ -354,22 +356,22 @@ export default function Blogs() {
                   
                   {/* Article Title */}
                   <h1 style={{ 
-                    fontSize: 'clamp(1.75rem, 4vw, 2.35rem)', 
-                    fontWeight: 700, 
-                    color: '#0f172a', 
-                    marginBottom: '1.25rem', 
-                    lineHeight: '1.25',
-                    letterSpacing: '-0.5px',
+                    fontSize: 'clamp(1.9rem, 4vw, 2.75rem)', 
+                    fontWeight: 800, 
+                    color: '#0d1117', 
+                    marginBottom: '1rem', 
+                    lineHeight: '1.2',
+                    letterSpacing: '-0.75px',
                     fontFamily: 'var(--font-heading)'
                   }}>
                     {selectedArticle.title}
                   </h1>
 
                   {/* Editorial Attribution */}
-                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap', marginBottom: '2rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '1.25rem' }}>
-                    <span style={{ fontSize: '0.85rem', color: '#1e293b', fontWeight: 600 }}>By INNOWORQ Editorial Team</span>
-                    <span style={{ fontSize: '0.85rem', color: '#cbd5e1' }}>•</span>
-                    <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 500 }}>
+                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap', marginBottom: '2.25rem', borderBottom: '1px solid #e8edf2', paddingBottom: '1.5rem' }}>
+                    <span style={{ fontSize: '0.9rem', color: '#334155', fontWeight: 600, letterSpacing: '0.1px' }}>By INNOWORQ Editorial Team</span>
+                    <span style={{ fontSize: '0.9rem', color: '#cbd5e1' }}>•</span>
+                    <span style={{ fontSize: '0.9rem', color: '#64748b', fontWeight: 400 }}>
                       {calculateReadingTime(selectedArticle.content)} min read
                     </span>
                   </div>
@@ -393,20 +395,20 @@ export default function Blogs() {
                         .map(p => {
                           const block = p.trim();
                           if (block.startsWith('## ')) {
-                            return `<h2 style="font-size: 1.6rem; font-weight: 700; color: #0f172a; margin-top: 2.25rem; margin-bottom: 1rem; letter-spacing: -0.3px; font-family: var(--font-heading);">${block.replace(/^## /, '')}</h2>`;
+                            return `<h2 style="font-size: 1.75rem; font-weight: 700; color: #0d1117; margin-top: 2.75rem; margin-bottom: 1rem; letter-spacing: -0.4px; line-height: 1.25; font-family: var(--font-heading); border-bottom: 1px solid #f1f5f9; padding-bottom: 0.6rem;">${block.replace(/^## /, '')}</h2>`;
                           }
                           if (block.startsWith('### ')) {
-                            return `<h3 style="font-size: 1.25rem; font-weight: 600; color: #0f172a; margin-top: 1.75rem; margin-bottom: 0.75rem; font-family: var(--font-heading);">${block.replace(/^### /, '')}</h3>`;
+                            return `<h3 style="font-size: 1.35rem; font-weight: 700; color: #0d1117; margin-top: 2rem; margin-bottom: 0.6rem; letter-spacing: -0.2px; line-height: 1.3; font-family: var(--font-heading);">${block.replace(/^### /, '')}</h3>`;
                           }
                           if (block.startsWith('- ')) {
-                            const items = block.split('\n').map(item => `<li style="margin-bottom: 0.5rem; color: #334155;">${item.replace(/^- /, '').trim()}</li>`).join('');
-                            return `<ul style="font-size: 1.02rem; color: #334155; line-height: 1.75; margin-bottom: 1.5rem; padding-left: 1.5rem; list-style-type: disc;">${items}</ul>`;
+                            const items = block.split('\n').map(item => `<li style="margin-bottom: 0.65rem; color: #334155; font-size: 1.1rem; line-height: 1.75;">${item.replace(/^- /, '').trim()}</li>`).join('');
+                            return `<ul style="color: #334155; line-height: 1.75; margin: 0 0 1.75rem 0; padding-left: 1.65rem; list-style-type: disc;">${items}</ul>`;
                           }
                           if (block.startsWith('> ')) {
-                            return `<blockquote style="border-left: 3px solid #2563eb; background-color: #f8fafc; padding: 1.25rem 1.5rem; margin: 1.75rem 0; border-radius: 0 6px 6px 0; font-size: 1.02rem; font-weight: 600; color: #1e293b; line-height: 1.6;">${block.replace(/^> /, '')}</blockquote>`;
+                            return `<blockquote style="border-left: 4px solid #2563eb; background-color: #f0f6ff; padding: 1.4rem 1.75rem; margin: 2.25rem 0; border-radius: 0 8px 8px 0; font-size: 1.18rem; font-weight: 600; color: #1e293b; line-height: 1.65; font-style: italic;">${block.replace(/^> /, '')}</blockquote>`;
                           }
-                          const formattedText = block.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                          return `<p style="font-size: 1.05rem; color: #334155; line-height: 1.8; margin-bottom: 1.5rem; font-family: var(--font-body);">${formattedText}</p>`;
+                          const formattedText = block.replace(/\*\*(.*?)\*\*/g, '<strong style="color: #0f172a; font-weight: 700;">$1</strong>');
+                          return `<p style="font-size: 1.15rem; color: #374151; line-height: 1.9; margin-bottom: 1.65rem; font-family: var(--font-body); font-weight: 400;">${formattedText}</p>`;
                         })
                         .join('') 
                     }}
@@ -451,12 +453,12 @@ export default function Blogs() {
           justify-content: center;
         }
         .featured-editorial-title {
-          font-size: 1.95rem;
-          font-weight: 700;
-          color: #0f172a;
-          margin-bottom: 1rem;
-          line-height: 1.25;
-          letter-spacing: -0.4px;
+          font-size: clamp(1.65rem, 3vw, 2.25rem);
+          font-weight: 800;
+          color: #0d1117;
+          margin-bottom: 1.1rem;
+          line-height: 1.22;
+          letter-spacing: -0.5px;
           font-family: var(--font-heading);
           transition: color 0.2s ease;
         }
@@ -464,12 +466,13 @@ export default function Blogs() {
           color: #2563eb;
         }
         .editorial-link {
-          font-size: 0.9rem;
-          font-weight: 700;
+          font-size: 0.92rem;
+          font-weight: 600;
           color: #2563eb;
           display: inline-flex;
           align-items: center;
-          gap: 0.35rem;
+          gap: 0.4rem;
+          letter-spacing: 0.1px;
         }
 
         /* 2. CARD GRID STYLING */
@@ -505,19 +508,20 @@ export default function Blogs() {
           overflow: hidden;
         }
         .card-headline {
-          font-size: 1.2rem;
+          font-size: 1.15rem;
           font-weight: 700;
-          color: #0f172a;
-          margin-bottom: 0.75rem;
-          line-height: 1.38;
-          letter-spacing: -0.2px;
+          color: #0d1117;
+          margin-bottom: 0.8rem;
+          line-height: 1.42;
+          letter-spacing: -0.15px;
           font-family: var(--font-heading);
           transition: color 0.2s ease;
         }
         .card-cta {
-          font-size: 0.82rem;
-          font-weight: 700;
+          font-size: 0.85rem;
+          font-weight: 600;
           color: #2563eb;
+          letter-spacing: 0.1px;
         }
 
         /* 3. MODAL READER STYLING */

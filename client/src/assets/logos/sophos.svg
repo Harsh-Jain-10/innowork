@@ -1,8 +1,13 @@
-<svg viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sophos">
+<svg viewBox="0 0 260 70" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sophos">
   <title>Sophos</title>
-  <!-- Sophos blue circle icon with S -->
-  <circle cx="28" cy="30" r="20" fill="#0066CC"/>
-  <text x="18" y="38" font-family="'Arial',sans-serif" font-weight="800" font-size="24" fill="#ffffff">S</text>
-  <!-- Sophos text -->
-  <text x="56" y="39" font-family="'Arial',sans-serif" font-weight="600" font-size="20" fill="#0066CC" letter-spacing="0.3">Sophos</text>
+  <!-- Sophos wordmark in signature electric blue -->
+  <text
+    x="6"
+    y="51"
+    font-family="'Montserrat', 'Helvetica Neue', 'Arial', sans-serif"
+    font-weight="800"
+    font-size="44"
+    letter-spacing="2.5"
+    fill="#0066FF"
+  >SOPHOS</text>
 </svg>

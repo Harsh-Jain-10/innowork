@@ -1,8 +1,42 @@
-<svg viewBox="0 0 240 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rubrik">
+<svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rubrik">
   <title>Rubrik</title>
-  <!-- Rubrik forward-slash icon mark -->
-  <polygon points="10,48 24,12 34,12 20,48" fill="#FF2D21"/>
-  <polygon points="26,48 40,12 50,12 36,48" fill="#FF2D21"/>
-  <!-- Rubrik text -->
-  <text x="58" y="39" font-family="'Arial',sans-serif" font-weight="700" font-size="21" fill="#1D1D1B" letter-spacing="0.5">Rubrik</text>
+  <defs>
+    <!-- Rubrik Teal to Blue Gradient -->
+    <linearGradient id="rubrikGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00A896" />
+      <stop offset="50%" stop-color="#00B4D8" />
+      <stop offset="100%" stop-color="#0096C7" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(4, 4)">
+    <!-- Rubrik Mosaic Tile Ring Mark -->
+    <g fill="url(#rubrikGrad)">
+      <!-- Top Diamond -->
+      <polygon points="36,4 47,15 36,26 25,15" />
+      <!-- Right Diamond -->
+      <polygon points="57,25 68,36 57,47 46,36" />
+      <!-- Bottom Diamond -->
+      <polygon points="36,46 47,57 36,68 25,57" />
+      <!-- Left Diamond -->
+      <polygon points="15,25 26,36 15,47 4,36" />
+
+      <!-- Corner Triangles -->
+      <polygon points="50,6 64,6 64,20" />
+      <polygon points="64,52 64,66 50,66" />
+      <polygon points="22,66 8,66 8,52" />
+      <polygon points="8,20 8,6 22,6" />
+    </g>
+
+    <!-- Lowercase dark slate rubrik Wordmark -->
+    <text
+      x="88"
+      y="54"
+      font-family="'Montserrat', 'Helvetica Neue', 'Arial', sans-serif"
+      font-weight="600"
+      font-size="50"
+      letter-spacing="-0.5"
+      fill="#404040"
+    >rubrik</text>
+  </g>
 </svg>

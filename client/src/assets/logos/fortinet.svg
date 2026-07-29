@@ -1,11 +1,39 @@
-<svg viewBox="0 0 260 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fortinet">
+<svg viewBox="0 0 340 70" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fortinet">
   <title>Fortinet</title>
-  <!-- Fortinet F-grid icon (official square pattern) -->
-  <rect x="8"  y="10" width="13" height="13" fill="#C32026"/>
-  <rect x="23" y="10" width="13" height="13" fill="#C32026"/>
-  <rect x="8"  y="25" width="13" height="13" fill="#C32026"/>
-  <!-- Top-right empty, bottom-right filled -->
-  <rect x="23" y="25" width="13" height="13" fill="#C32026"/>
-  <!-- Fortinet text -->
-  <text x="44" y="39" font-family="'Arial',sans-serif" font-weight="800" font-size="18" fill="#C32026" letter-spacing="1">FORTINET</text>
+  <g transform="translate(4, 4)">
+    <!-- Black 'F' -->
+    <text
+      x="0"
+      y="52"
+      font-family="'Montserrat', 'Helvetica Neue', 'Arial', sans-serif"
+      font-weight="800"
+      font-size="52"
+      fill="#000000"
+    >F</text>
+
+    <!-- Red Fortinet Castle Block Icon (Replaces the 'O') -->
+    <g transform="translate(34, 8)">
+      <!-- Outer red rounded rectangle frame -->
+      <rect x="0" y="0" width="46" height="42" rx="10" fill="#DA291C" />
+      <!-- Center white cutout -->
+      <rect x="13" y="12" width="20" height="18" fill="#FFFFFF" />
+      <!-- Horizontal white line cuts -->
+      <line x1="0" y1="14" x2="46" y2="14" stroke="#FFFFFF" stroke-width="2.5" />
+      <line x1="0" y1="28" x2="46" y2="28" stroke="#FFFFFF" stroke-width="2.5" />
+      <!-- Vertical white line cuts -->
+      <line x1="14" y1="0" x2="14" y2="42" stroke="#FFFFFF" stroke-width="2.5" />
+      <line x1="32" y1="0" x2="32" y2="42" stroke="#FFFFFF" stroke-width="2.5" />
+    </g>
+
+    <!-- Black 'RTINET' -->
+    <text
+      x="90"
+      y="52"
+      font-family="'Montserrat', 'Helvetica Neue', 'Arial', sans-serif"
+      font-weight="800"
+      font-size="52"
+      letter-spacing="0.5"
+      fill="#000000"
+    >RTINET</text>
+  </g>
 </svg>

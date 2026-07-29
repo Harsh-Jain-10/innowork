@@ -1,14 +1,22 @@
-<svg viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bitdefender">
+<svg viewBox="0 0 240 70" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bitdefender">
   <title>Bitdefender</title>
-  <!-- Bitdefender shield icon -->
-  <path d="M26 6 L44 13 L44 30 Q44 44 26 52 Q8 44 8 30 L8 13 Z" fill="#E31B23"/>
-  <!-- B inside shield -->
-  <rect x="15" y="18" width="3" height="18" fill="white"/>
-  <rect x="18" y="18" width="9" height="3" fill="white"/>
-  <rect x="27" y="18" width="3" height="9" rx="1.5" fill="white"/>
-  <rect x="18" y="26" width="9" height="3" fill="white"/>
-  <rect x="27" y="29" width="3" height="7" rx="1.5" fill="white"/>
-  <rect x="18" y="33" width="9" height="3" fill="white"/>
-  <!-- Bitdefender text -->
-  <text x="52" y="34" font-family="'Arial',sans-serif" font-weight="700" font-size="16" fill="#1a1a1a" letter-spacing="0.2">Bitdefender</text>
+  
+  <!-- Red Dragon Wolf Swoop Mark -->
+  <g fill="#ED1C24">
+    <!-- Main upper body and dragon head -->
+    <path d="M 8 32 C 55 32 105 24 148 15 C 163 12 174 8 184 2 C 179 8 173 12 166 14 C 176 12 186 11 196 15 C 189 16 181 17 174 18 C 183 19 190 21 196 24 C 186 23 176 20 166 18 C 142 23 95 31 48 34 C 30 35 16 34 8 32 Z" />
+    <!-- Lower accent jaw/wing blade -->
+    <path d="M 130 23 C 146 20 158 20 168 22 C 160 24 148 26 138 28 C 147 29 154 31 159 34 C 149 32 139 28 130 23 Z" />
+  </g>
+
+  <!-- Bitdefender Wordmark -->
+  <text
+    x="12"
+    y="60"
+    font-family="'Montserrat', 'Arial Black', 'Helvetica Neue', Arial, sans-serif"
+    font-weight="700"
+    font-size="27"
+    letter-spacing="-0.5"
+    fill="#0A0A0A"
+  >Bitdefender</text>
 </svg>

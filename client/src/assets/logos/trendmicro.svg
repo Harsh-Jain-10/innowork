@@ -1,11 +1,39 @@
-<svg viewBox="0 0 260 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Trend Micro">
+<svg viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Trend Micro">
   <title>Trend Micro</title>
-  <!-- Trend Micro red circle icon -->
-  <circle cx="28" cy="30" r="20" fill="#D71920"/>
-  <!-- T mark inside -->
-  <rect x="18" y="17" width="20" height="4" fill="white" rx="1"/>
-  <rect x="25" y="21" width="6" height="18" fill="white" rx="1"/>
-  <!-- Trend Micro text - stacked -->
-  <text x="56" y="26" font-family="'Arial',sans-serif" font-weight="700" font-size="14" fill="#1a1a1a" letter-spacing="0.3">Trend</text>
-  <text x="56" y="46" font-family="'Arial',sans-serif" font-weight="700" font-size="14" fill="#D71920" letter-spacing="0.3">Micro</text>
+  <g transform="translate(4, 4)">
+    <!-- Red circle with T-swoosh cutout -->
+    <circle cx="36" cy="36" r="34" fill="#D71920" />
+    
+    <!-- White T-swoosh mark inside red circle -->
+    <path
+      d="M 18 36 C 18 24 28 14 42 14 C 48 14 54 16 58 19 C 50 18 38 22 30 32 C 22 42 22 52 30 56 C 24 53 18 45 18 36 Z"
+      fill="#FFFFFF"
+    />
+    <path
+      d="M 16 38 L 28 34 L 27 28 L 15 32 Z"
+      fill="#FFFFFF"
+    />
+    
+    <!-- TREND wordmark -->
+    <text
+      x="84"
+      y="35"
+      font-family="'Montserrat', 'Helvetica Neue', 'Arial', sans-serif"
+      font-weight="800"
+      font-size="27"
+      letter-spacing="1"
+      fill="#0A0A0A"
+    >TREND</text>
+    
+    <!-- MICRO wordmark -->
+    <text
+      x="84"
+      y="58"
+      font-family="'Montserrat', 'Helvetica Neue', 'Arial', sans-serif"
+      font-weight="600"
+      font-size="19"
+      letter-spacing="6.5"
+      fill="#0A0A0A"
+    >MICRO</text>
+  </g>
 </svg>

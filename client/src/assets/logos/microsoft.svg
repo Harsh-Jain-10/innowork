@@ -1,10 +1,25 @@
-<svg viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Microsoft">
+<svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Microsoft">
   <title>Microsoft</title>
-  <!-- Microsoft 4-square icon -->
-  <rect x="10" y="12" width="13" height="13" fill="#F25022"/>
-  <rect x="25" y="12" width="13" height="13" fill="#7FBA00"/>
-  <rect x="10" y="27" width="13" height="13" fill="#00A4EF"/>
-  <rect x="25" y="27" width="13" height="13" fill="#FFB900"/>
-  <!-- Microsoft wordmark -->
-  <text x="46" y="39" font-family="'Segoe UI','Arial',sans-serif" font-weight="300" font-size="18" fill="#737373" letter-spacing="0.3">Microsoft</text>
+  <g transform="translate(6, 6)">
+    <!-- 4 Colored Squares Mark -->
+    <!-- Top-Left Red -->
+    <rect x="0" y="0" width="31" height="31" fill="#F25022" />
+    <!-- Top-Right Green -->
+    <rect x="34" y="0" width="31" height="31" fill="#7FBA00" />
+    <!-- Bottom-Left Blue -->
+    <rect x="0" y="34" width="31" height="31" fill="#00A4EF" />
+    <!-- Bottom-Right Yellow -->
+    <rect x="34" y="34" width="31" height="31" fill="#FFB900" />
+
+    <!-- Slate Grey Microsoft Wordmark -->
+    <text
+      x="82"
+      y="48"
+      font-family="'Segoe UI', 'Montserrat', 'Helvetica Neue', 'Arial', sans-serif"
+      font-weight="600"
+      font-size="46"
+      letter-spacing="-0.5"
+      fill="#737373"
+    >Microsoft</text>
+  </g>
 </svg>

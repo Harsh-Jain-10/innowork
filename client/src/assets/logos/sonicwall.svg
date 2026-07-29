@@ -1,7 +1,36 @@
-<svg viewBox="0 0 270 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SonicWall">
+<svg viewBox="0 0 310 75" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SonicWall">
   <title>SonicWall</title>
-  <!-- SonicWall orange flame-like icon -->
-  <path d="M20 48 Q10 36 14 24 Q18 14 28 10 Q22 20 26 28 Q30 36 24 44 Q32 38 34 28 Q36 18 30 10 Q42 18 40 32 Q38 44 28 52 Z" fill="#F26522"/>
-  <!-- SonicWall text -->
-  <text x="48" y="39" font-family="'Arial',sans-serif" font-weight="700" font-size="18" fill="#1a1a1a" letter-spacing="0.3">SonicWall</text>
+
+  <g transform="translate(4, 4)">
+    <!-- "SONIC" — medium weight, slate grey -->
+    <text
+      x="0"
+      y="50"
+      font-family="'Montserrat', 'Helvetica Neue', 'Arial', sans-serif"
+      font-weight="400"
+      font-size="44"
+      letter-spacing="1"
+      fill="#5F6062"
+    >SONIC</text>
+
+    <!-- "WALL" — bold, dark charcoal -->
+    <text
+      x="146"
+      y="50"
+      font-family="'Montserrat', 'Helvetica Neue', 'Arial', sans-serif"
+      font-weight="800"
+      font-size="44"
+      letter-spacing="1"
+      fill="#4A4D52"
+    >WALL</text>
+
+    <!-- Orange swoosh crescent intersecting the W and A of WALL -->
+    <path
+      d="M 178 64
+         C 192 50 216 35 246 35
+         C 218 37 194 45 178 55
+         C 172 59 174 63 178 64 Z"
+      fill="#F05A22"
+    />
+  </g>
 </svg>

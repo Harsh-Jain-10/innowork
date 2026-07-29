@@ -1,7 +1,31 @@
-<svg viewBox="0 0 270 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Commvault">
+<svg viewBox="0 0 410 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Commvault">
   <title>Commvault</title>
-  <!-- Commvault C arc icon -->
-  <path d="M30 10 A18 18 0 1 0 30 50 A18 18 0 0 0 42 44" stroke="#CC0000" stroke-width="7" fill="none" stroke-linecap="round"/>
-  <!-- Commvault text -->
-  <text x="55" y="39" font-family="'Arial',sans-serif" font-weight="700" font-size="18" fill="#CC0000" letter-spacing="0.3">Commvault</text>
+  <g transform="translate(4, 4)">
+    <!-- COMMVAULT Dark Navy Text -->
+    <text
+      x="4"
+      y="52"
+      font-family="'Montserrat', 'Helvetica Neue', 'Arial', sans-serif"
+      font-weight="800"
+      font-size="40"
+      letter-spacing="0.5"
+      fill="#0B253A"
+    >COMMVAULT</text>
+
+    <!-- Coral Pink Hexagon Cube Icon on the Right with comfortable spacing -->
+    <g transform="translate(325, 4)">
+      <!-- Hexagon Outer Border -->
+      <polygon
+        points="32,2 62,18 62,52 32,68 2,52 2,18"
+        fill="none"
+        stroke="#FF3B6B"
+        stroke-width="5"
+        stroke-linejoin="round"
+      />
+      <!-- Hexagon Inner 3D Box Facets -->
+      <polygon points="32,24 54,12 32,32" fill="#FF3B6B" />
+      <polygon points="10,22 10,50 30,62 30,34" fill="#FF3B6B" />
+      <polygon points="34,34 34,62 54,50 54,40" fill="#FF3B6B" />
+    </g>
+  </g>
 </svg>

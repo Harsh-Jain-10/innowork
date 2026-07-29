@@ -1,12 +1,22 @@
-<svg viewBox="0 0 260 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Adobe">
+<svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Adobe">
   <title>Adobe</title>
-  <!-- Adobe A mark: left solid triangle + right solid triangle with notch -->
-  <!-- Left triangle (tall, left-leaning) -->
-  <polygon points="8,72 36,8 50,8 50,72" fill="#FF0000"/>
-  <!-- Right triangle (shorter, right-leaning) -->
-  <polygon points="52,72 52,28 66,8 80,8 80,72" fill="#FF0000"/>
-  <!-- White notch cutout between the two shapes at bottom-center -->
-  <polygon points="50,72 50,52 62,72" fill="#ffffff"/>
-  <!-- Adobe wordmark -->
-  <text x="96" y="56" font-family="'Adobe Clean','Myriad Pro','Helvetica Neue','Arial',sans-serif" font-weight="700" font-size="36" fill="#FF0000" letter-spacing="-0.5">Adobe</text>
+  <g transform="translate(4, 4)">
+    <!-- Official Adobe Logo Mark -->
+    <!-- Left red wing -->
+    <path fill="#FA0F00" d="M 0,0 H 29.1 L 0,71.5 Z" />
+    <!-- Right red wing -->
+    <path fill="#FA0F00" d="M 76.8,0 H 47.7 L 76.8,71.5 Z" />
+    <!-- Center red element -->
+    <path fill="#FA0F00" d="M 38.4,26.4 L 56.2,71.5 H 44.3 L 39.2,58.2 H 27.7 Z" />
+  </g>
+  <!-- Official Adobe Red Wordmark -->
+  <text
+    x="98"
+    y="56"
+    font-family="'Adobe Clean', 'Myriad Pro', 'Helvetica Neue', 'Arial', sans-serif"
+    font-weight="700"
+    font-size="46"
+    letter-spacing="-0.5"
+    fill="#FA0F00"
+  >Adobe</text>
 </svg>
