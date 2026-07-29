@@ -1,7 +1,7 @@
-<svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Red Hat">
+<svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Red Hat">
   <title>Red Hat</title>
-  <!-- Centered Stacked Red Hat Fedora Icon -->
-  <g transform="translate(60, 4)">
+  <!-- Red Hat Fedora Mark on the Left -->
+  <g transform="translate(10, 10)">
     <!-- Red Crown -->
     <path
       d="M 36 6 C 24 6 16 14 16 26 C 16 34 26 40 42 42 C 58 43 66 35 66 22 C 66 12 52 6 36 6 Z"
@@ -19,14 +19,13 @@
     />
   </g>
 
-  <!-- Centered Heavy Black Red Hat Wordmark Below -->
+  <!-- Heavy Black Red Hat Wordmark on the Right -->
   <text
     x="100"
-    y="102"
-    text-anchor="middle"
+    y="62"
     font-family="'Red Hat Display', 'Montserrat', 'Arial Black', 'Helvetica Neue', sans-serif"
     font-weight="900"
-    font-size="42"
+    font-size="44"
     letter-spacing="-0.8"
     fill="#000000"
   >Red Hat</text>
