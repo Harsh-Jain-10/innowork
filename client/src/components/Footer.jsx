@@ -139,17 +139,25 @@ export default function Footer() {
                 </a>
               </div>
 
-              {/* Sales Email */}
+              {/* General & Sales Email */}
               <div>
                 <span style={{ display: 'block', fontSize: '0.75rem', color: '#94a3b8', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.4px', marginBottom: '0.25rem' }}>
-                  SALES EMAIL
+                  GENERAL &amp; SALES EMAIL
                 </span>
-                <a 
-                  href={`mailto:${configData.contact.email}`} 
-                  style={{ color: 'var(--brand-blue)', fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none' }}
-                >
-                  {configData.contact.email}
-                </a>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <a 
+                    href={`mailto:${configData.contact.generalEmail || 'hello@innoworq.com'}`} 
+                    style={{ color: 'var(--brand-blue)', fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none' }}
+                  >
+                    {configData.contact.generalEmail || 'hello@innoworq.com'}
+                  </a>
+                  <a 
+                    href={`mailto:${configData.contact.email}`} 
+                    style={{ color: 'var(--brand-blue)', fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none' }}
+                  >
+                    {configData.contact.email}
+                  </a>
+                </div>
               </div>
             </div>
 
