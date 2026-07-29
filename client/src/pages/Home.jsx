@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import ScrollReveal, { StaggerContainer, StaggerItem, CountUp } from '../components/ScrollReveal';
 import configData from '../data/companyConfig.json';
 import MotherboardScene from '../components/WebGLMotherboard/MotherboardScene';
+import { Canvas } from '@react-three/fiber';
+import { EffectComposer, DepthOfField, Bloom, Vignette } from '@react-three/postprocessing';
 
 
 
