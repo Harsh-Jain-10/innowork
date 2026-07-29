@@ -1,12 +1,19 @@
 {
   "contact": {
     "address": "H-49, 4th Floor, Sector-63, Noida, Uttar Pradesh-201309",
-    "email": "sales@innoworq.com"
+    "email": "sales@innoworq.com",
+    "phone": "1800 123 5671",
+    "presence": "India | UAE",
+    "linkedin": "https://www.linkedin.com/company/innoworq",
+    "linkedinHandle": "@innoworq"
   },
+  "tagline": "EXPERTISE | INNOVATION | EXCELLENCE",
+  "motto": "STRONG PARTNERSHIPS. SMARTER SOLUTIONS. GREATER IMPACT.",
   "stats": {
-    "professionals": "300+",
+    "years": "5+",
+    "professionals": "350+",
     "clients": "100+",
-    "projects": "400+",
+    "projects": "100+",
     "countries": "5+",
     "industries": "9",
     "devices": "50K+",

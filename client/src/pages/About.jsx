@@ -40,27 +40,27 @@ export default function About() {
 
   const CORE_STATS = [
     {
-      number: stats.clients,
-      label: "Happy Clients",
-      desc: "Enterprise client footprint",
+      number: stats.years,
+      label: "Years of Excellence",
+      desc: "Proven track record of IT leadership",
       delay: 0
     },
     {
-      number: stats.professionals,
-      label: "Head Count",
-      desc: "Certified technical innovators",
+      number: stats.projects,
+      label: "Successful Projects",
+      desc: "Enterprise solutions deployed globally",
       delay: 0.1
     },
     {
-      number: stats.devices,
-      label: "Devices Supported",
-      desc: "Unix, Windows Servers, and DC assets",
+      number: stats.professionals,
+      label: "Technology Experts",
+      desc: "Certified technical innovators",
       delay: 0.2
     },
     {
       number: stats.alliances,
-      label: "Strategic Alliances",
-      desc: "Partner technology ecosystem",
+      label: "OEM Partner Network",
+      desc: "Global technology partner ecosystem",
       delay: 0.3
     }
   ];
@@ -138,7 +138,7 @@ export default function About() {
                 Since our inception in 2019, INNOWORQ has led a customer-centric approach and utilizes all delivery models, be it in supporting infrastructure, integration, or global deployment.
               </p>
               <p>
-                Working with over 100 clients and supported by over 300 engineers across India and 5 countries, INNOWORQ's innovative approach led to INR 20 Cr revenue in FY2023-24, with 20-25% YoY growth.
+                Working with over 100 clients and supported by over 350 technology experts across India, UAE, and 5 countries, INNOWORQ's innovative approach led to INR 20 Cr revenue in FY2023-24, with 20-25% YoY growth.
               </p>
               <div style={{
                 fontWeight: 700,

@@ -104,12 +104,12 @@ export default function Home() {
   };
 
   const allStats = [
-    { value: configData.stats.professionals, label: 'Tech Professionals', icon: '👨‍💻' },
+    { value: configData.stats.years,         label: 'Years of Excellence', icon: '🏆' },
+    { value: configData.stats.projects,      label: 'Successful Projects', icon: '🚀' },
+    { value: configData.stats.professionals, label: 'Technology Experts', icon: '👨‍💻' },
+    { value: configData.stats.alliances,     label: 'OEM Partner Network', icon: '🤝' },
     { value: configData.stats.clients,       label: 'Enterprise Clients',  icon: '🏢' },
-    { value: configData.stats.projects,      label: 'Projects Deployed',   icon: '🚀' },
     { value: configData.stats.devices,       label: 'Devices Managed',     icon: '🖥️' },
-    { value: configData.stats.alliances,     label: 'OEM Alliances',       icon: '🤝' },
-    { value: configData.stats.industries,    label: 'Industry Verticals',  icon: '🏭' },
     { value: configData.stats.countries,     label: 'Countries Served',    icon: '🌐' },
   ];
 
