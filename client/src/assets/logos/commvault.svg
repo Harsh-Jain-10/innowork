@@ -1,5 +1,8 @@
-<svg viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg" role="img">
+<svg viewBox="0 0 170 45" xmlns="http://www.w3.org/2000/svg" role="img">
   <title>Commvault</title>
-  <path d="M10 6l8 5v10l-8 5-8-5V11l8-5z" fill="#663399" />
-  <text x="24" y="26" font-family="'Outfit', 'Inter', sans-serif" font-weight="700" font-size="20" fill="#0f172a">Commvault</text>
+  <g fill="#663399">
+    <path d="M12 8l10 5v12l-10 5-10-5V13l10-5z" />
+    <path d="M12 12l6 3v6l-6 3-6-3v-6l6-3z" fill="#ffffff" />
+  </g>
+  <text x="30" y="30" font-family="'Inter', 'Arial', sans-serif" font-weight="700" font-size="22" fill="#000000">Commvault</text>
 </svg>

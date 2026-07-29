@@ -1,8 +1,36 @@
-<svg viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg" role="img">
+<svg viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg" role="img">
   <title>IBM</title>
+  <!-- I -->
   <g fill="#052FAD">
-    <path d="M0 0h24v4H0zm0 6h24v4H0zm0 6h9v4H0zm0 6h9v4H0zm0 6h9v4H0zm0 6h9v4H0zm0 6h24v4H0zm0 6h24v4H0zM15 12h9v4h-9zm0 6h9v4h-9zm0 6h9v4h-9zm0 6h9v4h-9z"/>
-    <path d="M28 0h36v4H28zm0 6h36v4H28zm0 6h11v4H28zm0 6h11v4H28zm0 6h11v4H28zm0 6h11v4H28zm0 6h36v4H28zm0 6h36v4H28zM43 12h21v4H43zm0 6h21v4H43zm0 6h21v4H43zm0 6h21v4H43z"/>
-    <path d="M68 0h33v4H68zm0 6h33v4H68zm0 6h10v4H68zm0 6h10v4H68zm0 6h10v4H68zm0 6h10v4H68zm0 6h33v4H68zm0 6h33v4H68zM82 12h19v4H82zm0 6h19v4H82zm0 6h19v4H82zm0 6h19v4H82z"/>
+    <rect x="10" y="8" width="22" height="3" />
+    <rect x="10" y="13" width="22" height="3" />
+    <rect x="17" y="18" width="8" height="3" />
+    <rect x="17" y="23" width="8" height="3" />
+    <rect x="17" y="28" width="8" height="3" />
+    <rect x="17" y="33" width="8" height="3" />
+    <rect x="10" y="38" width="22" height="3" />
+    <rect x="10" y="43" width="22" height="3" />
+  </g>
+  <!-- B -->
+  <g fill="#052FAD">
+    <rect x="38" y="8" width="30" height="3" />
+    <rect x="38" y="13" width="30" height="3" />
+    <rect x="38" y="18" width="9" height="3" /><rect x="59" y="18" width="9" height="3" />
+    <rect x="38" y="23" width="30" height="3" />
+    <rect x="38" y="28" width="30" height="3" />
+    <rect x="38" y="33" width="9" height="3" /><rect x="59" y="33" width="9" height="3" />
+    <rect x="38" y="38" width="30" height="3" />
+    <rect x="38" y="43" width="30" height="3" />
+  </g>
+  <!-- M -->
+  <g fill="#052FAD">
+    <rect x="74" y="8" width="9" height="3" /><rect x="105" y="8" width="9" height="3" />
+    <rect x="74" y="13" width="13" height="3" /><rect x="101" y="13" width="13" height="3" />
+    <rect x="74" y="18" width="9" height="3" /><rect x="88" y="18" width="12" height="3" /><rect x="105" y="18" width="9" height="3" />
+    <rect x="74" y="23" width="9" height="3" /><rect x="91" y="23" width="6" height="3" /><rect x="105" y="23" width="9" height="3" />
+    <rect x="74" y="28" width="9" height="3" /><rect x="105" y="28" width="9" height="3" />
+    <rect x="74" y="33" width="9" height="3" /><rect x="105" y="33" width="9" height="3" />
+    <rect x="74" y="38" width="9" height="3" /><rect x="105" y="38" width="9" height="3" />
+    <rect x="74" y="43" width="9" height="3" /><rect x="105" y="43" width="9" height="3" />
   </g>
 </svg>
