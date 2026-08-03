@@ -9,6 +9,8 @@ import { Canvas } from '@react-three/fiber';
 import { EffectComposer, DepthOfField, Bloom, Vignette } from '@react-three/postprocessing';
 import HomeServicesSection from '../components/HomeServicesSection';
 import HomeSolutionsSection from '../components/HomeSolutionsSection';
+import HomeHeroSection from '../components/HomeHeroSection';
+import HomeFaqSection from '../components/HomeFaqSection';
 
 
 
@@ -157,181 +159,8 @@ export default function Home() {
   return (
     <div style={{ backgroundColor: 'var(--bg-light)', color: 'var(--text-light-primary)', overflow: 'hidden' }} id="home-page-view">
 
-      {/* 1. Hero Section */}
-      <section
-        style={{
-          position: 'relative',
-          height: '92vh',
-          minHeight: '680px',
-          backgroundColor: '#020306',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-          overflow: 'hidden',
-          display: 'flex',
-          alignItems: 'center'
-        }}
-        id="hero-webgl-section"
-      >
-        {/* Background WebGL Motherboard Animation */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }}>
-          <Canvas
-            shadows={{ type: THREE.PCFShadowMap }}
-            camera={{ fov: 45, near: 0.1, far: 20, position: [-2.2, 0.6, 1.2] }}
-            gl={{ 
-              antialias: true, 
-              powerPreference: 'high-performance',
-              toneMapping: 3
-            }}
-          >
-            <Suspense fallback={null}>
-              <MotherboardScene />
-              
-              {/* Cinematic Post-Processing - Disabled on mobile for 60 FPS scrolling */}
-              {!isMobile && (
-                <EffectComposer multisampling={4}>
-                  <DepthOfField 
-                    focusDistance={0.012} 
-                    focalLength={0.03} 
-                    bokehScale={4.0} 
-                  />
-                  <Bloom 
-                    luminanceThreshold={0.12} 
-                    luminanceSmoothing={0.9} 
-                    height={300} 
-                    intensity={1.8} 
-                  />
-                  <Vignette eskil={false} offset={0.1} darkness={1.2} />
-                </EffectComposer>
-              )}
-            </Suspense>
-          </Canvas>
-        </div>
-
-        {/* Middle Layer: Dark Radial Vignette for Content Readability */}
-        <div 
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'radial-gradient(circle at center, rgba(3, 7, 18, 0.35) 0%, rgba(2, 3, 6, 0.88) 100%)',
-            zIndex: 2,
-            pointerEvents: 'none'
-          }}
-        />
-
-        {/* Foreground Content Overlay */}
-        <div className="container" style={{ position: 'relative', zIndex: 3, width: '100%' }}>
-          <div className="hero-glass-card" style={{
-            textAlign: 'left',
-            maxWidth: '720px',
-            padding: '2.8rem',
-            borderRadius: '16px',
-            backgroundColor: 'rgba(3, 7, 18, 0.55)',
-            border: '1px solid rgba(255, 255, 255, 0.04)',
-            backdropFilter: 'blur(12px)',
-            boxShadow: '0 24px 60px rgba(0, 0, 0, 0.7)',
-            position: 'relative'
-          }}>
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={containerVariants}
-            >
-              {/* Badge */}
-              <motion.span
-                variants={itemVariants}
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                  backgroundColor: 'rgba(0, 240, 255, 0.08)',
-                  color: '#00f0ff',
-                  padding: '0.45rem 1.1rem',
-                  borderRadius: '50px',
-                  fontSize: '0.82rem',
-                  fontWeight: 700,
-                  letterSpacing: '1.2px',
-                  textTransform: 'uppercase',
-                  marginBottom: '1.75rem',
-                  border: '1px solid rgba(0, 240, 255, 0.2)',
-                  textShadow: '0 0 8px rgba(0, 240, 255, 0.3)'
-                }}
-              >
-                <span style={{ width: 6, height: 6, borderRadius: '50%', backgroundColor: '#00f0ff', display: 'inline-block', boxShadow: '0 0 6px #00f0ff' }} />
-                Enterprise IT Support &amp; Services
-              </motion.span>
-
-              {/* Title */}
-              <motion.h1
-                variants={itemVariants}
-                style={{
-                  fontSize: 'clamp(1.85rem, 5.5vw, 3.75rem)',
-                  lineHeight: '1.12',
-                  fontWeight: 800,
-                  color: '#ffffff',
-                  marginBottom: '1.5rem',
-                  letterSpacing: '-1.5px',
-                  textShadow: '0 2px 10px rgba(0,0,0,0.5)'
-                }}
-                className="responsive-hero-title"
-              >
-                Welcome to <span style={{ color: '#00f0ff', textShadow: '0 0 10px rgba(0, 240, 255, 0.4)' }}>INNOWORQ</span><br />
-                Your Technology Support Partner
-              </motion.h1>
-
-              {/* Description */}
-              <motion.p
-                variants={itemVariants}
-                style={{
-                  fontSize: '1.2rem',
-                  lineHeight: '1.75',
-                  color: '#94a3b8',
-                  fontWeight: 400,
-                  maxWidth: '680px',
-                  textShadow: '0 1px 4px rgba(0,0,0,0.4)'
-                }}
-                className="hero-desc-p"
-              >
-                Delivering secure, scalable, and highly available IT infrastructure, hybrid cloud operations,
-                and proactive cybersecurity systems globally. We manage the complexity of your technology
-                so you can scale your business.
-              </motion.p>
-
-
-            </motion.div>
-          </div>
-
-          {/* Trust indicators row */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-            style={{
-              display: 'flex', justifyContent: 'center', gap: '2.5rem',
-              marginTop: '4rem', flexWrap: 'wrap'
-            }}
-          >
-            {[
-              '🛡️ ISO 9001:2015 Certified',
-              '🔐 ISO/IEC 27001:2022 Certified',
-              '⚙️ ISO 20000-1:2018 Certified',
-              '🏥 ISO 45001:2018 Certified',
-              '⚡ 24×7×365 SLA Support',
-              '🌐 Pan-India Coverage',
-            ].map((item, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.0 + i * 0.1 }}
-                style={{
-                  fontSize: '0.82rem', fontWeight: 600,
-                  color: '#94a3b8',
-                  display: 'flex', alignItems: 'center', gap: '0.4rem'
-                }}
-              >
-                {item}
-              </motion.span>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      {/* 1. Brights.io-style Clean Interactive Hero Section */}
+      <HomeHeroSection />
 
       {/* 2. Animated Stats Counter Band */}
       <section style={{ padding: '5rem 0', backgroundColor: 'var(--brand-blue)', position: 'relative', overflow: 'hidden' }}>
@@ -856,6 +685,9 @@ export default function Home() {
           }
         `}</style>
       </section>
+
+      {/* 6. FAQ Section (Brights.io style) */}
+      <HomeFaqSection />
 
 
 
