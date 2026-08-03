@@ -13,13 +13,6 @@ export const GLOBAL_PRESENCE_LOCATIONS = [
     role: 'Regional Hub',
     description: 'Dubai Operations & Middle East Channel Desk',
     flag: '🇦🇪'
-  },
-  {
-    id: 'africa',
-    country: 'Africa',
-    role: 'Regional Hub',
-    description: 'Enterprise Operations & Regional Support Hub',
-    flag: '🌍'
   }
 ];
 

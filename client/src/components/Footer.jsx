@@ -54,9 +54,6 @@ export default function Footer() {
                 <span style={{ border: '1px solid #cbd5e1', borderRadius: '5px', padding: '0.25rem 0.75rem', fontSize: '0.85rem', color: '#64748b', backgroundColor: '#ffffff', fontWeight: 500 }}>
                   UAE
                 </span>
-                <span style={{ border: '1px solid #cbd5e1', borderRadius: '5px', padding: '0.25rem 0.75rem', fontSize: '0.85rem', color: '#64748b', backgroundColor: '#ffffff', fontWeight: 500 }}>
-                  Africa
-                </span>
                 <a 
                   href={configData.contact.linkedin} 
                   target="_blank" 

@@ -634,7 +634,7 @@ export default function Home() {
                       </svg>
                     ),
                     title: 'Always On',
-                    text: '24×7×365 NOC monitoring and incident response across India, UAE, and Africa regions.'
+                    text: '24×7×365 NOC monitoring and incident response across India and UAE regions.'
                   },
                 ].map((card, i) => (
                   <motion.div
