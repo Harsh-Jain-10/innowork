@@ -19,8 +19,8 @@ import HomeFaqSection from '../components/HomeFaqSection';
 
 import hpeLogo from '../assets/logos/hpe.svg';
 import dellLogo from '../assets/logos/dell.svg';
-import hpLogo from '../assets/logos/hp.svg';
-import lenovoLogo from '../assets/logos/lenovo.svg';
+import hpLogo from '../assets/logos/hp.png';
+import lenovoLogo from '../assets/logos/lenovo.png';
 import ciscoLogo from '../assets/logos/cisco.svg';
 import arubaLogo from '../assets/logos/aruba.svg';
 import fortinetLogo from '../assets/logos/fortinet.svg';

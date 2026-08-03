@@ -15,8 +15,8 @@ import cmmiLevel3 from '../assets/certificates/cmmi_level3.png';
 
 // Import team members
 import naveenGroverImg from '../assets/team/naveen_grover.jpg';
-import anujGuptaImg from '../assets/team/anuj_gupta.png';
-import manishGuptaImg from '../assets/team/manish_gupta.png';
+import anujGuptaImg from '../assets/team/anuj_gupta.jpg';
+import manishGuptaImg from '../assets/team/manish_gupta.jpg';
 
 const TEAM_IMAGES = {
   "Naveen Grover": naveenGroverImg,
