@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import dubaiAnnouncementImg from '../assets/images/dubai-announcement.webp';
+import dubaiAnnouncementImg from '../assets/images/dubai-announcement.jpg';
 
 const ANNOUNCEMENTS = [
   {
