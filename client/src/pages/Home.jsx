@@ -7,6 +7,8 @@ import MotherboardScene from '../components/WebGLMotherboard/MotherboardScene';
 import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
 import { EffectComposer, DepthOfField, Bloom, Vignette } from '@react-three/postprocessing';
+import HomeServicesSection from '../components/HomeServicesSection';
+import HomeSolutionsSection from '../components/HomeSolutionsSection';
 
 
 
@@ -742,62 +744,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. Quick Services Catalog */}
-      <section style={{ padding: '3.5rem 0 4rem 0', backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
-        <div className="container">
-          <ScrollReveal variant="fade-up">
-            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-              <span style={{ color: 'var(--brand-blue)', fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
-                What We Do
-              </span>
-              <h2 style={{ fontSize: '2.4rem', fontWeight: 800, color: 'var(--text-light-primary)', marginTop: '0.75rem', marginBottom: '1rem' }}>
-                Our Services Catalog
-              </h2>
-              <p style={{ color: 'var(--text-light-secondary)', maxWidth: '600px', margin: '0 auto', lineHeight: '1.65' }}>
-                Delivering high-availability enterprise services across 11 verified business portfolios under rigorous SLAs.
-              </p>
-            </div>
-          </ScrollReveal>
+      {/* 4. Redesigned Brights.io-inspired Services Section */}
+      <HomeServicesSection />
 
-          <StaggerContainer stagger={0.07} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }} className="home-services-grid">
-            {configData.services.slice(0, 6).map((srv) => (
-              <StaggerItem key={srv.id} variant="fade-up">
-                <motion.div
-                  whileHover={{ y: -7, boxShadow: '0 16px 40px rgba(0,0,0,0.09)', borderColor: 'var(--brand-blue)' }}
-                  transition={{ duration: 0.3 }}
-                  style={{
-                    backgroundColor: '#ffffff',
-                    padding: '2.25rem',
-                    borderRadius: '10px',
-                    border: '1px solid #e2e8f0',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '1rem',
-                    boxShadow: '0 4px 6px rgba(0,0,0,0.02)',
-                    height: '100%',
-                    transition: 'border-color 0.3s ease'
-                  }}
-                  className="service-card"
-                >
-                  <div style={{
-                    width: '40px', height: '40px',
-                    backgroundColor: 'rgba(9,97,159,0.07)',
-                    borderRadius: '8px',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center'
-                  }}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="3"/>
-                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
-                    </svg>
-                  </div>
-                  <h4 style={{ color: 'var(--text-light-primary)', fontSize: '1.1rem', fontWeight: 700 }}>{srv.name}</h4>
-                  <p style={{ fontSize: '0.87rem', color: 'var(--text-light-secondary)', lineHeight: '1.65', flexGrow: 1 }}>{srv.desc}</p>
-                </motion.div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
+      {/* 5. Redesigned Brights.io-inspired Solutions Section */}
+      <HomeSolutionsSection />
 
       {/* 5. Technology Coverage / OEM Grid */}
       <section style={{ 
