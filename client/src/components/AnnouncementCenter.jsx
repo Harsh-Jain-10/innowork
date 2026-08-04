@@ -22,14 +22,21 @@ export default function AnnouncementCenter({ isOpen, onClose, onAllViewed }) {
     setMounted(true);
   }, []);
 
+  /* Lock both body and root html scrolling when modal is open */
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+      document.documentElement.style.overflow = '';
     }
     return () => {
       document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+      document.documentElement.style.overflow = '';
     };
   }, [isOpen]);
 
@@ -61,7 +68,7 @@ export default function AnnouncementCenter({ isOpen, onClose, onAllViewed }) {
   const overlayJSX = (
     <AnimatePresence>
       {isOpen && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 999999 }}>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 999999, touchAction: 'none' }}>
           
           {/* 1. Backdrop Overlay */}
           <motion.div
@@ -73,7 +80,7 @@ export default function AnnouncementCenter({ isOpen, onClose, onAllViewed }) {
             style={{
               position: 'fixed',
               inset: 0,
-              backgroundColor: 'rgba(15, 23, 42, 0.45)',
+              backgroundColor: 'rgba(15, 23, 42, 0.55)',
               backdropFilter: 'blur(14px)',
               WebkitBackdropFilter: 'blur(14px)',
               zIndex: 1
@@ -141,7 +148,6 @@ export default function AnnouncementCenter({ isOpen, onClose, onAllViewed }) {
                   style={{
                     position: 'relative',
                     borderRadius: '24px',
-                    overflow: 'hidden',
                     backgroundColor: 'rgba(15, 23, 42, 0.95)',
                     backdropFilter: 'blur(16px)',
                     WebkitBackdropFilter: 'blur(16px)',
@@ -155,7 +161,7 @@ export default function AnnouncementCenter({ isOpen, onClose, onAllViewed }) {
                   className="announcement-active-card"
                   whileHover={{ scale: 1.008 }}
                 >
-                  {/* Subtle Circular Close Button (Top-Right) */}
+                  {/* Floating Close Button - Positioned outside top-right so it NEVER overlaps the brand logo */}
                   <button
                     type="button"
                     onClick={handleCloseCurrent}
@@ -179,17 +185,19 @@ export default function AnnouncementCenter({ isOpen, onClose, onAllViewed }) {
                   </button>
 
                   {/* Connected High-Resolution Announcement Image */}
-                  <img
-                    src={currentAnnouncement.image}
-                    alt={currentAnnouncement.alt}
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      display: 'block',
-                      objectFit: 'contain',
-                      borderRadius: '24px'
-                    }}
-                  />
+                  <div style={{ borderRadius: '24px', overflow: 'hidden' }}>
+                    <img
+                      src={currentAnnouncement.image}
+                      alt={currentAnnouncement.alt}
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        display: 'block',
+                        objectFit: 'contain',
+                        borderRadius: '24px'
+                      }}
+                    />
+                  </div>
                 </motion.div>
               </AnimatePresence>
 
@@ -199,41 +207,40 @@ export default function AnnouncementCenter({ isOpen, onClose, onAllViewed }) {
           <style>{`
             .announcement-close-btn {
               position: absolute !important;
-              top: 16px !important;
-              right: 16px !important;
-              width: 36px !important;
-              height: 36px !important;
+              top: -16px !important;
+              right: -16px !important;
+              width: 38px !important;
+              height: 38px !important;
               border-radius: 50% !important;
-              background: rgba(15, 23, 42, 0.75) !important;
-              backdrop-filter: blur(10px) !important;
-              -webkit-backdrop-filter: blur(10px) !important;
-              border: 1px solid rgba(255, 255, 255, 0.3) !important;
+              background: #0f172a !important;
               color: #ffffff !important;
               display: flex !important;
               align-items: center !important;
               justify-content: center !important;
               cursor: pointer !important;
-              z-index: 50 !important;
-              transition: all 0.2s ease !important;
+              z-index: 99 !important;
+              transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
               padding: 0 !important;
-              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35) !important;
+              border: 2px solid #ffffff !important;
+              box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(9, 97, 159, 0.3) !important;
             }
             .announcement-close-btn:hover {
-              background: rgba(15, 23, 42, 0.95) !important;
-              color: #38bdf8 !important;
-              transform: scale(1.1) !important;
-              border-color: rgba(255, 255, 255, 0.5) !important;
+              background: var(--brand-blue) !important;
+              color: #ffffff !important;
+              transform: scale(1.12) rotate(90deg) !important;
+              border-color: #ffffff !important;
+              box-shadow: 0 10px 25px rgba(9, 97, 159, 0.5) !important;
             }
             @media (max-width: 768px) {
               .announcement-card-viewport {
-                width: 94vw !important;
+                width: 92vw !important;
                 max-width: 100% !important;
               }
               .announcement-close-btn {
-                top: 12px !important;
-                right: 12px !important;
-                width: 32px !important;
-                height: 32px !important;
+                top: -12px !important;
+                right: -12px !important;
+                width: 34px !important;
+                height: 34px !important;
               }
             }
           `}</style>
