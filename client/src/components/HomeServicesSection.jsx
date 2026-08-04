@@ -2,305 +2,209 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
-import configData from '../data/companyConfig.json';
 
-// Service-specific icon renderer
-function ServiceIcon({ id }) {
-  const iconProps = {
-    width: "20",
-    height: "20",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "var(--brand-blue)",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  };
-
-  switch (id) {
-    case 'it-professional-services':
-      return (
-        <svg {...iconProps}>
-          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-          <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-          <line x1="12" y1="22.08" x2="12" y2="12"/>
-        </svg>
-      );
-    case 'hco-cloud-services':
-      return (
-        <svg {...iconProps}>
-          <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
-        </svg>
-      );
-    case 'it-datacenter-management':
-      return (
-        <svg {...iconProps}>
-          <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
-          <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
-          <line x1="6" y1="6" x2="6.01" y2="6"/>
-          <line x1="6" y1="18" x2="6.01" y2="18"/>
-        </svg>
-      );
-    case 'third-party-maintenance':
-      return (
-        <svg {...iconProps}>
-          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-        </svg>
-      );
-    case 'it-manage-services-digital-transformation':
-      return (
-        <svg {...iconProps}>
-          <circle cx="12" cy="12" r="3"/>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-        </svg>
-      );
-    case 'noc-services':
-      return (
-        <svg {...iconProps}>
-          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-        </svg>
-      );
-    case 'staff-augmentation':
-      return (
-        <svg {...iconProps}>
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-          <circle cx="9" cy="7" r="4"/>
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-        </svg>
-      );
-    case 'software-maintenance-development-services':
-      return (
-        <svg {...iconProps}>
-          <polyline points="16 18 22 12 16 6"/>
-          <polyline points="8 6 2 12 8 18"/>
-        </svg>
-      );
-    case 'devops-automation':
-      return (
-        <svg {...iconProps}>
-          <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
-          <rect x="9" y="9" width="6" height="6"/>
-          <line x1="9" y1="1" x2="9" y2="4"/>
-          <line x1="15" y1="1" x2="15" y2="4"/>
-          <line x1="9" y1="20" x2="9" y2="23"/>
-          <line x1="15" y1="20" x2="15" y2="23"/>
-          <line x1="20" y1="9" x2="23" y2="9"/>
-          <line x1="20" y1="14" x2="23" y2="14"/>
-          <line x1="1" y1="9" x2="4" y2="9"/>
-          <line x1="1" y1="14" x2="4" y2="14"/>
-        </svg>
-      );
-    case 'sap-basis-consulting':
-      return (
-        <svg {...iconProps}>
-          <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-          <polyline points="2 17 12 22 22 17"/>
-          <polyline points="2 12 12 17 22 12"/>
-        </svg>
-      );
-    default:
-      return (
-        <svg {...iconProps}>
-          <circle cx="12" cy="12" r="10"/>
-          <line x1="12" y1="8" x2="12" y2="12"/>
-          <line x1="12" y1="16" x2="12.01" y2="16"/>
-        </svg>
-      );
+/* ─────────────────────────────────────────────────────────────
+   Service configuration for Home Page Catalog
+ ────────────────────────────────────────────────────────────── */
+const HOME_SERVICES = [
+  {
+    id: 'hco-cloud-services',
+    name: 'HCO & Cloud Services',
+    shortTag: 'CLOUD & HYBRID IT',
+    desc: 'Hybrid Cloud Operations (HCO) and multi-cloud strategy planning, seamless migrations, virtualization management, and architecture consulting across AWS, Azure, and GCP.',
+    scope: ['AWS, Azure & hybrid cloud setups', 'Zero-downtime workload migrations'],
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 'it-datacenter-management',
+    name: 'IT Datacenter Management',
+    shortTag: 'ENTERPRISE DATACENTER',
+    desc: 'Continuous server maintenance, storage allocation, blade chassis configurations, and hypervisor administration for high availability.',
+    scope: ['Server hardware rack maintenance', 'SAN storage configurations'],
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 'third-party-maintenance',
+    name: 'Third Party Maintenance',
+    shortTag: 'EOSL HARDWARE SUPPORT',
+    desc: 'Cost-effective, multi-vendor support SLA coverage for active and End-of-Service-Life (EOSL) enterprise hardware assets.',
+    scope: ['Multi-vendor server maintenance', '4-Hour On-site response'],
+    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 'noc-services',
+    name: 'NOC Services',
+    shortTag: '24/7 NETWORK OPERATIONS',
+    desc: '24/7/365 active remote network monitoring, alarm handling, incident triage, and real-time performance optimizations.',
+    scope: ['24/7 Packet drop tracking', '15-Min incident dispatch'],
+    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 'devops-automation',
+    name: 'DevOps & Automation',
+    shortTag: 'INFRASTRUCTURE AS CODE',
+    desc: 'Elimination of manual IT operations through Ansible automation, shell scripting, Infrastructure as Code (IaC), and container management.',
+    scope: ['Ansible playbooks & Terraform', 'Kubernetes cluster setup'],
+    image: 'https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 'sap-basis-consulting',
+    name: 'SAP Basis & Consulting',
+    shortTag: 'ENTERPRISE ERP',
+    desc: 'SAP Basis administration, HANA database consulting, system updates, kernel patching, transport management, and performance tuning.',
+    scope: ['SAP Basis patch & upgrades', 'HANA database administration'],
+    image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=600&q=80'
   }
+];
+
+function CheckIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }}>
+      <circle cx="8" cy="8" r="8" fill="rgba(9, 97, 159, 0.1)" />
+      <path d="M5 8.2L7.2 10.4L11 6" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
 }
 
-// Compact Expandable Service Card Component (Brights.io Inspired)
-function CompactServiceCard({ srv, isExpanded, onToggle }) {
+function SmallServiceBox({ srv }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <motion.div
-      layout
+    <Link
+      to={`/services#${srv.id}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={onToggle}
       style={{
         backgroundColor: '#ffffff',
-        borderRadius: '14px',
-        border: isExpanded 
-          ? '1px solid var(--brand-blue)' 
-          : isHovered 
-            ? '1px solid rgba(9, 97, 159, 0.4)' 
-            : '1px solid var(--border-light)',
-        boxShadow: isExpanded 
-          ? '0 12px 30px rgba(9, 97, 159, 0.12)' 
-          : isHovered 
-            ? '0 8px 24px rgba(15, 23, 42, 0.08)' 
-            : '0 2px 6px rgba(15, 23, 42, 0.03)',
-        padding: '1.4rem 1.6rem',
-        cursor: 'pointer',
-        transition: 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)',
-        position: 'relative',
+        borderRadius: '16px',
+        border: isHovered ? '1px solid rgba(9, 97, 159, 0.35)' : '1px solid rgba(9, 97, 159, 0.1)',
+        boxShadow: isHovered
+          ? '0 16px 36px rgba(9, 97, 159, 0.12), 0 4px 12px rgba(0, 0, 0, 0.03)'
+          : '0 4px 20px rgba(9, 97, 159, 0.03)',
+        padding: '1.4rem',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        textDecoration: 'none',
+        transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+        transform: isHovered ? 'translateY(-6px)' : 'translateY(0)',
         overflow: 'hidden'
       }}
-      whileHover={{ y: -3 }}
     >
-      {/* Accent top line indicator */}
-      <motion.div
-        animate={{
-          scaleX: isHovered || isExpanded ? 1 : 0,
-          opacity: isHovered || isExpanded ? 1 : 0
-        }}
-        transition={{ duration: 0.25 }}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '3px',
-          background: 'linear-gradient(90deg, var(--brand-blue) 0%, var(--accent-cyan) 100%)',
-          transformOrigin: 'left center'
-        }}
-      />
-
-      {/* Main Card Header Row */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1 }}>
-          {/* Icon Badge */}
-          <div
+      <div>
+        {/* Header Image */}
+        <div style={{
+          width: '100%',
+          height: '140px',
+          borderRadius: '12px',
+          overflow: 'hidden',
+          position: 'relative',
+          marginBottom: '1rem',
+          border: '1px solid rgba(9, 97, 159, 0.08)'
+        }}>
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to bottom, rgba(9, 97, 159, 0.04) 0%, rgba(9, 97, 159, 0.25) 100%)',
+            zIndex: 1,
+            pointerEvents: 'none'
+          }} />
+          <motion.img
+            src={srv.image}
+            alt={srv.name}
+            animate={isHovered ? { scale: 1.08 } : { scale: 1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
             style={{
-              width: '42px',
-              height: '42px',
-              minWidth: '42px',
-              borderRadius: '10px',
-              backgroundColor: isExpanded || isHovered ? 'var(--brand-blue-light)' : 'rgba(9, 97, 159, 0.06)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.25s ease'
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover'
             }}
-          >
-            <ServiceIcon id={srv.id} />
-          </div>
-
-          <div>
-            <h4
-              style={{
-                fontSize: '1.08rem',
-                fontWeight: 700,
-                color: isExpanded || isHovered ? 'var(--brand-blue)' : 'var(--text-light-primary)',
-                margin: 0,
-                lineHeight: 1.3,
-                transition: 'color 0.25s ease'
-              }}
-            >
-              {srv.name}
-            </h4>
-          </div>
+          />
         </div>
 
-        {/* Action Toggle Arrow */}
-        <motion.div
-          animate={{
-            rotate: isExpanded ? 90 : 0,
-            x: isHovered && !isExpanded ? 4 : 0
-          }}
-          transition={{ duration: 0.2 }}
-          style={{
-            width: '34px',
-            height: '34px',
-            borderRadius: '50%',
-            backgroundColor: isExpanded ? 'var(--brand-blue)' : isHovered ? 'var(--brand-blue-light)' : 'var(--bg-surface-secondary)',
-            color: isExpanded ? '#ffffff' : 'var(--brand-blue)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0
-          }}
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
-        </motion.div>
-      </div>
+        {/* Short Tag */}
+        <span style={{
+          fontSize: '0.65rem',
+          fontWeight: 800,
+          color: 'var(--brand-blue)',
+          letterSpacing: '1px',
+          fontFamily: 'monospace',
+          textTransform: 'uppercase',
+          display: 'block',
+          marginBottom: '0.3rem'
+        }}>
+          {srv.shortTag}
+        </span>
 
-      {/* Short 1-2 line description always visible */}
-      <p
-        style={{
-          fontSize: '0.88rem',
-          color: 'var(--text-light-secondary)',
-          lineHeight: '1.55',
-          marginTop: '0.75rem',
-          marginBottom: 0,
+        {/* Title */}
+        <h4 style={{
+          fontSize: '1.12rem',
+          fontWeight: 800,
+          color: isHovered ? 'var(--brand-blue)' : '#0f172a',
+          margin: '0 0 0.4rem 0',
+          lineHeight: 1.25,
+          transition: 'color 0.25s ease'
+        }}>
+          {srv.name}
+        </h4>
+
+        {/* Summary */}
+        <p style={{
+          fontSize: '0.84rem',
+          color: '#475569',
+          lineHeight: 1.5,
+          margin: '0 0 0.85rem 0',
           display: '-webkit-box',
-          WebkitLineClamp: isExpanded ? 'none' : 2,
+          WebkitLineClamp: 2,
           WebkitBoxOrient: 'vertical',
           overflow: 'hidden'
-        }}
-      >
-        {srv.desc}
-      </p>
+        }}>
+          {srv.desc}
+        </p>
 
-      {/* Expanded Lightweight Details Accordion */}
-      <AnimatePresence>
-        {isExpanded && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            style={{ overflow: 'hidden' }}
-          >
-            <div
-              style={{
-                marginTop: '1.25rem',
-                paddingTop: '1rem',
-                borderTop: '1px solid var(--border-light)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.85rem'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-                <span className="badge badge-primary">SLA Backed</span>
-                <span className="badge badge-secondary">24×7 Operations</span>
-                <span className="badge badge-secondary">ISO Certified</span>
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '0.5rem' }}>
-                <Link
-                  to={`/services#${srv.id}`}
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                    fontSize: '0.85rem',
-                    fontWeight: 700,
-                    color: 'var(--brand-blue)',
-                    textDecoration: 'none'
-                  }}
-                >
-                  <span>Explore Full Service</span>
-                  <span>→</span>
-                </Link>
-              </div>
+        {/* Scope Bullets */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', marginBottom: '0.85rem' }}>
+          {srv.scope.map((item, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.78rem', color: '#334155' }}>
+              <CheckIcon />
+              <span>{item}</span>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer Link */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        borderTop: '1px solid #f1f5f9',
+        paddingTop: '0.75rem',
+        marginTop: '0.4rem'
+      }}>
+        <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--brand-blue)' }}>
+          Explore Capability
+        </span>
+        <motion.span
+          animate={isHovered ? { x: 4 } : { x: 0 }}
+          transition={{ duration: 0.3 }}
+          style={{ color: 'var(--brand-blue)', display: 'inline-flex', alignItems: 'center' }}
+        >
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </motion.span>
+      </div>
+    </Link>
   );
 }
 
 export default function HomeServicesSection() {
-  const [expandedId, setExpandedId] = useState(null);
-
-  const toggleExpand = (id) => {
-    setExpandedId((prev) => (prev === id ? null : id));
-  };
-
   return (
     <section 
       style={{ 
         padding: '5.5rem 0', 
-        backgroundColor: '#ffffff',
+        backgroundColor: '#f8fafc',
         borderTop: '1px solid var(--border-light)',
         borderBottom: '1px solid var(--border-light)'
       }} 
@@ -328,7 +232,7 @@ export default function HomeServicesSection() {
               style={{ 
                 fontSize: 'clamp(2rem, 3.8vw, 2.75rem)', 
                 fontWeight: 900, 
-                color: 'var(--text-light-primary)', 
+                color: '#0f172a', 
                 letterSpacing: '-0.03em',
                 marginBottom: '1rem' 
               }}
@@ -337,7 +241,7 @@ export default function HomeServicesSection() {
             </h2>
             <p 
               style={{ 
-                color: 'var(--text-light-secondary)', 
+                color: '#475569', 
                 maxWidth: '640px', 
                 margin: '0 auto', 
                 lineHeight: '1.65',
@@ -349,27 +253,22 @@ export default function HomeServicesSection() {
           </div>
         </ScrollReveal>
 
-        {/* Compact Interactive Cards Grid (Brights.io style) */}
+        {/* Small Boxes Grid */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
-            gap: '1.25rem',
-            alignItems: 'start'
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '1.5rem',
+            alignItems: 'stretch'
           }}
           className="compact-services-grid"
         >
-          {configData.services.map((srv) => (
-            <CompactServiceCard
-              key={srv.id}
-              srv={srv}
-              isExpanded={expandedId === srv.id}
-              onToggle={() => toggleExpand(srv.id)}
-            />
+          {HOME_SERVICES.map((srv) => (
+            <SmallServiceBox key={srv.id} srv={srv} />
           ))}
         </div>
 
-        {/* Bottom Catalog Action Bar */}
+        {/* Bottom Action */}
         <ScrollReveal variant="fade-up" delay={0.2}>
           <div 
             style={{ 
@@ -382,26 +281,17 @@ export default function HomeServicesSection() {
               flexWrap: 'wrap'
             }}
           >
-            <span style={{ fontSize: '0.92rem', color: 'var(--text-muted)', fontWeight: 500 }}>
-              Need a custom SLA model or multi-vendor hardware coverage plan?
+            <span style={{ fontSize: '0.92rem', color: '#64748b', fontWeight: 500 }}>
+              Looking for our complete enterprise service portfolio?
             </span>
             <Link to="/services" className="btn btn-outline" style={{ fontSize: '0.88rem', padding: '0.65rem 1.4rem' }}>
-              <span>View All Services</span>
+              <span>View All 11 Service Lines</span>
               <span>→</span>
             </Link>
           </div>
         </ScrollReveal>
 
       </div>
-
-      <style>{`
-        @media (max-width: 640px) {
-          .compact-services-grid {
-            grid-template-columns: 1fr !important;
-            gap: 1rem !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }
