@@ -8,40 +8,38 @@ const HERO_FEATURE_CARDS = [
     title: 'Cloud & Hybrid IT',
     desc: 'Hybrid cloud operations, seamless AWS/Azure migrations, and virtualization management.',
     link: '/services#hco-cloud-services',
-    iconType: 'cloud'
+    iconType: 'cloud',
+    badgeText: 'MULTI-CLOUD OPS'
   },
   {
     id: 'datacenter',
     title: 'Datacenter Management',
     desc: 'End-to-end datacenter operations, capacity planning, and infrastructure lifecycle support.',
     link: '/services#it-datacenter-management',
-    iconType: 'datacenter'
+    iconType: 'datacenter',
+    badgeText: 'OEM HARDWARE'
   },
   {
     id: 'noc',
     title: '24×7 NOC Monitoring',
     desc: 'Round-the-clock remote network monitoring, alarm handling, and real-time incident triage.',
     link: '/services#noc-services',
-    iconType: 'noc'
+    iconType: 'noc',
+    badgeText: '24×7 NOC SLA'
   },
   {
     id: 'cybersecurity',
     title: 'Cybersecurity Systems',
     desc: 'Perimeter defense, next-gen firewalls, VLAN zoning, and strict compliance controls.',
     link: '/services#third-party-maintenance',
-    iconType: 'cybersecurity'
+    iconType: 'cybersecurity',
+    badgeText: 'ZERO-TRUST SOC'
   }
 ];
 
-const LIVE_TICKER_LOGS = [
-  { text: 'Alert cleared — Node 12, Mumbai DC', time: '1m ago', tag: 'OK', tagBg: '#dcfce7', tagColor: '#166534' },
-  { text: 'Ticket #4482 resolved — 3m response', time: '2m ago', tag: 'RESOLVED', tagBg: '#eff6ff', tagColor: '#1d4ed8' },
-  { text: 'Failover completed — Cloud Region 2', time: '4m ago', tag: 'SYNC', tagBg: '#fef3c7', tagColor: '#92400e' },
-  { text: 'Patch update applied — AWS Frankfurt', time: '5m ago', tag: 'SYSTEM', tagBg: '#f1f5f9', tagColor: '#475569' },
-  { text: 'Zero-trust policy active — Dubai Hub', time: '7m ago', tag: 'SECURE', tagBg: '#dcfce7', tagColor: '#166534' },
-  { text: 'SAN Storage synced — Bangalore DC', time: '9m ago', tag: 'OK', tagBg: '#dcfce7', tagColor: '#166534' }
-];
-
+/* ─────────────────────────────────────────────────────────────
+   1. CARD ICON MICRO-ANIMATIONS
+ ────────────────────────────────────────────────────────────── */
 function CardAnimatedIcon({ iconType, isHovered }) {
   if (iconType === 'cloud') {
     return (
@@ -138,55 +136,74 @@ function CardAnimatedIcon({ iconType, isHovered }) {
   );
 }
 
-function HeroFeatureCard({ card }) {
-  const [isHovered, setIsHovered] = useState(false);
+/* ─────────────────────────────────────────────────────────────
+   2. INTERACTIVE SERVICE FEATURE CARD COMPONENT
+ ────────────────────────────────────────────────────────────── */
+function HeroFeatureCard({ card, activeServiceId, onHoverCard, onLeaveCard }) {
+  const isHoveredOrActive = activeServiceId === card.id;
 
   return (
     <Link
       to={card.link}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => onHoverCard(card.id)}
+      onMouseLeave={onLeaveCard}
       style={{
-        backgroundColor: isHovered ? '#2563EB' : '#ffffff',
-        borderRadius: '14px',
-        border: isHovered ? '1px solid #2563EB' : '1px solid #E6E9EE',
-        boxShadow: isHovered ? '0 12px 30px rgba(37, 99, 235, 0.22)' : '0 2px 8px rgba(15, 23, 42, 0.03)',
+        backgroundColor: isHoveredOrActive ? '#2563EB' : '#ffffff',
+        borderRadius: '16px',
+        border: isHoveredOrActive ? '1px solid #2563EB' : '1px solid #E6E9EE',
+        boxShadow: isHoveredOrActive ? '0 16px 36px rgba(37, 99, 235, 0.22)' : '0 2px 8px rgba(15, 23, 42, 0.03)',
         padding: '1.5rem',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
         minHeight: '210px',
         textDecoration: 'none',
-        transition: 'all 200ms ease-out',
-        transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
+        transition: 'all 250ms cubic-bezier(0.16, 1, 0.3, 1)',
+        transform: isHoveredOrActive ? 'translateY(-4px)' : 'translateY(0)',
         cursor: 'pointer'
       }}
     >
       <div>
-        {/* 1. Small Icon Container */}
-        <div
-          style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '10px',
-            backgroundColor: isHovered ? 'rgba(255, 255, 255, 0.18)' : '#EFF6FF',
-            color: isHovered ? '#ffffff' : '#2563EB',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '1.1rem',
-            transition: 'all 200ms ease-out'
-          }}
-        >
-          <CardAnimatedIcon iconType={card.iconType} isHovered={isHovered} />
+        {/* Top Header: Icon + Badge */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.1rem' }}>
+          <div
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '10px',
+              backgroundColor: isHoveredOrActive ? 'rgba(255, 255, 255, 0.2)' : '#EFF6FF',
+              color: isHoveredOrActive ? '#ffffff' : '#2563EB',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 200ms ease-out'
+            }}
+          >
+            <CardAnimatedIcon iconType={card.iconType} isHovered={isHoveredOrActive} />
+          </div>
+
+          <span
+            style={{
+              fontSize: '0.65rem',
+              fontWeight: 800,
+              letterSpacing: '1px',
+              padding: '2px 8px',
+              borderRadius: '4px',
+              backgroundColor: isHoveredOrActive ? 'rgba(255, 255, 255, 0.2)' : '#F1F5F9',
+              color: isHoveredOrActive ? '#ffffff' : '#475569',
+              transition: 'all 200ms ease-out'
+            }}
+          >
+            {card.badgeText}
+          </span>
         </div>
 
-        {/* 2. Fixed Title (18px, 700) */}
+        {/* Title */}
         <h3
           style={{
             fontSize: '18px',
             fontWeight: 700,
-            color: isHovered ? '#ffffff' : '#0F172A',
+            color: isHoveredOrActive ? '#ffffff' : '#0F172A',
             margin: '0 0 0.5rem 0',
             lineHeight: 1.3,
             transition: 'color 200ms ease-out'
@@ -195,11 +212,11 @@ function HeroFeatureCard({ card }) {
           {card.title}
         </h3>
 
-        {/* 3. One-line Description (14px, max 2 lines) */}
+        {/* Description */}
         <p
           style={{
             fontSize: '14px',
-            color: isHovered ? 'rgba(255, 255, 255, 0.9)' : '#475569',
+            color: isHoveredOrActive ? 'rgba(255, 255, 255, 0.9)' : '#475569',
             lineHeight: 1.55,
             margin: 0,
             transition: 'color 200ms ease-out',
@@ -213,7 +230,7 @@ function HeroFeatureCard({ card }) {
         </p>
       </div>
 
-      {/* 4. Learn More Link + Arrow */}
+      {/* Learn More Action */}
       <div
         style={{
           display: 'flex',
@@ -222,13 +239,13 @@ function HeroFeatureCard({ card }) {
           marginTop: '1.25rem',
           fontSize: '14px',
           fontWeight: 700,
-          color: isHovered ? '#ffffff' : '#2563EB',
+          color: isHoveredOrActive ? '#ffffff' : '#2563EB',
           transition: 'color 200ms ease-out'
         }}
       >
-        <span>Learn More</span>
+        <span>Explore Service</span>
         <motion.span
-          animate={{ x: isHovered ? 4 : 0 }}
+          animate={{ x: isHoveredOrActive ? 4 : 0 }}
           transition={{ duration: 0.2 }}
           style={{ display: 'inline-flex', alignItems: 'center' }}
         >
@@ -240,13 +257,257 @@ function HeroFeatureCard({ card }) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   SECTION 2 — LIVE OPERATIONS CONSOLE COMPONENT
+   3. BESPOKE VISUAL PANELS FOR THE 4 SERVICES
  ────────────────────────────────────────────────────────────── */
-function LiveOperationsConsole() {
-  const [currentTime, setCurrentTime] = useState('');
-  const [uptimeVal, setUptimeVal] = useState('99.98%');
 
-  // Real-time clock update (HH:MM:SS UTC)
+// 3A. Cloud & Hybrid IT Panel
+function CloudVisualPanel() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', height: '100%', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div>
+          <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#2563EB', letterSpacing: '1px', textTransform: 'uppercase' }}>
+            HYBRID CLOUD OPERATIONAL CANVAS
+          </span>
+          <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0F172A', margin: '2px 0 0 0' }}>
+            AWS, Azure &amp; Virtualization Synchronization
+          </h4>
+        </div>
+        <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#166534', backgroundColor: '#dcfce7', padding: '3px 8px', borderRadius: '6px' }}>
+          0-DOWNTIME SYNC
+        </span>
+      </div>
+
+      {/* Multi-Cloud Architecture SVG Diagram */}
+      <div style={{ position: 'relative', width: '100%', height: '150px', backgroundColor: '#F8FAFC', borderRadius: '12px', padding: '0.75rem', border: '1px solid #E2E8F0' }}>
+        <svg viewBox="0 0 400 130" fill="none" style={{ width: '100%', height: '100%' }}>
+          {/* Connecting Data Tunnel Lines */}
+          <path d="M 60 40 Q 200 10 340 40" stroke="#2563EB" strokeWidth="2" strokeDasharray="4 4" />
+          <path d="M 60 90 Q 200 120 340 90" stroke="#0284c7" strokeWidth="2" strokeDasharray="4 4" />
+          <line x1="200" y1="20" x2="200" y2="110" stroke="#e2e8f0" strokeWidth="2" />
+
+          {/* Central Orchestrator Core */}
+          <g transform="translate(160, 35)">
+            <rect width="80" height="60" rx="10" fill="#2563EB" />
+            <text x="40" y="28" fill="#ffffff" fontSize="10" fontWeight="800" textAnchor="middle" fontFamily="sans-serif">IaC ENGINE</text>
+            <text x="40" y="44" fill="#ffffff" opacity="0.85" fontSize="8" fontWeight="600" textAnchor="middle" fontFamily="sans-serif">Terraform/Ansible</text>
+          </g>
+
+          {/* Cloud Nodes */}
+          <g transform="translate(15, 20)">
+            <rect width="90" height="40" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.5" />
+            <text x="45" y="24" fill="#0F172A" fontSize="9" fontWeight="800" textAnchor="middle" fontFamily="sans-serif">AWS Cloud</text>
+          </g>
+          <g transform="translate(15, 75)">
+            <rect width="90" height="40" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.5" />
+            <text x="45" y="24" fill="#0F172A" fontSize="9" fontWeight="800" textAnchor="middle" fontFamily="sans-serif">Azure Cloud</text>
+          </g>
+
+          <g transform="translate(295, 20)">
+            <rect width="90" height="40" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.5" />
+            <text x="45" y="24" fill="#0F172A" fontSize="9" fontWeight="800" textAnchor="middle" fontFamily="sans-serif">VMware Cluster</text>
+          </g>
+          <g transform="translate(295, 75)">
+            <rect width="90" height="40" rx="8" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.5" />
+            <text x="45" y="24" fill="#0F172A" fontSize="9" fontWeight="800" textAnchor="middle" fontFamily="sans-serif">On-Prem DC</text>
+          </g>
+        </svg>
+      </div>
+
+      {/* Cloud Telemetry Bar */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.5rem' }}>
+        <div style={{ backgroundColor: '#F8FAFC', padding: '6px 10px', borderRadius: '8px', border: '1px solid #E2E8F0' }}>
+          <div style={{ fontSize: '0.65rem', color: '#64748b', fontWeight: 600 }}>Multi-Cloud Sync</div>
+          <div style={{ fontSize: '0.85rem', color: '#2563EB', fontWeight: 800 }}>Sub-10ms</div>
+        </div>
+        <div style={{ backgroundColor: '#F8FAFC', padding: '6px 10px', borderRadius: '8px', border: '1px solid #E2E8F0' }}>
+          <div style={{ fontSize: '0.65rem', color: '#64748b', fontWeight: 600 }}>Cloud Cost Savings</div>
+          <div style={{ fontSize: '0.85rem', color: '#166534', fontWeight: 800 }}>38% Optimized</div>
+        </div>
+        <div style={{ backgroundColor: '#F8FAFC', padding: '6px 10px', borderRadius: '8px', border: '1px solid #E2E8F0' }}>
+          <div style={{ fontSize: '0.65rem', color: '#64748b', fontWeight: 600 }}>Workload Health</div>
+          <div style={{ fontSize: '0.85rem', color: '#0F172A', fontWeight: 800 }}>100% Healthy</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 3B. Datacenter Management Panel
+function DatacenterVisualPanel() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', height: '100%', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div>
+          <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#2563EB', letterSpacing: '1px', textTransform: 'uppercase' }}>
+            OEM DATACENTER &amp; HARDWARE TELEMETRY
+          </span>
+          <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0F172A', margin: '2px 0 0 0' }}>
+            HPE, Dell &amp; Cisco Rack Maintenance
+          </h4>
+        </div>
+        <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#1d4ed8', backgroundColor: '#eff6ff', padding: '3px 8px', borderRadius: '6px' }}>
+          4-HR ON-SITE SLA
+        </span>
+      </div>
+
+      {/* Server Rack Chassis Visual */}
+      <div style={{ backgroundColor: '#0F172A', borderRadius: '12px', padding: '0.85rem 1rem', color: '#ffffff' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', color: '#94a3b8', marginBottom: '8px' }}>
+          <span>RACK CHASSIS #04 [MUMBAI DC]</span>
+          <span style={{ color: '#10b981' }}>● POWER REDUNDANT</span>
+        </div>
+
+        {/* 3 Rack Blades */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+          {['BLADE 01: HPE PROLIANT DL380 [ACTIVE]', 'BLADE 02: DELL POWEREDGE R750 [ACTIVE]', 'BLADE 03: CISCO UCS B200 [ACTIVE]'].map((blade, idx) => (
+            <div key={idx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#1E293B', padding: '6px 10px', borderRadius: '6px', borderLeft: '3px solid #2563EB' }}>
+              <span style={{ fontSize: '0.72rem', fontWeight: 700, fontFamily: 'monospace' }}>{blade}</span>
+              <div style={{ display: 'flex', gap: '4px' }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', backgroundColor: '#10b981' }} />
+                <span style={{ width: 6, height: 6, borderRadius: '50%', backgroundColor: '#10b981' }} />
+                <span style={{ width: 6, height: 6, borderRadius: '50%', backgroundColor: '#38bdf8' }} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Capacity & Thermal Telemetry */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.5rem' }}>
+        <div style={{ backgroundColor: '#F8FAFC', padding: '6px 10px', borderRadius: '8px', border: '1px solid #E2E8F0' }}>
+          <div style={{ fontSize: '0.65rem', color: '#64748b', fontWeight: 600 }}>SAN Provisioning</div>
+          <div style={{ fontSize: '0.85rem', color: '#2563EB', fontWeight: 800 }}>84% Allocated</div>
+        </div>
+        <div style={{ backgroundColor: '#F8FAFC', padding: '6px 10px', borderRadius: '8px', border: '1px solid #E2E8F0' }}>
+          <div style={{ fontSize: '0.65rem', color: '#64748b', fontWeight: 600 }}>Thermal Baseline</div>
+          <div style={{ fontSize: '0.85rem', color: '#166534', fontWeight: 800 }}>21°C Optimal</div>
+        </div>
+        <div style={{ backgroundColor: '#F8FAFC', padding: '6px 10px', borderRadius: '8px', border: '1px solid #E2E8F0' }}>
+          <div style={{ fontSize: '0.65rem', color: '#64748b', fontWeight: 600 }}>EOSL Spares Status</div>
+          <div style={{ fontSize: '0.85rem', color: '#0F172A', fontWeight: 800 }}>Pre-Staged</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 3C. 24x7 NOC Monitoring Panel
+function NocVisualPanel() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', height: '100%', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div>
+          <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#2563EB', letterSpacing: '1px', textTransform: 'uppercase' }}>
+            24×7 NOC TRIAGE &amp; TELEMETRY
+          </span>
+          <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0F172A', margin: '2px 0 0 0' }}>
+            Real-Time Network Alarm Triage
+          </h4>
+        </div>
+        <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#166534', backgroundColor: '#dcfce7', padding: '3px 8px', borderRadius: '6px' }}>
+          SUB-15 MIN DISPATCH
+        </span>
+      </div>
+
+      {/* Live Wave Telemetry + Ticker Logs */}
+      <div style={{ backgroundColor: '#F8FAFC', borderRadius: '12px', padding: '0.75rem', border: '1px solid #E2E8F0' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', fontWeight: 700, color: '#475569', marginBottom: '4px' }}>
+          <span>PACKET DROP &amp; LATENCY STREAM</span>
+          <span style={{ color: '#2563EB' }}>0.001% Packet Loss</span>
+        </div>
+
+        <svg viewBox="0 0 400 45" fill="none" style={{ width: '100%', height: '36px' }}>
+          <path d="M 0 30 Q 50 10 100 20 T 200 8 T 300 25 T 400 12" stroke="#2563EB" strokeWidth="2.2" fill="none" />
+        </svg>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '4px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: '#0F172A', fontWeight: 600 }}>
+            <span>● Ticket #4482: Bangalore SAN Sync</span>
+            <span style={{ color: '#166534', fontWeight: 700 }}>RESOLVED (3m)</span>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: '#0F172A', fontWeight: 600 }}>
+            <span>● Failover check: Dubai Cloud Region</span>
+            <span style={{ color: '#1d4ed8', fontWeight: 700 }}>PASSING</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Active NOC Hubs Bar */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#ffffff', padding: '8px 12px', borderRadius: '8px', border: '1px solid #E2E8F0' }}>
+        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#64748b' }}>Active Command Hubs:</span>
+        <div style={{ display: 'flex', gap: '8px', fontSize: '0.72rem', fontWeight: 800, color: '#0F172A' }}>
+          <span>● Noida</span>
+          <span>● Mumbai</span>
+          <span>● Bangalore</span>
+          <span>● Dubai</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 3D. Cybersecurity Systems Panel
+function CybersecurityVisualPanel() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', height: '100%', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div>
+          <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#2563EB', letterSpacing: '1px', textTransform: 'uppercase' }}>
+            ZERO-TRUST SECURITY &amp; SOC DEFENSE
+          </span>
+          <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0F172A', margin: '2px 0 0 0' }}>
+            Next-Gen Firewall &amp; Endpoint Protection
+          </h4>
+        </div>
+        <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#166534', backgroundColor: '#dcfce7', padding: '3px 8px', borderRadius: '6px' }}>
+          ISO 27001 AUDITED
+        </span>
+      </div>
+
+      {/* Security Threat Grid & Shield Status */}
+      <div style={{ backgroundColor: '#0F172A', borderRadius: '12px', padding: '0.85rem 1rem', color: '#ffffff' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+          <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#38bdf8' }}>PERIMETER SECURITY RADAR</span>
+          <span style={{ fontSize: '0.7rem', color: '#10b981', fontWeight: 800 }}>0 THREAT PENETRATIONS</span>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+          <div style={{ backgroundColor: '#1E293B', padding: '6px 10px', borderRadius: '6px' }}>
+            <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>VLAN Segmenting</div>
+            <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#ffffff' }}>Enforced</div>
+          </div>
+          <div style={{ backgroundColor: '#1E293B', padding: '6px 10px', borderRadius: '6px' }}>
+            <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>SOC Monitoring</div>
+            <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#10b981' }}>Active 24×7</div>
+          </div>
+          <div style={{ backgroundColor: '#1E293B', padding: '6px 10px', borderRadius: '6px' }}>
+            <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>Encrypted Tunnels</div>
+            <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#ffffff' }}>AES-256</div>
+          </div>
+          <div style={{ backgroundColor: '#1E293B', padding: '6px 10px', borderRadius: '6px' }}>
+            <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>Compliance Check</div>
+            <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#38bdf8' }}>PCI-DSS &amp; HIPAA</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Compliance Verification Footer */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#F8FAFC', padding: '6px 12px', borderRadius: '8px', border: '1px solid #E2E8F0' }}>
+        <span style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 600 }}>Security Certifications:</span>
+        <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#2563EB' }}>ISO 9001, 27001, 20000, 45001</span>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   4. INTERACTIVE HERO CONSOLE DISPLAY WRAPPER
+ ────────────────────────────────────────────────────────────── */
+function InteractiveHeroConsole({ activeServiceId, onSelectService }) {
+  const [currentTime, setCurrentTime] = useState('');
+
+  // Ticking UTC clock
   useEffect(() => {
     const updateClock = () => {
       const now = new Date();
@@ -260,36 +521,26 @@ function LiveOperationsConsole() {
     return () => clearInterval(interval);
   }, []);
 
-  // Uptime decimal subtle flicker (99.97% - 99.99%)
-  useEffect(() => {
-    const uptimeValues = ['99.98%', '99.99%', '99.97%', '99.98%'];
-    let idx = 0;
-    const interval = setInterval(() => {
-      idx = (idx + 1) % uptimeValues.length;
-      setUptimeVal(uptimeValues[idx]);
-    }, 3800);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div
       style={{
         width: '100%',
-        maxWidth: '460px',
+        maxWidth: '480px',
         backgroundColor: '#ffffff',
         borderRadius: '24px',
         border: '1px solid #E6E9EE',
         padding: '1.25rem 1.4rem',
-        boxShadow: '0 12px 36px rgba(15, 23, 42, 0.06)',
+        boxShadow: '0 16px 40px rgba(15, 23, 42, 0.08)',
         position: 'relative',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        gap: '1rem'
+        gap: '1rem',
+        minHeight: '340px'
       }}
-      id="live-operations-console"
+      id="interactive-hero-console"
     >
-      {/* 2.1 HEADER ROW: Status + Live Clock */}
+      {/* Top Header Controls & Clock */}
       <div
         style={{
           display: 'flex',
@@ -324,17 +575,16 @@ function LiveOperationsConsole() {
               }}
             />
           </span>
-          <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#0F172A' }}>
-            All Systems Operational
+          <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#0F172A' }}>
+            Enterprise Command Center
           </span>
         </div>
 
-        {/* Live Clock & Uptime Badge */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <span
             style={{
-              fontSize: '0.75rem',
-              fontWeight: 700,
+              fontSize: '0.72rem',
+              fontWeight: 800,
               fontFamily: 'monospace',
               color: '#2563EB',
               backgroundColor: '#EFF6FF',
@@ -352,177 +602,88 @@ function LiveOperationsConsole() {
               color: '#15803d',
               backgroundColor: '#dcfce7',
               padding: '2px 8px',
-              borderRadius: '6px',
-              transition: 'all 0.3s ease'
+              borderRadius: '6px'
             }}
-            title="SLA Uptime Guarantee"
           >
-            {uptimeVal}
+            99.99% SLA
           </span>
         </div>
       </div>
 
-      {/* 2.2 MINI ACTIVITY GRAPH (Animated SVG Line & Area Chart) */}
-      <div style={{ position: 'relative', width: '100%', height: '54px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-          <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-            Network &amp; Ticket Activity
-          </span>
-          <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#2563EB' }}>
-            99.9% Optimal
-          </span>
-        </div>
-
-        <svg viewBox="0 0 400 40" fill="none" style={{ width: '100%', height: '36px', overflow: 'visible' }}>
-          <defs>
-            <linearGradient id="consoleGraphGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#2563EB" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="#2563EB" stopOpacity="0.0" />
-            </linearGradient>
-          </defs>
-
-          {/* Area Fill */}
-          <path d="M 0 35 Q 50 15 100 25 T 200 12 T 300 22 T 400 10 V 40 H 0 Z" fill="url(#consoleGraphGrad)" />
-
-          {/* Animated Line Stroke */}
-          <motion.path
-            d="M 0 35 Q 50 15 100 25 T 200 12 T 300 22 T 400 10"
-            stroke="#2563EB"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            fill="none"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 2.5, repeat: Infinity, repeatType: 'loop', ease: 'easeInOut' }}
-          />
-
-          {/* Activity Pulse Point */}
-          <motion.circle
-            cx="400"
-            cy="10"
-            r="4"
-            fill="#2563EB"
-            animate={{ r: [3, 5, 3] }}
-            transition={{ duration: 1.2, repeat: Infinity }}
-          />
-        </svg>
-      </div>
-
-      {/* 2.3 SCROLLING LIVE-FEED TICKER (Vertical Loop) */}
-      <div
-        style={{
-          position: 'relative',
-          height: '110px',
-          overflow: 'hidden',
-          backgroundColor: '#F8FAFC',
-          borderRadius: '12px',
-          border: '1px solid #E2E8F0',
-          padding: '0.5rem 0.75rem',
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
-          maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)'
-        }}
-      >
-        <motion.div
-          animate={{ y: ['0%', '-50%'] }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-          style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}
-        >
-          {/* Double list trick for seamless infinite vertical scroll */}
-          {[...LIVE_TICKER_LOGS, ...LIVE_TICKER_LOGS].map((log, idx) => (
-            <div
-              key={idx}
+      {/* Interactive Tabs bar for 4 Services */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '4px', backgroundColor: '#F8FAFC', padding: '4px', borderRadius: '10px', border: '1px solid #E2E8F0' }}>
+        {[
+          { id: 'cloud', label: 'Cloud' },
+          { id: 'datacenter', label: 'Datacenter' },
+          { id: 'noc', label: 'NOC' },
+          { id: 'cybersecurity', label: 'Security' }
+        ].map((tab) => {
+          const isActive = activeServiceId === tab.id;
+          return (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => onSelectService(tab.id)}
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                fontSize: '0.76rem',
-                color: '#334155',
-                padding: '4px 0'
+                backgroundColor: isActive ? '#2563EB' : 'transparent',
+                color: isActive ? '#ffffff' : '#64748b',
+                border: 'none',
+                borderRadius: '6px',
+                padding: '5px 0',
+                fontSize: '0.72rem',
+                fontWeight: isActive ? 800 : 700,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span
-                  style={{
-                    fontSize: '0.62rem',
-                    fontWeight: 800,
-                    padding: '1px 6px',
-                    borderRadius: '4px',
-                    backgroundColor: log.tagBg,
-                    color: log.tagColor,
-                    flexShrink: 0
-                  }}
-                >
-                  {log.tag}
-                </span>
-                <span style={{ fontWeight: 600, color: '#0F172A', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '250px' }}>
-                  {log.text}
-                </span>
-              </div>
-              <span style={{ fontSize: '0.68rem', color: '#94a3b8', flexShrink: 0 }}>
-                {log.time}
-              </span>
-            </div>
-          ))}
-        </motion.div>
+              {tab.label}
+            </button>
+          );
+        })}
       </div>
 
-      {/* 2.4 MINI COVERAGE MAP (India + UAE Hub Outline) */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          paddingTop: '0.5rem',
-          borderTop: '1px solid #F1F5F9'
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#475569' }}>
-            Active NOC Hubs:
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            {[
-              { name: 'Noida', status: 'Primary' },
-              { name: 'Mumbai', status: 'DC' },
-              { name: 'Bangalore', status: 'R&D' },
-              { name: 'Dubai', status: 'UAE' }
-            ].map((hub) => (
-              <span
-                key={hub.name}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  fontSize: '0.72rem',
-                  fontWeight: 700,
-                  color: '#0F172A'
-                }}
-              >
-                <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#2563EB' }} />
-                {hub.name}
-              </span>
-            ))}
-          </div>
-        </div>
+      {/* Animated Visual Canvas Switcher */}
+      <div style={{ flex: 1, position: 'relative' }}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeServiceId}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+            style={{ height: '100%' }}
+          >
+            {activeServiceId === 'cloud' && <CloudVisualPanel />}
+            {activeServiceId === 'datacenter' && <DatacenterVisualPanel />}
+            {activeServiceId === 'noc' && <NocVisualPanel />}
+            {activeServiceId === 'cybersecurity' && <CybersecurityVisualPanel />}
+          </motion.div>
+        </AnimatePresence>
       </div>
-
     </div>
   );
 }
 
+/* ─────────────────────────────────────────────────────────────
+   5. MAIN HOME HERO SECTION COMPONENT
+ ────────────────────────────────────────────────────────────── */
 export default function HomeHeroSection() {
-  const [endpointCount, setEndpointCount] = useState(1420);
+  const [activeServiceId, setActiveServiceId] = useState('cloud');
   const [showScrollCue, setShowScrollCue] = useState(true);
 
-  // 8.2 Live Operations Pulse Counter Ticker
+  // Auto-cycle through services every 6 seconds when idle
   useEffect(() => {
+    const services = ['cloud', 'datacenter', 'noc', 'cybersecurity'];
     const timer = setInterval(() => {
-      setEndpointCount((prev) => prev + 1);
-    }, 4500);
+      setActiveServiceId((current) => {
+        const nextIdx = (services.indexOf(current) + 1) % services.length;
+        return services[nextIdx];
+      });
+    }, 6000);
     return () => clearInterval(timer);
   }, []);
 
-  // 8.4 Hide scroll cue on scroll past 100px
+  // Hide scroll cue on scroll past 100px
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
@@ -561,7 +722,7 @@ export default function HomeHeroSection() {
 
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         
-        {/* Split Grid: Left Content + Right Section 2 Live Operations Console */}
+        {/* Split Grid: Left Content + Right Interactive Enterprise Command Center Console */}
         <div 
           className="hero-split-grid" 
           style={{ 
@@ -573,34 +734,16 @@ export default function HomeHeroSection() {
           }}
         >
           
-          {/* Left Column: Headline, CTAs, Live Operations Pulse */}
+          {/* Left Column: Headline & CTAs (Cleaned, no dot lines) */}
           <div>
-            <div style={{ marginBottom: '0.85rem' }}>
-              <span
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  fontSize: '0.78rem',
-                  fontWeight: 800,
-                  color: '#2563EB',
-                  letterSpacing: '1.5px',
-                  textTransform: 'uppercase'
-                }}
-              >
-                <span style={{ width: 6, height: 6, borderRadius: '50%', backgroundColor: '#2563EB', display: 'inline-block' }} />
-                #1 ENTERPRISE IT MANAGED SERVICES &amp; HARDWARE SUPPORT
-              </span>
-            </div>
-
-            {/* Static Headline */}
+            {/* Main Headline */}
             <h1
               style={{
-                fontSize: 'clamp(2.2rem, 4vw, 3.25rem)',
+                fontSize: 'clamp(2.2rem, 4.2vw, 3.4rem)',
                 fontWeight: 800,
                 color: '#0F172A',
                 letterSpacing: '-0.02em',
-                lineHeight: 1.18,
+                lineHeight: 1.16,
                 margin: '0 0 1.25rem 0'
               }}
             >
@@ -609,10 +752,10 @@ export default function HomeHeroSection() {
 
             <p
               style={{
-                fontSize: '1.08rem',
+                fontSize: '1.1rem',
                 lineHeight: 1.65,
                 color: '#475569',
-                marginBottom: '1.5rem',
+                marginBottom: '1.75rem',
                 maxWidth: '620px'
               }}
             >
@@ -620,15 +763,15 @@ export default function HomeHeroSection() {
             </p>
 
             {/* CTAs */}
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '1.25rem' }}>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
               <Link
                 to="/services"
                 style={{
                   backgroundColor: '#2563EB',
                   color: '#ffffff',
                   fontWeight: 700,
-                  fontSize: '0.9rem',
-                  padding: '12px 24px',
+                  fontSize: '0.92rem',
+                  padding: '13px 26px',
                   borderRadius: '30px',
                   textDecoration: 'none',
                   display: 'inline-flex',
@@ -642,71 +785,40 @@ export default function HomeHeroSection() {
                 <span>→</span>
               </Link>
             </div>
-
-            {/* 8.2 Live Operations Pulse Strip */}
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '0.84rem',
-                color: '#475569',
-                fontWeight: 600
-              }}
-            >
-              <span style={{ position: 'relative', display: 'flex', width: '8px', height: '8px' }}>
-                <span
-                  style={{
-                    position: 'absolute',
-                    display: 'inline-flex',
-                    height: '100%',
-                    width: '100%',
-                    borderRadius: '50%',
-                    backgroundColor: '#10b981',
-                    opacity: 0.75,
-                    animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite'
-                  }}
-                />
-                <span
-                  style={{
-                    position: 'relative',
-                    display: 'inline-flex',
-                    borderRadius: '50%',
-                    height: '8px',
-                    width: '8px',
-                    backgroundColor: '#10b981'
-                  }}
-                />
-              </span>
-              <span>
-                Monitoring <strong style={{ color: '#0F172A', fontWeight: 700 }}>{endpointCount.toLocaleString()}+</strong> active client workloads right now
-              </span>
-            </div>
           </div>
 
-          {/* Right Column: Section 2 Live Operations Console */}
+          {/* Right Column: Interactive Command Center Console connected to 4 Services */}
           <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <LiveOperationsConsole />
+            <InteractiveHeroConsole
+              activeServiceId={activeServiceId}
+              onSelectService={(id) => setActiveServiceId(id)}
+            />
           </div>
 
         </div>
 
-        {/* Rebuilt 4-Card Feature Strip */}
+        {/* Rebuilt 4-Card Feature Strip connected directly to Interactive Hero Console */}
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',
             gap: '1.25rem',
-            marginTop: '24px'
+            marginTop: '28px'
           }}
           className="hero-feature-strip-grid"
         >
           {HERO_FEATURE_CARDS.map((card) => (
-            <HeroFeatureCard key={card.id} card={card} />
+            <HeroFeatureCard
+              key={card.id}
+              card={card}
+              activeServiceId={activeServiceId}
+              onHoverCard={(id) => setActiveServiceId(id)}
+              onLeaveCard={() => {}}
+            />
           ))}
         </div>
 
-        {/* 8.4 Scroll-Cue Indicator */}
+        {/* Scroll-Cue Indicator */}
         <AnimatePresence>
           {showScrollCue && (
             <motion.div
