@@ -206,28 +206,22 @@ export default function Navbar() {
               whileTap={{ scale: 0.94 }}
               title="INNOWORQ Home"
             >
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '2px' }}>
+              <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <InnoworqIcon size={20} />
-                <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#09619f', display: 'inline-block' }} />
-              </div>
-              
-              {/* Active Home Pointer Dot */}
-              {location.pathname === '/' && (
-                <motion.span
-                  layoutId="activeNavPointerDot"
-                  style={{
-                    width: '4px',
-                    height: '4px',
-                    borderRadius: '50%',
-                    backgroundColor: '#09619f',
-                    position: 'absolute',
-                    bottom: '-8px',
-                    left: '50%',
-                    transform: 'translateX(-50%)'
-                  }}
-                  transition={{ duration: 0.2 }}
-                />
-              )}
+                {location.pathname === '/' && (
+                  <motion.span
+                    layoutId="activeNavPointerDot"
+                    style={{
+                      width: '4px',
+                      height: '4px',
+                      borderRadius: '50%',
+                      backgroundColor: '#09619f',
+                      marginTop: '2px'
+                    }}
+                    transition={{ duration: 0.2 }}
+                  />
+                )}
+              </span>
             </motion.button>
 
             {/* --- Desktop Nav Links in Strict Sequential Order (Home -> About -> Services -> Solutions -> Industries -> Blogs) --- */}
