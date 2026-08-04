@@ -360,6 +360,9 @@ export default function About() {
         </div>
       </section>
 
+      {/* Global Presence Section */}
+      <GlobalPresence />
+
       <style>{`
         @media (max-width: 900px) {
           .about-split-row {

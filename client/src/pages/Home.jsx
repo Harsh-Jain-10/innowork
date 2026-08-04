@@ -3,7 +3,6 @@ import HomeHeroSection from '../components/HomeHeroSection';
 import HomeLogoStrip from '../components/HomeLogoStrip';
 import HomeWhyInnoworq from '../components/HomeWhyInnoworq';
 import HomeStatsBar from '../components/HomeStatsBar';
-import GlobalPresence from '../components/GlobalPresence';
 import HomeFaqSection from '../components/HomeFaqSection';
 
 export default function Home() {
@@ -28,10 +27,7 @@ export default function Home() {
       {/* 4. Stats Bar (Enterprise Metrics) */}
       <HomeStatsBar />
 
-      {/* 5. Global Presence & Regional Hubs */}
-      <GlobalPresence />
-
-      {/* 6. Frequently Asked Questions */}
+      {/* 5. Frequently Asked Questions */}
       <HomeFaqSection />
     </div>
   );
