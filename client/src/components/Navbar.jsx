@@ -191,13 +191,13 @@ export default function Navbar() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '2px',
+                gap: '3px',
                 backgroundColor: location.pathname === '/' ? 'rgba(9, 97, 159, 0.08)' : '#ffffff',
                 border: location.pathname === '/' ? '1px solid rgba(9, 97, 159, 0.25)' : '1px solid #e2e8f0',
                 borderRadius: '30px',
-                padding: '5px 12px 5px 10px',
+                padding: '6px 12px 6px 10px',
                 cursor: 'pointer',
-                boxShadow: location.pathname === '/' ? '0 2px 10px rgba(9, 97, 159, 0.15)' : '0 2px 6px rgba(0,0,0,0.04)',
+                boxShadow: location.pathname === '/' ? '0 2px 10px rgba(9, 97, 159, 0.12)' : '0 2px 6px rgba(0,0,0,0.04)',
                 flexShrink: 0,
                 marginRight: '6px',
                 position: 'relative'
@@ -206,8 +206,10 @@ export default function Navbar() {
               whileTap={{ scale: 0.94 }}
               title="INNOWORQ Home"
             >
-              <InnoworqIcon size={20} />
-              <span style={{ fontSize: '1.2rem', fontWeight: 900, color: '#09619f', lineHeight: 1, marginTop: '-2px' }}>.</span>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '2px' }}>
+                <InnoworqIcon size={20} />
+                <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#09619f', display: 'inline-block' }} />
+              </div>
               
               {/* Active Home Pointer Dot */}
               {location.pathname === '/' && (
@@ -219,7 +221,7 @@ export default function Navbar() {
                     borderRadius: '50%',
                     backgroundColor: '#09619f',
                     position: 'absolute',
-                    bottom: '2px',
+                    bottom: '-8px',
                     left: '50%',
                     transform: 'translateX(-50%)'
                   }}
@@ -514,9 +516,9 @@ export default function Navbar() {
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <Link to="/" style={{ color: '#09619f', textDecoration: 'none', fontWeight: 800, display: 'inline-flex', alignItems: 'center', gap: '4px' }} onClick={() => setIsMobileMenuOpen(false)}>
+              <Link to="/" style={{ color: '#09619f', textDecoration: 'none', fontWeight: 800, display: 'inline-flex', alignItems: 'center', gap: '6px' }} onClick={() => setIsMobileMenuOpen(false)}>
                 <InnoworqIcon size={18} />
-                <span>. Home</span>
+                <span>Home</span>
               </Link>
               <Link to="/about" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>About</Link>
               <Link to="/services" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
