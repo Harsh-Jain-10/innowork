@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const HERO_FEATURE_CARDS = [
   {
@@ -8,58 +8,145 @@ const HERO_FEATURE_CARDS = [
     title: 'Cloud & Hybrid IT',
     desc: 'Hybrid cloud operations, seamless AWS/Azure migrations, and virtualization management.',
     link: '/services#hco-cloud-services',
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z" />
-      </svg>
-    )
+    iconType: 'cloud'
   },
   {
     id: 'datacenter',
     title: 'Datacenter Management',
     desc: 'End-to-end datacenter operations, capacity planning, and infrastructure lifecycle support.',
     link: '/services#it-datacenter-management',
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
-        <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
-        <line x1="6" y1="6" x2="6.01" y2="6" />
-        <line x1="6" y1="18" x2="6.01" y2="18" />
-      </svg>
-    )
+    iconType: 'datacenter'
   },
   {
     id: 'noc',
     title: '24×7 NOC Monitoring',
     desc: 'Round-the-clock remote network monitoring, alarm handling, and real-time incident triage.',
     link: '/services#noc-services',
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-      </svg>
-    )
+    iconType: 'noc'
   },
   {
     id: 'cybersecurity',
     title: 'Cybersecurity Systems',
     desc: 'Perimeter defense, next-gen firewalls, VLAN zoning, and strict compliance controls.',
     link: '/services#third-party-maintenance',
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      </svg>
-    )
+    iconType: 'cybersecurity'
   }
 ];
 
-function HeroFeatureCard({ card }) {
+function CardAnimatedIcon({ iconType, isHovered }) {
+  if (iconType === 'cloud') {
+    return (
+      <motion.svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        animate={isHovered ? { y: [-1, -4, -1], scale: [1, 1.08, 1] } : { y: 0, scale: 1 }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+      >
+        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z" />
+      </motion.svg>
+    );
+  }
+
+  if (iconType === 'datacenter') {
+    return (
+      <motion.svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        animate={isHovered ? { scale: [1, 1.05, 1] } : { scale: 1 }}
+        transition={{ duration: 0.4 }}
+      >
+        <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+        <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+        <motion.line
+          x1="6"
+          y1="6"
+          x2="6.01"
+          y2="6"
+          strokeWidth="3"
+          animate={isHovered ? { opacity: [0.3, 1, 0.3, 1] } : { opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        />
+        <motion.line
+          x1="6"
+          y1="18"
+          x2="6.01"
+          y2="18"
+          strokeWidth="3"
+          animate={isHovered ? { opacity: [1, 0.3, 1, 0.3] } : { opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        />
+      </motion.svg>
+    );
+  }
+
+  if (iconType === 'noc') {
+    return (
+      <motion.svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        animate={isHovered ? { scale: [1, 1.15, 1], rotate: [0, 5, -5, 0] } : { scale: 1, rotate: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+      </motion.svg>
+    );
+  }
+
+  // cybersecurity
+  return (
+    <motion.svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      animate={isHovered ? { rotate: [0, -6, 6, 0], scale: [1, 1.1, 1] } : { rotate: 0, scale: 1 }}
+      transition={{ duration: 0.4 }}
+    >
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    </motion.svg>
+  );
+}
+
+function HeroFeatureCard({ card, onHoverChange }) {
   const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (onHoverChange) onHoverChange(card.id);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (onHoverChange) onHoverChange(null);
+  };
 
   return (
     <Link
       to={card.link}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       style={{
         backgroundColor: isHovered ? '#2563EB' : '#ffffff',
         borderRadius: '14px',
@@ -77,7 +164,7 @@ function HeroFeatureCard({ card }) {
       }}
     >
       <div>
-        {/* 1. Small Icon Container */}
+        {/* 1. Small Icon Container with 1-shot Micro-Animation */}
         <div
           style={{
             width: '40px',
@@ -92,7 +179,7 @@ function HeroFeatureCard({ card }) {
             transition: 'all 200ms ease-out'
           }}
         >
-          {card.icon}
+          <CardAnimatedIcon iconType={card.iconType} isHovered={isHovered} />
         </div>
 
         {/* 2. Fixed Title (18px, 700) */}
@@ -154,6 +241,31 @@ function HeroFeatureCard({ card }) {
 }
 
 export default function HomeHeroSection() {
+  const [hoveredCardId, setHoveredCardId] = useState(null);
+  const [endpointCount, setEndpointCount] = useState(1420);
+  const [showScrollCue, setShowScrollCue] = useState(true);
+
+  // 8.2 Live Operations Pulse Counter Ticker
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setEndpointCount((prev) => prev + 1);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
+  // 8.4 Hide scroll cue on scroll past 100px
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowScrollCue(false);
+      } else {
+        setShowScrollCue(true);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section
       style={{
@@ -162,7 +274,7 @@ export default function HomeHeroSection() {
         color: '#0F172A',
         borderBottom: '1px solid #E6E9EE',
         overflow: 'hidden',
-        padding: '104px 0 32px 0' /* 80px navbar height + 24px top padding, 32px bottom padding */
+        padding: '104px 0 40px 0' /* 80px navbar height + 24px top padding */
       }}
       id="hero-enterprise-section"
     >
@@ -192,7 +304,7 @@ export default function HomeHeroSection() {
           }}
         >
           
-          {/* Left Column: Headline & CTAs */}
+          {/* Left Column: Headline, CTAs, Live Operations Pulse */}
           <div>
             <div style={{ marginBottom: '1rem' }}>
               <span
@@ -216,7 +328,7 @@ export default function HomeHeroSection() {
               </span>
             </div>
 
-            {/* Static Headline - No Line Swapping */}
+            {/* Static Headline */}
             <h1
               style={{
                 fontSize: 'clamp(2.2rem, 4vw, 3.25rem)',
@@ -235,7 +347,7 @@ export default function HomeHeroSection() {
                 fontSize: '1.08rem',
                 lineHeight: 1.65,
                 color: '#475569',
-                marginBottom: '1.75rem',
+                marginBottom: '1.5rem',
                 maxWidth: '620px'
               }}
             >
@@ -243,7 +355,7 @@ export default function HomeHeroSection() {
             </p>
 
             {/* CTAs */}
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '1.25rem' }}>
               <Link
                 to="/about#welcome-to-innoworq"
                 style={{
@@ -284,9 +396,51 @@ export default function HomeHeroSection() {
                 <span>Explore Services</span>
               </Link>
             </div>
+
+            {/* 8.2 Live Operations Pulse Strip */}
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '10px',
+                backgroundColor: '#ffffff',
+                border: '1px solid #E2E8F0',
+                borderRadius: '30px',
+                padding: '6px 14px',
+                boxShadow: '0 2px 6px rgba(15, 23, 42, 0.03)'
+              }}
+            >
+              <span style={{ position: 'relative', display: 'flex', width: '8px', height: '8px' }}>
+                <span
+                  style={{
+                    position: 'absolute',
+                    display: 'inline-flex',
+                    height: '100%',
+                    width: '100%',
+                    borderRadius: '50%',
+                    backgroundColor: '#10b981',
+                    opacity: 0.75,
+                    animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite'
+                  }}
+                />
+                <span
+                  style={{
+                    position: 'relative',
+                    display: 'inline-flex',
+                    borderRadius: '50%',
+                    height: '8px',
+                    width: '8px',
+                    backgroundColor: '#10b981'
+                  }}
+                />
+              </span>
+              <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#334155' }}>
+                Monitoring <strong style={{ color: '#0F172A', fontWeight: 700 }}>{endpointCount.toLocaleString()}+</strong> active client workloads right now
+              </span>
+            </div>
           </div>
 
-          {/* Right Column: Cleanly Contained Infrastructure Diagram */}
+          {/* Right Column: 8.1 Interactive Systems-Map Connected to Card Hover */}
           <div
             style={{
               width: '100%',
@@ -308,17 +462,29 @@ export default function HomeHeroSection() {
                     <stop offset="0%" stopColor="#2563EB" />
                     <stop offset="100%" stopColor="#1d4ed8" />
                   </linearGradient>
+                  <filter id="nodeGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#2563EB" floodOpacity="0.35" />
+                  </filter>
                 </defs>
 
                 {/* Connecting Lines */}
-                <path d="M 80 170 Q 250 80 420 170" stroke="#cbd5e1" strokeWidth="1.5" strokeDasharray="4 4" />
-                <path d="M 120 270 Q 250 340 380 270" stroke="#cbd5e1" strokeWidth="1.5" strokeDasharray="4 4" />
-                <path d="M 100 190 L 250 190 L 400 190" stroke="#e2e8f0" strokeWidth="2" />
-                <path d="M 250 85 L 250 310" stroke="#e2e8f0" strokeWidth="2" />
+                <path d="M 80 170 Q 250 80 420 170" stroke={hoveredCardId === 'cloud' ? '#2563EB' : '#cbd5e1'} strokeWidth={hoveredCardId === 'cloud' ? '2.5' : '1.5'} strokeDasharray="4 4" />
+                <path d="M 120 270 Q 250 340 380 270" stroke={hoveredCardId === 'cybersecurity' ? '#2563EB' : '#cbd5e1'} strokeWidth={hoveredCardId === 'cybersecurity' ? '2.5' : '1.5'} strokeDasharray="4 4" />
+                <path d="M 100 190 L 250 190 L 400 190" stroke={hoveredCardId === 'datacenter' ? '#2563EB' : '#e2e8f0'} strokeWidth={hoveredCardId === 'datacenter' ? '2.5' : '2'} />
+                <path d="M 250 85 L 250 310" stroke={hoveredCardId === 'noc' ? '#2563EB' : '#e2e8f0'} strokeWidth={hoveredCardId === 'noc' ? '2.5' : '2'} />
 
-                {/* Central NOC Core Node */}
-                <g transform="translate(180, 120)">
-                  <rect width="140" height="140" rx="18" fill="url(#blueGradHero)" />
+                {/* Node 3: Central NOC Core Node (Wired to 'noc' card) */}
+                <g
+                  transform="translate(180, 120)"
+                  style={{
+                    opacity: hoveredCardId === null || hoveredCardId === 'noc' ? 1 : 0.4,
+                    transform: hoveredCardId === 'noc' ? 'translate(180px, 120px) scale(1.08)' : 'translate(180px, 120px)',
+                    transformOrigin: '70px 70px',
+                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                  }}
+                  filter={hoveredCardId === 'noc' ? 'url(#nodeGlow)' : 'none'}
+                >
+                  <rect width="140" height="140" rx="18" fill="url(#blueGradHero)" stroke={hoveredCardId === 'noc' ? '#ffffff' : 'none'} strokeWidth="2" />
                   <circle cx="70" cy="55" r="26" fill="#ffffff" opacity="0.18" />
                   <path d="M 70 38 C 58 38 48 48 48 60 L 92 60 C 92 48 82 38 70 38 Z" fill="#ffffff" />
                   <rect x="52" y="65" width="36" height="4" rx="2" fill="#ffffff" />
@@ -326,16 +492,34 @@ export default function HomeHeroSection() {
                   <circle cx="115" cy="25" r="5" fill="#10b981" />
                 </g>
 
-                {/* Node 1: Hybrid Cloud */}
-                <g transform="translate(40, 45)">
-                  <rect width="120" height="85" rx="12" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.5" />
+                {/* Node 1: Hybrid Cloud (Wired to 'cloud' card) */}
+                <g
+                  transform="translate(40, 45)"
+                  style={{
+                    opacity: hoveredCardId === null || hoveredCardId === 'cloud' ? 1 : 0.4,
+                    transform: hoveredCardId === 'cloud' ? 'translate(40px, 45px) scale(1.12)' : 'translate(40px, 45px)',
+                    transformOrigin: '60px 42px',
+                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                  }}
+                  filter={hoveredCardId === 'cloud' ? 'url(#nodeGlow)' : 'none'}
+                >
+                  <rect width="120" height="85" rx="12" fill={hoveredCardId === 'cloud' ? '#EFF6FF' : '#ffffff'} stroke={hoveredCardId === 'cloud' ? '#2563EB' : '#e2e8f0'} strokeWidth={hoveredCardId === 'cloud' ? '2' : '1.5'} />
                   <path d="M 45 40 Q 45 30 55 30 Q 62 23 72 28 Q 82 23 88 32 Q 95 34 95 43 Q 95 50 85 50 L 45 50 Z" fill="#2563EB" />
                   <text x="60" y="68" fill="#0F172A" fontSize="11" fontWeight="700" textAnchor="middle" fontFamily="sans-serif">Hybrid Cloud</text>
                 </g>
 
-                {/* Node 2: OEM Datacenter */}
-                <g transform="translate(340, 45)">
-                  <rect width="120" height="85" rx="12" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.5" />
+                {/* Node 2: OEM Datacenter (Wired to 'datacenter' card) */}
+                <g
+                  transform="translate(340, 45)"
+                  style={{
+                    opacity: hoveredCardId === null || hoveredCardId === 'datacenter' ? 1 : 0.4,
+                    transform: hoveredCardId === 'datacenter' ? 'translate(340px, 45px) scale(1.12)' : 'translate(340px, 45px)',
+                    transformOrigin: '60px 42px',
+                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                  }}
+                  filter={hoveredCardId === 'datacenter' ? 'url(#nodeGlow)' : 'none'}
+                >
+                  <rect width="120" height="85" rx="12" fill={hoveredCardId === 'datacenter' ? '#EFF6FF' : '#ffffff'} stroke={hoveredCardId === 'datacenter' ? '#2563EB' : '#e2e8f0'} strokeWidth={hoveredCardId === 'datacenter' ? '2' : '1.5'} />
                   <rect x="40" y="26" width="40" height="10" rx="2" fill="#2563EB" />
                   <rect x="40" y="40" width="40" height="10" rx="2" fill="#2563EB" />
                   <circle cx="73" cy="31" r="1.5" fill="#ffffff" />
@@ -343,15 +527,24 @@ export default function HomeHeroSection() {
                   <text x="60" y="68" fill="#0F172A" fontSize="11" fontWeight="700" textAnchor="middle" fontFamily="sans-serif">OEM Datacenter</text>
                 </g>
 
-                {/* Node 3: Cyber Security */}
-                <g transform="translate(40, 260)">
-                  <rect width="120" height="85" rx="12" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.5" />
+                {/* Node 4: Cybersecurity Systems (Wired to 'cybersecurity' card) */}
+                <g
+                  transform="translate(40, 260)"
+                  style={{
+                    opacity: hoveredCardId === null || hoveredCardId === 'cybersecurity' ? 1 : 0.4,
+                    transform: hoveredCardId === 'cybersecurity' ? 'translate(40px, 260px) scale(1.12)' : 'translate(40px, 260px)',
+                    transformOrigin: '60px 42px',
+                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                  }}
+                  filter={hoveredCardId === 'cybersecurity' ? 'url(#nodeGlow)' : 'none'}
+                >
+                  <rect width="120" height="85" rx="12" fill={hoveredCardId === 'cybersecurity' ? '#EFF6FF' : '#ffffff'} stroke={hoveredCardId === 'cybersecurity' ? '#2563EB' : '#e2e8f0'} strokeWidth={hoveredCardId === 'cybersecurity' ? '2' : '1.5'} />
                   <path d="M 60 24 L 75 30 V 42 C 75 50 60 56 60 56 C 60 56 45 50 45 42 V 30 Z" fill="#2563EB" />
                   <text x="60" y="70" fill="#0F172A" fontSize="11" fontWeight="700" textAnchor="middle" fontFamily="sans-serif">Cyber Security</text>
                 </g>
 
-                {/* Node 4: SLA Assurance */}
-                <g transform="translate(340, 260)">
+                {/* Node 5: SLA Assurance */}
+                <g transform="translate(340, 260)" style={{ opacity: hoveredCardId === null ? 1 : 0.4, transition: 'all 0.3s ease' }}>
                   <rect width="120" height="85" rx="12" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.5" />
                   <circle cx="60" cy="38" r="13" fill="#10b981" />
                   <path d="M 54 38 L 58 42 L 66 34" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" />
@@ -363,7 +556,7 @@ export default function HomeHeroSection() {
 
         </div>
 
-        {/* Rebuilt 4-Card Feature Strip */}
+        {/* 4-Card Feature Strip */}
         <div
           style={{
             display: 'grid',
@@ -374,9 +567,53 @@ export default function HomeHeroSection() {
           className="hero-feature-strip-grid"
         >
           {HERO_FEATURE_CARDS.map((card) => (
-            <HeroFeatureCard key={card.id} card={card} />
+            <HeroFeatureCard
+              key={card.id}
+              card={card}
+              onHoverChange={(cardId) => setHoveredCardId(cardId)}
+            />
           ))}
         </div>
+
+        {/* 8.4 Scroll-Cue Indicator */}
+        <AnimatePresence>
+          {showScrollCue && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: '1.5rem',
+                gap: '4px',
+                color: '#64748b',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                letterSpacing: '0.5px'
+              }}
+            >
+              <span>Scroll to explore</span>
+              <motion.svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <path d="M7 10l5 5 5-5" />
+              </motion.svg>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </section>
