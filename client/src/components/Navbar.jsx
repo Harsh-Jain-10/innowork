@@ -4,12 +4,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo.png';
 import InnoworqIcon from './InnoworqIcon';
 import AnnouncementCenter from './AnnouncementCenter';
-import configData from '../data/companyConfig.json';
 
 const NAV_DROPDOWNS = {
   services: {
     title: 'Enterprise IT Services',
-    subtitle: 'End-to-end SLA-bound IT management and operations',
+    subtitle: 'End-to-end SLA-bound IT management and multi-cloud operations',
     items: [
       { id: 'it-infrastructure', name: 'IT Infrastructure Management', desc: 'Hardware lifecycle, network & server administration' },
       { id: 'hybrid-cloud', name: 'Hybrid Cloud & Multi-Cloud Operations', desc: 'AWS, Azure, GCP infrastructure & cloud cost optimization' },
@@ -44,31 +43,17 @@ const NAV_DROPDOWNS = {
     ],
     ctaText: 'Discover All Industries →',
     ctaLink: '/industries'
-  },
-  company: {
-    title: 'About INNOWORQ',
-    subtitle: 'Leading IT infrastructure partner across India & MEA',
-    items: [
-      { id: 'about-us', name: 'About Our Company', desc: 'Our journey, mission & 20-25% YoY enterprise growth', link: '/about' },
-      { id: 'leadership', name: 'Leadership Team', desc: 'Meet our tech innovators & executive leaders', link: '/about#leadership' },
-      { id: 'global-presence', name: 'Global Presence & Dubai Hub', desc: 'Pan-India network & UAE regional office in Dubai', link: '/about#global-presence-section' },
-      { id: 'certifications', name: 'ISO Certifications & Compliance', desc: 'ISO 9001, 27001, 20000-1 & 45001 standards', link: '/about#certifications' }
-    ],
-    ctaText: 'Learn About INNOWORQ →',
-    ctaLink: '/about'
-  },
-  blogs: {
-    title: 'Insights & Technology Blog',
-    subtitle: 'Latest whitepapers, industry trends & engineering articles',
-    items: [
-      { id: 'latest-insights', name: 'Latest Tech Articles', desc: 'Best practices for hybrid cloud & cybersecurity', link: '/blogs' },
-      { id: 'case-studies', name: 'Enterprise Case Studies', desc: 'Real-world digital transformation stories', link: '/blogs' },
-      { id: 'whitepapers', name: 'Industry Whitepapers', desc: 'Strategic guides on cloud migration & DevOps', link: '/blogs' }
-    ],
-    ctaText: 'Visit Tech Blog →',
-    ctaLink: '/blogs'
   }
 };
+
+const NAV_ITEMS = [
+  { path: '/', label: 'Home', id: 'home' },
+  { path: '/about', label: 'About', id: 'about' },
+  { path: '/services', label: 'Services', id: 'services', hasDropdown: true },
+  { path: '/solutions', label: 'Solutions', id: 'solutions', hasDropdown: true },
+  { path: '/industries', label: 'Industries', id: 'industries', hasDropdown: true },
+  { path: '/blogs', label: 'Blogs', id: 'blogs' }
+];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -115,7 +100,14 @@ export default function Navbar() {
     }
   };
 
-  const openQuoteModal = () => {
+  const handleRequestQuote = () => {
+    if (location.pathname === '/about') {
+      const el = document.getElementById('welcome-to-innoworq');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
     navigate('/about#welcome-to-innoworq');
   };
 
@@ -162,30 +154,30 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* ================= 2. CENTER FLOATING PILL NAVBAR ================= */}
+          {/* ================= 2. CENTER LIGHT-THEMED FLOATING PILL NAVBAR ================= */}
           <motion.nav
             layout
             style={{
               pointerEvents: 'auto',
               position: 'relative',
               margin: isScrolled ? '0 auto' : '0',
-              backgroundColor: isScrolled ? 'rgba(15, 23, 42, 0.92)' : 'rgba(15, 23, 42, 0.82)',
+              backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.88)',
               backdropFilter: 'blur(18px)',
               WebkitBackdropFilter: 'blur(18px)',
-              border: '1px solid rgba(255, 255, 255, 0.16)',
+              border: '1px solid rgba(226, 232, 240, 0.9)',
               borderRadius: '50px',
-              padding: '6px 8px 6px 14px',
+              padding: '6px 8px 6px 12px',
               boxShadow: isScrolled
-                ? '0 20px 40px -10px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(9, 97, 159, 0.25)'
-                : '0 10px 30px rgba(0, 0, 0, 0.15)',
+                ? '0 16px 36px -10px rgba(9, 97, 159, 0.14), 0 4px 12px rgba(0, 0, 0, 0.04)'
+                : '0 8px 24px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02)',
               display: 'flex',
               alignItems: 'center',
-              gap: '6px',
+              gap: '4px',
               transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
             }}
-            className="floating-pill-nav"
+            className="floating-pill-nav-light"
           >
-            {/* --- "I." LOGO BUTTON (Animates in when scrolled - just like "B." in brights.io) --- */}
+            {/* --- "I." LOGO BUTTON (Animates in when scrolled) --- */}
             <AnimatePresence>
               {isScrolled && (
                 <motion.button
@@ -201,11 +193,11 @@ export default function Navbar() {
                     justifyContent: 'center',
                     gap: '2px',
                     backgroundColor: '#ffffff',
-                    border: '1px solid rgba(255, 255, 255, 0.4)',
+                    border: '1px solid #e2e8f0',
                     borderRadius: '30px',
                     padding: '4px 10px 4px 8px',
                     cursor: 'pointer',
-                    boxShadow: '0 4px 12px rgba(9, 97, 159, 0.25)',
+                    boxShadow: '0 4px 12px rgba(9, 97, 159, 0.15)',
                     flexShrink: 0,
                     overflow: 'hidden'
                   }}
@@ -219,102 +211,73 @@ export default function Navbar() {
               )}
             </AnimatePresence>
 
-            {/* --- Desktop Nav Links --- */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }} className="desktop-pill-links">
-              
-              {/* Services Item */}
-              <div 
-                style={{ position: 'relative' }}
-                onMouseEnter={() => setActiveDropdown('services')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button
-                  type="button"
-                  onClick={() => navigate('/services')}
-                  className={`pill-nav-btn ${activeDropdown === 'services' || location.pathname === '/services' ? 'active' : ''}`}
-                >
-                  <span>Services</span>
-                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ transition: 'transform 0.2s ease', transform: activeDropdown === 'services' ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-              </div>
+            {/* --- Desktop Nav Links in Strict Sequential Order (Home -> About -> Services -> Solutions -> Industries -> Blogs) --- */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }} className="desktop-pill-links">
+              {NAV_ITEMS.map((item) => {
+                const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
+                const isHovered = activeDropdown === item.id;
 
-              {/* Solutions Item */}
-              <div 
-                style={{ position: 'relative' }}
-                onMouseEnter={() => setActiveDropdown('solutions')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button
-                  type="button"
-                  onClick={() => navigate('/solutions')}
-                  className={`pill-nav-btn ${activeDropdown === 'solutions' || location.pathname === '/solutions' ? 'active' : ''}`}
-                >
-                  <span>Solutions</span>
-                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ transition: 'transform 0.2s ease', transform: activeDropdown === 'solutions' ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-              </div>
+                return (
+                  <div
+                    key={item.id}
+                    style={{ position: 'relative' }}
+                    onMouseEnter={() => item.hasDropdown ? setActiveDropdown(item.id) : null}
+                    onMouseLeave={() => item.hasDropdown ? setActiveDropdown(null) : null}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => navigate(item.path)}
+                      className={`pill-nav-btn-light ${isActive ? 'active' : ''}`}
+                      style={{
+                        position: 'relative',
+                        background: isActive ? 'rgba(9, 97, 159, 0.08)' : 'transparent',
+                        color: isActive ? '#09619f' : '#334155',
+                        fontWeight: isActive ? 700 : 600
+                      }}
+                    >
+                      <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <span>{item.label}</span>
+                        {/* Active Page Dot Indicator */}
+                        {isActive && (
+                          <motion.span
+                            layoutId="activeNavPointerDot"
+                            style={{
+                              width: '4px',
+                              height: '4px',
+                              borderRadius: '50%',
+                              backgroundColor: '#09619f',
+                              marginTop: '2px'
+                            }}
+                            transition={{ duration: 0.2 }}
+                          />
+                        )}
+                      </span>
 
-              {/* Industries Item */}
-              <div 
-                style={{ position: 'relative' }}
-                onMouseEnter={() => setActiveDropdown('industries')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button
-                  type="button"
-                  onClick={() => navigate('/industries')}
-                  className={`pill-nav-btn ${activeDropdown === 'industries' || location.pathname === '/industries' ? 'active' : ''}`}
-                >
-                  <span>Industries</span>
-                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ transition: 'transform 0.2s ease', transform: activeDropdown === 'industries' ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Company / About Item */}
-              <div 
-                style={{ position: 'relative' }}
-                onMouseEnter={() => setActiveDropdown('company')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button
-                  type="button"
-                  onClick={() => navigate('/about')}
-                  className={`pill-nav-btn ${activeDropdown === 'company' || location.pathname === '/about' ? 'active' : ''}`}
-                >
-                  <span>Company</span>
-                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ transition: 'transform 0.2s ease', transform: activeDropdown === 'company' ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Blogs Item */}
-              <div 
-                style={{ position: 'relative' }}
-                onMouseEnter={() => setActiveDropdown('blogs')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button
-                  type="button"
-                  onClick={() => navigate('/blogs')}
-                  className={`pill-nav-btn ${activeDropdown === 'blogs' || location.pathname === '/blogs' ? 'active' : ''}`}
-                >
-                  <span>Blog</span>
-                </button>
-              </div>
-
+                      {item.hasDropdown && (
+                        <svg
+                          width="10"
+                          height="6"
+                          viewBox="0 0 10 6"
+                          fill="none"
+                          style={{
+                            transition: 'transform 0.2s ease',
+                            transform: isHovered ? 'rotate(180deg)' : 'rotate(0deg)',
+                            marginLeft: '4px'
+                          }}
+                        >
+                          <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
+                );
+              })}
             </div>
 
-            {/* --- Right CTA Button Inside Pill --- */}
+            {/* --- Right CTA Button Inside Pill ("Request a quote") --- */}
             <motion.button
               type="button"
-              onClick={openQuoteModal}
+              onClick={handleRequestQuote}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               style={{
@@ -326,7 +289,7 @@ export default function Navbar() {
                 background: 'linear-gradient(135deg, #09619f 0%, #0284c7 100%)',
                 border: 'none',
                 cursor: 'pointer',
-                boxShadow: '0 4px 14px rgba(9, 97, 159, 0.35)',
+                boxShadow: '0 4px 14px rgba(9, 97, 159, 0.3)',
                 marginLeft: '6px',
                 whiteSpace: 'nowrap',
                 display: 'inline-flex',
@@ -342,10 +305,10 @@ export default function Navbar() {
             <AnimatePresence>
               {activeDropdown && NAV_DROPDOWNS[activeDropdown] && (
                 <motion.div
-                  initial={{ opacity: 0, y: 12, scale: 0.97 }}
+                  initial={{ opacity: 0, y: 10, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 8, scale: 0.97 }}
-                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                  exit={{ opacity: 0, y: 6, scale: 0.97 }}
+                  transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                   onMouseEnter={() => setActiveDropdown(activeDropdown)}
                   onMouseLeave={() => setActiveDropdown(null)}
                   style={{
@@ -353,26 +316,26 @@ export default function Navbar() {
                     top: 'calc(100% + 12px)',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    width: 'min(640px, 90vw)',
+                    width: 'min(620px, 90vw)',
                     backgroundColor: '#ffffff',
                     borderRadius: '20px',
-                    padding: '1.75rem',
-                    boxShadow: '0 25px 60px -15px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(15, 23, 42, 0.08)',
+                    padding: '1.5rem',
+                    boxShadow: '0 20px 50px -10px rgba(9, 97, 159, 0.15), 0 0 0 1px rgba(226, 232, 240, 0.8)',
                     zIndex: 100,
                     color: '#0f172a'
                   }}
-                  className="mega-dropdown-panel"
+                  className="mega-dropdown-panel-light"
                 >
-                  <div style={{ marginBottom: '1.25rem', borderBottom: '1px solid #f1f5f9', pb: '0.85rem' }}>
-                    <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#09619f', margin: 0 }}>
+                  <div style={{ marginBottom: '1rem', paddingBottom: '0.75rem', borderBottom: '1px solid #f1f5f9' }}>
+                    <h4 style={{ fontSize: '1.02rem', fontWeight: 800, color: '#09619f', margin: 0 }}>
                       {NAV_DROPDOWNS[activeDropdown].title}
                     </h4>
-                    <p style={{ fontSize: '0.82rem', color: '#64748b', margin: '3px 0 0 0' }}>
+                    <p style={{ fontSize: '0.8rem', color: '#64748b', margin: '2px 0 0 0' }}>
                       {NAV_DROPDOWNS[activeDropdown].subtitle}
                     </p>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem' }}>
                     {NAV_DROPDOWNS[activeDropdown].items.map((item) => (
                       <div
                         key={item.id}
@@ -401,22 +364,22 @@ export default function Navbar() {
                           e.currentTarget.style.borderColor = '#f1f5f9';
                         }}
                       >
-                        <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#1e293b' }}>
+                        <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#1e293b' }}>
                           {item.name}
                         </div>
-                        <div style={{ fontSize: '0.76rem', color: '#64748b', marginTop: '2px', lineHeight: 1.35 }}>
+                        <div style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '2px', lineHeight: 1.35 }}>
                           {item.desc}
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  <div style={{ marginTop: '1.25rem', pt: '0.75rem', borderTop: '1px solid #f1f5f9', textAlign: 'right' }}>
+                  <div style={{ marginTop: '1rem', paddingTop: '0.65rem', borderTop: '1px solid #f1f5f9', textAlign: 'right' }}>
                     <Link
                       to={NAV_DROPDOWNS[activeDropdown].ctaLink}
                       onClick={() => setActiveDropdown(null)}
                       style={{
-                        fontSize: '0.84rem',
+                        fontSize: '0.82rem',
                         fontWeight: 700,
                         color: '#09619f',
                         textDecoration: 'none',
@@ -433,7 +396,7 @@ export default function Navbar() {
             </AnimatePresence>
           </motion.nav>
 
-          {/* ================= 3. RIGHT OUTER ACTION BUTTONS (Unscrolled State) ================= */}
+          {/* ================= 3. RIGHT OUTER ACTION BUTTONS (Professional Bell Icon) ================= */}
           <div
             style={{
               pointerEvents: 'auto',
@@ -447,7 +410,7 @@ export default function Navbar() {
             }}
             className="outer-right-actions"
           >
-            {/* Announcement Bell Trigger Pill */}
+            {/* Professional Vector Notification Bell Button */}
             <button
               type="button"
               onClick={() => setIsAnnouncementOpen(true)}
@@ -455,35 +418,47 @@ export default function Navbar() {
                 width: '42px',
                 height: '42px',
                 borderRadius: '50%',
-                backgroundColor: 'rgba(15, 23, 42, 0.85)',
+                backgroundColor: '#ffffff',
                 backdropFilter: 'blur(12px)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                color: '#ffffff',
+                border: '1px solid #e2e8f0',
+                color: '#0f172a',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
                 position: 'relative',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.06)',
                 transition: 'all 0.2s ease'
               }}
-              onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.08)'}
-              onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-              title="Regional Announcements & Updates"
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = 'scale(1.08)';
+                e.currentTarget.style.borderColor = 'rgba(9, 97, 159, 0.3)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.borderColor = '#e2e8f0';
+              }}
+              title="Regional Announcements & Regional Updates"
             >
-              <InnoworqIcon size={20} />
+              {/* Professional Clean Vector Bell Icon */}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+
+              {/* Unread Indicator Pulse Dot */}
               {hasUnreadAnnouncements && (
                 <span
                   style={{
                     position: 'absolute',
                     top: '8px',
                     right: '8px',
-                    width: '9px',
-                    height: '9px',
+                    width: '8px',
+                    height: '8px',
                     borderRadius: '50%',
-                    backgroundColor: '#38bdf8',
-                    border: '2px solid #0f172a',
-                    boxShadow: '0 0 8px #38bdf8'
+                    backgroundColor: '#09619f',
+                    border: '2px solid #ffffff',
+                    boxShadow: '0 0 8px #09619f'
                   }}
                 />
               )}
@@ -499,13 +474,14 @@ export default function Navbar() {
                 width: '40px',
                 height: '40px',
                 borderRadius: '50%',
-                backgroundColor: '#0f172a',
-                color: '#ffffff',
-                border: 'none',
+                backgroundColor: '#ffffff',
+                color: '#0f172a',
+                border: '1px solid #e2e8f0',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.06)'
               }}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -540,26 +516,27 @@ export default function Navbar() {
               top: '70px',
               left: '16px',
               right: '16px',
-              backgroundColor: '#0f172a',
+              backgroundColor: '#ffffff',
               borderRadius: '24px',
               padding: '1.5rem',
               zIndex: 999,
-              boxShadow: '0 20px 40px rgba(0,0,0,0.5)',
-              border: '1px solid rgba(255,255,255,0.15)',
-              color: '#ffffff'
+              boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
+              border: '1px solid #e2e8f0',
+              color: '#0f172a'
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <Link to="/about" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
-              <Link to="/services" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
-              <Link to="/solutions" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Solutions</Link>
-              <Link to="/industries" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Industries</Link>
-              <Link to="/blogs" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
+              <Link to="/" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+              <Link to="/about" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+              <Link to="/services" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
+              <Link to="/solutions" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Solutions</Link>
+              <Link to="/industries" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Industries</Link>
+              <Link to="/blogs" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Blogs</Link>
               <button
                 type="button"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  openQuoteModal();
+                  handleRequestQuote();
                 }}
                 style={{
                   width: '100%',
@@ -588,24 +565,28 @@ export default function Navbar() {
 
       {/* Component Styles */}
       <style>{`
-        .pill-nav-btn {
+        .pill-nav-btn-light {
           background: transparent;
           border: none;
-          color: rgba(255, 255, 255, 0.85);
+          color: #334155;
           font-family: var(--font-heading, sans-serif);
           font-size: 0.88rem;
           font-weight: 600;
-          padding: 8px 14px;
+          padding: 7px 14px;
           border-radius: 20px;
           cursor: pointer;
           display: inline-flex;
           align-items: center;
-          gap: 6px;
+          gap: 4px;
           transition: all 0.2s ease;
         }
-        .pill-nav-btn:hover, .pill-nav-btn.active {
-          color: #ffffff;
-          background-color: rgba(255, 255, 255, 0.12);
+        .pill-nav-btn-light:hover {
+          color: #09619f;
+          background-color: rgba(9, 97, 159, 0.06);
+        }
+        .pill-nav-btn-light.active {
+          color: #09619f !important;
+          background-color: rgba(9, 97, 159, 0.08) !important;
         }
         @media (max-width: 900px) {
           .outer-brand-logo, .outer-right-actions, .desktop-pill-links {
@@ -614,7 +595,7 @@ export default function Navbar() {
           .mobile-hamburger-wrap {
             display: block !important;
           }
-          .floating-pill-nav {
+          .floating-pill-nav-light {
             margin: 0 !important;
           }
         }
