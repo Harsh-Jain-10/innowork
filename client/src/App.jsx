@@ -46,8 +46,8 @@ export default function App() {
           display: 'flex', 
           flexDirection: 'column', 
           minHeight: '100vh', 
-          backgroundColor: 'var(--bg-light)',
-          color: 'var(--text-light-primary)' 
+          backgroundColor: 'var(--bg-primary)',
+          color: 'var(--text-primary)' 
         }}
         id="app-root-container"
       >

@@ -172,14 +172,15 @@ export function StaggerItem({
  * @param {number}        duration - Count-up duration in seconds
  * @param {number}        delay    - Delay in seconds before starting (for stagger sync)
  */
-export function CountUp({ target, suffix = '', prefix = '', duration = 1.8, delay = 0, style = {} }) {
+export function CountUp({ target, value, end, suffix = '', prefix = '', duration = 1.8, delay = 0, style = {} }) {
   const [count, setCount] = useState(0);
   const [started, setStarted] = useState(false);
   const ref = useRef(null);
   // Trigger count as soon as 5% of the element enters the viewport
   const isInView = useInView(ref, { once: true, amount: 0.05 });
 
-  const targetStr = target.toString();
+  const rawTarget = target ?? value ?? end ?? '';
+  const targetStr = rawTarget.toString();
   const hasK = /k/i.test(targetStr);
   const numericPart = parseInt(targetStr.replace(/[^0-9]/g, ''), 10) || 0;
   const autoSuffix = suffix || (hasK

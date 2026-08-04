@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import dubaiAnnouncementImg from '../assets/images/dubai-announcement.jpg';
+import dubaiAnnouncementImg from '../assets/images/dubai-announcement.png';
 
 const ANNOUNCEMENTS = [
   {
@@ -49,14 +49,11 @@ export default function AnnouncementCenter({ isOpen, onClose, onAllViewed }) {
     if (e) e.stopPropagation();
     
     if (currentIndex < ANNOUNCEMENTS.length - 1) {
-      // Advance to next announcement in stack
       setCurrentIndex((prev) => prev + 1);
     } else {
-      // Final announcement closed
       sessionStorage.setItem('announcementsViewed', 'true');
       if (onAllViewed) onAllViewed();
       onClose();
-      // Reset index for next manual open
       setTimeout(() => setCurrentIndex(0), 300);
     }
   };
@@ -66,7 +63,7 @@ export default function AnnouncementCenter({ isOpen, onClose, onAllViewed }) {
       {isOpen && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 999999 }}>
           
-          {/* 1. Backdrop Overlay with 45% dark opacity & 14px blur */}
+          {/* 1. Backdrop Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -83,7 +80,7 @@ export default function AnnouncementCenter({ isOpen, onClose, onAllViewed }) {
             }}
           />
 
-          {/* 2. Announcement Center Container (Centered Viewport) */}
+          {/* 2. Announcement Center Container */}
           <div
             style={{
               position: 'fixed',
@@ -101,13 +98,13 @@ export default function AnnouncementCenter({ isOpen, onClose, onAllViewed }) {
                 position: 'relative',
                 width: '60vw',
                 maxWidth: '900px',
-                minWidth: '300px',
+                minWidth: '320px',
                 pointerEvents: 'auto'
               }}
               className="announcement-card-viewport"
             >
               
-              {/* Stacked Next Card (Visual Depth Effect if multiple exist) */}
+              {/* Stacked Next Card (Visual Depth) */}
               {nextAnnouncement && (
                 <motion.div
                   initial={{ scale: 0.9, y: 20, opacity: 0.5 }}
@@ -181,7 +178,7 @@ export default function AnnouncementCenter({ isOpen, onClose, onAllViewed }) {
                     </svg>
                   </button>
 
-                  {/* Artwork Image as Provided (No Crop) */}
+                  {/* Connected High-Resolution Announcement Image */}
                   <img
                     src={currentAnnouncement.image}
                     alt={currentAnnouncement.alt}

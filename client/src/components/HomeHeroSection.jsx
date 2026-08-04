@@ -39,32 +39,27 @@ const HERO_CARDS = [
 
 export default function HomeHeroSection() {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
-
   const activeCard = HERO_CARDS[activeCardIndex];
 
   return (
     <section
       style={{
         position: 'relative',
-        minHeight: '82vh',
-        backgroundColor: '#0a0f1d',
-        color: '#ffffff',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+        backgroundColor: 'var(--bg-surface)',
+        color: 'var(--text-primary)',
+        borderBottom: '1px solid var(--border-color)',
         overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        padding: '5rem 0 3.5rem 0'
+        padding: '5rem 0 4rem 0'
       }}
       id="hero-enterprise-section"
     >
-      {/* Abstract Background Elements (Dot Grid & Radial Glow) */}
+      {/* Background Soft Accent Glow & Grid */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          opacity: 0.08,
-          backgroundImage: `radial-gradient(circle, #38bdf8 1px, transparent 1px)`,
+          opacity: 0.4,
+          backgroundImage: `radial-gradient(circle, var(--border-color) 1px, transparent 1px)`,
           backgroundSize: '32px 32px',
           pointerEvents: 'none'
         }}
@@ -72,11 +67,11 @@ export default function HomeHeroSection() {
       <div
         style={{
           position: 'absolute',
-          top: '-15%',
-          right: '5%',
-          width: '600px',
-          height: '600px',
-          background: 'radial-gradient(circle, rgba(9, 97, 159, 0.35) 0%, rgba(2, 132, 199, 0.08) 50%, transparent 75%)',
+          top: '-10%',
+          right: '0%',
+          width: '650px',
+          height: '650px',
+          background: 'radial-gradient(circle, rgba(9, 97, 159, 0.08) 0%, rgba(2, 132, 199, 0.03) 50%, transparent 75%)',
           pointerEvents: 'none',
           filter: 'blur(60px)'
         }}
@@ -84,75 +79,157 @@ export default function HomeHeroSection() {
 
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         
-        {/* Top Badge & Dynamic Heading */}
-        <div style={{ maxWidth: '820px', marginBottom: '3.5rem' }}>
+        {/* Split Grid: Left Content + Right Enterprise IT Infrastructure SVG Visual */}
+        <div className="hero-split-grid" style={{ display: 'grid', gridTemplateColumns: '1.15fr 0.85fr', gap: '3.5rem', alignItems: 'center', marginBottom: '3.5rem' }}>
           
-          {/* Top Pill Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                backgroundColor: 'rgba(9, 97, 159, 0.25)',
-                color: '#38bdf8',
-                padding: '0.4rem 1.1rem',
-                borderRadius: '50px',
-                fontSize: '0.8rem',
-                fontWeight: 800,
-                letterSpacing: '1.5px',
-                textTransform: 'uppercase',
-                marginBottom: '1.5rem',
-                border: '1px solid rgba(56, 189, 248, 0.25)',
-                boxShadow: '0 0 15px rgba(9, 97, 159, 0.2)'
-              }}
+          {/* Left Column: Heading & CTAs */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
             >
-              <span style={{ width: 6, height: 6, borderRadius: '50%', backgroundColor: '#38bdf8', display: 'inline-block' }} />
-              CUSTOM ENTERPRISE IT SOLUTIONS
-            </span>
-          </motion.div>
+              <span className="pill pill-primary" style={{ marginBottom: '1.25rem' }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', backgroundColor: 'var(--primary)', display: 'inline-block' }} />
+                ENTERPRISE IT &amp; INFRASTRUCTURE PARTNER
+              </span>
+            </motion.div>
 
-          {/* Main Hero Dynamic Title */}
-          <h1
-            style={{
-              fontSize: 'clamp(2.25rem, 4.8vw, 3.8rem)',
-              lineHeight: 1.12,
-              fontWeight: 900,
-              color: '#ffffff',
-              letterSpacing: '-0.03em',
-              margin: 0
-            }}
+            <motion.h1
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              style={{ margin: '0 0 1.25rem 0' }}
+            >
+              Your technology support partner for creating sustainable business value through{' '}
+              <span style={{ display: 'inline-block', position: 'relative' }}>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={activeCard.id}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
+                    style={{
+                      color: 'var(--primary)',
+                      textDecoration: 'underline',
+                      textDecorationColor: 'rgba(9, 97, 159, 0.3)',
+                      textUnderlineOffset: '6px'
+                    }}
+                  >
+                    {activeCard.highlightText}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+              .
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              style={{ fontSize: '1.1rem', lineHeight: 1.7, color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '620px' }}
+            >
+              We deliver SLA-bound 24×7 NOC monitoring, multi-cloud operations, third-party maintenance, and cybersecurity resilience for mission-critical enterprise environments.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}
+            >
+              <Link to="/services" className="btn btn-primary" id="hero-btn-explore-services">
+                <span>Explore Services</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </Link>
+              <Link to="/about#global-presence-section" className="btn btn-secondary" id="hero-btn-contact">
+                <span>Our Locations</span>
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Right Column: High-Impact Infrastructure SVG Diagram */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
           >
-            Your tech partner for creating sustainable business value through{' '}
-            <span style={{ display: 'inline-block', position: 'relative' }}>
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={activeCard.id}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.25 }}
-                  style={{
-                    color: '#38bdf8',
-                    textDecoration: 'underline',
-                    textDecorationColor: 'rgba(56, 189, 248, 0.4)',
-                    textUnderlineOffset: '6px'
-                  }}
-                >
-                  {activeCard.highlightText}
-                </motion.span>
-              </AnimatePresence>
-            </span>
-            .
-          </h1>
+            <div className="hero-infra-svg-container" style={{ width: '100%', maxWidth: '480px', position: 'relative' }}>
+              <svg viewBox="0 0 500 420" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: 'auto' }}>
+                <defs>
+                  <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#09619f" />
+                    <stop offset="100%" stopColor="#0284c7" />
+                  </linearGradient>
+                  <linearGradient id="lightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#ffffff" />
+                    <stop offset="100%" stopColor="#f0f7ff" />
+                  </linearGradient>
+                  <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+                    <feDropShadow dx="0" dy="8" stdDeviation="12" floodColor="#09619f" floodOpacity="0.12" />
+                  </filter>
+                </defs>
+
+                {/* Background Connected Network Grid Lines */}
+                <path d="M 80 180 Q 250 80 420 180" stroke="#cbd5e1" strokeWidth="1.5" strokeDasharray="4 4" />
+                <path d="M 120 280 Q 250 350 380 280" stroke="#cbd5e1" strokeWidth="1.5" strokeDasharray="4 4" />
+                <path d="M 100 200 L 250 200 L 400 200" stroke="#e2e8f0" strokeWidth="2" />
+                <path d="M 250 90 L 250 320" stroke="#e2e8f0" strokeWidth="2" />
+
+                {/* Central NOC Operations Core Node */}
+                <g filter="url(#softGlow)" transform="translate(180, 130)">
+                  <rect width="140" height="140" rx="20" fill="url(#blueGrad)" />
+                  <circle cx="70" cy="55" r="28" fill="#ffffff" opacity="0.15" />
+                  <path d="M 70 38 C 58 38 48 48 48 60 L 92 60 C 92 48 82 38 70 38 Z" fill="#ffffff" />
+                  <rect x="52" y="65" width="36" height="4" rx="2" fill="#ffffff" />
+                  <text x="70" y="98" fill="#ffffff" fontSize="12" fontWeight="700" textAnchor="middle" fontFamily="sans-serif">24×7 NOC CORE</text>
+                  <circle cx="115" cy="25" r="5" fill="#10b981" />
+                </g>
+
+                {/* Node 1: Cloud Operations (Top Left) */}
+                <g filter="url(#softGlow)" transform="translate(40, 50)">
+                  <rect width="120" height="90" rx="14" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.5" />
+                  <path d="M 45 42 Q 45 32 55 32 Q 62 25 72 30 Q 82 25 88 34 Q 95 36 95 45 Q 95 52 85 52 L 45 52 Z" fill="#0284c7" />
+                  <text x="60" y="70" fill="#0f172a" fontSize="11" fontWeight="700" textAnchor="middle" fontFamily="sans-serif">Hybrid Cloud</text>
+                </g>
+
+                {/* Node 2: Datacenter & Hardware (Top Right) */}
+                <g filter="url(#softGlow)" transform="translate(340, 50)">
+                  <rect width="120" height="90" rx="14" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.5" />
+                  <rect x="40" y="28" width="40" height="10" rx="2" fill="#09619f" />
+                  <rect x="40" y="42" width="40" height="10" rx="2" fill="#09619f" />
+                  <circle cx="73" cy="33" r="1.5" fill="#ffffff" />
+                  <circle cx="73" cy="47" r="1.5" fill="#ffffff" />
+                  <text x="60" y="70" fill="#0f172a" fontSize="11" fontWeight="700" textAnchor="middle" fontFamily="sans-serif">OEM Datacenter</text>
+                </g>
+
+                {/* Node 3: Zero-Trust Security (Bottom Left) */}
+                <g filter="url(#softGlow)" transform="translate(40, 270)">
+                  <rect width="120" height="90" rx="14" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.5" />
+                  <path d="M 60 26 L 75 32 V 44 C 75 52 60 58 60 58 C 60 58 45 52 45 44 V 32 Z" fill="#4f46e5" />
+                  <text x="60" y="72" fill="#0f172a" fontSize="11" fontWeight="700" textAnchor="middle" fontFamily="sans-serif">Cyber Security</text>
+                </g>
+
+                {/* Node 4: SLA Managed Asset (Bottom Right) */}
+                <g filter="url(#softGlow)" transform="translate(340, 270)">
+                  <rect width="120" height="90" rx="14" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.5" />
+                  <circle cx="60" cy="40" r="14" fill="#0d9488" />
+                  <path d="M 54 40 L 58 44 L 66 36" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" />
+                  <text x="60" y="72" fill="#0f172a" fontSize="11" fontWeight="700" textAnchor="middle" fontFamily="sans-serif">SLA Assurance</text>
+                </g>
+              </svg>
+            </div>
+          </motion.div>
 
         </div>
 
-        {/* Interactive Brights.io Hero Cards Grid */}
+        {/* Interactive Brights.io Hero Service Cards Grid */}
         <div
           style={{
             display: 'grid',
@@ -170,17 +247,15 @@ export default function HomeHeroSection() {
                 onClick={() => setActiveCardIndex(idx)}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                transition={{ duration: 0.4, delay: idx * 0.08 }}
                 style={{
-                  backgroundColor: isActive ? 'var(--brand-blue)' : 'rgba(15, 23, 42, 0.65)',
-                  backdropFilter: 'blur(12px)',
-                  WebkitBackdropFilter: 'blur(12px)',
-                  borderRadius: '16px',
-                  border: isActive ? '1px solid #38bdf8' : '1px solid rgba(255, 255, 255, 0.1)',
-                  boxShadow: isActive ? '0 16px 36px rgba(9, 97, 159, 0.35)' : '0 4px 16px rgba(0, 0, 0, 0.2)',
+                  backgroundColor: isActive ? 'var(--primary)' : 'var(--bg-surface)',
+                  borderRadius: 'var(--radius-lg)',
+                  border: isActive ? '1px solid var(--primary)' : '1px solid var(--border-color)',
+                  boxShadow: isActive ? 'var(--shadow-lg)' : 'var(--shadow-xs)',
                   padding: '1.75rem 1.5rem',
                   cursor: 'pointer',
-                  transition: 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)',
+                  transition: 'var(--transition-smooth)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
@@ -190,7 +265,6 @@ export default function HomeHeroSection() {
                 whileHover={{ y: -4 }}
               >
                 <div>
-                  {/* Active Card Badge */}
                   <AnimatePresence>
                     {isActive ? (
                       <motion.div
@@ -218,7 +292,7 @@ export default function HomeHeroSection() {
                         <p
                           style={{
                             fontSize: '0.86rem',
-                            color: '#e0f2fe',
+                            color: '#f0f7ff',
                             lineHeight: '1.5',
                             marginBottom: '1rem'
                           }}
@@ -229,12 +303,11 @@ export default function HomeHeroSection() {
                     ) : null}
                   </AnimatePresence>
 
-                  {/* Card Title */}
                   <h3
                     style={{
-                      fontSize: '1.25rem',
-                      fontWeight: 800,
-                      color: '#ffffff',
+                      fontSize: '1.2rem',
+                      fontWeight: 700,
+                      color: isActive ? '#ffffff' : 'var(--text-primary)',
                       margin: 0,
                       lineHeight: 1.25
                     }}
@@ -243,7 +316,6 @@ export default function HomeHeroSection() {
                   </h3>
                 </div>
 
-                {/* Card Action Row */}
                 <div
                   style={{
                     display: 'flex',
@@ -258,7 +330,7 @@ export default function HomeHeroSection() {
                     style={{
                       fontSize: '0.82rem',
                       fontWeight: 700,
-                      color: isActive ? '#ffffff' : 'rgba(255, 255, 255, 0.6)',
+                      color: isActive ? '#ffffff' : 'var(--primary)',
                       textDecoration: 'none',
                       display: 'inline-flex',
                       alignItems: 'center',
@@ -274,8 +346,8 @@ export default function HomeHeroSection() {
                       width: '32px',
                       height: '32px',
                       borderRadius: '50%',
-                      backgroundColor: isActive ? '#ffffff' : 'rgba(255, 255, 255, 0.1)',
-                      color: isActive ? 'var(--brand-blue)' : '#ffffff',
+                      backgroundColor: isActive ? '#ffffff' : 'var(--primary-light)',
+                      color: isActive ? 'var(--primary)' : 'var(--primary)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center'
@@ -298,50 +370,14 @@ export default function HomeHeroSection() {
           })}
         </div>
 
-        {/* Bottom Trust Indicators Strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          style={{
-            marginTop: '3.5rem',
-            paddingTop: '2rem',
-            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '1.5rem',
-            flexWrap: 'wrap'
-          }}
-        >
-          {[
-            { icon: '🛡️', text: 'ISO 9001, 27001, 20000 & 45001 Certified' },
-            { icon: '👨‍💻', text: '350+ Technology Experts' },
-            { icon: '🤝', text: '100+ OEM Technology Alliances' },
-            { icon: '⚡', text: '24×7×365 SLA Response Model' },
-            { icon: '🌐', text: 'Pan-India & UAE Operations' }
-          ].map((item, i) => (
-            <div
-              key={i}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                fontSize: '0.84rem',
-                color: '#94a3b8',
-                fontWeight: 600
-              }}
-            >
-              <span>{item.icon}</span>
-              <span>{item.text}</span>
-            </div>
-          ))}
-        </motion.div>
-
       </div>
 
       <style>{`
-        @media (max-width: 1024px) {
+        @media (max-width: 900px) {
+          .hero-split-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
           .hero-brights-grid {
             grid-template-columns: repeat(2, 1fr) !important;
             gap: 1rem !important;
