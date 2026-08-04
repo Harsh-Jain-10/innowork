@@ -273,35 +273,6 @@ export default function Navbar() {
                 );
               })}
             </div>
-
-            {/* --- Right CTA Button Inside Pill ("Request a quote") --- */}
-            <motion.button
-              type="button"
-              onClick={handleRequestQuote}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              style={{
-                borderRadius: '30px',
-                padding: '8px 18px',
-                fontSize: '0.85rem',
-                fontWeight: 700,
-                color: '#ffffff',
-                background: 'linear-gradient(135deg, #09619f 0%, #0284c7 100%)',
-                border: 'none',
-                cursor: 'pointer',
-                boxShadow: '0 4px 14px rgba(9, 97, 159, 0.3)',
-                marginLeft: '6px',
-                whiteSpace: 'nowrap',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px'
-              }}
-              className="pill-cta-btn"
-            >
-              <span>Request a quote</span>
-            </motion.button>
-
-            {/* --- MEGA DROPDOWN CONTAINER PANEL --- */}
             <AnimatePresence>
               {activeDropdown && NAV_DROPDOWNS[activeDropdown] && (
                 <motion.div
@@ -532,25 +503,6 @@ export default function Navbar() {
               <Link to="/solutions" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Solutions</Link>
               <Link to="/industries" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Industries</Link>
               <Link to="/blogs" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Blogs</Link>
-              <button
-                type="button"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  handleRequestQuote();
-                }}
-                style={{
-                  width: '100%',
-                  padding: '12px',
-                  borderRadius: '12px',
-                  backgroundColor: '#09619f',
-                  color: '#ffffff',
-                  border: 'none',
-                  fontWeight: 700,
-                  marginTop: '0.5rem'
-                }}
-              >
-                Request a quote
-              </button>
             </div>
           </motion.div>
         )}
