@@ -33,6 +33,15 @@ const HERO_FEATURE_CARDS = [
   }
 ];
 
+const LIVE_TICKER_LOGS = [
+  { text: 'Alert cleared — Node 12, Mumbai DC', time: '1m ago', tag: 'OK', tagBg: '#dcfce7', tagColor: '#166534' },
+  { text: 'Ticket #4482 resolved — 3m response', time: '2m ago', tag: 'RESOLVED', tagBg: '#eff6ff', tagColor: '#1d4ed8' },
+  { text: 'Failover completed — Cloud Region 2', time: '4m ago', tag: 'SYNC', tagBg: '#fef3c7', tagColor: '#92400e' },
+  { text: 'Patch update applied — AWS Frankfurt', time: '5m ago', tag: 'SYSTEM', tagBg: '#f1f5f9', tagColor: '#475569' },
+  { text: 'Zero-trust policy active — Dubai Hub', time: '7m ago', tag: 'SECURE', tagBg: '#dcfce7', tagColor: '#166534' },
+  { text: 'SAN Storage synced — Bangalore DC', time: '9m ago', tag: 'OK', tagBg: '#dcfce7', tagColor: '#166534' }
+];
+
 function CardAnimatedIcon({ iconType, isHovered }) {
   if (iconType === 'cloud') {
     return (
@@ -129,24 +138,14 @@ function CardAnimatedIcon({ iconType, isHovered }) {
   );
 }
 
-function HeroFeatureCard({ card, onHoverChange }) {
+function HeroFeatureCard({ card }) {
   const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-    if (onHoverChange) onHoverChange(card.id);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    if (onHoverChange) onHoverChange(null);
-  };
 
   return (
     <Link
       to={card.link}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{
         backgroundColor: isHovered ? '#2563EB' : '#ffffff',
         borderRadius: '14px',
@@ -164,7 +163,7 @@ function HeroFeatureCard({ card, onHoverChange }) {
       }}
     >
       <div>
-        {/* 1. Small Icon Container with 1-shot Micro-Animation */}
+        {/* 1. Small Icon Container */}
         <div
           style={{
             width: '40px',
@@ -240,8 +239,278 @@ function HeroFeatureCard({ card, onHoverChange }) {
   );
 }
 
+/* ─────────────────────────────────────────────────────────────
+   SECTION 2 — LIVE OPERATIONS CONSOLE COMPONENT
+ ────────────────────────────────────────────────────────────── */
+function LiveOperationsConsole() {
+  const [currentTime, setCurrentTime] = useState('');
+  const [uptimeVal, setUptimeVal] = useState('99.98%');
+
+  // Real-time clock update (HH:MM:SS UTC)
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date();
+      const hrs = String(now.getUTCHours()).padStart(2, '0');
+      const mins = String(now.getUTCMinutes()).padStart(2, '0');
+      const secs = String(now.getUTCSeconds()).padStart(2, '0');
+      setCurrentTime(`${hrs}:${mins}:${secs} UTC`);
+    };
+    updateClock();
+    const interval = setInterval(updateClock, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Uptime decimal subtle flicker (99.97% - 99.99%)
+  useEffect(() => {
+    const uptimeValues = ['99.98%', '99.99%', '99.97%', '99.98%'];
+    let idx = 0;
+    const interval = setInterval(() => {
+      idx = (idx + 1) % uptimeValues.length;
+      setUptimeVal(uptimeValues[idx]);
+    }, 3800);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div
+      style={{
+        width: '100%',
+        maxWidth: '460px',
+        backgroundColor: '#ffffff',
+        borderRadius: '24px',
+        border: '1px solid #E6E9EE',
+        padding: '1.25rem 1.4rem',
+        boxShadow: '0 12px 36px rgba(15, 23, 42, 0.06)',
+        position: 'relative',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem'
+      }}
+      id="live-operations-console"
+    >
+      {/* 2.1 HEADER ROW: Status + Live Clock */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          paddingBottom: '0.75rem',
+          borderBottom: '1px solid #F1F5F9'
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ position: 'relative', display: 'flex', width: '8px', height: '8px' }}>
+            <span
+              style={{
+                position: 'absolute',
+                display: 'inline-flex',
+                height: '100%',
+                width: '100%',
+                borderRadius: '50%',
+                backgroundColor: '#10b981',
+                opacity: 0.75,
+                animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite'
+              }}
+            />
+            <span
+              style={{
+                position: 'relative',
+                display: 'inline-flex',
+                borderRadius: '50%',
+                height: '8px',
+                width: '8px',
+                backgroundColor: '#10b981'
+              }}
+            />
+          </span>
+          <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#0F172A' }}>
+            All Systems Operational
+          </span>
+        </div>
+
+        {/* Live Clock & Uptime Badge */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span
+            style={{
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              fontFamily: 'monospace',
+              color: '#2563EB',
+              backgroundColor: '#EFF6FF',
+              padding: '2px 8px',
+              borderRadius: '6px'
+            }}
+          >
+            {currentTime || '00:00:00 UTC'}
+          </span>
+          
+          <span
+            style={{
+              fontSize: '0.72rem',
+              fontWeight: 800,
+              color: '#15803d',
+              backgroundColor: '#dcfce7',
+              padding: '2px 8px',
+              borderRadius: '6px',
+              transition: 'all 0.3s ease'
+            }}
+            title="SLA Uptime Guarantee"
+          >
+            {uptimeVal}
+          </span>
+        </div>
+      </div>
+
+      {/* 2.2 MINI ACTIVITY GRAPH (Animated SVG Line & Area Chart) */}
+      <div style={{ position: 'relative', width: '100%', height: '54px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+          <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            Network &amp; Ticket Activity
+          </span>
+          <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#2563EB' }}>
+            99.9% Optimal
+          </span>
+        </div>
+
+        <svg viewBox="0 0 400 40" fill="none" style={{ width: '100%', height: '36px', overflow: 'visible' }}>
+          <defs>
+            <linearGradient id="consoleGraphGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#2563EB" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#2563EB" stopOpacity="0.0" />
+            </linearGradient>
+          </defs>
+
+          {/* Area Fill */}
+          <path d="M 0 35 Q 50 15 100 25 T 200 12 T 300 22 T 400 10 V 40 H 0 Z" fill="url(#consoleGraphGrad)" />
+
+          {/* Animated Line Stroke */}
+          <motion.path
+            d="M 0 35 Q 50 15 100 25 T 200 12 T 300 22 T 400 10"
+            stroke="#2563EB"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 2.5, repeat: Infinity, repeatType: 'loop', ease: 'easeInOut' }}
+          />
+
+          {/* Activity Pulse Point */}
+          <motion.circle
+            cx="400"
+            cy="10"
+            r="4"
+            fill="#2563EB"
+            animate={{ r: [3, 5, 3] }}
+            transition={{ duration: 1.2, repeat: Infinity }}
+          />
+        </svg>
+      </div>
+
+      {/* 2.3 SCROLLING LIVE-FEED TICKER (Vertical Loop) */}
+      <div
+        style={{
+          position: 'relative',
+          height: '110px',
+          overflow: 'hidden',
+          backgroundColor: '#F8FAFC',
+          borderRadius: '12px',
+          border: '1px solid #E2E8F0',
+          padding: '0.5rem 0.75rem',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)'
+        }}
+      >
+        <motion.div
+          animate={{ y: ['0%', '-50%'] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}
+        >
+          {/* Double list trick for seamless infinite vertical scroll */}
+          {[...LIVE_TICKER_LOGS, ...LIVE_TICKER_LOGS].map((log, idx) => (
+            <div
+              key={idx}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                fontSize: '0.76rem',
+                color: '#334155',
+                padding: '4px 0'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span
+                  style={{
+                    fontSize: '0.62rem',
+                    fontWeight: 800,
+                    padding: '1px 6px',
+                    borderRadius: '4px',
+                    backgroundColor: log.tagBg,
+                    color: log.tagColor,
+                    flexShrink: 0
+                  }}
+                >
+                  {log.tag}
+                </span>
+                <span style={{ fontWeight: 600, color: '#0F172A', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '250px' }}>
+                  {log.text}
+                </span>
+              </div>
+              <span style={{ fontSize: '0.68rem', color: '#94a3b8', flexShrink: 0 }}>
+                {log.time}
+              </span>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* 2.4 MINI COVERAGE MAP (India + UAE Hub Outline) */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          paddingTop: '0.5rem',
+          borderTop: '1px solid #F1F5F9'
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#475569' }}>
+            Active NOC Hubs:
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            {[
+              { name: 'Noida', status: 'Primary' },
+              { name: 'Mumbai', status: 'DC' },
+              { name: 'Bangalore', status: 'R&D' },
+              { name: 'Dubai', status: 'UAE' }
+            ].map((hub) => (
+              <span
+                key={hub.name}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  fontSize: '0.72rem',
+                  fontWeight: 700,
+                  color: '#0F172A'
+                }}
+              >
+                <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#2563EB' }} />
+                {hub.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  );
+}
+
 export default function HomeHeroSection() {
-  const [hoveredCardId, setHoveredCardId] = useState(null);
   const [endpointCount, setEndpointCount] = useState(1420);
   const [showScrollCue, setShowScrollCue] = useState(true);
 
@@ -292,12 +561,12 @@ export default function HomeHeroSection() {
 
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         
-        {/* Split Grid: Left Content + Right Contained NOC Diagram */}
+        {/* Split Grid: Left Content + Right Section 2 Live Operations Console */}
         <div 
           className="hero-split-grid" 
           style={{ 
             display: 'grid', 
-            gridTemplateColumns: '1.15fr 0.85fr', 
+            gridTemplateColumns: '1.12fr 0.88fr', 
             gap: '3rem', 
             alignItems: 'center', 
             marginBottom: '24px' 
@@ -440,123 +709,14 @@ export default function HomeHeroSection() {
             </div>
           </div>
 
-          {/* Right Column: 8.1 Interactive Systems-Map Connected to Card Hover */}
-          <div
-            style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              position: 'relative',
-              overflow: 'hidden',
-              borderRadius: '16px',
-              border: '1px solid #E6E9EE',
-              backgroundColor: '#ffffff',
-              padding: '1rem',
-              boxShadow: '0 8px 24px rgba(15, 23, 42, 0.04)'
-            }}
-          >
-            <div style={{ width: '100%', maxWidth: '440px' }}>
-              <svg viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: 'auto', display: 'block' }}>
-                <defs>
-                  <linearGradient id="blueGradHero" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#2563EB" />
-                    <stop offset="100%" stopColor="#1d4ed8" />
-                  </linearGradient>
-                  <filter id="nodeGlow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#2563EB" floodOpacity="0.35" />
-                  </filter>
-                </defs>
-
-                {/* Connecting Lines */}
-                <path d="M 80 170 Q 250 80 420 170" stroke={hoveredCardId === 'cloud' ? '#2563EB' : '#cbd5e1'} strokeWidth={hoveredCardId === 'cloud' ? '2.5' : '1.5'} strokeDasharray="4 4" />
-                <path d="M 120 270 Q 250 340 380 270" stroke={hoveredCardId === 'cybersecurity' ? '#2563EB' : '#cbd5e1'} strokeWidth={hoveredCardId === 'cybersecurity' ? '2.5' : '1.5'} strokeDasharray="4 4" />
-                <path d="M 100 190 L 250 190 L 400 190" stroke={hoveredCardId === 'datacenter' ? '#2563EB' : '#e2e8f0'} strokeWidth={hoveredCardId === 'datacenter' ? '2.5' : '2'} />
-                <path d="M 250 85 L 250 310" stroke={hoveredCardId === 'noc' ? '#2563EB' : '#e2e8f0'} strokeWidth={hoveredCardId === 'noc' ? '2.5' : '2'} />
-
-                {/* Node 3: Central NOC Core Node (Wired to 'noc' card) */}
-                <g
-                  transform="translate(180, 120)"
-                  style={{
-                    opacity: hoveredCardId === null || hoveredCardId === 'noc' ? 1 : 0.4,
-                    transform: hoveredCardId === 'noc' ? 'translate(180px, 120px) scale(1.08)' : 'translate(180px, 120px)',
-                    transformOrigin: '70px 70px',
-                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
-                  }}
-                  filter={hoveredCardId === 'noc' ? 'url(#nodeGlow)' : 'none'}
-                >
-                  <rect width="140" height="140" rx="18" fill="url(#blueGradHero)" stroke={hoveredCardId === 'noc' ? '#ffffff' : 'none'} strokeWidth="2" />
-                  <circle cx="70" cy="55" r="26" fill="#ffffff" opacity="0.18" />
-                  <path d="M 70 38 C 58 38 48 48 48 60 L 92 60 C 92 48 82 38 70 38 Z" fill="#ffffff" />
-                  <rect x="52" y="65" width="36" height="4" rx="2" fill="#ffffff" />
-                  <text x="70" y="98" fill="#ffffff" fontSize="12" fontWeight="700" textAnchor="middle" fontFamily="sans-serif">24×7 NOC CORE</text>
-                  <circle cx="115" cy="25" r="5" fill="#10b981" />
-                </g>
-
-                {/* Node 1: Hybrid Cloud (Wired to 'cloud' card) */}
-                <g
-                  transform="translate(40, 45)"
-                  style={{
-                    opacity: hoveredCardId === null || hoveredCardId === 'cloud' ? 1 : 0.4,
-                    transform: hoveredCardId === 'cloud' ? 'translate(40px, 45px) scale(1.12)' : 'translate(40px, 45px)',
-                    transformOrigin: '60px 42px',
-                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
-                  }}
-                  filter={hoveredCardId === 'cloud' ? 'url(#nodeGlow)' : 'none'}
-                >
-                  <rect width="120" height="85" rx="12" fill={hoveredCardId === 'cloud' ? '#EFF6FF' : '#ffffff'} stroke={hoveredCardId === 'cloud' ? '#2563EB' : '#e2e8f0'} strokeWidth={hoveredCardId === 'cloud' ? '2' : '1.5'} />
-                  <path d="M 45 40 Q 45 30 55 30 Q 62 23 72 28 Q 82 23 88 32 Q 95 34 95 43 Q 95 50 85 50 L 45 50 Z" fill="#2563EB" />
-                  <text x="60" y="68" fill="#0F172A" fontSize="11" fontWeight="700" textAnchor="middle" fontFamily="sans-serif">Hybrid Cloud</text>
-                </g>
-
-                {/* Node 2: OEM Datacenter (Wired to 'datacenter' card) */}
-                <g
-                  transform="translate(340, 45)"
-                  style={{
-                    opacity: hoveredCardId === null || hoveredCardId === 'datacenter' ? 1 : 0.4,
-                    transform: hoveredCardId === 'datacenter' ? 'translate(340px, 45px) scale(1.12)' : 'translate(340px, 45px)',
-                    transformOrigin: '60px 42px',
-                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
-                  }}
-                  filter={hoveredCardId === 'datacenter' ? 'url(#nodeGlow)' : 'none'}
-                >
-                  <rect width="120" height="85" rx="12" fill={hoveredCardId === 'datacenter' ? '#EFF6FF' : '#ffffff'} stroke={hoveredCardId === 'datacenter' ? '#2563EB' : '#e2e8f0'} strokeWidth={hoveredCardId === 'datacenter' ? '2' : '1.5'} />
-                  <rect x="40" y="26" width="40" height="10" rx="2" fill="#2563EB" />
-                  <rect x="40" y="40" width="40" height="10" rx="2" fill="#2563EB" />
-                  <circle cx="73" cy="31" r="1.5" fill="#ffffff" />
-                  <circle cx="73" cy="45" r="1.5" fill="#ffffff" />
-                  <text x="60" y="68" fill="#0F172A" fontSize="11" fontWeight="700" textAnchor="middle" fontFamily="sans-serif">OEM Datacenter</text>
-                </g>
-
-                {/* Node 4: Cybersecurity Systems (Wired to 'cybersecurity' card) */}
-                <g
-                  transform="translate(40, 260)"
-                  style={{
-                    opacity: hoveredCardId === null || hoveredCardId === 'cybersecurity' ? 1 : 0.4,
-                    transform: hoveredCardId === 'cybersecurity' ? 'translate(40px, 260px) scale(1.12)' : 'translate(40px, 260px)',
-                    transformOrigin: '60px 42px',
-                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
-                  }}
-                  filter={hoveredCardId === 'cybersecurity' ? 'url(#nodeGlow)' : 'none'}
-                >
-                  <rect width="120" height="85" rx="12" fill={hoveredCardId === 'cybersecurity' ? '#EFF6FF' : '#ffffff'} stroke={hoveredCardId === 'cybersecurity' ? '#2563EB' : '#e2e8f0'} strokeWidth={hoveredCardId === 'cybersecurity' ? '2' : '1.5'} />
-                  <path d="M 60 24 L 75 30 V 42 C 75 50 60 56 60 56 C 60 56 45 50 45 42 V 30 Z" fill="#2563EB" />
-                  <text x="60" y="70" fill="#0F172A" fontSize="11" fontWeight="700" textAnchor="middle" fontFamily="sans-serif">Cyber Security</text>
-                </g>
-
-                {/* Node 5: SLA Assurance */}
-                <g transform="translate(340, 260)" style={{ opacity: hoveredCardId === null ? 1 : 0.4, transition: 'all 0.3s ease' }}>
-                  <rect width="120" height="85" rx="12" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.5" />
-                  <circle cx="60" cy="38" r="13" fill="#10b981" />
-                  <path d="M 54 38 L 58 42 L 66 34" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" />
-                  <text x="60" y="70" fill="#0F172A" fontSize="11" fontWeight="700" textAnchor="middle" fontFamily="sans-serif">SLA Assurance</text>
-                </g>
-              </svg>
-            </div>
+          {/* Right Column: Section 2 Live Operations Console */}
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+            <LiveOperationsConsole />
           </div>
 
         </div>
 
-        {/* 4-Card Feature Strip */}
+        {/* Rebuilt 4-Card Feature Strip */}
         <div
           style={{
             display: 'grid',
@@ -567,11 +727,7 @@ export default function HomeHeroSection() {
           className="hero-feature-strip-grid"
         >
           {HERO_FEATURE_CARDS.map((card) => (
-            <HeroFeatureCard
-              key={card.id}
-              card={card}
-              onHoverChange={(cardId) => setHoveredCardId(cardId)}
-            />
+            <HeroFeatureCard key={card.id} card={card} />
           ))}
         </div>
 
