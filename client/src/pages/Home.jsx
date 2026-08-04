@@ -3,8 +3,6 @@ import HomeHeroSection from '../components/HomeHeroSection';
 import HomeLogoStrip from '../components/HomeLogoStrip';
 import HomeWhyInnoworq from '../components/HomeWhyInnoworq';
 import HomeStatsBar from '../components/HomeStatsBar';
-import HomeServicesSection from '../components/HomeServicesSection';
-import HomeSolutionsSection from '../components/HomeSolutionsSection';
 import GlobalPresence from '../components/GlobalPresence';
 import HomeFaqSection from '../components/HomeFaqSection';
 
@@ -30,16 +28,10 @@ export default function Home() {
       {/* 4. Stats Bar (Enterprise Metrics) */}
       <HomeStatsBar />
 
-      {/* 5. Core Services Showcase */}
-      <HomeServicesSection />
-
-      {/* 6. Enterprise Solutions Showcase */}
-      <HomeSolutionsSection />
-
-      {/* 7. Global Presence & Regional Hubs */}
+      {/* 5. Global Presence & Regional Hubs */}
       <GlobalPresence />
 
-      {/* 8. Frequently Asked Questions */}
+      {/* 6. Frequently Asked Questions */}
       <HomeFaqSection />
     </div>
   );
