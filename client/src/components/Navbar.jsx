@@ -47,7 +47,6 @@ const NAV_DROPDOWNS = {
 };
 
 const NAV_ITEMS = [
-  { path: '/', label: 'Home', id: 'home' },
   { path: '/about', label: 'About', id: 'about' },
   { path: '/services', label: 'Services', id: 'services', hasDropdown: true },
   { path: '/solutions', label: 'Solutions', id: 'solutions', hasDropdown: true },
@@ -177,39 +176,57 @@ export default function Navbar() {
             }}
             className="floating-pill-nav-light"
           >
-            {/* --- "I." LOGO BUTTON (Animates in when scrolled) --- */}
-            <AnimatePresence>
-              {isScrolled && (
-                <motion.button
-                  type="button"
-                  onClick={scrollToTop}
-                  initial={{ width: 0, opacity: 0, scale: 0.6, marginRight: 0 }}
-                  animate={{ width: 'auto', opacity: 1, scale: 1, marginRight: 8 }}
-                  exit={{ width: 0, opacity: 0, scale: 0.6, marginRight: 0 }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            {/* --- "I." LOGO BUTTON (Dedication Home Section) --- */}
+            <motion.button
+              type="button"
+              onClick={() => {
+                if (location.pathname === '/') {
+                  scrollToTop();
+                } else {
+                  navigate('/');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '2px',
+                backgroundColor: location.pathname === '/' ? 'rgba(9, 97, 159, 0.08)' : '#ffffff',
+                border: location.pathname === '/' ? '1px solid rgba(9, 97, 159, 0.25)' : '1px solid #e2e8f0',
+                borderRadius: '30px',
+                padding: '5px 12px 5px 10px',
+                cursor: 'pointer',
+                boxShadow: location.pathname === '/' ? '0 2px 10px rgba(9, 97, 159, 0.15)' : '0 2px 6px rgba(0,0,0,0.04)',
+                flexShrink: 0,
+                marginRight: '6px',
+                position: 'relative'
+              }}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.94 }}
+              title="INNOWORQ Home"
+            >
+              <InnoworqIcon size={20} />
+              <span style={{ fontSize: '1.2rem', fontWeight: 900, color: '#09619f', lineHeight: 1, marginTop: '-2px' }}>.</span>
+              
+              {/* Active Home Pointer Dot */}
+              {location.pathname === '/' && (
+                <motion.span
+                  layoutId="activeNavPointerDot"
                   style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '2px',
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #e2e8f0',
-                    borderRadius: '30px',
-                    padding: '4px 10px 4px 8px',
-                    cursor: 'pointer',
-                    boxShadow: '0 4px 12px rgba(9, 97, 159, 0.15)',
-                    flexShrink: 0,
-                    overflow: 'hidden'
+                    width: '4px',
+                    height: '4px',
+                    borderRadius: '50%',
+                    backgroundColor: '#09619f',
+                    position: 'absolute',
+                    bottom: '2px',
+                    left: '50%',
+                    transform: 'translateX(-50%)'
                   }}
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.94 }}
-                  title="INNOWORQ - Scroll to top"
-                >
-                  <InnoworqIcon size={20} />
-                  <span style={{ fontSize: '1.2rem', fontWeight: 900, color: '#09619f', lineHeight: 1, marginTop: '-2px' }}>.</span>
-                </motion.button>
+                  transition={{ duration: 0.2 }}
+                />
               )}
-            </AnimatePresence>
+            </motion.button>
 
             {/* --- Desktop Nav Links in Strict Sequential Order (Home -> About -> Services -> Solutions -> Industries -> Blogs) --- */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }} className="desktop-pill-links">
@@ -497,7 +514,10 @@ export default function Navbar() {
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <Link to="/" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+              <Link to="/" style={{ color: '#09619f', textDecoration: 'none', fontWeight: 800, display: 'inline-flex', alignItems: 'center', gap: '4px' }} onClick={() => setIsMobileMenuOpen(false)}>
+                <InnoworqIcon size={18} />
+                <span>. Home</span>
+              </Link>
               <Link to="/about" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>About</Link>
               <Link to="/services" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
               <Link to="/solutions" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>Solutions</Link>
