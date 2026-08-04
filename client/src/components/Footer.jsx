@@ -125,7 +125,7 @@ export default function Footer() {
 
               {/* Dubai Regional Hub */}
               <div>
-                <span style={{ display: 'block', fontSize: '0.75rem', color: '#94a3b8', textTransform: 'uppercase', fontWeight 700, letterSpacing: '0.4px', marginBottom: '0.25rem' }}>
+                <span style={{ display: 'block', fontSize: '0.75rem', color: '#94a3b8', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.4px', marginBottom: '0.25rem' }}>
                   DUBAI REGIONAL HUB
                 </span>
                 <span style={{ color: '#1e293b', fontSize: '0.92rem', lineHeight: '1.45', display: 'block', fontWeight: 500, maxWidth: '260px' }}>
