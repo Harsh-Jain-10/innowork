@@ -420,13 +420,29 @@ function SolutionDetailDrawer({ solution, onClose }) {
   useEffect(() => {
     if (solution) {
       document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+      document.documentElement.style.overflow = '';
     }
     return () => {
       document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+      document.documentElement.style.overflow = '';
     };
   }, [solution]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
 
   if (!solution) return null;
 
@@ -438,7 +454,8 @@ function SolutionDetailDrawer({ solution, onClose }) {
           inset: 0,
           zIndex: 9999,
           display: 'flex',
-          justifyContent: 'flex-end'
+          justifyContent: 'flex-end',
+          touchAction: 'none'
         }}
       >
         {/* Backdrop */}

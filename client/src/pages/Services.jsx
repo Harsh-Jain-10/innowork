@@ -350,13 +350,29 @@ function ServiceDetailDrawer({ service, onClose }) {
   useEffect(() => {
     if (service) {
       document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+      document.documentElement.style.overflow = '';
     }
     return () => {
       document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+      document.documentElement.style.overflow = '';
     };
   }, [service]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
 
   if (!service) return null;
 
@@ -368,7 +384,8 @@ function ServiceDetailDrawer({ service, onClose }) {
           inset: 0,
           zIndex: 9999,
           display: 'flex',
-          justifyContent: 'flex-end'
+          justifyContent: 'flex-end',
+          touchAction: 'none'
         }}
       >
         {/* Backdrop */}

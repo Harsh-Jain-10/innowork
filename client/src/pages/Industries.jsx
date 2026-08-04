@@ -299,11 +299,17 @@ function SectorDetailDrawer({ sector, onClose }) {
   useEffect(() => {
     if (sector) {
       document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+      document.documentElement.style.overflow = '';
     }
     return () => {
       document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+      document.documentElement.style.overflow = '';
     };
   }, [sector]);
 
@@ -320,7 +326,7 @@ function SectorDetailDrawer({ sector, onClose }) {
   if (!sector) return null;
 
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 1000 }}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 1000, touchAction: 'none' }}>
       {/* Dimmed Backdrop */}
       <motion.div
         initial={{ opacity: 0 }}
