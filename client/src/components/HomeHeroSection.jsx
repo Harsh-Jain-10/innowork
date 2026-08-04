@@ -575,18 +575,14 @@ export default function HomeHeroSection() {
           
           {/* Left Column: Headline, CTAs, Live Operations Pulse */}
           <div>
-            <div style={{ marginBottom: '1rem' }}>
+            <div style={{ marginBottom: '0.85rem' }}>
               <span
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  backgroundColor: '#F1F5F9',
-                  border: '1px solid #E2E8F0',
-                  borderRadius: '30px',
-                  padding: '6px 14px',
-                  fontSize: '0.75rem',
-                  fontWeight: 700,
+                  fontSize: '0.78rem',
+                  fontWeight: 800,
                   color: '#2563EB',
                   letterSpacing: '1.5px',
                   textTransform: 'uppercase'
@@ -626,7 +622,7 @@ export default function HomeHeroSection() {
             {/* CTAs */}
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '1.25rem' }}>
               <Link
-                to="/about#welcome-to-innoworq"
+                to="/services"
                 style={{
                   backgroundColor: '#2563EB',
                   color: '#ffffff',
@@ -642,27 +638,8 @@ export default function HomeHeroSection() {
                   transition: 'all 0.2s ease'
                 }}
               >
-                <span>Get SLA Quote</span>
-                <span>→</span>
-              </Link>
-              <Link
-                to="/services"
-                style={{
-                  backgroundColor: '#ffffff',
-                  color: '#0F172A',
-                  border: '1px solid #E6E9EE',
-                  fontWeight: 700,
-                  fontSize: '0.9rem',
-                  padding: '12px 24px',
-                  borderRadius: '30px',
-                  textDecoration: 'none',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  transition: 'all 0.2s ease'
-                }}
-              >
                 <span>Explore Services</span>
+                <span>→</span>
               </Link>
             </div>
 
@@ -671,12 +648,10 @@ export default function HomeHeroSection() {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '10px',
-                backgroundColor: '#ffffff',
-                border: '1px solid #E2E8F0',
-                borderRadius: '30px',
-                padding: '6px 14px',
-                boxShadow: '0 2px 6px rgba(15, 23, 42, 0.03)'
+                gap: '8px',
+                fontSize: '0.84rem',
+                color: '#475569',
+                fontWeight: 600
               }}
             >
               <span style={{ position: 'relative', display: 'flex', width: '8px', height: '8px' }}>
@@ -703,7 +678,7 @@ export default function HomeHeroSection() {
                   }}
                 />
               </span>
-              <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#334155' }}>
+              <span>
                 Monitoring <strong style={{ color: '#0F172A', fontWeight: 700 }}>{endpointCount.toLocaleString()}+</strong> active client workloads right now
               </span>
             </div>

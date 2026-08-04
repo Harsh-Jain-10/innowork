@@ -288,7 +288,7 @@ export default function Navbar() {
             )}
           </AnimatePresence>
 
-          {/* ================= 3. RIGHT ACTIONS (BELL ICON + COBALT BLUE CTA) ================= */}
+          {/* ================= 3. RIGHT ACTIONS (BELL ICON) ================= */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }} className="outer-right-actions">
             {/* Notification Bell Button */}
             <button
@@ -337,38 +337,6 @@ export default function Navbar() {
                   }}
                 />
               )}
-            </button>
-
-            {/* Solid Cobalt Blue CTA Button */}
-            <button
-              type="button"
-              onClick={handleRequestQuote}
-              style={{
-                backgroundColor: '#2563EB',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '30px',
-                padding: '10px 22px',
-                fontSize: '0.88rem',
-                fontWeight: 700,
-                cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.25)',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.backgroundColor = '#1d4ed8';
-                e.currentTarget.style.transform = 'translateY(-1px)';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.backgroundColor = '#2563EB';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
-            >
-              <span>Get SLA Quote</span>
-              <span>→</span>
             </button>
           </div>
 
@@ -445,26 +413,6 @@ export default function Navbar() {
                   {item.label}
                 </Link>
               ))}
-              <button
-                type="button"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  handleRequestQuote();
-                }}
-                style={{
-                  backgroundColor: '#2563EB',
-                  color: '#ffffff',
-                  border: 'none',
-                  borderRadius: '30px',
-                  padding: '12px 20px',
-                  fontSize: '0.9rem',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  marginTop: '0.5rem'
-                }}
-              >
-                Get SLA Quote →
-              </button>
             </div>
           </motion.div>
         )}

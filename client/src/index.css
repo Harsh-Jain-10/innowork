@@ -453,25 +453,27 @@ label {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.4rem 0.95rem;
+  padding: 0;
   font-size: 0.82rem;
-  font-weight: 700;
-  border-radius: var(--radius-full);
-  letter-spacing: 0.02em;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .badge-primary,
 .pill-primary {
-  background-color: var(--primary-light);
+  background: transparent !important;
   color: var(--primary);
-  border: 1px solid rgba(9, 97, 159, 0.18);
+  border: none !important;
 }
 
 .badge-secondary,
 .pill-secondary {
-  background-color: var(--bg-surface-secondary);
+  background: transparent !important;
   color: var(--text-secondary);
-  border: 1px solid var(--border-color);
+  border: none !important;
 }
 
 /* ─────────────────────────────────────────────────────────────
