@@ -1,451 +1,638 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, useReducedMotion } from 'framer-motion';
-import ScrollReveal from '../components/ScrollReveal';
+import { useLocation, Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import ScrollReveal, { StaggerContainer } from '../components/ScrollReveal';
 
 /* ─────────────────────────────────────────────────────────────
-   Animated Count-Up Component for Hero Stats
-────────────────────────────────────────────────────────────── */
-function CountUp({ end, duration = 2, suffix = '' }) {
-  const [count, setCount] = useState(0);
-  const reduced = useReducedMotion();
-
-  useEffect(() => {
-    if (reduced) {
-      setCount(end);
-      return;
-    }
-    let start = 0;
-    const endNum = parseInt(end, 10);
-    if (isNaN(endNum)) {
-      setCount(end);
-      return;
-    }
-    const totalMiliseconds = duration * 1000;
-    const incrementTime = Math.max(Math.floor(totalMiliseconds / endNum), 30);
-    
-    const timer = setInterval(() => {
-      start += 1;
-      setCount(start);
-      if (start >= endNum) {
-        clearInterval(timer);
-        setCount(endNum);
-      }
-    }, incrementTime);
-
-    return () => clearInterval(timer);
-  }, [end, duration, reduced]);
-
-  return <span>{count}{suffix}</span>;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   Verified solutions data configurations with concise copy & unique real images
-────────────────────────────────────────────────────────────── */
+   Comprehensive Solutions configuration with rich metadata
+ ────────────────────────────────────────────────────────────── */
 const SOLUTIONS_DATA = [
   {
     id: 'cloud-hybrid',
-    name: 'Cloud & Hybrid IT Solutions',
     code: 'SOL-01',
-    img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-    intro: 'Scalable hybrid IT setups bridging on-premises assets with secure multi-cloud environments.',
-    description: 'We design and deploy multi-cloud infrastructure environments, helping enterprises coordinate their workload placements, optimize virtual resource pools, and establish secure network paths across private nodes and public clouds.',
+    name: 'Cloud & Hybrid IT Solutions',
+    category: 'cloud',
+    shortTag: 'CLOUD & HYBRID IT',
+    desc: 'Scalable hybrid IT setups bridging on-premises assets with secure multi-cloud environments.',
+    intro: 'We design and deploy multi-cloud infrastructure environments, helping enterprises coordinate their workload placements, optimize virtual resource pools, and establish secure network paths across private nodes and public clouds.',
     scope: [
-      'Multi-cloud workload migration planning',
-      'Virtual private network and VPC design setups',
-      'Hybrid cloud resource allocation audits'
+      'Multi-cloud workload migration planning & execution',
+      'Virtual private network and VPC gateway design',
+      'Hybrid cloud resource allocation & cost audits'
     ],
-    tech: ['Amazon Web Services', 'Microsoft Azure', 'Hypervisor Platforms'],
-    benefits: 'Optimizes hybrid workload distribution, eliminates single-point-of-failure paths, and supports on-demand infrastructure capacity scaling.'
+    tech: ['AWS', 'Microsoft Azure', 'Google Cloud', 'VMware Cloud'],
+    benefits: 'Optimizes hybrid workload distribution, eliminates single-point-of-failure paths, and supports on-demand infrastructure capacity scaling.',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'infra-mgmt',
-    name: 'IT Infrastructure Management & Operations',
     code: 'SOL-02',
-    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
-    intro: 'Comprehensive management of server clusters, hypervisors, and storage networks.',
-    description: 'We provide active administration support for enterprise servers, blade chassis enclosures, hypervisor configurations, and SAN/NAS storage volumes to maintain stable business operations.',
+    name: 'IT Infrastructure Management & Operations',
+    category: 'cloud',
+    shortTag: 'DATACENTER COMPUTE',
+    desc: 'Comprehensive management of server clusters, hypervisors, and SAN storage networks.',
+    intro: 'We provide active administration support for enterprise servers, blade chassis enclosures, hypervisor configurations, and SAN/NAS storage volumes to maintain stable business operations.',
     scope: [
-      'Host hypervisor patch administration',
+      'Host hypervisor patch administration & status checks',
       'SAN storage volume allocation and path mapping',
-      'Blade chassis management and hardware status checks'
+      'Blade chassis management & hardware monitoring'
     ],
-    tech: ['Virtualization Hypervisors', 'Fibre Channel SAN Arrays', 'Blade Server Enclosures'],
-    benefits: 'Consolidates physical server footprints, maximizes computing density per rack, and provides reliable database pathways.'
+    tech: ['VMware vSphere', 'Dell PowerEdge', 'NetApp SAN', 'Cisco UCS'],
+    benefits: 'Consolidates physical server footprints, maximizes computing density per rack, and provides reliable database pathways.',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'cybersecurity',
-    name: 'Cybersecurity & Secure Perimeter Hardening',
     code: 'SOL-03',
-    img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
-    intro: 'Next-generation firewall integration and secure internal network segmentation.',
-    description: 'We deploy firewall access policies, configure web application filters, set up secure VLAN boundaries, and configure secure client VPN connections to protect core digital systems.',
+    name: 'Cybersecurity & Secure Perimeter Hardening',
+    category: 'security',
+    shortTag: 'ZERO-TRUST SECURITY',
+    desc: 'Next-generation firewall integration, zero-trust policies, and secure internal network segmentation.',
+    intro: 'We deploy firewall access policies, configure web application filters, set up secure VLAN boundaries, and configure secure client VPN connections to protect core digital systems.',
     scope: [
-      'Firewall access rules configuration and verification',
-      'VLAN segmentation and internal security zoning',
-      'Security scans and network client log aggregation'
+      'Firewall access rules configuration & audit rules',
+      'VLAN micro-segmentation & internal security zoning',
+      'Security posture scans & centralized log aggregation'
     ],
-    tech: ['Next-Gen Firewalls', 'Secure Routing Switches', 'Web Application Firewalls'],
-    benefits: 'Builds secure perimeter defenses, segments internal database networks, and encrypts communication links between offices.'
+    tech: ['Palo Alto Networks', 'Fortinet FortiGate', 'Check Point', 'F5 WAF'],
+    benefits: 'Builds secure perimeter defenses, segments internal database networks, and encrypts communication links between global offices.',
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'automation-devops',
-    name: 'Automation, DevOps & Modernization',
     code: 'SOL-04',
-    img: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=800&q=80',
-    intro: 'Declarative Infrastructure as Code (IaC) deployment pipelines and configuration scripts.',
-    description: 'We automate server provisioning steps, deploy standardized server configurations, and integrate deployment pipelines to eliminate manual maintenance errors.',
+    name: 'Automation, DevOps & Modernization',
+    category: 'ops',
+    shortTag: 'INFRASTRUCTURE AS CODE',
+    desc: 'Declarative Infrastructure as Code (IaC) deployment pipelines and automated configuration scripts.',
+    intro: 'We automate server provisioning steps, deploy standardized server configurations, and integrate deployment pipelines to eliminate manual maintenance errors.',
     scope: [
-      'Infrastructure as Code template and playbook engineering',
+      'Infrastructure as Code template & playbook engineering',
       'Automated OS patch and configuration updates',
       'Self-healing system monitoring triggers'
     ],
-    tech: ['Infrastructure as Code Tools', 'Configuration Management Engines', 'Container Platforms'],
-    benefits: 'Reduces manual task overhead, prevents configuration drift across server fleets, and speeds up application deployments.'
+    tech: ['Ansible', 'Terraform', 'Kubernetes', 'Docker', 'GitLab CI'],
+    benefits: 'Reduces manual task overhead, prevents configuration drift across server fleets, and speeds up application deployments.',
+    image: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'erp-mgmt',
-    name: 'ERP & Enterprise Management Solutions',
     code: 'SOL-05',
-    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-    intro: 'Core ERP system maintenance, ITSM ticketing setups, and unified dashboard monitoring.',
-    description: 'We configure database monitoring probes, define alert thresholds, set up automated ITSM ticket routing, and optimize core enterprise management systems.',
+    name: 'ERP & Enterprise Management Solutions',
+    category: 'ops',
+    shortTag: 'ENTERPRISE SYSTEMS',
+    desc: 'Core ERP system maintenance, ITSM ticketing setups, and unified dashboard monitoring.',
+    intro: 'We configure database monitoring probes, define alert thresholds, set up automated ITSM ticket routing, and optimize core enterprise management systems.',
     scope: [
-      'ERP database monitoring and performance checks',
-      'ITSM helpdesk system configuration and ticketing rules',
-      'Infrastructure dashboard integration and telemetry checks'
+      'ERP database monitoring & performance checks',
+      'ITSM helpdesk system configuration & SLA rules',
+      'Infrastructure dashboard integration & telemetry'
     ],
-    tech: ['Enterprise ERP Databases', 'ITSM Platforms', 'Observability Dashboards'],
-    benefits: 'Provides unified visual control over systems, streamlines IT ticket resolution paths, and supports ERP database stability.'
+    tech: ['SAP S/4HANA', 'ServiceNow', 'Oracle DB', 'Datadog'],
+    benefits: 'Provides unified visual control over systems, streamlines IT ticket resolution paths, and supports ERP database stability.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'deployment-rollouts',
-    name: 'Deployment & Rollout Services',
     code: 'SOL-06',
-    img: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=800&q=80',
-    intro: 'Structured IT rollouts, device provisioning, staging setups, and data migrations.',
-    description: 'We handle large-scale corporate device staging, multi-site server setups, structured cabling alignments, and post-installation configuration checks.',
+    name: 'Deployment & Rollout Services',
+    category: 'ops',
+    shortTag: 'GLOBAL IT ROLLOUTS',
+    desc: 'Structured IT rollouts, device provisioning, staging setups, and multi-site data migrations.',
+    intro: 'We handle large-scale corporate device staging, multi-site server setups, structured cabling alignments, and post-installation configuration checks.',
     scope: [
       'Multi-site branch server deployment execution',
-      'Staging zone testing and client device configurations',
-      'Data migration support and connection verifications'
+      'Staging zone testing & device provisioning',
+      'Data migration support & connection verifications'
     ],
-    tech: ['Enterprise Servers', 'Client OS Platforms', 'Local Loop Networks'],
-    benefits: 'Guarantees identical system configurations across locations, minimizes downtime during rollouts, and ensures orderly migrations.'
+    tech: ['Dell Hardware', 'Cisco Routers', 'Windows Enterprise', 'RHEL'],
+    benefits: 'Guarantees identical system configurations across locations, minimizes downtime during rollouts, and ensures orderly migrations.',
+    image: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'support-desk',
-    name: '24/7 Support Desk Services',
     code: 'SOL-07',
-    img: 'https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=800&q=80',
-    intro: 'Guaranteed SLA-bound L1, L2, and L3 support desk engineering operations.',
-    description: 'We deliver comprehensive remote support desk services, executing incident triage, troubleshooting network alerts, and coordinating field dispatches for global environments.',
+    name: '24/7 Support Desk Services',
+    category: 'security',
+    shortTag: 'MANAGED HELPDESK',
+    desc: 'Guaranteed SLA-bound L1, L2, and L3 support desk engineering operations.',
+    intro: 'We deliver comprehensive remote support desk services, executing incident triage, troubleshooting network alerts, and coordinating field dispatches for global environments.',
     scope: [
       'Multi-tiered remote helpdesk troubleshooting operations',
-      'Incident prioritization and ticket status management',
+      'Incident prioritization & ticket status management',
       'L3 engineering emergency dispatch coordination'
     ],
-    tech: ['ITSM Ticketing Systems', 'Incident Management Databases', 'Monitoring Alert Panels'],
-    benefits: 'Streamlines incident triage pathways, provides clear ticket visibility, and ensures L3 engineering support during system failures.'
+    tech: ['ServiceNow', 'Jira Service Management', 'Zendesk', 'PagerDuty'],
+    benefits: 'Streamlines incident triage pathways, provides clear ticket visibility, and ensures L3 engineering support during system failures.',
+    image: 'https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'smart-city',
-    name: 'Smart City & ICCC Solutions',
     code: 'SOL-08',
-    img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
-    intro: 'Integrated Command & Control Center (ICCC) engineering and municipal IoT networks.',
-    description: 'We design and configure municipal operations architectures, integrating public surveillance grids, fiber backbones, and central data monitoring consoles.',
+    name: 'Smart City & ICCC Solutions',
+    category: 'security',
+    shortTag: 'CIVIC INFRASTRUCTURE',
+    desc: 'Integrated Command & Control Center (ICCC) engineering and municipal IoT networks.',
+    intro: 'We design and configure municipal operations architectures, integrating public surveillance grids, fiber backbones, and central data monitoring consoles.',
     scope: [
       'ICCC municipal command facility systems design',
       'Edge IoT gateway secure configuration setups',
       'Centralized municipal telemetry dashboard tuning'
     ],
-    tech: ['IoT Gateway Protocols', 'Central Operations Video Walls', 'Redundant Storage Fabrics'],
-    benefits: 'Improves response coordination for municipal services, reduces utility operational overhead, and supports secure edge sensor routing.'
+    tech: ['Cisco Industrial IoT', 'Milestone Systems', 'Dell EMC Storage'],
+    benefits: 'Improves response coordination for municipal services, reduces utility operational overhead, and supports secure edge sensor routing.',
+    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'sap-basis',
-    name: 'SAP Basis & Consulting',
     code: 'SOL-09',
-    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-    intro: 'SAP Basis administration, NetWeaver administration, and database health consulting.',
-    description: 'We manage SAP landscapes, applying kernel updates, transport configurations, background job rules, database updates, and SAP Basis health checks.',
+    name: 'SAP Basis & Consulting',
+    category: 'ops',
+    shortTag: 'SAP LANDSCAPE',
+    desc: 'SAP Basis administration, NetWeaver administration, and database health consulting.',
+    intro: 'We manage SAP landscapes, applying kernel updates, transport configurations, background job rules, database updates, and SAP Basis health checks.',
     scope: [
-      'SAP Basis system configuration and health assessments',
-      'Database performance optimization and patch testing',
-      'NetWeaver application management and updates'
+      'SAP Basis system configuration & health assessments',
+      'Database performance optimization & patch testing',
+      'NetWeaver application management & updates'
     ],
-    tech: ['SAP NetWeaver', 'SAP Databases', 'System Administration Consoles'],
-    benefits: 'Maintains stable database performance, provides controlled transport rollouts, and flags system alerts proactively.'
+    tech: ['SAP HANA', 'SAP NetWeaver', 'SUSE Linux', 'Oracle DB'],
+    benefits: 'Maintains stable database performance, provides controlled transport rollouts, and flags system alerts proactively.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'staff-aug',
-    name: 'Staff Augmentation',
     code: 'SOL-10',
-    img: 'https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?auto=format&fit=crop&w=800&q=80',
-    intro: 'Deployment of certified systems operators and L1, L2, and L3 engineers.',
-    description: 'We augment internal IT teams, providing certified professionals experienced in server, cloud, network virtualization, and database management.',
+    name: 'Staff Augmentation',
+    category: 'ops',
+    shortTag: 'TECHNICAL TALENT',
+    desc: 'Deployment of certified systems operators and L1, L2, and L3 engineers.',
+    intro: 'We augment internal IT teams, providing certified professionals experienced in server, cloud, network virtualization, and database management.',
     scope: [
       'On-demand technical staffing for infrastructure projects',
       'L1, L2, and L3 engineering placement audits',
       'Remote backup administrator support'
     ],
-    tech: ['Systems Administration Systems', 'Hypervisor Architectures', 'Cloud Engines'],
-    benefits: 'Supports fast technical team scaling, reduces hiring delays, and provides access to L3 engineering skills.'
+    tech: ['CCNP Certified', 'VCP Engineers', 'AWS Certified', 'Red Hat RHCE'],
+    benefits: 'Supports fast technical team scaling, reduces hiring delays, and provides access to L3 engineering skills.',
+    image: 'https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'noc-services',
-    name: 'NOC Services',
     code: 'SOL-11',
-    img: 'https://images.unsplash.com/photo-1548345680-f5475ea5df84?auto=format&fit=crop&w=800&q=80',
-    intro: 'Active remote network monitoring, alarm handling, and syslog checks.',
-    description: 'We configure syslog collection tools, SNMP monitoring rules, ping check loops, and network bandwidth monitoring alerts to track network status.',
+    name: 'NOC Services',
+    category: 'security',
+    shortTag: '24/7 NOC OPERATIONS',
+    desc: 'Active remote network monitoring, alarm handling, and syslog checks.',
+    intro: 'We configure syslog collection tools, SNMP monitoring rules, ping check loops, and network bandwidth monitoring alerts to track network status.',
     scope: [
       '24/7/365 active remote network monitoring',
       'Network alarm triage and severity checks',
-      'Bandwidth usage tracking and incident reports'
+      'Bandwidth usage tracking & incident dispatch'
     ],
-    tech: ['SNMP Observability Tools', 'Interface Monitor Systems', 'Syslog Aggregators'],
-    benefits: 'Proactively identifies network failures, triggers immediate incident dispatch alerts, and aggregates multi-site hardware status logs.'
+    tech: ['SolarWinds', 'Cisco DNA', 'Juniper Space', 'PRTG Network Monitor'],
+    benefits: 'Proactively identifies network failures, triggers immediate incident dispatch alerts, and aggregates multi-site hardware status logs.',
+    image: 'https://images.unsplash.com/photo-1548345680-f5475ea5df84?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'dc-operations',
-    name: 'Datacenter Operations & Facility Management',
     code: 'SOL-12',
-    img: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80',
-    intro: 'Facility management including precision cooling, HVAC, UPS, and backup grids.',
-    description: 'We support physical datacenter environments, managing hot/cold Containments, backup diesel generators, fire suppression, and battery UPS systems.',
+    name: 'Datacenter Operations & Facility Management',
+    category: 'cloud',
+    shortTag: 'FACILITY MANAGEMENT',
+    desc: 'Facility management including precision cooling, HVAC, UPS, and backup grids.',
+    intro: 'We support physical datacenter environments, managing hot/cold containments, backup diesel generators, fire suppression, and battery UPS systems.',
     scope: [
       'Precision cooling HVAC system path alignment',
-      'UPS battery bank and generator check monitoring',
-      'Environmental sensor layout and tracking setups'
+      'UPS battery bank & generator check monitoring',
+      'Environmental sensor layout & tracking setups'
     ],
-    tech: ['Precision Cooling Units', 'UPS Battery Cabinets', 'Environmental Control Sensors'],
-    benefits: 'Ensures stable server temperatures, maintains continuous power during grid outages, and supports compliance with facility guidelines.'
+    tech: ['Schneider Electric', 'Vertiv Liebert', 'Caterpillar Gensets'],
+    benefits: 'Ensures stable server temperatures, maintains continuous power during grid outages, and supports compliance with facility guidelines.',
+    image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'backup-recovery',
-    name: 'Data Backup & Recovery (Backup Ecosystem)',
     code: 'SOL-13',
-    img: 'https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&w=800&q=80',
-    intro: 'Scheduled data backup jobs, immutable snapshot vaults, and bare-metal recovery plans.',
-    description: 'We configure scheduled backups, secure snapshot vaults, data encryption policies, and recovery automation pipelines across our supported backup ecosystem.',
+    name: 'Data Backup & Recovery (Backup Ecosystem)',
+    category: 'cloud',
+    shortTag: 'DATA RESILIENCE',
+    desc: 'Scheduled data backup jobs, immutable snapshot vaults, and bare-metal recovery plans.',
+    intro: 'We configure scheduled backups, secure snapshot vaults, data encryption policies, and recovery automation pipelines across our supported backup ecosystem.',
     scope: [
-      'Backup scheduling and snapshot vault configurations',
-      'Ransomware protection policies and data encryption setups',
-      'Restore validation trials and bare-metal recovery planning'
+      'Backup scheduling & snapshot vault configurations',
+      'Ransomware protection & data encryption setups',
+      'Restore validation trials & bare-metal recovery'
     ],
-    tech: ['Immutable Storage Vaults', 'Backup Repositories', 'Restore Automation Engines'],
-    benefits: 'Supported Backup Ecosystem: Veritas, Veeam, Commvault, Druva, Vinchin, Acronis, Dell NetWorker. Protects storage vaults against unauthorized deletion, and supports recovery times.'
+    tech: ['Veeam', 'Veritas', 'Commvault', 'Druva', 'Acronis'],
+    benefits: 'Protects storage vaults against unauthorized deletion, ensures ransomware resilience, and supports low recovery time objectives (RTO).',
+    image: 'https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&w=600&q=80'
   }
 ];
 
+const FILTER_TAGS = [
+  { id: 'all', label: 'All Solutions' },
+  { id: 'cloud', label: 'Cloud & Datacenter' },
+  { id: 'security', label: 'Security & Operations' },
+  { id: 'ops', label: 'DevOps & Systems' }
+];
+
 /* ─────────────────────────────────────────────────────────────
-   Individual Solution Showcase Section Component
-────────────────────────────────────────────────────────────── */
-function SolutionSection({ sol, index }) {
-  const isEven = index % 2 === 0;
-
+   Shared Check Icon
+ ────────────────────────────────────────────────────────────── */
+function CheckIcon() {
   return (
-    <section
-      id={sol.id}
-      className="solution-showcase-section"
-      style={{
-        padding: '6rem 0',
-        minHeight: 'auto',
-        display: 'flex',
-        alignItems: 'center',
-        background: isEven ? '#ffffff' : '#f8fafc',
-        borderBottom: '1px solid rgba(9,97,159,0.06)',
-        position: 'relative',
-        overflow: 'hidden'
-      }}
-    >
-      {/* Decorative blueprint grids */}
-      <div style={{
-        position: 'absolute', inset: 0, opacity: 0.015, pointerEvents: 'none',
-        backgroundImage: `radial-gradient(circle, rgba(9,97,159,0.5) 1px, transparent 1px)`,
-        backgroundSize: '40px 40px'
-      }} />
-
-      {/* Floating connector line between sections */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '2px',
-        height: '100px',
-        background: 'linear-gradient(to bottom, rgba(9,97,159,0.08), transparent)',
-        pointerEvents: 'none'
-      }} />
-
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="solutions-grid-layout" style={{
-          display: 'grid',
-          gap: '3rem',
-          alignItems: 'center'
-        }}>
-          
-          {/* TEXT SIDE */}
-          <div className="solutions-text-col" style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1.25rem'
-          }}>
-            <ScrollReveal variant="fade-up">
-              {/* Large Aesthetic Section Number */}
-              <div style={{
-                fontSize: '4.5rem',
-                fontWeight: 900,
-                color: 'rgba(9, 97, 159, 0.18)',
-                fontFamily: '"Outfit", "Inter", sans-serif',
-                lineHeight: 1,
-                letterSpacing: '-3px',
-                marginBottom: '0.25rem',
-                userSelect: 'none',
-                pointerEvents: 'none'
-              }}>
-                {(index + 1).toString().padStart(2, '0')}
-              </div>
-
-              {/* Title */}
-              <h2 style={{
-                fontSize: 'clamp(1.6rem, 4.5vw, 2.1rem)',
-                fontWeight: 800,
-                color: 'rgba(12,20,35,0.92)',
-                letterSpacing: '-0.8px',
-                lineHeight: 1.15,
-                margin: '0 0 0.5rem 0'
-              }}>
-                {sol.name}
-              </h2>
-
-              <p style={{ fontSize: '1.05rem', color: 'rgba(9,97,159,0.85)', lineHeight: 1.5, margin: '0 0 1rem 0', fontWeight: 600 }}>
-                {sol.intro}
-              </p>
-
-              {/* Concise descriptive text */}
-              <p style={{ fontSize: '0.92rem', color: 'rgba(30,40,60,0.7)', lineHeight: 1.6, margin: '0 0 1.25rem 0' }}>
-                {sol.description}
-              </p>
-
-              {/* Scope Checklist */}
-              <div style={{ marginBottom: '1.25rem' }}>
-                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'rgba(30,40,60,0.4)', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: '0.5rem' }}>Core Capabilities:</span>
-                <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.86rem', color: 'rgba(30,40,60,0.75)', lineHeight: 1.5 }}>
-                  {sol.scope.map((item, idx) => (
-                    <li key={idx} style={{ marginBottom: '0.25rem' }}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Technology badges & Qualitative benefits */}
-              <div style={{
-                padding: '1.1rem 1.25rem',
-                borderRadius: '8px',
-                background: '#ffffff',
-                border: '1px solid rgba(9,97,159,0.12)',
-                boxShadow: '0 4px 12px rgba(9,97,159,0.03)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.8rem',
-                marginBottom: 0
-              }}>
-                <div>
-                  <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', display: 'block', marginBottom: '0.3rem', letterSpacing: '0.5px' }}>Technology Scope</span>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-                    {sol.tech.map((t, idx) => (
-                      <span key={idx} style={{ padding: '0.15rem 0.5rem', borderRadius: '4px', background: 'rgba(9,97,159,0.05)', color: 'rgba(9,97,159,0.85)', fontSize: '0.72rem', fontWeight: 600 }}>
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div style={{ borderTop: '1px solid rgba(9,97,159,0.08)', paddingTop: '0.6rem' }}>
-                  <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'rgba(9,97,159,0.85)', textTransform: 'uppercase', display: 'block', marginBottom: '0.2rem', letterSpacing: '0.5px' }}>Expected Outcomes</span>
-                  <span style={{ fontSize: '0.82rem', color: 'rgba(30,40,60,0.75)', lineHeight: 1.4, display: 'block' }}>{sol.benefits}</span>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-
-          {/* VISUAL SIDE - Fitted real image column */}
-          <div className="solutions-visual-col" style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'relative'
-          }}>
-            <ScrollReveal variant="fade-up" style={{ width: '100%' }}>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
-                style={{
-                  position: 'relative',
-                  borderRadius: '12px',
-                  boxShadow: '0 15px 35px rgba(9,97,159,0.06), 0 2px 8px rgba(0,0,0,0.02)',
-                  overflow: 'hidden',
-                  width: '100%',
-                  border: '1px solid rgba(9,97,159,0.1)'
-                }}
-                className="solutions-image-container"
-              >
-                {/* Foreground Image - Non-clickable / Non-downloadable */}
-                <img
-                  src={sol.img}
-                  alt={`${sol.name} Enterprise Infrastructure`}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    display: 'block',
-                    pointerEvents: 'none',
-                    userSelect: 'none'
-                  }}
-                />
-                
-                {/* Visual Blueprint Grid Overlay */}
-                <div style={{
-                  position: 'absolute', inset: 0, opacity: 0.1, pointerEvents: 'none',
-                  backgroundImage: `
-                    linear-gradient(rgba(9,97,159,0.3) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(9,97,159,0.3) 1px, transparent 1px)
-                  `,
-                  backgroundSize: '20px 20px'
-                }} />
-              </motion.div>
-            </ScrollReveal>
-          </div>
-
-        </div>
-      </div>
-    </section>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }} aria-hidden="true">
+      <circle cx="8" cy="8" r="8" fill="rgba(9, 97, 159, 0.1)" />
+      <path d="M5 8.2L7.2 10.4L11 6" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Main Solutions Page REDESIGN
-────────────────────────────────────────────────────────────── */
-export default function Solutions() {
+   Compact Small Box Solution Card Component (Matching Industries)
+ ────────────────────────────────────────────────────────────── */
+function SolutionCard({ sol, onClick }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div style={{ backgroundColor: '#ffffff', color: 'var(--text-light-primary)' }} id="solutions-page-view">
-      
-      {/* ─── HERO HEADER ─── */}
-      <section style={{
-        background: 'linear-gradient(135deg, #f0f7ff 0%, #f8fafc 55%, #eef6fd 100%)',
-        padding: '8rem 0 5rem 0',
+    <div
+      className="solution-small-box"
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      tabIndex={0}
+      role="button"
+      aria-label={`Explore specs for ${sol.name}`}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+      style={{
+        backgroundColor: '#ffffff',
+        borderRadius: '16px',
+        border: isHovered ? '1px solid rgba(9, 97, 159, 0.35)' : '1px solid rgba(9, 97, 159, 0.1)',
+        boxShadow: isHovered
+          ? '0 16px 36px rgba(9, 97, 159, 0.12), 0 4px 12px rgba(0, 0, 0, 0.03)'
+          : '0 4px 20px rgba(9, 97, 159, 0.03)',
+        padding: '1.5rem',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        cursor: 'pointer',
+        transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+        transform: isHovered ? 'translateY(-6px)' : 'translateY(0)',
         position: 'relative',
-        overflow: 'hidden',
-        borderBottom: '1px solid rgba(9,97,159,0.1)'
-      }}>
-        {/* Blueprint grid backdrop */}
+        overflow: 'hidden'
+      }}
+    >
+      <div>
+        {/* Banner Image Container */}
         <div style={{
-          position: 'absolute', inset: 0, opacity: 0.05, pointerEvents: 'none',
-          backgroundImage: `
-            linear-gradient(rgba(9,97,159,0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(9,97,159,0.3) 1px, transparent 1px)
-          `,
+          width: '100%',
+          height: '160px',
+          borderRadius: '12px',
+          overflow: 'hidden',
+          position: 'relative',
+          marginBottom: '1.2rem',
+          border: '1px solid rgba(9, 97, 159, 0.08)'
+        }}>
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to bottom, rgba(9, 97, 159, 0.04) 0%, rgba(9, 97, 159, 0.25) 100%)',
+            zIndex: 1,
+            pointerEvents: 'none'
+          }} />
+          <motion.img
+            src={sol.image}
+            alt={sol.name}
+            animate={isHovered ? { scale: 1.08 } : { scale: 1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover'
+            }}
+          />
+          {/* Solution Code Pill */}
+          <span style={{
+            position: 'absolute',
+            top: '12px',
+            right: '12px',
+            backgroundColor: 'rgba(15, 23, 42, 0.8)',
+            color: '#ffffff',
+            fontSize: '0.68rem',
+            fontWeight: 800,
+            padding: '3px 8px',
+            borderRadius: '6px',
+            backdropFilter: 'blur(4px)',
+            zIndex: 2,
+            fontFamily: 'monospace'
+          }}>
+            {sol.code}
+          </span>
+        </div>
+
+        {/* Domain Tag */}
+        <span style={{
+          fontSize: '0.68rem',
+          fontWeight: 800,
+          color: 'var(--brand-blue)',
+          letterSpacing: '1.2px',
+          fontFamily: 'monospace',
+          textTransform: 'uppercase',
+          display: 'block',
+          marginBottom: '0.4rem'
+        }}>
+          {sol.shortTag}
+        </span>
+
+        {/* Title */}
+        <h3 style={{
+          fontSize: '1.2rem',
+          fontWeight: 800,
+          margin: '0 0 0.5rem 0',
+          transition: 'color 0.3s ease',
+          color: isHovered ? 'var(--brand-blue)' : '#0f172a',
+          lineHeight: 1.25
+        }}>
+          {sol.name}
+        </h3>
+
+        {/* Short Summary Description */}
+        <p style={{
+          fontSize: '0.86rem',
+          color: '#475569',
+          lineHeight: 1.55,
+          margin: '0 0 1rem 0',
+          display: '-webkit-box',
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden'
+        }}>
+          {sol.desc}
+        </p>
+
+        {/* Scope Bullet Highlights */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', marginBottom: '1rem' }}>
+          {sol.scope.slice(0, 2).map((item, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.8rem', color: '#334155', fontWeight: 500 }}>
+              <CheckIcon />
+              <span style={{ lineHeight: 1.4 }}>{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer CTA Trigger */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        borderTop: '1px solid #f1f5f9',
+        paddingTop: '0.85rem',
+        marginTop: '0.5rem'
+      }}>
+        <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--brand-blue)' }}>
+          Explore Architecture &amp; Specs
+        </span>
+        <motion.span
+          animate={isHovered ? { x: 4 } : { x: 0 }}
+          transition={{ duration: 0.3 }}
+          style={{ display: 'inline-flex', alignItems: 'center', color: 'var(--brand-blue)' }}
+        >
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </motion.span>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Slide-Over Solution Detail Drawer Component
+ ────────────────────────────────────────────────────────────── */
+function SolutionDetailDrawer({ solution, onClose }) {
+  useEffect(() => {
+    if (solution) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [solution]);
+
+  if (!solution) return null;
+
+  return (
+    <AnimatePresence>
+      <div
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 9999,
+          display: 'flex',
+          justifyContent: 'flex-end'
+        }}
+      >
+        {/* Backdrop */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundColor: 'rgba(15, 23, 42, 0.6)',
+            backdropFilter: 'blur(4px)'
+          }}
+        />
+
+        {/* Drawer Panel */}
+        <motion.div
+          initial={{ x: '100%' }}
+          animate={{ x: 0 }}
+          exit={{ x: '100%' }}
+          transition={{ type: 'spring', damping: 28, stiffness: 280 }}
+          style={{
+            position: 'relative',
+            width: 'min(580px, 92vw)',
+            height: '100%',
+            backgroundColor: '#ffffff',
+            boxShadow: '-10px 0 40px rgba(0, 0, 0, 0.2)',
+            zIndex: 10,
+            overflowY: 'auto',
+            display: 'flex',
+            flexDirection: 'column'
+          }}
+        >
+          {/* Header Image */}
+          <div style={{ position: 'relative', height: '220px', width: '100%' }}>
+            <img src={solution.image} alt={solution.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15,23,42,0.88) 0%, transparent 60%)' }} />
+            
+            {/* Close Button */}
+            <button
+              onClick={onClose}
+              type="button"
+              aria-label="Close details"
+              style={{
+                position: 'absolute',
+                top: '16px',
+                right: '16px',
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                border: 'none',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                color: '#0f172a'
+              }}
+            >
+              ✕
+            </button>
+
+            <div style={{ position: 'absolute', bottom: '20px', left: '24px', right: '24px', color: '#ffffff' }}>
+              <span style={{ fontSize: '0.72rem', fontWeight: 800, letterSpacing: '1.5px', color: '#38bdf8', fontFamily: 'monospace' }}>
+                {solution.code} · {solution.shortTag}
+              </span>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 900, margin: '4px 0 0 0', color: '#ffffff' }}>
+                {solution.name}
+              </h2>
+            </div>
+          </div>
+
+          {/* Body Content */}
+          <div style={{ padding: '2rem 1.5rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            {/* Executive Summary */}
+            <div>
+              <h4 style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--brand-blue)', marginBottom: '0.5rem' }}>
+                Architecture &amp; Strategic Overview
+              </h4>
+              <p style={{ fontSize: '0.95rem', color: '#334155', lineHeight: 1.6, margin: 0 }}>
+                {solution.intro}
+              </p>
+            </div>
+
+            {/* Scope of Work */}
+            <div style={{ backgroundColor: '#f8fafc', padding: '1.25rem', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+              <h4 style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: '#0f172a', marginBottom: '0.75rem' }}>
+                Key Operational Capabilities
+              </h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                {solution.scope.map((item, index) => (
+                  <div key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.88rem', color: '#334155' }}>
+                    <CheckIcon />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* SLA Benefits */}
+            <div>
+              <h4 style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--brand-blue)', marginBottom: '0.5rem' }}>
+                Measurable Business Impact
+              </h4>
+              <p style={{ fontSize: '0.9rem', color: '#475569', lineHeight: 1.55, margin: 0 }}>
+                {solution.benefits}
+              </p>
+            </div>
+
+            {/* Tech Stack */}
+            <div>
+              <h4 style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: '#0f172a', marginBottom: '0.6rem' }}>
+                Enterprise Tech Stack &amp; Alliances
+              </h4>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                {solution.tech.map((t, i) => (
+                  <span key={i} style={{ backgroundColor: '#f1f5f9', border: '1px solid #cbd5e1', padding: '4px 10px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 600, color: '#334155' }}>
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Action Bar */}
+            <div style={{ marginTop: 'auto', paddingTop: '1.5rem', borderTop: '1px solid #e2e8f0', display: 'flex', gap: '1rem' }}>
+              <Link
+                to="/about#welcome-to-innoworq"
+                onClick={onClose}
+                style={{
+                  flex: 1,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  backgroundColor: 'var(--brand-blue)',
+                  color: '#ffffff',
+                  fontWeight: 700,
+                  fontSize: '0.9rem',
+                  padding: '12px 20px',
+                  borderRadius: '10px',
+                  textDecoration: 'none',
+                  boxShadow: '0 4px 14px rgba(9, 97, 159, 0.25)'
+                }}
+              >
+                <span>Request Architecture Blueprint</span>
+                <span>→</span>
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </AnimatePresence>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Main Solutions Page Component
+ ────────────────────────────────────────────────────────────── */
+export default function Solutions() {
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [selectedSolution, setSelectedSolution] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const targetId = location.hash.replace('#', '');
+      const matched = SOLUTIONS_DATA.find((s) => s.id === targetId);
+      if (matched) {
+        setSelectedSolution(matched);
+      }
+    }
+  }, [location]);
+
+  const filteredSolutions = SOLUTIONS_DATA.filter((s) => {
+    if (activeFilter === 'all') return true;
+    return s.category === activeFilter;
+  });
+
+  return (
+    <div style={{ backgroundColor: '#ffffff', color: '#0f172a', minHeight: '100vh' }}>
+      
+      {/* ── HERO HEADER ── */}
+      <section style={{
+        background: 'linear-gradient(135deg, #f0f7ff 0%, #ffffff 60%, #eef6fd 100%)',
+        padding: '8rem 0 4rem 0',
+        borderBottom: '1px solid rgba(9, 97, 159, 0.08)',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        <div style={{
+          position: 'absolute', inset: 0, opacity: 0.04, pointerEvents: 'none',
+          backgroundImage: `linear-gradient(rgba(9,97,159,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(9,97,159,0.3) 1px, transparent 1px)`,
           backgroundSize: '40px 40px'
         }} />
 
@@ -453,174 +640,104 @@ export default function Solutions() {
           <ScrollReveal variant="fade-down">
             <span style={{
               display: 'inline-block',
-              background: 'rgba(9,97,159,0.08)',
-              border: '1px solid rgba(9,97,159,0.2)',
+              background: 'rgba(9, 97, 159, 0.08)',
+              border: '1px solid rgba(9, 97, 159, 0.2)',
               borderRadius: '100px',
-              padding: '0.3rem 1.2rem',
-              fontSize: '0.74rem',
-              fontWeight: 700,
-              color: 'rgba(9,97,159,0.95)',
+              padding: '0.35rem 1.2rem',
+              fontSize: '0.75rem',
+              fontWeight: 800,
+              color: 'var(--brand-blue)',
               letterSpacing: '2px',
               textTransform: 'uppercase',
               fontFamily: 'monospace',
-              marginBottom: '1.25rem'
+              marginBottom: '1rem'
             }}>
-              Enterprise Technology Architecture
+              Architectural Solutions Portfolio
             </span>
             <h1 style={{
-              fontSize: 'clamp(2.5rem, 5vw, 3.8rem)',
-              fontWeight: 800,
-              color: 'rgba(12,20,35,0.92)',
-              marginTop: '0.5rem',
-              marginBottom: '1.25rem',
-              letterSpacing: '-1.5px',
-              lineHeight: 1.1
+              fontSize: 'clamp(2.4rem, 5vw, 3.6rem)',
+              fontWeight: 900,
+              color: '#0f172a',
+              letterSpacing: '-0.03em',
+              margin: '0 0 1.2rem 0',
+              lineHeight: 1.15
             }}>
-              Architecting Global Infrastructure
+              Enterprise Technology Solutions
             </h1>
             <p style={{
-              color: 'rgba(30,40,60,0.65)',
+              color: '#475569',
               maxWidth: '680px',
               margin: '0 auto',
               fontSize: '1.08rem',
-              lineHeight: '1.75'
+              lineHeight: 1.65
             }}>
-              Explore INNOWORQ's enterprise solutions configurations.
-              We design Tier-III compliant server environments, network security boundaries,
-              and fully automated cloud deployments for global workloads.
+              Architectural solution blueprints for hybrid IT, multi-cloud operations, 24x7 NOC monitoring, zero-trust cybersecurity, and enterprise resource management.
             </p>
+          </ScrollReveal>
 
-            {/* Quick stats strip */}
+          {/* Filter Bar */}
+          <ScrollReveal variant="fade-up" delay={0.15}>
             <div style={{
               display: 'flex',
-              gap: '1.5rem',
+              alignItems: 'center',
               justifyContent: 'center',
-              marginTop: '3rem',
-              flexWrap: 'wrap'
+              gap: '0.5rem',
+              flexWrap: 'wrap',
+              marginTop: '2.5rem'
             }}>
-              {[
-                { value: 13, suffix: '', label: 'Solutions Engineered' },
-                { value: 9, suffix: '', label: 'Industry Sectors' },
-                { value: 20, suffix: '+', label: 'OEM Tech Coverage' },
-                { value: 4, suffix: '', label: 'ISO Certifications' }
-              ].map((stat, i) => (
-                <div
-                  key={i}
+              {FILTER_TAGS.map((tag) => (
+                <button
+                  key={tag.id}
+                  type="button"
+                  onClick={() => setActiveFilter(tag.id)}
                   style={{
-                    backgroundColor: '#ffffff',
-                    border: '1px solid rgba(9,97,159,0.12)',
-                    borderRadius: '12px',
-                    padding: '1.25rem 2rem',
-                    textAlign: 'center',
-                    minWidth: '150px',
-                    boxShadow: '0 6px 15px rgba(9,97,159,0.04)'
+                    backgroundColor: activeFilter === tag.id ? 'var(--brand-blue)' : '#ffffff',
+                    color: activeFilter === tag.id ? '#ffffff' : '#475569',
+                    border: activeFilter === tag.id ? '1px solid var(--brand-blue)' : '1px solid #cbd5e1',
+                    borderRadius: '30px',
+                    padding: '8px 18px',
+                    fontSize: '0.85rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    transition: 'all 0.25s ease',
+                    boxShadow: activeFilter === tag.id ? '0 4px 14px rgba(9, 97, 159, 0.25)' : 'none'
                   }}
                 >
-                  <div style={{ fontSize: '2rem', fontWeight: 900, color: 'rgba(9,97,159,1)', lineHeight: 1 }}>
-                    <CountUp end={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <div style={{
-                    fontSize: '0.72rem',
-                    color: 'rgba(30,40,60,0.5)',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    marginTop: '0.4rem',
-                    letterSpacing: '0.5px'
-                  }}>
-                    {stat.label}
-                  </div>
-                </div>
+                  {tag.label}
+                </button>
               ))}
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* ─── SOLUTIONS ALTERNATING SHOWCASE ─── */}
-      <div style={{ position: 'relative' }}>
-        {SOLUTIONS_DATA.map((sol, index) => (
-          <SolutionSection key={sol.id} sol={sol} index={index} />
-        ))}
-      </div>
+      {/* ── SOLUTIONS SMALL BOXES CATALOG GRID ── */}
+      <section style={{ padding: '4.5rem 0 6rem 0', backgroundColor: '#f8fafc' }}>
+        <div className="container">
+          <StaggerContainer
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+              gap: '1.75rem',
+              alignItems: 'stretch'
+            }}
+          >
+            {filteredSolutions.map((sol) => (
+              <SolutionCard
+                key={sol.id}
+                sol={sol}
+                onClick={() => setSelectedSolution(sol)}
+              />
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
 
-
-
-      {/* Responsive Styles Injection */}
-      <style>{`
-        .solutions-grid-layout {
-          grid-template-columns: repeat(12, 1fr);
-        }
-        .solutions-text-col {
-          grid-column: span 6;
-        }
-        .solutions-visual-col {
-          grid-column: span 6;
-        }
-        .solutions-image-container {
-          aspect-ratio: 1.5;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .solutions-details-subgrid {
-          grid-template-columns: 1fr 1fr;
-        }
-        .solutions-specs-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-
-        @media (max-width: 1024px) {
-          .solutions-grid-layout {
-            grid-template-columns: 1fr !important;
-            gap: 2.5rem !important;
-          }
-          .solutions-text-col {
-            grid-column: span 12 !important;
-            order: 2 !important;
-          }
-          .solutions-visual-col {
-            grid-column: span 12 !important;
-            order: 1 !important;
-          }
-          .solutions-image-container {
-            aspect-ratio: 1.77 !important;
-          }
-          .solutions-details-subgrid {
-            grid-template-columns: 1fr !important;
-            gap: 1rem !important;
-          }
-          .solutions-specs-grid {
-            grid-template-columns: 1fr !important;
-            gap: 1rem !important;
-          }
-        }
-        @media (max-width: 768px) {
-          .solution-showcase-section {
-            padding: 3rem 0 !important;
-          }
-          .solutions-image-container {
-            aspect-ratio: 1.618 !important;
-          }
-          .solution-actions-flex {
-            flex-direction: column !important;
-            gap: 0.75rem !important;
-            width: 100% !important;
-          }
-          .solution-actions-flex a {
-            width: 100% !important;
-            justify-content: center !important;
-            min-height: 48px !important;
-          }
-        }
-        @media (max-width: 480px) {
-          .solution-showcase-section {
-            padding: 2.75rem 0 !important;
-          }
-          .solutions-image-container {
-            aspect-ratio: 1.618 !important;
-          }
-        }
-      `}</style>
+      {/* Detail Slide-Over Drawer */}
+      <SolutionDetailDrawer
+        solution={selectedSolution}
+        onClose={() => setSelectedSolution(null)}
+      />
 
     </div>
   );

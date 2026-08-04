@@ -244,42 +244,45 @@ export default function Navbar() {
                       style={{
                         position: 'relative',
                         background: isActive ? 'rgba(9, 97, 159, 0.08)' : 'transparent',
-                        color: isActive ? '#09619f' : '#334155',
-                        fontWeight: isActive ? 700 : 600
+                        color: isHovered || isActive ? '#09619f' : '#334155',
+                        fontWeight: isActive ? 700 : 600,
+                        display: 'inline-flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '6px 14px'
                       }}
                     >
-                      <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                         <span>{item.label}</span>
-                        {/* Active Page Dot Indicator */}
-                        {isActive && (
-                          <motion.span
-                            layoutId="activeNavPointerDot"
-                            style={{
-                              width: '4px',
-                              height: '4px',
-                              borderRadius: '50%',
-                              backgroundColor: '#09619f',
-                              marginTop: '2px'
-                            }}
-                            transition={{ duration: 0.2 }}
-                          />
+                        {item.hasDropdown && (
+                          <motion.svg
+                            width="10"
+                            height="6"
+                            viewBox="0 0 10 6"
+                            fill="none"
+                            animate={{ rotate: isHovered ? 180 : 0 }}
+                            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                            style={{ display: 'inline-block', flexShrink: 0 }}
+                          >
+                            <path d="M1 1.5L5 4.5L9 1.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                          </motion.svg>
                         )}
                       </span>
 
-                      {item.hasDropdown && (
-                        <svg
-                          width="10"
-                          height="6"
-                          viewBox="0 0 10 6"
-                          fill="none"
+                      {/* Active Page Dot Indicator */}
+                      {isActive && (
+                        <motion.span
+                          layoutId="activeNavPointerDot"
                           style={{
-                            transition: 'transform 0.2s ease',
-                            transform: isHovered ? 'rotate(180deg)' : 'rotate(0deg)',
-                            marginLeft: '4px'
+                            width: '4px',
+                            height: '4px',
+                            borderRadius: '50%',
+                            backgroundColor: '#09619f',
+                            marginTop: '3px'
                           }}
-                        >
-                          <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                          transition={{ duration: 0.2 }}
+                        />
                       )}
                     </button>
                   </div>

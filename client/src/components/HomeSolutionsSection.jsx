@@ -1,285 +1,234 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
-import configData from '../data/companyConfig.json';
 
-// Solution-specific icon renderer
-function SolutionIcon({ name }) {
-  const iconProps = {
-    width: "20",
-    height: "20",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "var(--accent-cyan)",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  };
-
-  const lowerName = name.toLowerCase();
-
-  if (lowerName.includes('smart city')) {
-    return (
-      <svg {...iconProps}>
-        <path d="M3 21h18"/>
-        <path d="M5 21V7l8-4v18"/>
-        <path d="M19 21V11l-6-4"/>
-        <line x1="9" y1="9" x2="9.01" y2="9"/>
-        <line x1="9" y1="13" x2="9.01" y2="13"/>
-        <line x1="9" y1="17" x2="9.01" y2="17"/>
-      </svg>
-    );
-  } else if (lowerName.includes('noc')) {
-    return (
-      <svg {...iconProps}>
-        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-        <line x1="8" y1="21" x2="16" y2="21"/>
-        <line x1="12" y1="17" x2="12" y2="21"/>
-        <polyline points="7 10 10 7 13 11 17 8"/>
-      </svg>
-    );
-  } else if (lowerName.includes('cloud')) {
-    return (
-      <svg {...iconProps}>
-        <path d="M175 190A9 9 0 0 0 9 12H7a8 8 0 0 0 0 16h10.5"/>
-        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
-      </svg>
-    );
-  } else if (lowerName.includes('automation') || lowerName.includes('ai')) {
-    return (
-      <svg {...iconProps}>
-        <circle cx="12" cy="12" r="3"/>
-        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-      </svg>
-    );
-  } else if (lowerName.includes('backup') || lowerName.includes('recovery') || lowerName.includes('continuity')) {
-    return (
-      <svg {...iconProps}>
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        <polyline points="9 12 11 14 15 10"/>
-      </svg>
-    );
-  } else if (lowerName.includes('datacenter') || lowerName.includes('dc')) {
-    return (
-      <svg {...iconProps}>
-        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
-        <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
-        <line x1="6" y1="6" x2="6.01" y2="6"/>
-        <line x1="6" y1="18" x2="6.01" y2="18"/>
-      </svg>
-    );
-  } else if (lowerName.includes('network') || lowerName.includes('digital')) {
-    return (
-      <svg {...iconProps}>
-        <rect x="16" y="16" width="6" height="6" rx="1"/>
-        <rect x="2" y="16" width="6" height="6" rx="1"/>
-        <rect x="9" y="2" width="6" height="6" rx="1"/>
-        <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/>
-        <path d="M12 12V8"/>
-      </svg>
-    );
-  } else {
-    return (
-      <svg {...iconProps}>
-        <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-        <polyline points="2 17 12 22 22 17"/>
-        <polyline points="2 12 12 17 22 12"/>
-      </svg>
-    );
+/* ─────────────────────────────────────────────────────────────
+   Solution configuration for Home Page Catalog
+ ────────────────────────────────────────────────────────────── */
+const HOME_SOLUTIONS = [
+  {
+    id: 'cloud-hybrid',
+    code: 'SOL-01',
+    name: 'Cloud & Hybrid IT Solutions',
+    shortTag: 'CLOUD & HYBRID IT',
+    desc: 'Scalable hybrid IT setups bridging on-premises assets with secure multi-cloud environments.',
+    scope: ['Multi-cloud migration planning', 'Virtual private cloud setups'],
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 'cybersecurity',
+    code: 'SOL-03',
+    name: 'Cybersecurity & Perimeter Hardening',
+    shortTag: 'ZERO-TRUST SECURITY',
+    desc: 'Next-generation firewall integration, zero-trust policies, and secure internal network segmentation.',
+    scope: ['Firewall access rules audit', 'VLAN micro-segmentation'],
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 'automation-devops',
+    code: 'SOL-04',
+    name: 'Automation & DevOps Modernization',
+    shortTag: 'INFRASTRUCTURE AS CODE',
+    desc: 'Declarative Infrastructure as Code (IaC) deployment pipelines and automated configuration scripts.',
+    scope: ['Ansible & Terraform playbooks', 'Kubernetes cluster setups'],
+    image: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 'smart-city',
+    code: 'SOL-08',
+    name: 'Smart City & ICCC Solutions',
+    shortTag: 'CIVIC INFRASTRUCTURE',
+    desc: 'Integrated Command & Control Center (ICCC) engineering and municipal IoT networks.',
+    scope: ['ICCC command facility design', 'Edge IoT gateway setups'],
+    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 'noc-services',
+    code: 'SOL-11',
+    name: 'NOC Services & Monitoring',
+    shortTag: '24/7 NOC OPERATIONS',
+    desc: 'Active remote network monitoring, alarm handling, incident triage, and real-time performance optimization.',
+    scope: ['24/7 Remote syslog checks', '15-Min alert dispatch'],
+    image: 'https://images.unsplash.com/photo-1548345680-f5475ea5df84?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 'backup-recovery',
+    code: 'SOL-13',
+    name: 'Data Backup & Disaster Recovery',
+    shortTag: 'DATA RESILIENCE',
+    desc: 'Scheduled data backup jobs, immutable snapshot vaults, and bare-metal recovery plans.',
+    scope: ['Backup vault scheduling', 'Ransomware protection encryption'],
+    image: 'https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&w=600&q=80'
   }
+];
+
+function CheckIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }}>
+      <circle cx="8" cy="8" r="8" fill="rgba(9, 97, 159, 0.1)" />
+      <path d="M5 8.2L7.2 10.4L11 6" stroke="var(--brand-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
 }
 
-// Compact Expandable Solution Card Component
-function CompactSolutionCard({ sol, isExpanded, onToggle }) {
+function SmallSolutionBox({ sol }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <motion.div
-      layout
+    <Link
+      to={`/solutions#${sol.id}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={onToggle}
       style={{
         backgroundColor: '#ffffff',
-        borderRadius: '14px',
-        border: isExpanded 
-          ? '1px solid var(--accent-cyan)' 
-          : isHovered 
-            ? '1px solid rgba(2, 132, 199, 0.4)' 
-            : '1px solid var(--border-light)',
-        boxShadow: isExpanded 
-          ? '0 12px 30px rgba(2, 132, 199, 0.12)' 
-          : isHovered 
-            ? '0 8px 24px rgba(15, 23, 42, 0.08)' 
-            : '0 2px 6px rgba(15, 23, 42, 0.03)',
-        padding: '1.4rem 1.6rem',
-        cursor: 'pointer',
-        transition: 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)',
-        position: 'relative',
+        borderRadius: '16px',
+        border: isHovered ? '1px solid rgba(9, 97, 159, 0.35)' : '1px solid rgba(9, 97, 159, 0.1)',
+        boxShadow: isHovered
+          ? '0 16px 36px rgba(9, 97, 159, 0.12), 0 4px 12px rgba(0, 0, 0, 0.03)'
+          : '0 4px 20px rgba(9, 97, 159, 0.03)',
+        padding: '1.4rem',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        textDecoration: 'none',
+        transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+        transform: isHovered ? 'translateY(-6px)' : 'translateY(0)',
         overflow: 'hidden'
       }}
-      whileHover={{ y: -3 }}
     >
-      {/* Accent top line indicator */}
-      <motion.div
-        animate={{
-          scaleX: isHovered || isExpanded ? 1 : 0,
-          opacity: isHovered || isExpanded ? 1 : 0
-        }}
-        transition={{ duration: 0.25 }}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '3px',
-          background: 'linear-gradient(90deg, var(--accent-cyan) 0%, var(--brand-blue) 100%)',
-          transformOrigin: 'left center'
-        }}
-      />
-
-      {/* Main Card Header Row */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1 }}>
-          {/* Icon Badge */}
-          <div
+      <div>
+        {/* Header Image */}
+        <div style={{
+          width: '100%',
+          height: '140px',
+          borderRadius: '12px',
+          overflow: 'hidden',
+          position: 'relative',
+          marginBottom: '1rem',
+          border: '1px solid rgba(9, 97, 159, 0.08)'
+        }}>
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to bottom, rgba(9, 97, 159, 0.04) 0%, rgba(9, 97, 159, 0.25) 100%)',
+            zIndex: 1,
+            pointerEvents: 'none'
+          }} />
+          <motion.img
+            src={sol.image}
+            alt={sol.name}
+            animate={isHovered ? { scale: 1.08 } : { scale: 1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
             style={{
-              width: '42px',
-              height: '42px',
-              minWidth: '42px',
-              borderRadius: '10px',
-              backgroundColor: isExpanded || isHovered ? 'var(--accent-cyan-light)' : 'rgba(2, 132, 199, 0.06)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.25s ease'
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover'
             }}
-          >
-            <SolutionIcon name={sol.name} />
-          </div>
-
-          <div>
-            <h4
-              style={{
-                fontSize: '1.08rem',
-                fontWeight: 700,
-                color: isExpanded || isHovered ? 'var(--accent-cyan)' : 'var(--text-light-primary)',
-                margin: 0,
-                lineHeight: 1.3,
-                transition: 'color 0.25s ease'
-              }}
-            >
-              {sol.name}
-            </h4>
-          </div>
+          />
+          {/* Code Badge */}
+          <span style={{
+            position: 'absolute',
+            top: '10px',
+            right: '10px',
+            backgroundColor: 'rgba(15, 23, 42, 0.8)',
+            color: '#ffffff',
+            fontSize: '0.65rem',
+            fontWeight: 800,
+            padding: '2px 7px',
+            borderRadius: '5px',
+            backdropFilter: 'blur(4px)',
+            zIndex: 2,
+            fontFamily: 'monospace'
+          }}>
+            {sol.code}
+          </span>
         </div>
 
-        {/* Action Toggle Arrow */}
-        <motion.div
-          animate={{
-            rotate: isExpanded ? 90 : 0,
-            x: isHovered && !isExpanded ? 4 : 0
-          }}
-          transition={{ duration: 0.2 }}
-          style={{
-            width: '34px',
-            height: '34px',
-            borderRadius: '50%',
-            backgroundColor: isExpanded ? 'var(--accent-cyan)' : isHovered ? 'var(--accent-cyan-light)' : 'var(--bg-surface-secondary)',
-            color: isExpanded ? '#ffffff' : 'var(--accent-cyan)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0
-          }}
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
-        </motion.div>
-      </div>
+        {/* Short Tag */}
+        <span style={{
+          fontSize: '0.65rem',
+          fontWeight: 800,
+          color: 'var(--brand-blue)',
+          letterSpacing: '1px',
+          fontFamily: 'monospace',
+          textTransform: 'uppercase',
+          display: 'block',
+          marginBottom: '0.3rem'
+        }}>
+          {sol.shortTag}
+        </span>
 
-      {/* Short 1-2 line description */}
-      <p
-        style={{
-          fontSize: '0.88rem',
-          color: 'var(--text-light-secondary)',
-          lineHeight: '1.55',
-          marginTop: '0.75rem',
-          marginBottom: 0,
+        {/* Title */}
+        <h4 style={{
+          fontSize: '1.12rem',
+          fontWeight: 800,
+          color: isHovered ? 'var(--brand-blue)' : '#0f172a',
+          margin: '0 0 0.4rem 0',
+          lineHeight: 1.25,
+          transition: 'color 0.25s ease'
+        }}>
+          {sol.name}
+        </h4>
+
+        {/* Summary */}
+        <p style={{
+          fontSize: '0.84rem',
+          color: '#475569',
+          lineHeight: 1.5,
+          margin: '0 0 0.85rem 0',
           display: '-webkit-box',
-          WebkitLineClamp: isExpanded ? 'none' : 2,
+          WebkitLineClamp: 2,
           WebkitBoxOrient: 'vertical',
           overflow: 'hidden'
-        }}
-      >
-        {sol.desc}
-      </p>
+        }}>
+          {sol.desc}
+        </p>
 
-      {/* Expanded Accordion Details */}
-      <AnimatePresence>
-        {isExpanded && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            style={{ overflow: 'hidden' }}
-          >
-            <div
-              style={{
-                marginTop: '1.25rem',
-                paddingTop: '1rem',
-                borderTop: '1px solid var(--border-light)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.85rem'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-                <span className="badge badge-primary">Enterprise Ready</span>
-                <span className="badge badge-secondary">Turnkey Deployment</span>
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '0.5rem' }}>
-                <Link
-                  to="/solutions"
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                    fontSize: '0.85rem',
-                    fontWeight: 700,
-                    color: 'var(--accent-cyan)',
-                    textDecoration: 'none'
-                  }}
-                >
-                  <span>Discover Full Solution</span>
-                  <span>→</span>
-                </Link>
-              </div>
+        {/* Scope Bullets */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', marginBottom: '0.85rem' }}>
+          {sol.scope.map((item, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.78rem', color: '#334155' }}>
+              <CheckIcon />
+              <span>{item}</span>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer Link */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        borderTop: '1px solid #f1f5f9',
+        paddingTop: '0.75rem',
+        marginTop: '0.4rem'
+      }}>
+        <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--brand-blue)' }}>
+          Explore Solution
+        </span>
+        <motion.span
+          animate={isHovered ? { x: 4 } : { x: 0 }}
+          transition={{ duration: 0.3 }}
+          style={{ color: 'var(--brand-blue)', display: 'inline-flex', alignItems: 'center' }}
+        >
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </motion.span>
+      </div>
+    </Link>
   );
 }
 
 export default function HomeSolutionsSection() {
-  const [expandedIndex, setExpandedIndex] = useState(null);
-
-  const toggleExpand = (idx) => {
-    setExpandedIndex((prev) => (prev === idx ? null : idx));
-  };
-
   return (
     <section 
       style={{ 
         padding: '5.5rem 0', 
-        backgroundColor: 'var(--bg-surface-secondary)',
+        backgroundColor: '#ffffff',
+        borderTop: '1px solid var(--border-light)',
         borderBottom: '1px solid var(--border-light)'
       }} 
       id="home-solutions-catalog"
@@ -291,7 +240,7 @@ export default function HomeSolutionsSection() {
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
             <span 
               style={{ 
-                color: 'var(--accent-cyan)', 
+                color: 'var(--brand-blue)', 
                 fontWeight: 800, 
                 fontSize: '0.8rem', 
                 textTransform: 'uppercase', 
@@ -300,54 +249,49 @@ export default function HomeSolutionsSection() {
                 marginBottom: '0.6rem'
               }}
             >
-              TAILORED ARCHITECTURES
+              ARCHITECTURAL SOLUTIONS
             </span>
             <h2 
               style={{ 
                 fontSize: 'clamp(2rem, 3.8vw, 2.75rem)', 
                 fontWeight: 900, 
-                color: 'var(--text-light-primary)', 
+                color: '#0f172a', 
                 letterSpacing: '-0.03em',
                 marginBottom: '1rem' 
               }}
             >
-              Turnkey Enterprise Solutions
+              Enterprise Solution Blueprints
             </h2>
             <p 
               style={{ 
-                color: 'var(--text-light-secondary)', 
+                color: '#475569', 
                 maxWidth: '640px', 
                 margin: '0 auto', 
                 lineHeight: '1.65',
                 fontSize: '1.02rem' 
               }}
             >
-              Engineered IT frameworks for Smart Cities, Cloud Migrations, AI Observability, and High-Density Datacenters.
+              Tailored architectural solution frameworks designed for multi-cloud deployment, zero-trust security, 24x7 NOC operational continuity, and enterprise resilience.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Compact Interactive Cards Grid */}
+        {/* Small Boxes Grid */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
-            gap: '1.25rem',
-            alignItems: 'start'
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '1.5rem',
+            alignItems: 'stretch'
           }}
           className="compact-solutions-grid"
         >
-          {configData.solutions.map((sol, idx) => (
-            <CompactSolutionCard
-              key={sol.name}
-              sol={sol}
-              isExpanded={expandedIndex === idx}
-              onToggle={() => toggleExpand(idx)}
-            />
+          {HOME_SOLUTIONS.map((sol) => (
+            <SmallSolutionBox key={sol.id} sol={sol} />
           ))}
         </div>
 
-        {/* Bottom Action CTA Bar */}
+        {/* Bottom Action */}
         <ScrollReveal variant="fade-up" delay={0.2}>
           <div 
             style={{ 
@@ -360,26 +304,17 @@ export default function HomeSolutionsSection() {
               flexWrap: 'wrap'
             }}
           >
-            <span style={{ fontSize: '0.92rem', color: 'var(--text-muted)', fontWeight: 500 }}>
-              Need custom architecture design or Datacenter infrastructure migration?
+            <span style={{ fontSize: '0.92rem', color: '#64748b', fontWeight: 500 }}>
+              Need a custom architecture assessment or solution blueprint?
             </span>
-            <Link to="/solutions" className="btn btn-primary" style={{ fontSize: '0.88rem', padding: '0.65rem 1.4rem' }}>
-              <span>Explore All Solutions</span>
+            <Link to="/solutions" className="btn btn-outline" style={{ fontSize: '0.88rem', padding: '0.65rem 1.4rem' }}>
+              <span>View All 13 Solutions</span>
               <span>→</span>
             </Link>
           </div>
         </ScrollReveal>
 
       </div>
-
-      <style>{`
-        @media (max-width: 640px) {
-          .compact-solutions-grid {
-            grid-template-columns: 1fr !important;
-            gap: 1rem !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }
