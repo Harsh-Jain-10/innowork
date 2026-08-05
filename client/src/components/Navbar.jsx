@@ -89,7 +89,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Real Full-Width Fixed Header Navbar */}
+      {/* Dark Theme Header matching Brights.io header exact layout */}
       <header
         style={{
           position: 'fixed',
@@ -98,108 +98,139 @@ export default function Navbar() {
           right: 0,
           width: '100%',
           height: '80px',
-          backgroundColor: '#ffffff',
-          borderBottom: '1px solid #E6E9EE',
-          zIndex: 1000,
-          boxShadow: '0 2px 10px rgba(15, 23, 42, 0.04)'
+          backgroundColor: '#000000',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+          zIndex: 1000
         }}
         id="main-header-wrapper"
       >
         <div
           style={{
-            maxWidth: '1280px',
+            maxWidth: '1360px',
             margin: '0 auto',
             height: '100%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '0 2rem',
+            padding: '0 2.5rem',
             position: 'relative'
           }}
         >
           {/* ================= 1. BRAND LOGO ================= */}
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
-              <img src={logo} alt="INNOWORQ Logo" style={{ height: '36px', width: 'auto', display: 'block' }} />
+              <img 
+                src={logo} 
+                alt="INNOWORQ Logo" 
+                style={{ 
+                  height: '34px', 
+                  width: 'auto', 
+                  display: 'block',
+                  filter: 'brightness(0) invert(1)' 
+                }} 
+              />
             </Link>
           </div>
 
-          {/* ================= 2. CENTERED NAV LINKS ================= */}
-          <nav
+          {/* ================= 2. CENTERED DARK PILL CONTAINER ================= */}
+          <div
             style={{
               display: 'flex',
               alignItems: 'center',
+              backgroundColor: '#18191c',
+              border: '1px solid #28292e',
+              borderRadius: '9999px',
+              padding: '4px 6px 4px 24px',
               gap: '1.75rem'
             }}
             className="desktop-fullwidth-links"
           >
-            {NAV_ITEMS.map((item) => {
-              const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
-              const isHovered = activeDropdown === item.id;
+            <nav
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1.75rem'
+              }}
+            >
+              {NAV_ITEMS.map((item) => {
+                const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
+                const isHovered = activeDropdown === item.id;
 
-              return (
-                <div
-                  key={item.id}
-                  style={{ position: 'relative' }}
-                  onMouseEnter={() => item.hasDropdown ? setActiveDropdown(item.id) : null}
-                  onMouseLeave={() => item.hasDropdown ? setActiveDropdown(null) : null}
-                >
-                  <button
-                    type="button"
-                    onClick={() => navigate(item.path)}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      padding: '8px 4px',
-                      fontSize: '0.92rem',
-                      fontWeight: isActive ? 700 : 600,
-                      color: isActive || isHovered ? '#2563EB' : '#0F172A',
-                      cursor: 'pointer',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '5px',
-                      transition: 'color 0.2s ease',
-                      position: 'relative'
-                    }}
+                return (
+                  <div
+                    key={item.id}
+                    style={{ position: 'relative' }}
+                    onMouseEnter={() => item.hasDropdown ? setActiveDropdown(item.id) : null}
+                    onMouseLeave={() => item.hasDropdown ? setActiveDropdown(null) : null}
                   >
-                    <span>{item.label}</span>
-                    {item.hasDropdown && (
-                      <motion.svg
-                        width="10"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        animate={{ rotate: isHovered ? 180 : 0 }}
-                        transition={{ duration: 0.2 }}
-                        style={{ display: 'inline-block', flexShrink: 0 }}
-                      >
-                        <path d="M1 1.5L5 4.5L9 1.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                      </motion.svg>
-                    )}
+                    <button
+                      type="button"
+                      onClick={() => navigate(item.path)}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        padding: '6px 4px',
+                        fontSize: '0.92rem',
+                        fontWeight: isActive ? 700 : 500,
+                        color: isActive || isHovered ? '#ffffff' : '#a1a1aa',
+                        cursor: 'pointer',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '5px',
+                        transition: 'color 0.2s ease'
+                      }}
+                    >
+                      <span>{item.label}</span>
+                      {item.hasDropdown && (
+                        <motion.svg
+                          width="10"
+                          height="6"
+                          viewBox="0 0 10 6"
+                          fill="none"
+                          animate={{ rotate: isHovered ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          style={{ display: 'inline-block', flexShrink: 0 }}
+                        >
+                          <path d="M1 1.5L5 4.5L9 1.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                        </motion.svg>
+                      )}
+                    </button>
+                  </div>
+                );
+              })}
+            </nav>
 
-                    {/* Active Underline Dot */}
-                    {isActive && (
-                      <motion.span
-                        layoutId="navActiveUnderDot"
-                        style={{
-                          position: 'absolute',
-                          bottom: '-4px',
-                          left: '50%',
-                          transform: 'translateX(-50%)',
-                          width: '5px',
-                          height: '5px',
-                          borderRadius: '50%',
-                          backgroundColor: '#2563EB'
-                        }}
-                      />
-                    )}
-                  </button>
-                </div>
-              );
-            })}
-          </nav>
+            {/* Bright Neon Lime Green Button: Request a quote */}
+            <button
+              type="button"
+              onClick={handleRequestQuote}
+              style={{
+                backgroundColor: '#c6f952',
+                color: '#000000',
+                fontWeight: 700,
+                fontSize: '0.9rem',
+                padding: '9px 22px',
+                borderRadius: '9999px',
+                border: 'none',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                boxShadow: '0 2px 10px rgba(198, 249, 82, 0.25)',
+                whiteSpace: 'nowrap'
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.backgroundColor = '#d4ff63';
+                e.currentTarget.style.transform = 'scale(1.03)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.backgroundColor = '#c6f952';
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+            >
+              Request a quote
+            </button>
+          </div>
 
-          {/* Mega Dropdown Popup Menu */}
+          {/* Mega Dropdown Popup Menu (Dark Theme) */}
           <AnimatePresence>
             {activeDropdown && NAV_DROPDOWNS[activeDropdown] && (
               <motion.div
@@ -211,23 +242,23 @@ export default function Navbar() {
                 onMouseLeave={() => setActiveDropdown(null)}
                 style={{
                   position: 'absolute',
-                  top: '80px',
+                  top: '75px',
                   left: '50%',
                   transform: 'translateX(-50%)',
                   width: 'min(640px, 92vw)',
-                  backgroundColor: '#ffffff',
+                  backgroundColor: '#141518',
                   borderRadius: '16px',
                   padding: '1.5rem',
-                  boxShadow: '0 20px 40px rgba(15, 23, 42, 0.12), 0 0 0 1px #E6E9EE',
+                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px #28292e',
                   zIndex: 1001,
-                  color: '#0f172a'
+                  color: '#ffffff'
                 }}
               >
-                <div style={{ marginBottom: '1rem', paddingBottom: '0.75rem', borderBottom: '1px solid #f1f5f9' }}>
-                  <h4 style={{ fontSize: '1.02rem', fontWeight: 800, color: '#2563EB', margin: 0 }}>
+                <div style={{ marginBottom: '1rem', paddingBottom: '0.75rem', borderBottom: '1px solid #28292e' }}>
+                  <h4 style={{ fontSize: '1.02rem', fontWeight: 800, color: '#1a68ff', margin: 0 }}>
                     {NAV_DROPDOWNS[activeDropdown].title}
                   </h4>
-                  <p style={{ fontSize: '0.8rem', color: '#64748b', margin: '2px 0 0 0' }}>
+                  <p style={{ fontSize: '0.8rem', color: '#94a3b8', margin: '2px 0 0 0' }}>
                     {NAV_DROPDOWNS[activeDropdown].subtitle}
                   </p>
                 </div>
@@ -242,39 +273,39 @@ export default function Navbar() {
                         padding: '0.65rem 0.85rem',
                         borderRadius: '10px',
                         textDecoration: 'none',
-                        color: '#0f172a',
-                        backgroundColor: '#ffffff',
-                        border: '1px solid #f1f5f9',
+                        color: '#ffffff',
+                        backgroundColor: '#1a1c21',
+                        border: '1px solid #28292e',
                         transition: 'all 0.2s ease',
                         display: 'block'
                       }}
                       onMouseOver={(e) => {
-                        e.currentTarget.style.backgroundColor = '#EFF6FF';
-                        e.currentTarget.style.borderColor = 'rgba(37, 99, 235, 0.2)';
+                        e.currentTarget.style.backgroundColor = '#242730';
+                        e.currentTarget.style.borderColor = '#1a68ff';
                       }}
                       onMouseOut={(e) => {
-                        e.currentTarget.style.backgroundColor = '#ffffff';
-                        e.currentTarget.style.borderColor = '#f1f5f9';
+                        e.currentTarget.style.backgroundColor = '#1a1c21';
+                        e.currentTarget.style.borderColor = '#28292e';
                       }}
                     >
-                      <span style={{ fontSize: '0.86rem', fontWeight: 700, color: '#0F172A', display: 'block' }}>
+                      <span style={{ fontSize: '0.86rem', fontWeight: 700, color: '#ffffff', display: 'block' }}>
                         {subItem.name}
                       </span>
-                      <span style={{ fontSize: '0.76rem', color: '#64748b', display: 'block', marginTop: '2px' }}>
+                      <span style={{ fontSize: '0.76rem', color: '#94a3b8', display: 'block', marginTop: '2px' }}>
                         {subItem.desc}
                       </span>
                     </Link>
                   ))}
                 </div>
 
-                <div style={{ marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid #f1f5f9', textAlign: 'right' }}>
+                <div style={{ marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid #28292e', textAlign: 'right' }}>
                   <Link
                     to={NAV_DROPDOWNS[activeDropdown].ctaLink}
                     onClick={() => setActiveDropdown(null)}
                     style={{
                       fontSize: '0.82rem',
                       fontWeight: 700,
-                      color: '#2563EB',
+                      color: '#1a68ff',
                       textDecoration: 'none',
                       display: 'inline-flex',
                       alignItems: 'center',
@@ -288,19 +319,50 @@ export default function Navbar() {
             )}
           </AnimatePresence>
 
-          {/* ================= 3. RIGHT ACTIONS (BELL ICON) ================= */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }} className="outer-right-actions">
-            {/* Notification Bell Button */}
+          {/* ================= 3. RIGHT UTILITIES (CONTRAST / BELL ICON) ================= */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }} className="outer-right-actions">
+            {/* Contrast / Accessibility Eye Icon Button */}
+            <button
+              type="button"
+              style={{
+                width: '42px',
+                height: '42px',
+                borderRadius: '50%',
+                backgroundColor: '#18191c',
+                border: '1px solid #28292e',
+                color: '#ffffff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.borderColor = '#ffffff';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.borderColor = '#28292e';
+              }}
+              title="High Contrast View Mode"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+                <line x1="1" y1="1" x2="23" y2="23" style={{ opacity: 0.4 }} />
+              </svg>
+            </button>
+
+            {/* Regional Announcements Notification Bell */}
             <button
               type="button"
               onClick={() => setIsAnnouncementOpen(true)}
               style={{
-                width: '40px',
-                height: '40px',
+                width: '42px',
+                height: '42px',
                 borderRadius: '50%',
-                backgroundColor: '#F8FAFC',
-                border: '1px solid #E6E9EE',
-                color: '#0F172A',
+                backgroundColor: '#18191c',
+                border: '1px solid #28292e',
+                color: '#ffffff',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -309,16 +371,14 @@ export default function Navbar() {
                 transition: 'all 0.2s ease'
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.transform = 'scale(1.05)';
-                e.currentTarget.style.borderColor = '#2563EB';
+                e.currentTarget.style.borderColor = '#1a68ff';
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.borderColor = '#E6E9EE';
+                e.currentTarget.style.borderColor = '#28292e';
               }}
-              title="Regional Announcements & Regional Updates"
+              title="Regional Announcements & Updates"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
                 <path d="M13.73 21a2 2 0 0 1-3.46 0" />
               </svg>
@@ -332,8 +392,8 @@ export default function Navbar() {
                     width: '8px',
                     height: '8px',
                     borderRadius: '50%',
-                    backgroundColor: '#2563EB',
-                    border: '2px solid #ffffff'
+                    backgroundColor: '#1a68ff',
+                    border: '2px solid #18191c'
                   }}
                 />
               )}
@@ -349,9 +409,9 @@ export default function Navbar() {
                 width: '40px',
                 height: '40px',
                 borderRadius: '50%',
-                backgroundColor: '#F8FAFC',
-                color: '#0F172A',
-                border: '1px solid #E6E9EE',
+                backgroundColor: '#18191c',
+                color: '#ffffff',
+                border: '1px solid #28292e',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -390,11 +450,11 @@ export default function Navbar() {
               top: '80px',
               left: 0,
               right: 0,
-              backgroundColor: '#ffffff',
-              borderBottom: '1px solid #E6E9EE',
+              backgroundColor: '#141518',
+              borderBottom: '1px solid #28292e',
               zIndex: 999,
               padding: '1.5rem',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
+              boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -406,13 +466,33 @@ export default function Navbar() {
                   style={{
                     fontSize: '1rem',
                     fontWeight: 700,
-                    color: '#0F172A',
+                    color: '#ffffff',
                     textDecoration: 'none'
                   }}
                 >
                   {item.label}
                 </Link>
               ))}
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  handleRequestQuote();
+                }}
+                style={{
+                  backgroundColor: '#c6f952',
+                  color: '#000000',
+                  fontWeight: 700,
+                  fontSize: '0.95rem',
+                  padding: '12px',
+                  borderRadius: '9999px',
+                  border: 'none',
+                  marginTop: '0.5rem',
+                  cursor: 'pointer'
+                }}
+              >
+                Request a quote
+              </button>
             </div>
           </motion.div>
         )}
@@ -427,3 +507,4 @@ export default function Navbar() {
     </>
   );
 }
+
