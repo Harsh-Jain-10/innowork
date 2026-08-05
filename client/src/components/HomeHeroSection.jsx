@@ -50,7 +50,7 @@ function HeroAbstractGraphics({ activeServiceId }) {
       style={{
         position: 'relative',
         width: '100%',
-        height: '280px',
+        height: '440px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -72,7 +72,7 @@ function HeroAbstractGraphics({ activeServiceId }) {
             <svg
               viewBox="0 0 600 450"
               fill="none"
-              style={{ width: '100%', height: '100%', maxWidth: '580px', overflow: 'visible' }}
+              style={{ width: '100%', height: '100%', maxWidth: '640px', overflow: 'visible' }}
             >
               <defs>
                 <radialGradient id="torusGrad1" cx="30%" cy="30%" r="70%">
@@ -139,7 +139,7 @@ function HeroAbstractGraphics({ activeServiceId }) {
             <svg
               viewBox="0 0 600 450"
               fill="none"
-              style={{ width: '100%', height: '100%', maxWidth: '580px', overflow: 'visible' }}
+              style={{ width: '100%', height: '100%', maxWidth: '640px', overflow: 'visible' }}
             >
               <defs>
                 <linearGradient id="blueCheckGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -194,7 +194,7 @@ function HeroAbstractGraphics({ activeServiceId }) {
             <svg
               viewBox="0 0 600 450"
               fill="none"
-              style={{ width: '100%', height: '100%', maxWidth: '580px', overflow: 'visible' }}
+              style={{ width: '100%', height: '100%', maxWidth: '640px', overflow: 'visible' }}
             >
               <defs>
                 <linearGradient id="gearGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -280,7 +280,7 @@ function HeroAbstractGraphics({ activeServiceId }) {
             <svg
               viewBox="0 0 600 450"
               fill="none"
-              style={{ width: '100%', height: '100%', maxWidth: '580px', overflow: 'visible' }}
+              style={{ width: '100%', height: '100%', maxWidth: '640px', overflow: 'visible' }}
             >
               <defs>
                 <linearGradient id="shieldGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -334,9 +334,9 @@ export default function HomeHeroSection() {
         backgroundColor: '#050505',
         color: '#ffffff',
         overflow: 'hidden',
-        paddingTop: '85px',
-        paddingBottom: '35px',
-        minHeight: 'auto',
+        paddingTop: '120px',
+        paddingBottom: '60px',
+        minHeight: '94vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between'
@@ -353,28 +353,11 @@ export default function HomeHeroSection() {
             gridTemplateColumns: '1.2fr 0.8fr',
             gap: '2.5rem',
             alignItems: 'center',
-            marginBottom: '1.2rem'
+            marginBottom: '3rem'
           }}
         >
-          {/* Left Side: Headline & Eyebrow */}
+          {/* Left Side: Headline */}
           <div>
-            {/* Eyebrow / Tag Header */}
-            <div
-              style={{
-                fontSize: '0.85rem',
-                fontWeight: 700,
-                color: '#1a68ff',
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
-                marginBottom: '1.1rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px'
-              }}
-            >
-              CUSTOM IT &amp; INFRASTRUCTURE SERVICES
-            </div>
-
             {/* Main H1 Headline with Dynamic End Phrase Switching */}
             <h1
               style={{
