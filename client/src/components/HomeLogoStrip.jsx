@@ -71,6 +71,19 @@ const logoMapping = {
   SAP: sapLogo
 };
 
+const logoScaleOverrides = {
+  Oracle: { height: '36px', maxWidth: '135px' },
+  Nutanix: { height: '35px', maxWidth: '135px' },
+  VMware: { height: '35px', maxWidth: '135px' },
+  NetApp: { height: '33px', maxWidth: '130px' },
+  PaloAlto: { height: '33px', maxWidth: '130px' },
+  Fortinet: { height: '32px', maxWidth: '130px' },
+  Veeam: { height: '33px', maxWidth: '130px' },
+  Veritas: { height: '33px', maxWidth: '130px' },
+  SonicWall: { height: '33px', maxWidth: '130px' },
+  Citrix: { height: '33px', maxWidth: '130px' }
+};
+
 export default function HomeLogoStrip() {
   const oemList = configData.oemPartners || Object.keys(logoMapping);
 
@@ -108,6 +121,7 @@ export default function HomeLogoStrip() {
                   src={logoMapping[oem]} 
                   alt={`${oem} OEM Partner Logo`} 
                   className="logo-img" 
+                  style={logoScaleOverrides[oem] || {}}
                   loading="lazy"
                 />
               </div>
@@ -122,6 +136,7 @@ export default function HomeLogoStrip() {
                   src={logoMapping[oem]} 
                   alt={`${oem} OEM Partner Logo`} 
                   className="logo-img" 
+                  style={logoScaleOverrides[oem] || {}}
                   loading="lazy"
                 />
               </div>

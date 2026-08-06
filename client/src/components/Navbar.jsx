@@ -108,12 +108,33 @@ export default function Navbar() {
         >
           {/* ================= 1. BRAND LOGO ================= */}
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
+            <Link 
+              to="/" 
+              style={{ 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                backgroundColor: '#ffffff',
+                padding: '6px 16px',
+                borderRadius: '9999px',
+                boxShadow: '0 2px 10px rgba(255, 255, 255, 0.15)',
+                textDecoration: 'none',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = 'scale(1.03)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 255, 255, 0.25)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.boxShadow = '0 2px 10px rgba(255, 255, 255, 0.15)';
+              }}
+            >
               <img 
                 src={logo} 
                 alt="INNOWORQ Logo" 
                 style={{ 
-                  height: '34px', 
+                  height: '26px', 
                   width: 'auto', 
                   display: 'block'
                 }} 
