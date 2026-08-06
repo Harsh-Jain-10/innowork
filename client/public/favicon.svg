@@ -1,3 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <image href="/favicon.png" x="0" y="0" width="64" height="64" preserveAspectRatio="xMidYMid meet" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0088ff" />
+      <stop offset="100%" stop-color="#0055d4" />
+    </linearGradient>
+  </defs>
+
+  <!-- Circular White Badge -->
+  <circle cx="256" cy="256" r="240" fill="#ffffff" />
+
+  <!-- Stylized "I" Vector Mark -->
+  <g>
+    <!-- Top Blue Accent -->
+    <path d="M 212 92 H 300 V 124 L 212 192 Z" fill="url(#blueGrad)" />
+    
+    <!-- Bottom Black Stem with Straight Flat Bottom (No Curves) & Slant Top -->
+    <path d="M 212 216 L 300 148 V 419 H 212 Z" fill="#18191c" />
+  </g>
 </svg>

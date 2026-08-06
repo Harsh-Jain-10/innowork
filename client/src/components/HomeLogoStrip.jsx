@@ -70,6 +70,7 @@ const logoMapping = {
 };
 
 const logoScaleOverrides = {
+  HPE: { height: '38px', maxWidth: '140px' },
   Dell: { height: '36px', maxWidth: '135px' },
   Oracle: { height: '36px', maxWidth: '135px' },
   Nutanix: { height: '38px', maxWidth: '138px' },
