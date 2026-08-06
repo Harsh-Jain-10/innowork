@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="12" fill="#0f172a" />
+  <rect width="64" height="64" rx="12" fill="#ffffff" />
   <!-- Top Blue Accent -->
   <polygon points="24,9 40,9 40,18 24,24" fill="#0073e6" />
-  <!-- Bottom White Stem -->
-  <polygon points="24,27 40,21 40,55 24,55" fill="#ffffff" />
+  <!-- Bottom Black Stem -->
+  <polygon points="24,27 40,21 40,55 24,55" fill="#000000" />
 </svg>
