@@ -163,8 +163,20 @@ export default function Footer() {
                   SALES TOLL-FREE
                 </span>
                 <a 
-                  href={`tel:${configData.contact.phone}`} 
-                  style={{ color: 'var(--brand-blue)', fontWeight: 700, fontSize: '1.05rem', textDecoration: 'none' }}
+                  href={`tel:${configData.contact.phone.replace(/\s+/g, '')}`} 
+                  onClick={(e) => {
+                    if (window.innerWidth >= 768) {
+                      e.preventDefault();
+                    }
+                  }}
+                  style={{ 
+                    color: 'var(--brand-blue)', 
+                    fontWeight: 700, 
+                    fontSize: '1.05rem', 
+                    textDecoration: 'none',
+                    cursor: window.innerWidth >= 768 ? 'default' : 'pointer'
+                  }}
+                  title="Sales Toll-Free (Clickable on Mobile)"
                 >
                   {configData.contact.phone}
                 </a>
