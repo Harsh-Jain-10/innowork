@@ -115,8 +115,7 @@ export default function Navbar() {
                 style={{ 
                   height: '34px', 
                   width: 'auto', 
-                  display: 'block',
-                  filter: 'brightness(0) invert(1)' 
+                  display: 'block'
                 }} 
               />
             </Link>
