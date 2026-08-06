@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '../components/ScrollReveal';
 import { blogArticles } from '../data/blogData';
@@ -307,8 +308,8 @@ export default function Blogs() {
       </div>
 
       {/* 5. DETAILED ARTICLE READER MODAL */}
-      <AnimatePresence>
-        {selectedArticle && (
+      {selectedArticle && createPortal(
+        <AnimatePresence>
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -427,8 +428,9 @@ export default function Blogs() {
               </div>
             </motion.div>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>,
+        document.body
+      )}
 
       <style>{`
         /* 1. FEATURED EDITORIAL CARD */

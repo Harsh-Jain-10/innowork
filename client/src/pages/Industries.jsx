@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import ScrollReveal, { StaggerContainer } from '../components/ScrollReveal';
@@ -325,7 +326,7 @@ function SectorDetailDrawer({ sector, onClose }) {
 
   if (!sector) return null;
 
-  return (
+  return createPortal(
     <div style={{ position: 'fixed', inset: 0, zIndex: 99999, touchAction: 'none' }}>
       {/* Dimmed Backdrop */}
       <motion.div
@@ -570,7 +571,8 @@ function SectorDetailDrawer({ sector, onClose }) {
 
 
       </motion.div>
-    </div>
+    </div>,
+    document.body
   );
 }
 

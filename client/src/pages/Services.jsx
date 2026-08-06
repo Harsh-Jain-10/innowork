@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useLocation, Link } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import ScrollReveal, { StaggerContainer } from '../components/ScrollReveal';
@@ -376,7 +377,7 @@ function ServiceDetailDrawer({ service, onClose }) {
 
   if (!service) return null;
 
-  return (
+  return createPortal(
     <AnimatePresence>
       <div
         style={{
@@ -397,8 +398,8 @@ function ServiceDetailDrawer({ service, onClose }) {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundColor: 'rgba(15, 23, 42, 0.6)',
-            backdropFilter: 'blur(4px)'
+            backgroundColor: 'rgba(15, 23, 42, 0.65)',
+            backdropFilter: 'blur(6px)'
           }}
         />
 
@@ -410,10 +411,10 @@ function ServiceDetailDrawer({ service, onClose }) {
           transition={{ type: 'spring', damping: 28, stiffness: 280 }}
           style={{
             position: 'relative',
-            width: 'min(580px, 92vw)',
+            width: 'min(600px, 94vw)',
             height: '100%',
             backgroundColor: '#ffffff',
-            boxShadow: '-10px 0 40px rgba(0, 0, 0, 0.2)',
+            boxShadow: '-10px 0 50px rgba(0, 0, 0, 0.25)',
             zIndex: 10,
             overflowY: 'auto',
             display: 'flex',
@@ -421,9 +422,9 @@ function ServiceDetailDrawer({ service, onClose }) {
           }}
         >
           {/* Drawer Header Image */}
-          <div style={{ position: 'relative', height: '220px', width: '100%' }}>
+          <div style={{ position: 'relative', height: '240px', width: '100%', backgroundColor: '#0f172a' }}>
             <img src={service.image} alt={service.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15,23,42,0.85) 0%, transparent 60%)' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #0f172a 0%, rgba(15,23,42,0.8) 50%, rgba(15,23,42,0.15) 100%)' }} />
             
             {/* Close Button */}
             <button
@@ -434,54 +435,85 @@ function ServiceDetailDrawer({ service, onClose }) {
                 position: 'absolute',
                 top: '16px',
                 right: '16px',
-                width: '36px',
-                height: '36px',
+                width: '38px',
+                height: '38px',
                 borderRadius: '50%',
-                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
                 border: 'none',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                color: '#0f172a'
+                boxShadow: '0 4px 14px rgba(0,0,0,0.2)',
+                color: '#0f172a',
+                fontSize: '1.1rem',
+                fontWeight: 700
               }}
             >
               ✕
             </button>
 
-            <div style={{ position: 'absolute', bottom: '20px', left: '24px', right: '24px', color: '#ffffff' }}>
-              <span style={{ fontSize: '0.72rem', fontWeight: 800, letterSpacing: '1.5px', color: '#38bdf8', fontFamily: 'monospace' }}>
+            <div style={{ position: 'absolute', bottom: '22px', left: '26px', right: '26px', color: '#ffffff' }}>
+              <span style={{
+                display: 'inline-block',
+                fontSize: '0.74rem',
+                fontWeight: 800,
+                letterSpacing: '1.8px',
+                color: '#38bdf8',
+                backgroundColor: 'rgba(15, 23, 42, 0.85)',
+                border: '1px solid rgba(56, 189, 248, 0.4)',
+                padding: '4px 12px',
+                borderRadius: '6px',
+                marginBottom: '8px',
+                backdropFilter: 'blur(4px)',
+                fontFamily: 'monospace'
+              }}>
                 {service.shortTag}
               </span>
-              <h2 style={{ fontSize: '1.5rem', fontWeight: 900, margin: '4px 0 0 0', color: '#ffffff' }}>
+              <h2 style={{ fontSize: '1.65rem', fontWeight: 800, margin: 0, color: '#ffffff', lineHeight: 1.2, letterSpacing: '-0.02em' }}>
                 {service.name}
               </h2>
             </div>
           </div>
 
           {/* Drawer Body Content */}
-          <div style={{ padding: '2rem 1.5rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          <div style={{ padding: '2.25rem 1.75rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '1.65rem' }}>
             {/* Description */}
             <div>
-              <h4 style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--brand-blue)', marginBottom: '0.5rem' }}>
+              <h4 style={{
+                fontSize: '0.82rem',
+                fontWeight: 800,
+                textTransform: 'uppercase',
+                letterSpacing: '1.2px',
+                color: '#0f172a',
+                marginBottom: '0.65rem',
+                borderLeft: '3px solid var(--brand-blue)',
+                paddingLeft: '10px'
+              }}>
                 Executive Overview
               </h4>
-              <p style={{ fontSize: '0.95rem', color: '#334155', lineHeight: 1.6, margin: 0 }}>
+              <p style={{ fontSize: '0.98rem', color: '#1e293b', lineHeight: 1.68, margin: 0, fontWeight: 400 }}>
                 {service.desc}
               </p>
             </div>
 
             {/* Scope of Work */}
-            <div style={{ backgroundColor: '#f8fafc', padding: '1.25rem', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-              <h4 style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: '#0f172a', marginBottom: '0.75rem' }}>
+            <div style={{ backgroundColor: '#f8fafc', padding: '1.35rem', borderRadius: '12px', border: '1px solid #cbd5e1', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
+              <h4 style={{
+                fontSize: '0.82rem',
+                fontWeight: 800,
+                textTransform: 'uppercase',
+                letterSpacing: '1.2px',
+                color: '#0f172a',
+                marginBottom: '0.85rem'
+              }}>
                 Key Operational Scope
               </h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                 {service.scope.map((item, index) => (
-                  <div key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.88rem', color: '#334155' }}>
+                  <div key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>
                     <CheckIcon />
-                    <span>{item}</span>
+                    <span style={{ lineHeight: 1.5 }}>{item}</span>
                   </div>
                 ))}
               </div>
@@ -489,12 +521,29 @@ function ServiceDetailDrawer({ service, onClose }) {
 
             {/* Standards & Certifications */}
             <div>
-              <h4 style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--brand-blue)', marginBottom: '0.6rem' }}>
+              <h4 style={{
+                fontSize: '0.82rem',
+                fontWeight: 800,
+                textTransform: 'uppercase',
+                letterSpacing: '1.2px',
+                color: '#0f172a',
+                marginBottom: '0.65rem',
+                borderLeft: '3px solid var(--brand-blue)',
+                paddingLeft: '10px'
+              }}>
                 Standards &amp; SLA Compliance
               </h4>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.55rem' }}>
                 {service.standards.map((st, i) => (
-                  <span key={i} style={{ backgroundColor: 'rgba(9, 97, 159, 0.08)', border: '1px solid rgba(9, 97, 159, 0.2)', padding: '4px 10px', borderRadius: '20px', fontSize: '0.78rem', fontWeight: 700, color: 'var(--brand-blue)' }}>
+                  <span key={i} style={{
+                    backgroundColor: '#eff6ff',
+                    border: '1px solid #93c5fd',
+                    padding: '6px 14px',
+                    borderRadius: '20px',
+                    fontSize: '0.82rem',
+                    fontWeight: 700,
+                    color: '#1d4ed8'
+                  }}>
                     {st}
                   </span>
                 ))}
@@ -503,47 +552,41 @@ function ServiceDetailDrawer({ service, onClose }) {
 
             {/* Technologies */}
             <div>
-              <h4 style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: '#0f172a', marginBottom: '0.6rem' }}>
+              <h4 style={{
+                fontSize: '0.82rem',
+                fontWeight: 800,
+                textTransform: 'uppercase',
+                letterSpacing: '1.2px',
+                color: '#0f172a',
+                marginBottom: '0.65rem',
+                borderLeft: '3px solid var(--brand-blue)',
+                paddingLeft: '10px'
+              }}>
                 Supported Hardware &amp; Platforms
               </h4>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.55rem' }}>
                 {service.technologies.map((tech, i) => (
-                  <span key={i} style={{ backgroundColor: '#f1f5f9', border: '1px solid #cbd5e1', padding: '4px 10px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 600, color: '#334155' }}>
+                  <span key={i} style={{
+                    backgroundColor: '#ffffff',
+                    border: '1px solid #cbd5e1',
+                    padding: '6px 14px',
+                    borderRadius: '8px',
+                    fontSize: '0.82rem',
+                    fontWeight: 700,
+                    color: '#0f172a',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
+                  }}>
                     {tech}
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* Action Bar */}
-            <div style={{ marginTop: 'auto', paddingTop: '1.5rem', borderTop: '1px solid #e2e8f0', display: 'flex', gap: '1rem' }}>
-              <Link
-                to="/about#welcome-to-innoworq"
-                onClick={onClose}
-                style={{
-                  flex: 1,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  backgroundColor: 'var(--brand-blue)',
-                  color: '#ffffff',
-                  fontWeight: 700,
-                  fontSize: '0.9rem',
-                  padding: '12px 20px',
-                  borderRadius: '10px',
-                  textDecoration: 'none',
-                  boxShadow: '0 4px 14px rgba(9, 97, 159, 0.25)'
-                }}
-              >
-                <span>Request SLA Proposal</span>
-                <span>→</span>
-              </Link>
-            </div>
           </div>
         </motion.div>
       </div>
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
 
