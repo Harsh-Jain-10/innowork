@@ -14,8 +14,8 @@ import paloaltoLogo from '../assets/logos/paloalto.svg';
 import ibmLogo from '../assets/logos/ibm.svg';
 import oracleLogo from '../assets/logos/oracle.svg';
 import netappLogo from '../assets/logos/netapp.svg';
-import nutanixLogo from '../assets/logos/nutanix.svg';
-import vmwareLogo from '../assets/logos/vmware.svg';
+import nutanixLogo from '../assets/logos/nutanix.jpeg';
+import vmwareLogo from '../assets/logos/vmware.jpeg';
 import microsoftLogo from '../assets/logos/microsoft.svg';
 import redhatLogo from '../assets/logos/redhat.svg';
 import suseLogo from '../assets/logos/suse.svg';
@@ -29,7 +29,6 @@ import checkpointLogo from '../assets/logos/checkpoint.svg';
 import kasperskyLogo from '../assets/logos/kaspersky.svg';
 import trendmicroLogo from '../assets/logos/trendmicro.svg';
 import sophosLogo from '../assets/logos/sophos.svg';
-import bitdefenderLogo from '../assets/logos/bitdefender.svg';
 import symantecLogo from '../assets/logos/symantec.svg';
 import sonicwallLogo from '../assets/logos/sonicwall.svg';
 import citrixLogo from '../assets/logos/citrix.svg';
@@ -63,7 +62,6 @@ const logoMapping = {
   Kaspersky: kasperskyLogo,
   TrendMicro: trendmicroLogo,
   Sophos: sophosLogo,
-  Bitdefender: bitdefenderLogo,
   Symantec: symantecLogo,
   SonicWall: sonicwallLogo,
   Citrix: citrixLogo,
@@ -74,15 +72,15 @@ const logoMapping = {
 const logoScaleOverrides = {
   Dell: { height: '36px', maxWidth: '135px' },
   Oracle: { height: '36px', maxWidth: '135px' },
-  Nutanix: { height: '35px', maxWidth: '135px' },
-  VMware: { height: '35px', maxWidth: '135px' },
-  NetApp: { height: '33px', maxWidth: '130px' },
-  PaloAlto: { height: '33px', maxWidth: '130px' },
-  Fortinet: { height: '32px', maxWidth: '130px' },
-  Veeam: { height: '33px', maxWidth: '130px' },
-  Veritas: { height: '33px', maxWidth: '130px' },
-  SonicWall: { height: '33px', maxWidth: '130px' },
-  Citrix: { height: '33px', maxWidth: '130px' }
+  Nutanix: { height: '44px', maxWidth: '142px' },
+  VMware: { height: '44px', maxWidth: '142px' },
+  NetApp: { height: '34px', maxWidth: '130px' },
+  PaloAlto: { height: '34px', maxWidth: '130px' },
+  Fortinet: { height: '33px', maxWidth: '130px' },
+  Veeam: { height: '36px', maxWidth: '135px' },
+  Veritas: { height: '34px', maxWidth: '130px' },
+  SonicWall: { height: '34px', maxWidth: '130px' },
+  Citrix: { height: '34px', maxWidth: '130px' }
 };
 
 export default function HomeLogoStrip() {
