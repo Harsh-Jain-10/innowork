@@ -452,7 +452,7 @@ function SolutionDetailDrawer({ solution, onClose }) {
         style={{
           position: 'fixed',
           inset: 0,
-          zIndex: 9999,
+          zIndex: 99999,
           display: 'flex',
           justifyContent: 'flex-end',
           touchAction: 'none'
@@ -623,8 +623,13 @@ export default function Solutions() {
 
   useEffect(() => {
     if (location.hash) {
-      const targetId = location.hash.replace('#', '');
-      const matched = SOLUTIONS_DATA.find((s) => s.id === targetId);
+      const targetId = location.hash.replace('#', '').toLowerCase();
+      const matched = SOLUTIONS_DATA.find((s) => 
+        s.id.toLowerCase() === targetId || 
+        s.category.toLowerCase() === targetId ||
+        s.id.toLowerCase().includes(targetId) ||
+        targetId.includes(s.category.toLowerCase())
+      );
       if (matched) {
         setSelectedSolution(matched);
       }

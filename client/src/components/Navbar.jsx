@@ -76,16 +76,6 @@ export default function Navbar() {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
-  const handleRequestQuote = () => {
-    if (location.pathname === '/about') {
-      const el = document.getElementById('welcome-to-innoworq');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-        return;
-      }
-    }
-    navigate('/about#welcome-to-innoworq');
-  };
 
   return (
     <>
@@ -200,34 +190,7 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* Bright Neon Lime Green Button: Request a quote */}
-            <button
-              type="button"
-              onClick={handleRequestQuote}
-              style={{
-                backgroundColor: '#c6f952',
-                color: '#000000',
-                fontWeight: 700,
-                fontSize: '0.9rem',
-                padding: '9px 22px',
-                borderRadius: '9999px',
-                border: 'none',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                boxShadow: '0 2px 10px rgba(198, 249, 82, 0.25)',
-                whiteSpace: 'nowrap'
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.backgroundColor = '#d4ff63';
-                e.currentTarget.style.transform = 'scale(1.03)';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.backgroundColor = '#c6f952';
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-            >
-              Request a quote
-            </button>
+            {/* Desktop Navigation Links */}
           </div>
 
           {/* Mega Dropdown Popup Menu (Dark Theme) */}
@@ -319,38 +282,8 @@ export default function Navbar() {
             )}
           </AnimatePresence>
 
-          {/* ================= 3. RIGHT UTILITIES (CONTRAST / BELL ICON) ================= */}
+          {/* ================= 3. RIGHT UTILITIES (BELL ICON) ================= */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }} className="outer-right-actions">
-            {/* Contrast / Accessibility Eye Icon Button */}
-            <button
-              type="button"
-              style={{
-                width: '42px',
-                height: '42px',
-                borderRadius: '50%',
-                backgroundColor: '#18191c',
-                border: '1px solid #28292e',
-                color: '#ffffff',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.borderColor = '#ffffff';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.borderColor = '#28292e';
-              }}
-              title="High Contrast View Mode"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                <circle cx="12" cy="12" r="3" />
-                <line x1="1" y1="1" x2="23" y2="23" style={{ opacity: 0.4 }} />
-              </svg>
-            </button>
 
             {/* Regional Announcements Notification Bell */}
             <button
@@ -473,26 +406,7 @@ export default function Navbar() {
                   {item.label}
                 </Link>
               ))}
-              <button
-                type="button"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  handleRequestQuote();
-                }}
-                style={{
-                  backgroundColor: '#c6f952',
-                  color: '#000000',
-                  fontWeight: 700,
-                  fontSize: '0.95rem',
-                  padding: '12px',
-                  borderRadius: '9999px',
-                  border: 'none',
-                  marginTop: '0.5rem',
-                  cursor: 'pointer'
-                }}
-              >
-                Request a quote
-              </button>
+
             </div>
           </motion.div>
         )}

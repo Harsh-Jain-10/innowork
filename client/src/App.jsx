@@ -20,7 +20,8 @@ function ScrollToTop() {
       const timer = setTimeout(() => {
         const targetElement = document.querySelector(hash);
         if (targetElement) {
-          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const y = targetElement.getBoundingClientRect().top + window.pageYOffset - 90;
+          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
         }
       }, 100);
       return () => clearTimeout(timer);

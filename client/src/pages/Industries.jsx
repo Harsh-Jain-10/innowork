@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import ScrollReveal, { StaggerContainer } from '../components/ScrollReveal';
 
 /* ─────────────────────────────────────────────────────────────
@@ -326,7 +326,7 @@ function SectorDetailDrawer({ sector, onClose }) {
   if (!sector) return null;
 
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 1000, touchAction: 'none' }}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 99999, touchAction: 'none' }}>
       {/* Dimmed Backdrop */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -582,16 +582,19 @@ export default function Industries() {
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeSector, setActiveSector] = useState(null);
 
-  // Auto-open sector if specified in URL query params
+  const location = useLocation();
+
+  // Auto-open sector if specified in URL query params or hash
   useEffect(() => {
-    const sectorId = searchParams.get('sector');
+    const hashSector = location.hash ? location.hash.replace('#', '') : null;
+    const sectorId = searchParams.get('sector') || hashSector;
     if (sectorId) {
       const sector = INDUSTRIES.find(s => s.id === sectorId);
       if (sector) {
         setActiveSector(sector);
       }
     }
-  }, [searchParams]);
+  }, [searchParams, location.hash]);
 
   const visibleIndustries = activeFilter === 'all'
     ? INDUSTRIES

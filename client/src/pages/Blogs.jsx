@@ -321,7 +321,7 @@ export default function Blogs() {
               style={{ 
                 position: 'fixed', top: 0, left: 0, 
                 width: `${scrollProgress}%`, height: '4px', 
-                backgroundColor: '#2563eb', zIndex: 101,
+                backgroundColor: '#2563eb', zIndex: 100000,
                 transition: 'width 0.1s ease-out'
               }} 
             />
@@ -543,7 +543,7 @@ export default function Blogs() {
           display: flex;
           align-items: center;
           justify-content: center;
-          z-index: 100;
+          z-index: 99999;
           padding: 2rem;
           overscroll-behavior: contain;
         }
