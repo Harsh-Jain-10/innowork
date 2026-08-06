@@ -339,7 +339,8 @@ export default function About() {
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'space-between',
-                        width: '260px',
+                        flex: '1 1 240px',
+                        maxWidth: '280px',
                         boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                       }}
                       whileHover={{ y: -4, borderColor: 'var(--brand-blue)' }}
@@ -369,13 +370,14 @@ export default function About() {
                       backgroundColor: '#ffffff',
                       border: '1px solid #E6E9EE',
                       borderRadius: '12px',
-                      padding: '1.5rem',
+                      padding: '1.75rem 1.25rem',
                       textAlign: 'center',
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      width: '180px',
+                      flex: '1 1 200px',
+                      maxWidth: '240px',
                       boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                     }}
                     whileHover={{ y: -4, borderColor: 'var(--brand-blue)' }}

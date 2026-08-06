@@ -417,6 +417,7 @@ export default function HomeHeroSection() {
               <Link
                 key={card.id}
                 to={card.link}
+                className="hero-feature-card"
                 onClick={() => setActiveServiceId(card.id)}
                 onMouseEnter={() => setActiveServiceId(card.id)}
                 style={{

@@ -820,3 +820,56 @@ img, svg {
     padding: 0.75rem 1rem;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   MOBILE & TABLET RESPONSIVENESS OVERRIDES
+────────────────────────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .desktop-fullwidth-links {
+    display: none !important;
+  }
+
+  .mobile-hamburger-wrap {
+    display: flex !important;
+  }
+
+  #main-header-wrapper > div {
+    padding: 0 1.25rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hero Feature Cards Grid Fix */
+  .hero-feature-strip-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+
+  .hero-feature-card {
+    padding: 1.25rem 1rem !important;
+    min-height: 180px !important;
+  }
+
+  /* Leadership Grid */
+  .leadership-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Certifications Container */
+  .certifications-container {
+    gap: 1rem !important;
+  }
+
+  .certifications-container > div {
+    width: 100% !important;
+    max-width: 340px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-feature-strip-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+}

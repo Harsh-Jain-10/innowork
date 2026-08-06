@@ -335,9 +335,9 @@ export default function Navbar() {
                 width: '40px',
                 height: '40px',
                 borderRadius: '50%',
-                backgroundColor: '#18191c',
-                color: '#ffffff',
-                border: '1px solid #28292e',
+                backgroundColor: '#f8fafc',
+                color: '#0f172a',
+                border: '1px solid #e2e8f0',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -376,11 +376,11 @@ export default function Navbar() {
               top: '80px',
               left: 0,
               right: 0,
-              backgroundColor: '#141518',
-              borderBottom: '1px solid #28292e',
+              backgroundColor: '#ffffff',
+              borderBottom: '1px solid #e2e8f0',
               zIndex: 999,
               padding: '1.5rem',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
+              boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -392,7 +392,7 @@ export default function Navbar() {
                   style={{
                     fontSize: '1rem',
                     fontWeight: 700,
-                    color: '#ffffff',
+                    color: '#0f172a',
                     textDecoration: 'none'
                   }}
                 >

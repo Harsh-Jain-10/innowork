@@ -46,46 +46,104 @@ export default function Footer() {
                 IT infrastructure, cloud, and cybersecurity services delivering scalable, secure environments under solid SLA models.
               </p>
               
-              {/* Badges: India | UAE | [in] */}
-              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                <span style={{ border: '1px solid #cbd5e1', borderRadius: '5px', padding: '0.25rem 0.75rem', fontSize: '0.85rem', color: '#64748b', backgroundColor: '#ffffff', fontWeight: 500 }}>
+              {/* Region Badges */}
+              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', marginBottom: '1.25rem' }}>
+                <span style={{ border: '1px solid #cbd5e1', borderRadius: '6px', padding: '0.3rem 0.85rem', fontSize: '0.85rem', color: '#475569', backgroundColor: '#f8fafc', fontWeight: 600 }}>
                   India
                 </span>
-                <span style={{ border: '1px solid #cbd5e1', borderRadius: '5px', padding: '0.25rem 0.75rem', fontSize: '0.85rem', color: '#64748b', backgroundColor: '#ffffff', fontWeight: 500 }}>
+                <span style={{ border: '1px solid #cbd5e1', borderRadius: '6px', padding: '0.3rem 0.85rem', fontSize: '0.85rem', color: '#475569', backgroundColor: '#f8fafc', fontWeight: 600 }}>
                   UAE
                 </span>
-                <a 
-                  href={configData.contact.linkedin} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  style={{ 
-                    backgroundColor: '#0077b5', 
-                    color: '#ffffff', 
-                    borderRadius: '6px', 
-                    padding: '0.35rem 0.85rem', 
-                    fontSize: '0.82rem', 
-                    fontWeight: 700, 
-                    display: 'inline-flex', 
-                    alignItems: 'center', 
-                    gap: '6px', 
-                    textDecoration: 'none',
-                    boxShadow: '0 2px 8px rgba(0, 119, 181, 0.3)',
-                    transition: 'transform 0.2s ease, boxShadow 0.2s ease'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 4px 14px rgba(0, 119, 181, 0.45)';
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 119, 181, 0.3)';
-                  }}
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                  </svg>
-                  <span>LinkedIn</span>
-                </a>
+              </div>
+
+              {/* SOCIAL Section */}
+              <div>
+                <span style={{ display: 'block', fontSize: '0.75rem', color: '#94a3b8', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.6px', marginBottom: '0.6rem' }}>
+                  SOCIAL
+                </span>
+                <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+                  {/* LinkedIn Circular Icon */}
+                  <a 
+                    href={configData.contact.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    aria-label="LinkedIn"
+                    style={{ 
+                      width: '38px',
+                      height: '38px',
+                      borderRadius: '50%',
+                      backgroundColor: '#ffffff',
+                      border: '1px solid #cbd5e1',
+                      color: '#0077b5',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      textDecoration: 'none',
+                      boxShadow: '0 2px 6px rgba(0, 0, 0, 0.04)',
+                      transition: 'all 0.2s ease'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.borderColor = '#0077b5';
+                      e.currentTarget.style.backgroundColor = '#0077b5';
+                      e.currentTarget.style.color = '#ffffff';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 119, 181, 0.3)';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.borderColor = '#cbd5e1';
+                      e.currentTarget.style.backgroundColor = '#ffffff';
+                      e.currentTarget.style.color = '#0077b5';
+                      e.currentTarget.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.04)';
+                    }}
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                    </svg>
+                  </a>
+
+                  {/* Instagram Circular Icon */}
+                  <a 
+                    href={configData.contact.instagram || "https://www.instagram.com/innoworq"} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    aria-label="Instagram"
+                    style={{ 
+                      width: '38px',
+                      height: '38px',
+                      borderRadius: '50%',
+                      backgroundColor: '#ffffff',
+                      border: '1px solid #cbd5e1',
+                      color: '#e1306c',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      textDecoration: 'none',
+                      boxShadow: '0 2px 6px rgba(0, 0, 0, 0.04)',
+                      transition: 'all 0.2s ease'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.borderColor = '#e1306c';
+                      e.currentTarget.style.backgroundColor = '#e1306c';
+                      e.currentTarget.style.color = '#ffffff';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(225, 48, 108, 0.3)';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.borderColor = '#cbd5e1';
+                      e.currentTarget.style.backgroundColor = '#ffffff';
+                      e.currentTarget.style.color = '#e1306c';
+                      e.currentTarget.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.04)';
+                    }}
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
 
