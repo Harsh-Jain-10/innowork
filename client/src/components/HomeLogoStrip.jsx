@@ -72,6 +72,7 @@ const logoMapping = {
 };
 
 const logoScaleOverrides = {
+  Dell: { height: '36px', maxWidth: '135px' },
   Oracle: { height: '36px', maxWidth: '135px' },
   Nutanix: { height: '35px', maxWidth: '135px' },
   VMware: { height: '35px', maxWidth: '135px' },
