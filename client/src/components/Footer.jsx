@@ -58,9 +58,33 @@ export default function Footer() {
                   href={configData.contact.linkedin} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  style={{ border: '1px solid #cbd5e1', borderRadius: '5px', padding: '0.25rem 0.6rem', fontSize: '0.85rem', color: '#334155', backgroundColor: '#ffffff', textDecoration: 'none', fontWeight: 700, display: 'inline-flex', alignItems: 'center' }}
+                  style={{ 
+                    backgroundColor: '#0077b5', 
+                    color: '#ffffff', 
+                    borderRadius: '6px', 
+                    padding: '0.35rem 0.85rem', 
+                    fontSize: '0.82rem', 
+                    fontWeight: 700, 
+                    display: 'inline-flex', 
+                    alignItems: 'center', 
+                    gap: '6px', 
+                    textDecoration: 'none',
+                    boxShadow: '0 2px 8px rgba(0, 119, 181, 0.3)',
+                    transition: 'transform 0.2s ease, boxShadow 0.2s ease'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 4px 14px rgba(0, 119, 181, 0.45)';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 119, 181, 0.3)';
+                  }}
                 >
-                  <u style={{ textDecoration: 'underline' }}>in</u>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                  </svg>
+                  <span>LinkedIn</span>
                 </a>
               </div>
             </div>

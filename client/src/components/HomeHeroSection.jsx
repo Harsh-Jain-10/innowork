@@ -331,8 +331,8 @@ export default function HomeHeroSection() {
     <section
       style={{
         position: 'relative',
-        backgroundColor: '#050505',
-        color: '#ffffff',
+        backgroundColor: '#ffffff',
+        color: '#0f172a',
         overflow: 'hidden',
         paddingTop: '120px',
         paddingBottom: '60px',
@@ -363,7 +363,7 @@ export default function HomeHeroSection() {
               style={{
                 fontSize: 'clamp(2.4rem, 4.6vw, 3.8rem)',
                 fontWeight: 700,
-                color: '#ffffff',
+                color: '#0f172a',
                 letterSpacing: '-0.02em',
                 lineHeight: 1.14,
                 margin: 0,
@@ -420,9 +420,9 @@ export default function HomeHeroSection() {
                 onClick={() => setActiveServiceId(card.id)}
                 onMouseEnter={() => setActiveServiceId(card.id)}
                 style={{
-                  backgroundColor: isActive ? '#1a68ff' : '#16171b',
+                  backgroundColor: isActive ? '#1a68ff' : '#ffffff',
                   borderRadius: '14px',
-                  border: isActive ? '1px solid #1a68ff' : '1px solid rgba(255, 255, 255, 0.05)',
+                  border: isActive ? '1px solid #1a68ff' : '1px solid #e2e8f0',
                   padding: '2.2rem 1.8rem',
                   display: 'flex',
                   flexDirection: 'column',
@@ -432,8 +432,8 @@ export default function HomeHeroSection() {
                   transition: 'all 300ms cubic-bezier(0.16, 1, 0.3, 1)',
                   cursor: 'pointer',
                   boxShadow: isActive
-                    ? '0 16px 36px rgba(26, 104, 255, 0.3)'
-                    : '0 4px 20px rgba(0, 0, 0, 0.4)',
+                    ? '0 16px 36px rgba(26, 104, 255, 0.28)'
+                    : '0 4px 20px rgba(0, 0, 0, 0.05)',
                   position: 'relative',
                   overflow: 'hidden'
                 }}
@@ -478,7 +478,7 @@ export default function HomeHeroSection() {
                     </p>
                   </motion.div>
                 ) : (
-                  /* ================= INACTIVE CARD CONTENT (DARK CHARCOAL WITH ARROW) ================= */
+                  /* ================= INACTIVE CARD CONTENT (CLEAN WHITE WITH BLUE ACCENTS) ================= */
                   <div
                     style={{
                       display: 'flex',
@@ -492,7 +492,7 @@ export default function HomeHeroSection() {
                       style={{
                         fontSize: '1.3rem',
                         fontWeight: 700,
-                        color: '#ffffff',
+                        color: '#0f172a',
                         lineHeight: 1.35,
                         margin: 0
                       }}
@@ -513,7 +513,7 @@ export default function HomeHeroSection() {
                         height="20"
                         viewBox="0 0 24 24"
                         fill="none"
-                        stroke="#64748b"
+                        stroke="#1a68ff"
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"

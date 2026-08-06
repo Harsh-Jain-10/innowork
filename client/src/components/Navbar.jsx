@@ -79,17 +79,15 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Dark Theme Header matching Brights.io header exact layout */}
       <header
         style={{
           position: 'fixed',
           top: 0,
           left: 0,
           right: 0,
-          width: '100%',
           height: '80px',
-          backgroundColor: '#000000',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+          backgroundColor: '#ffffff',
+          borderBottom: '1px solid #e2e8f0',
           zIndex: 1000
         }}
         id="main-header-wrapper"
@@ -108,33 +106,12 @@ export default function Navbar() {
         >
           {/* ================= 1. BRAND LOGO ================= */}
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Link 
-              to="/" 
-              style={{ 
-                display: 'inline-flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                backgroundColor: '#ffffff',
-                padding: '6px 16px',
-                borderRadius: '9999px',
-                boxShadow: '0 2px 10px rgba(255, 255, 255, 0.15)',
-                textDecoration: 'none',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.transform = 'scale(1.03)';
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 255, 255, 0.25)';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.boxShadow = '0 2px 10px rgba(255, 255, 255, 0.15)';
-              }}
-            >
+            <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
               <img 
                 src={logo} 
                 alt="INNOWORQ Logo" 
                 style={{ 
-                  height: '26px', 
+                  height: '34px', 
                   width: 'auto', 
                   display: 'block'
                 }} 
@@ -142,16 +119,17 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* ================= 2. CENTERED DARK PILL CONTAINER ================= */}
+          {/* ================= 2. CENTERED LIGHT PILL CONTAINER ================= */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              backgroundColor: '#18191c',
-              border: '1px solid #28292e',
+              backgroundColor: '#f8fafc',
+              border: '1px solid #e2e8f0',
               borderRadius: '9999px',
               padding: '4px 6px 4px 24px',
-              gap: '1.75rem'
+              gap: '1.75rem',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.03)'
             }}
             className="desktop-fullwidth-links"
           >
@@ -182,7 +160,7 @@ export default function Navbar() {
                         padding: '6px 4px',
                         fontSize: '0.92rem',
                         fontWeight: isActive ? 700 : 500,
-                        color: isActive || isHovered ? '#ffffff' : '#a1a1aa',
+                        color: isActive || isHovered ? '#1a68ff' : '#475569',
                         cursor: 'pointer',
                         display: 'inline-flex',
                         alignItems: 'center',
@@ -209,11 +187,9 @@ export default function Navbar() {
                 );
               })}
             </nav>
-
-            {/* Desktop Navigation Links */}
           </div>
 
-          {/* Mega Dropdown Popup Menu (Dark Theme) */}
+          {/* Mega Dropdown Popup Menu (Light Theme) */}
           <AnimatePresence>
             {activeDropdown && NAV_DROPDOWNS[activeDropdown] && (
               <motion.div
@@ -229,19 +205,19 @@ export default function Navbar() {
                   left: '50%',
                   transform: 'translateX(-50%)',
                   width: 'min(640px, 92vw)',
-                  backgroundColor: '#141518',
+                  backgroundColor: '#ffffff',
                   borderRadius: '16px',
                   padding: '1.5rem',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px #28292e',
+                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.12), 0 0 0 1px #e2e8f0',
                   zIndex: 1001,
-                  color: '#ffffff'
+                  color: '#0f172a'
                 }}
               >
-                <div style={{ marginBottom: '1rem', paddingBottom: '0.75rem', borderBottom: '1px solid #28292e' }}>
+                <div style={{ marginBottom: '1rem', paddingBottom: '0.75rem', borderBottom: '1px solid #e2e8f0' }}>
                   <h4 style={{ fontSize: '1.02rem', fontWeight: 800, color: '#1a68ff', margin: 0 }}>
                     {NAV_DROPDOWNS[activeDropdown].title}
                   </h4>
-                  <p style={{ fontSize: '0.8rem', color: '#94a3b8', margin: '2px 0 0 0' }}>
+                  <p style={{ fontSize: '0.8rem', color: '#64748b', margin: '2px 0 0 0' }}>
                     {NAV_DROPDOWNS[activeDropdown].subtitle}
                   </p>
                 </div>
@@ -256,32 +232,32 @@ export default function Navbar() {
                         padding: '0.65rem 0.85rem',
                         borderRadius: '10px',
                         textDecoration: 'none',
-                        color: '#ffffff',
-                        backgroundColor: '#1a1c21',
-                        border: '1px solid #28292e',
+                        color: '#0f172a',
+                        backgroundColor: '#f8fafc',
+                        border: '1px solid #e2e8f0',
                         transition: 'all 0.2s ease',
                         display: 'block'
                       }}
                       onMouseOver={(e) => {
-                        e.currentTarget.style.backgroundColor = '#242730';
-                        e.currentTarget.style.borderColor = '#1a68ff';
+                        e.currentTarget.style.backgroundColor = '#eff6ff';
+                        e.currentTarget.style.borderColor = '#93c5fd';
                       }}
                       onMouseOut={(e) => {
-                        e.currentTarget.style.backgroundColor = '#1a1c21';
-                        e.currentTarget.style.borderColor = '#28292e';
+                        e.currentTarget.style.backgroundColor = '#f8fafc';
+                        e.currentTarget.style.borderColor = '#e2e8f0';
                       }}
                     >
-                      <span style={{ fontSize: '0.86rem', fontWeight: 700, color: '#ffffff', display: 'block' }}>
+                      <span style={{ fontSize: '0.86rem', fontWeight: 700, color: '#0f172a', display: 'block' }}>
                         {subItem.name}
                       </span>
-                      <span style={{ fontSize: '0.76rem', color: '#94a3b8', display: 'block', marginTop: '2px' }}>
+                      <span style={{ fontSize: '0.76rem', color: '#64748b', display: 'block', marginTop: '2px' }}>
                         {subItem.desc}
                       </span>
                     </Link>
                   ))}
                 </div>
 
-                <div style={{ marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid #28292e', textAlign: 'right' }}>
+                <div style={{ marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid #e2e8f0', textAlign: 'right' }}>
                   <Link
                     to={NAV_DROPDOWNS[activeDropdown].ctaLink}
                     onClick={() => setActiveDropdown(null)}
@@ -313,9 +289,9 @@ export default function Navbar() {
                 width: '42px',
                 height: '42px',
                 borderRadius: '50%',
-                backgroundColor: '#18191c',
-                border: '1px solid #28292e',
-                color: '#ffffff',
+                backgroundColor: '#f8fafc',
+                border: '1px solid #e2e8f0',
+                color: '#0f172a',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -325,9 +301,11 @@ export default function Navbar() {
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.borderColor = '#1a68ff';
+                e.currentTarget.style.color = '#1a68ff';
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.borderColor = '#28292e';
+                e.currentTarget.style.borderColor = '#e2e8f0';
+                e.currentTarget.style.color = '#0f172a';
               }}
               title="Regional Announcements & Updates"
             >
@@ -346,7 +324,7 @@ export default function Navbar() {
                     height: '8px',
                     borderRadius: '50%',
                     backgroundColor: '#1a68ff',
-                    border: '2px solid #18191c'
+                    border: '2px solid #ffffff'
                   }}
                 />
               )}

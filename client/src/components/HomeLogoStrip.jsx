@@ -14,12 +14,12 @@ import paloaltoLogo from '../assets/logos/paloalto.svg';
 import ibmLogo from '../assets/logos/ibm.svg';
 import oracleLogo from '../assets/logos/oracle.svg';
 import netappLogo from '../assets/logos/netapp.svg';
-import nutanixLogo from '../assets/logos/nutanix.jpeg';
-import vmwareLogo from '../assets/logos/vmware.jpeg';
+import nutanixLogo from '../assets/logos/nutanix.png';
+import vmwareLogo from '../assets/logos/vmware.png';
 import microsoftLogo from '../assets/logos/microsoft.svg';
 import redhatLogo from '../assets/logos/redhat.svg';
 import suseLogo from '../assets/logos/suse.svg';
-import veeamLogo from '../assets/logos/veeam.svg';
+import veeamLogo from '../assets/logos/veeam.png';
 import veritasLogo from '../assets/logos/veritas.svg';
 import rubrikLogo from '../assets/logos/rubrik.svg';
 import commvaultLogo from '../assets/logos/commvault.svg';
@@ -72,8 +72,13 @@ const logoMapping = {
 const logoScaleOverrides = {
   Dell: { height: '36px', maxWidth: '135px' },
   Oracle: { height: '36px', maxWidth: '135px' },
-  Nutanix: { height: '44px', maxWidth: '142px' },
-  VMware: { height: '44px', maxWidth: '142px' },
+  Nutanix: { height: '38px', maxWidth: '138px' },
+  VMware: { height: '38px', maxWidth: '138px' },
+  Cisco: { height: '38px', maxWidth: '135px' },
+  IBM: { height: '36px', maxWidth: '135px' },
+  Aruba: { height: '36px', maxWidth: '135px' },
+  TrendMicro: { height: '36px', maxWidth: '135px' },
+  Checkpoint: { height: '36px', maxWidth: '135px' },
   NetApp: { height: '34px', maxWidth: '130px' },
   PaloAlto: { height: '34px', maxWidth: '130px' },
   Fortinet: { height: '33px', maxWidth: '130px' },
