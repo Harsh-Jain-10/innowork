@@ -62,14 +62,6 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Check announcement status
-  useEffect(() => {
-    const isViewed = sessionStorage.getItem('announcementsViewed') === 'true';
-    if (isViewed) {
-      setHasUnreadAnnouncements(false);
-    }
-  }, []);
-
   // Close dropdowns on route change
   useEffect(() => {
     setActiveDropdown(null);
@@ -284,7 +276,10 @@ export default function Navbar() {
             {/* Regional Announcements Notification Bell */}
             <button
               type="button"
-              onClick={() => setIsAnnouncementOpen(true)}
+              onClick={() => {
+                setIsAnnouncementOpen(true);
+                setHasUnreadAnnouncements(false);
+              }}
               style={{
                 width: '42px',
                 height: '42px',

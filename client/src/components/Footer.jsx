@@ -176,7 +176,6 @@ export default function Footer() {
                     textDecoration: 'none',
                     cursor: window.innerWidth >= 768 ? 'default' : 'pointer'
                   }}
-                  title="Sales Toll-Free (Clickable on Mobile)"
                 >
                   {configData.contact.phone}
                 </a>
