@@ -69,25 +69,8 @@ const logoMapping = {
   SAP: sapLogo
 };
 
-const logoScaleOverrides = {
-  HPE: { height: '38px', maxWidth: '140px' },
-  Dell: { height: '36px', maxWidth: '135px' },
-  Oracle: { height: '36px', maxWidth: '135px' },
-  Nutanix: { height: '38px', maxWidth: '138px' },
-  VMware: { height: '38px', maxWidth: '138px' },
-  Cisco: { height: '38px', maxWidth: '135px' },
-  IBM: { height: '36px', maxWidth: '135px' },
-  Aruba: { height: '36px', maxWidth: '135px' },
-  TrendMicro: { height: '36px', maxWidth: '135px' },
-  Checkpoint: { height: '36px', maxWidth: '135px' },
-  NetApp: { height: '34px', maxWidth: '130px' },
-  PaloAlto: { height: '34px', maxWidth: '130px' },
-  Fortinet: { height: '33px', maxWidth: '130px' },
-  Veeam: { height: '36px', maxWidth: '135px' },
-  Veritas: { height: '34px', maxWidth: '130px' },
-  SonicWall: { height: '34px', maxWidth: '130px' },
-  Citrix: { height: '34px', maxWidth: '130px' }
-};
+const logoScaleOverrides = {};
+
 
 export default function HomeLogoStrip() {
   const oemList = configData.oemPartners || Object.keys(logoMapping);
@@ -99,56 +82,55 @@ export default function HomeLogoStrip() {
         borderTop: '1px solid var(--border-color)',
         borderBottom: '1px solid var(--border-color)',
         padding: '3rem 0',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        position: 'relative'
       }}
       id="home-oem-logo-strip"
     >
-      <div className="container">
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <ScrollReveal variant="fade-up">
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <span className="badge badge-primary" style={{ textTransform: 'uppercase', marginBottom: '0.5rem' }}>
-              OEM COVERAGE & ALLIANCES
+          <div style={{ textAlign: 'center', marginBottom: '2rem', position: 'relative', zIndex: 2 }}>
+            <span className="badge badge-primary" style={{ textTransform: 'uppercase', marginBottom: '0.5rem', display: 'inline-block' }}>
+              OEM COVERAGE &amp; ALLIANCES
             </span>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', fontWeight: 600 }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', fontWeight: 600, margin: 0 }}>
               Supporting enterprise hardware &amp; software ecosystems from leading global technology vendors
             </p>
           </div>
         </ScrollReveal>
+      </div>
 
-        {/* Dual Marquee Rows with Equalized Logo Heights */}
-        <div className="logo-marquee-container" style={{ position: 'relative' }}>
+      {/* Dual Marquee Rows — full-width, outside container so it can scroll edge-to-edge */}
+      <div className="logo-marquee-container" style={{ position: 'relative', zIndex: 1, marginTop: '0.5rem' }}>
           
-          {/* Row 1: Moving Left */}
-          <div className="logo-marquee-track track-left">
-            {[...oemList.slice(0, 16), ...oemList.slice(0, 16)].map((oem, idx) => (
-              <div key={`r1-${oem}-${idx}`} className="logo-card">
-                <img 
-                  src={logoMapping[oem]} 
-                  alt={`${oem} OEM Partner Logo`} 
-                  className="logo-img" 
-                  style={logoScaleOverrides[oem] || {}}
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Row 2: Moving Right */}
-          <div className="logo-marquee-track track-right" style={{ marginTop: '1rem' }}>
-            {[...oemList.slice(16, 32), ...oemList.slice(16, 32)].map((oem, idx) => (
-              <div key={`r2-${oem}-${idx}`} className="logo-card">
-                <img 
-                  src={logoMapping[oem]} 
-                  alt={`${oem} OEM Partner Logo`} 
-                  className="logo-img" 
-                  style={logoScaleOverrides[oem] || {}}
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-
+        {/* Row 1: Moving Left */}
+        <div className="logo-marquee-track track-left">
+          {[...oemList.slice(0, 16), ...oemList.slice(0, 16)].map((oem, idx) => (
+            <div key={`r1-${oem}-${idx}`} className="logo-card">
+              <img 
+                src={logoMapping[oem]} 
+                alt={`${oem} OEM Partner Logo`} 
+                className="logo-img" 
+                loading="lazy"
+              />
+            </div>
+          ))}
         </div>
+
+        {/* Row 2: Moving Right */}
+        <div className="logo-marquee-track track-right" style={{ marginTop: '1rem' }}>
+          {[...oemList.slice(16, 32), ...oemList.slice(16, 32)].map((oem, idx) => (
+            <div key={`r2-${oem}-${idx}`} className="logo-card">
+              <img 
+                src={logoMapping[oem]} 
+                alt={`${oem} OEM Partner Logo`} 
+                className="logo-img" 
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+
       </div>
 
       <style>{`
@@ -200,6 +182,8 @@ export default function HomeLogoStrip() {
           border-radius: var(--radius-md);
           box-shadow: var(--shadow-xs);
           transition: var(--transition-smooth);
+          overflow: hidden;
+          box-sizing: border-box;
         }
 
         .logo-card:hover {
@@ -210,11 +194,14 @@ export default function HomeLogoStrip() {
         }
 
         .logo-img {
-          height: 28px;
-          max-width: 120px;
-          width: auto;
+          width: 100%;
+          height: 100%;
+          max-width: 110px;
+          max-height: 32px;
           object-fit: contain;
+          object-position: center;
           transition: transform 0.2s ease;
+          display: block;
         }
 
         .logo-card:hover .logo-img {
@@ -222,14 +209,35 @@ export default function HomeLogoStrip() {
         }
 
         @media (max-width: 768px) {
+          #home-oem-logo-strip {
+            padding: 2.5rem 0 !important;
+          }
+          .logo-marquee-container {
+            margin-top: 0.5rem;
+          }
           .logo-card {
-            width: 125px;
-            height: 54px;
-            padding: 0.5rem 0.75rem;
+            width: 112px;
+            height: 52px;
+            padding: 0.5rem 0.6rem;
           }
           .logo-img {
-            height: 22px;
-            max-width: 95px;
+            max-width: 80px;
+            max-height: 24px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .logo-card {
+            width: 100px;
+            height: 46px;
+            padding: 0.4rem 0.5rem;
+          }
+          .logo-img {
+            max-width: 70px;
+            max-height: 20px;
+          }
+          .logo-marquee-track {
+            gap: 0.6rem;
           }
         }
       `}</style>

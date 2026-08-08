@@ -36,25 +36,18 @@ export default function HomeFaqSection() {
       style={{ 
         padding: '6rem 0', 
         backgroundColor: '#ffffff',
-        borderTop: '1px solid var(--border-light)'
+        borderTop: '1px solid var(--border-light)',
+        overflow: 'hidden'
       }} 
       id="home-faq-section"
     >
       <div className="container">
         
         {/* FAQ Split Layout */}
-        <div 
-          style={{ 
-            display: 'grid', 
-            gridTemplateColumns: '0.85fr 1.15fr', 
-            gap: '4rem', 
-            alignItems: 'flex-start' 
-          }}
-          className="faq-split-layout"
-        >
+        <div className="faq-split-layout">
           {/* Left Column: Heading & Description (Sticky-Aligned) */}
           <ScrollReveal variant="fade-up">
-            <div style={{ position: 'sticky', top: '120px' }}>
+            <div className="faq-left-sticky">
               <span 
                 style={{ 
                   color: 'var(--brand-blue)', 
@@ -70,7 +63,7 @@ export default function HomeFaqSection() {
               </span>
               <h2 
                 style={{ 
-                  fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', 
+                  fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', 
                   fontWeight: 900, 
                   color: 'var(--text-light-primary)', 
                   letterSpacing: '-0.03em',
@@ -94,7 +87,7 @@ export default function HomeFaqSection() {
           </ScrollReveal>
 
           {/* Right Column: Accordion List */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', minWidth: 0 }}>
             {HOME_FAQS.map((faq, idx) => {
               const isOpen = openIndex === idx;
               return (
@@ -108,17 +101,20 @@ export default function HomeFaqSection() {
                       boxShadow: isOpen ? '0 8px 24px rgba(9, 97, 159, 0.08)' : 'none',
                       padding: '1.25rem 1.5rem',
                       cursor: 'pointer',
-                      transition: 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)'
+                      transition: 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)',
+                      overflow: 'hidden',
+                      wordBreak: 'break-word'
                     }}
                   >
                     {/* Header Row */}
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
-                      <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-light-primary)', margin: 0 }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem' }}>
+                      <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-light-primary)', margin: 0, lineHeight: 1.4, minWidth: 0, flex: 1 }}>
                         {faq.q}
                       </h3>
                       <span 
                         style={{ 
                           width: '28px', 
+                          minWidth: '28px',
                           height: '28px', 
                           borderRadius: '50%', 
                           backgroundColor: isOpen ? 'rgba(9, 97, 159, 0.1)' : '#ffffff', 
@@ -145,7 +141,8 @@ export default function HomeFaqSection() {
                           color: 'var(--text-light-secondary)', 
                           lineHeight: '1.6', 
                           fontSize: '0.92rem',
-                          marginBottom: 0
+                          marginBottom: 0,
+                          wordBreak: 'break-word'
                         }}
                       >
                         {faq.a}
@@ -160,6 +157,31 @@ export default function HomeFaqSection() {
         </div>
 
       </div>
+      <style>{`
+        .faq-split-layout {
+          display: grid;
+          grid-template-columns: 0.85fr 1.15fr;
+          gap: 4rem;
+          align-items: flex-start;
+        }
+        .faq-left-sticky {
+          position: sticky;
+          top: 120px;
+        }
+        @media (max-width: 768px) {
+          .faq-split-layout {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+          .faq-left-sticky {
+            position: static !important;
+          }
+          #home-faq-section {
+            padding: 3.5rem 0 !important;
+            overflow: hidden !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

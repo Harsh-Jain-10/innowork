@@ -47,10 +47,10 @@ const HERO_FEATURE_CARDS = [
 function HeroAbstractGraphics({ activeServiceId }) {
   return (
     <div
+      className="hero-abstract-graphics-container"
       style={{
         position: 'relative',
         width: '100%',
-        height: '440px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -320,65 +320,50 @@ function HeroAbstractGraphics({ activeServiceId }) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   MAIN HERO SECTION COMPONENT (Brights.io exact dynamic switching)
+   MAIN HERO SECTION COMPONENT (Full width layout with auto-expanding interactive cards)
  ────────────────────────────────────────────────────────────── */
 export default function HomeHeroSection() {
   const [activeServiceId, setActiveServiceId] = useState('cloud');
+  const [hoveredCardId, setHoveredCardId] = useState(null);
 
   const currentCard = HERO_FEATURE_CARDS.find((c) => c.id === activeServiceId) || HERO_FEATURE_CARDS[0];
 
   return (
-    <section
-      style={{
-        position: 'relative',
-        backgroundColor: '#ffffff',
-        color: '#0f172a',
-        overflow: 'hidden',
-        paddingTop: '120px',
-        paddingBottom: '60px',
-        minHeight: '94vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-      }}
-      id="hero-enterprise-section"
-    >
-      <div className="container" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
-        
+    <section id="hero-enterprise-section">
+      {/* Full-width container wrapper */}
+      <div className="hero-container-inner">
         {/* Upper Split Layout: Headline (Left) + Dynamic 3D Abstract Artwork (Right) */}
-        <div
-          className="hero-split-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1.2fr 0.8fr',
-            gap: '2.5rem',
-            alignItems: 'center',
-            marginBottom: '3rem'
-          }}
-        >
+        <div className="hero-split-grid">
           {/* Left Side: Headline */}
           <div>
-            {/* Main H1 Headline with Dynamic End Phrase Switching */}
             <h1
+              className="hero-main-title"
               style={{
-                fontSize: 'clamp(2.4rem, 4.6vw, 3.8rem)',
-                fontWeight: 700,
+                fontSize: 'clamp(2.4rem, 4.4vw, 3.8rem)',
+                fontWeight: 800,
                 color: '#0f172a',
-                letterSpacing: '-0.02em',
+                letterSpacing: '-0.025em',
                 lineHeight: 1.14,
                 margin: 0,
-                maxWidth: '780px'
+                maxWidth: '820px',
+                fontFamily: 'var(--font-heading)'
               }}
             >
               Your tech partner for creating sustainable business value through{' '}
               <AnimatePresence mode="wait">
                 <motion.span
                   key={currentCard.id}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
+                  exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.25 }}
-                  style={{ color: '#1a68ff', display: 'inline-block' }}
+                  style={{
+                    color: '#1a68ff',
+                    display: 'inline-block',
+                    backgroundImage: 'linear-gradient(135deg, #1a68ff 0%, #0052cc 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent'
+                  }}
                 >
                   {currentCard.highlightText}
                 </motion.span>
@@ -387,56 +372,102 @@ export default function HomeHeroSection() {
           </div>
 
           {/* Right Side: Dynamic Floating 3D Graphic Canvas */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '100%'
-            }}
-            className="hero-graphics-wrapper"
-          >
+          <div className="hero-graphics-wrapper">
             <HeroAbstractGraphics activeServiceId={activeServiceId} />
           </div>
         </div>
 
-        {/* Bottom 4-Card Service Feature Strip (Brights.io Exact Interactive Cards) */}
+        {/* Bottom 4-Card Service Feature Strip (Dynamic Auto-Expanding Flex Strip) */}
+        <style>{`
+          .hero-feature-strip-grid {
+            display: flex;
+            gap: 1.25rem;
+            align-items: stretch;
+            width: 100%;
+          }
+          @media (max-width: 768px) {
+            .hero-feature-strip-grid {
+              display: grid !important;
+              grid-template-columns: 1fr 1fr !important;
+              gap: 0.75rem !important;
+            }
+            .hero-feature-card {
+              min-height: 180px !important;
+              padding: 1.1rem 1rem !important;
+              border-radius: 12px !important;
+              flex: unset !important;
+              transform: none !important;
+            }
+            .hero-feature-card.active {
+              grid-column: span 2;
+              min-height: 160px !important;
+            }
+          }
+          @media (max-width: 480px) {
+            .hero-feature-strip-grid {
+              grid-template-columns: 1fr 1fr !important;
+              gap: 0.6rem !important;
+            }
+            .hero-feature-card {
+              min-height: 160px !important;
+              padding: 1rem 0.85rem !important;
+            }
+            .hero-feature-card.active {
+              grid-column: span 2;
+              min-height: 140px !important;
+            }
+          }
+        `}</style>
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '1.1rem',
-            alignItems: 'stretch'
-          }}
           className="hero-feature-strip-grid"
         >
           {HERO_FEATURE_CARDS.map((card) => {
             const isActive = activeServiceId === card.id;
+            const isHovered = hoveredCardId === card.id;
 
             return (
               <Link
                 key={card.id}
                 to={card.link}
-                className="hero-feature-card"
+                className={`hero-feature-card ${isActive ? 'active' : ''}`}
                 onClick={() => setActiveServiceId(card.id)}
-                onMouseEnter={() => setActiveServiceId(card.id)}
+                onMouseEnter={() => {
+                  setActiveServiceId(card.id);
+                  setHoveredCardId(card.id);
+                }}
+                onMouseLeave={() => setHoveredCardId(null)}
                 style={{
-                  backgroundColor: isActive ? '#1a68ff' : '#ffffff',
-                  borderRadius: '14px',
-                  border: isActive ? '1px solid #1a68ff' : '1px solid #e2e8f0',
-                  padding: '2.2rem 1.8rem',
+                  flex: isActive ? '1.5 1 0%' : isHovered ? '1.15 1 0%' : '1 1 0%',
+                  backgroundColor: isActive
+                    ? '#1a68ff'
+                    : '#ffffff',
+                  backgroundImage: isActive
+                    ? 'linear-gradient(135deg, #1a68ff 0%, #0d55e6 100%)'
+                    : 'none',
+                  borderRadius: '16px',
+                  border: isActive
+                    ? '1px solid #1a68ff'
+                    : isHovered
+                    ? '1px solid #1a68ff'
+                    : '1px solid #e2e8f0',
+                  padding: '2rem 1.6rem',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  minHeight: '270px',
+                  minHeight: '260px',
                   textDecoration: 'none',
-                  transition: 'all 300ms cubic-bezier(0.16, 1, 0.3, 1)',
+                  transition: 'flex 400ms cubic-bezier(0.16, 1, 0.3, 1), transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms ease, border-color 300ms ease, background 300ms ease',
                   cursor: 'pointer',
+                  transform: isHovered && !isActive ? 'translateY(-4px) scale(1.01)' : isActive ? 'translateY(-2px)' : 'translateY(0)',
                   boxShadow: isActive
-                    ? '0 16px 36px rgba(26, 104, 255, 0.28)'
-                    : '0 4px 20px rgba(0, 0, 0, 0.05)',
+                    ? '0 20px 40px -10px rgba(26, 104, 255, 0.38), 0 0 0 1px rgba(26, 104, 255, 0.4)'
+                    : isHovered
+                    ? '0 12px 28px rgba(26, 104, 255, 0.12), 0 4px 12px rgba(15, 23, 42, 0.06)'
+                    : '0 4px 20px rgba(15, 23, 42, 0.04)',
                   position: 'relative',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  boxSizing: 'border-box',
+                  wordBreak: 'break-word'
                 }}
               >
                 {isActive ? (
@@ -444,7 +475,7 @@ export default function HomeHeroSection() {
                   <motion.div
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.25 }}
                     style={{
                       display: 'flex',
                       flexDirection: 'column',
@@ -452,34 +483,111 @@ export default function HomeHeroSection() {
                       justifyContent: 'space-between'
                     }}
                   >
-                    {/* Top Tag */}
-                    <span
-                      style={{
-                        fontSize: '0.85rem',
-                        fontWeight: 600,
-                        color: 'rgba(255, 255, 255, 0.85)',
-                        marginBottom: '1.5rem',
-                        display: 'block'
-                      }}
-                    >
-                      {card.categoryTag}
-                    </span>
+                    {/* Header Row: Category Tag + Active Badge */}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.2rem' }}>
+                      <span
+                        style={{
+                          fontSize: '0.78rem',
+                          fontWeight: 700,
+                          color: '#ffffff',
+                          backgroundColor: 'rgba(255, 255, 255, 0.22)',
+                          padding: '4px 12px',
+                          borderRadius: '20px',
+                          letterSpacing: '0.04em',
+                          textTransform: 'uppercase',
+                          display: 'inline-block'
+                        }}
+                      >
+                        {card.categoryTag}
+                      </span>
+                      <span
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          fontSize: '0.72rem',
+                          fontWeight: 700,
+                          color: '#ffffff',
+                          backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                          padding: '3px 10px',
+                          borderRadius: '12px',
+                          letterSpacing: '0.05em'
+                        }}
+                      >
+                        <span
+                          style={{
+                            width: '6px',
+                            height: '6px',
+                            borderRadius: '50%',
+                            backgroundColor: '#ffffff',
+                            boxShadow: '0 0 8px #ffffff'
+                          }}
+                        />
+                        ACTIVE
+                      </span>
+                    </div>
 
-                    {/* Main Active Description */}
-                    <p
+                    {/* Middle: Title + Description */}
+                    <div>
+                      <h3
+                        style={{
+                          fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
+                          fontWeight: 800,
+                          color: '#ffffff',
+                          margin: '0 0 0.5rem 0',
+                          lineHeight: 1.3
+                        }}
+                      >
+                        {card.title}
+                      </h3>
+                      <p
+                        style={{
+                          fontSize: 'clamp(0.8rem, 2vw, 0.96rem)',
+                          fontWeight: 500,
+                          lineHeight: 1.55,
+                          color: 'rgba(255, 255, 255, 0.95)',
+                          margin: 0
+                        }}
+                      >
+                        {card.desc}
+                      </p>
+                    </div>
+
+                    {/* Bottom Action Link */}
+                    <div
                       style={{
-                        fontSize: '1.12rem',
-                        fontWeight: 600,
-                        lineHeight: 1.5,
-                        color: '#ffffff',
-                        margin: 0
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        marginTop: '1.5rem',
+                        paddingTop: '1rem',
+                        borderTop: '1px solid rgba(255, 255, 255, 0.2)'
                       }}
                     >
-                      {card.desc}
-                    </p>
+                      <span style={{ fontSize: '0.86rem', fontWeight: 700, color: '#ffffff' }}>
+                        Explore Service
+                      </span>
+                      <div
+                        style={{
+                          width: '32px',
+                          height: '32px',
+                          borderRadius: '50%',
+                          backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: '#ffffff'
+                        }}
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                          <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                      </div>
+                    </div>
                   </motion.div>
                 ) : (
-                  /* ================= INACTIVE CARD CONTENT (CLEAN WHITE WITH BLUE ACCENTS) ================= */
+                  /* ================= INACTIVE CARD CONTENT (CLEAN WHITE WITH ACCENTS & HOVER) ================= */
                   <div
                     style={{
                       display: 'flex',
@@ -488,41 +596,95 @@ export default function HomeHeroSection() {
                       justifyContent: 'space-between'
                     }}
                   >
-                    {/* Title */}
-                    <h3
-                      style={{
-                        fontSize: '1.3rem',
-                        fontWeight: 700,
-                        color: '#0f172a',
-                        lineHeight: 1.35,
-                        margin: 0
-                      }}
-                    >
-                      {card.title}
-                    </h3>
+                    {/* Header Row: Category Tag */}
+                    <div style={{ marginBottom: '1rem' }}>
+                      <span
+                        style={{
+                          fontSize: '0.78rem',
+                          fontWeight: 700,
+                          color: isHovered ? '#1a68ff' : '#64748b',
+                          backgroundColor: isHovered ? '#f0f7ff' : '#f1f5f9',
+                          padding: '4px 12px',
+                          borderRadius: '20px',
+                          letterSpacing: '0.04em',
+                          textTransform: 'uppercase',
+                          display: 'inline-block',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
+                        {card.categoryTag}
+                      </span>
+                    </div>
+
+                    {/* Middle: Title */}
+                    <div>
+                      <h3
+                        style={{
+                          fontSize: 'clamp(0.95rem, 2.5vw, 1.25rem)',
+                          fontWeight: 700,
+                          color: isHovered ? '#1a68ff' : '#0f172a',
+                          lineHeight: 1.3,
+                          margin: '0 0 0.35rem 0',
+                          transition: 'color 0.2s ease',
+                          wordBreak: 'break-word'
+                        }}
+                      >
+                        {card.title}
+                      </h3>
+                      <p
+                        style={{
+                          fontSize: 'clamp(0.76rem, 2vw, 0.86rem)',
+                          fontWeight: 400,
+                          color: '#64748b',
+                          margin: 0,
+                          lineHeight: 1.4,
+                          display: '-webkit-box',
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: 'vertical',
+                          overflow: 'hidden'
+                        }}
+                      >
+                        {card.desc}
+                      </p>
+                    </div>
 
                     {/* Bottom Right Arrow Icon */}
                     <div
                       style={{
                         display: 'flex',
                         alignItems: 'center',
-                        marginTop: '2rem'
+                        justifyContent: 'flex-end',
+                        marginTop: '1.5rem'
                       }}
                     >
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#1a68ff"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        style={{ transition: 'stroke 0.2s ease, transform 0.2s ease' }}
+                      <div
+                        style={{
+                          width: '36px',
+                          height: '36px',
+                          borderRadius: '50%',
+                          backgroundColor: isHovered ? '#1a68ff' : '#f0f7ff',
+                          color: isHovered ? '#ffffff' : '#1a68ff',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          transition: 'all 0.25s ease',
+                          transform: isHovered ? 'translateX(3px)' : 'none'
+                        }}
                       >
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                      </svg>
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                          <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -530,11 +692,11 @@ export default function HomeHeroSection() {
             );
           })}
         </div>
-
       </div>
     </section>
   );
 }
+
 
 
 
